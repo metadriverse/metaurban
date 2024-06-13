@@ -1520,8 +1520,9 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
                 scale = 1.5 # for gradient
                 car_model.setScale(scale)
                 # model default, face to y
+                HPR = (180, 0, 0)
                 car_model.setHpr(*HPR)
-                car_model.setPos(offset[0] + 3.3, offset[1], offset[-1])
+                car_model.setPos(offset[0] - 3.3, offset[1], offset[-1])
                 car_model.setZ(-self.TIRE_RADIUS - self.CHASSIS_TO_WHEEL_AXIS + offset[-1])
             else:
                 car_model = EgoDeliveryRobot.model_collection[path]
