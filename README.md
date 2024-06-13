@@ -93,7 +93,7 @@ Run the following command to launch a simple scenario with manual control. Press
 python -m metaurban.examples.drive_in_dynamic_env
 ```
 
-### MetaUrban-12K Dataset Generation
+## MetaUrban-12K Dataset Generation
 We provide a subset of seeds with selected ORCA reference trajectory for ego agent. You can run the command as below to generate a scenario from these seeds
 
 ```bash
