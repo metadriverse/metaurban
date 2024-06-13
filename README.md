@@ -1,18 +1,5 @@
 # MetaUrban: A Simulation Platform for Embodied AI in Urban Spaces
 
-<div style="text-align: center; width:100%; margin: 0 auto; display: inline-block">
-<strong>
-[
-<a href="">Documentation</a>
-|
-<a href="">Demo Video</a>
-|
-<a href="">Website</a>
-|
-<a href="">Paper</a>
-]
-</strong>
-</div>
 
 ## 🛠 Quick Start
 Install MetaUrban (Tiny Version) via:
