@@ -1,0 +1,358 @@
+others:
+  color:
+  - Red
+  - Blue
+  - Green
+  - Yellow
+  - Black
+  - White
+  - Purple
+  - Orange
+  - Brown
+  - Gray
+  - Cyan
+  - Lime
+  - Pink
+  - Gold
+  - Teal
+  - Maroon
+  - Navy
+  - Olive
+  - Silver
+  - Violet
+path:
+  assetfolder: D:/research/dataset/.objaverse/hf-objaverse-v1
+  metaurbanasset: E:/Projects/metavqa_main_branch/metaurban/assets/models/test
+  metaurbanassetgltf: D:/research/dataset/pede
+  parentfolder: E:/Projects/metavqa_main_branch/adj_parameter_folder-v0.0.2
+  raw_assetfolder: D:/research/dataset/raw_asset_folder
+  subfolders:
+    adj_parameter_folder: adj_parameter_folder
+    all_tag_path: all_tag_list.json
+    filter_asset_path_folder: filter_asset_path_folder
+    ignore_adj_folder: ignore_adj_folder
+    layout_static_info_folder: layout_static_info_folder
+    match_uid_path_folder: match_uid_path_folder
+    raw_asset_path_folder: raw_asset_path_folder
+tag:
+  istaglist: true
+  selecttag: car
+  tag: car
+  taglist:
+  - sportcars
+  - 3dfreecarmodel
+  - blackcar
+  - luxary-car
+  - urbancar
+  - car-moscvich
+  - nypd-car
+  - motorcar
+  - car-audi-vehicle-luxurycar-cars
+  - moderncar
+  - car-vehicle
+type:
+  # animal:
+  #   dog:
+  #     spawnnum: 5
+  #     spawnpos: onsidewalk
+  guidance_objects:
+    Cone:
+      spawnpos: onroad
+      spawnnum: -1
+    # StopSign:
+    #   spawnpos: onsidewalk
+    #   spawnnum: 1
+    Warning:
+      spawnpos: onroad
+      spawnnum: -1
+    Wall:
+      spawnpos: onroad
+      spawnnum: 1
+    NoAccess:
+      spawnpos: onroad
+      spawnnum: 1
+    TrafficLight:
+      spawnpos: onroad
+      spawnnum: 1
+  
+  structures:
+    Fence:
+      spawnpos: nearroad_sidewalk_grid
+      spawnnum: 200
+
+  # structures:
+  #   Tollgate:
+  #     spawnpos: outsidewalk
+  #     spawnnum: 1
+  #   BusStop:
+  #     spawnpos: outsidewalk
+  #     spawnnum: 1
+  #   Curbside:
+  #     spawnpos: outsidewalk
+  #     spawnnum: 1
+  #   GasStation:
+  #     spawnpos: outsidewalk
+  #     spawnnum: 1
+  #   FireHose:
+  #     spawnpos: outsidewalk
+  #     spawnnum: 1
+    # Parking Meter:
+    #   spawnpos: onsidewalk
+    #   spawnnum: 4
+
+  # two_wheeled:
+  #   Bike:
+  #     spawnpos: onsidewalk
+  #     spawnnum: 2
+  #   Motorcycle:
+  #     spawnpos: onsidewalk
+  #     spawnnum: 2
+
+  vehicle:
+    SUV:
+      spawnpos: onroad
+      spawnnum: -1
+    Sedan:
+      spawnpos: onroad
+      spawnnum: -1
+    Truck:
+      spawnpos: onroad
+      spawnnum: -1
+    SportCar:
+      spawnpos: onroad
+      spawnnum: -1
+    Jeep:
+      spawnpos: onroad
+      spawnnum: -1
+    Pickup:
+      spawnpos: onroad
+      spawnnum: -1
+    Junk Car:
+      spawnpos: onroad
+      spawnnum: -1
+    Hatchback:
+      spawnpos: onroad
+      spawnnum: -1
+    Coupe:
+      spawnpos: onroad
+      spawnnum: -1
+    Policecar:
+      spawnpos: onroad
+      spawnnum: -1
+
+  human:
+    Pedestrian: { }
+typeinfo:
+  ? ''
+  : bounding_box:
+    - - 2.3394975662231445
+      - 1.0754557847976685
+    - - 2.3394975662231445
+      - -1.0760695934295654
+    - - -2.367145299911499
+      - -1.0760695934295654
+    - - -2.367145299911499
+      - 1.0754557847976685
+    center:
+    - -0.013823866844177246
+    - -0.00030690431594848633
+    length: 4.7066428661346436
+    width: 2.151525378227234
+  Bike:
+    bounding_box:
+    - - 1.1214572191238403
+      - 0.4881875216960907
+    - - 1.1214572191238403
+      - -0.48748332262039185
+    - - -1.122035026550293
+      - -0.48748332262039185
+    - - -1.122035026550293
+      - 0.4881875216960907
+    center:
+    - -0.00028890371322631836
+    - 0.00035209953784942627
+    length: 2.2434922456741333
+    width: 0.9756708443164825
+  BusStop:
+    bounding_box:
+    - - 1.3032584190368652
+      - 3.2173943519592285
+    - - 1.3032584190368652
+      - -2.040933609008789
+    - - -1.347522258758545
+      - -2.040933609008789
+    - - -1.347522258758545
+      - 3.2173943519592285
+    center:
+    - -0.022131919860839844
+    - 0.5882303714752197
+    length: 2.65078067779541
+    width: 5.258327960968018
+  Cone:
+    bounding_box:
+    - - 0.3924295902252197
+      - 0.392631471157074
+    - - 0.3924295902252197
+      - -0.3917238712310791
+    - - -0.3919258713722229
+      - -0.3917238712310791
+    - - -0.3919258713722229
+      - 0.392631471157074
+    center:
+    - 0.0002518594264984131
+    - 0.0004537999629974365
+    length: 0.7843554615974426
+    width: 0.7843553423881531
+  Coupe:
+    bounding_box:
+    - - 2.3394968509674072
+      - 1.075455665588379
+    - - 2.3394968509674072
+      - -1.0760692358016968
+    - - -2.367144823074341
+      - -1.0760692358016968
+    - - -2.367144823074341
+      - 1.075455665588379
+    center:
+    - -0.013823986053466797
+    - -0.00030678510665893555
+    length: 4.706641674041748
+    width: 2.1515249013900757
+  Hatchback:
+    bounding_box:
+    - - 2.4702351093292236
+      - 1.1965457201004028
+    - - 2.4702351093292236
+      - -1.2415012121200562
+    - - -2.421722412109375
+      - -1.2415012121200562
+    - - -2.421722412109375
+      - 1.1965457201004028
+    center:
+    - 0.024256348609924316
+    - -0.02247774600982666
+    length: 4.891957521438599
+    width: 2.438046932220459
+  Motorcycle:
+    bounding_box:
+    - - 1.0478734970092773
+      - 0.4211578667163849
+    - - 1.0478734970092773
+      - -0.4197881519794464
+    - - -1.0477899312973022
+      - -0.4197881519794464
+    - - -1.0477899312973022
+      - 0.4211578667163849
+    center:
+    - 4.178285598754883e-05
+    - 0.0006848573684692383
+    length: 2.0956634283065796
+    width: 0.8409460186958313
+  NoAccess:
+    bounding_box:
+    - - 0.5975431799888611
+      - 1.7264913320541382
+    - - 0.5975431799888611
+      - -1.724768042564392
+    - - -0.5986411571502686
+      - -1.724768042564392
+    - - -0.5986411571502686
+      - 1.7264913320541382
+    center:
+    - -0.0005489885807037354
+    - 0.0008616447448730469
+    length: 1.1961843371391296
+    width: 3.4512593746185303
+  SUV:
+    bounding_box:
+    - - 2.204939842224121
+      - 1.0166300535202026
+    - - 2.204939842224121
+      - -1.0166298151016235
+    - - -2.2048897743225098
+      - -1.0166298151016235
+    - - -2.2048897743225098
+      - 1.0166300535202026
+    center:
+    - 2.5033950805664062e-05
+    - 1.1920928955078125e-07
+    length: 4.409829616546631
+    width: 2.033259868621826
+  Sedan:
+    bounding_box:
+    - - 2.7004234790802
+      - 1.167905569076538
+    - - 2.7004234790802
+      - -1.1678917407989502
+    - - -2.694643974304199
+      - -1.1678917407989502
+    - - -2.694643974304199
+      - 1.167905569076538
+    center:
+    - 0.0028897523880004883
+    - 6.9141387939453125e-06
+    length: 5.395067453384399
+    width: 2.3357973098754883
+  SportCar:
+    bounding_box:
+    - - 2.288778781890869
+      - 1.0674391984939575
+    - - 2.288778781890869
+      - -1.067429542541504
+    - - -2.3294899463653564
+      - -1.067429542541504
+    - - -2.3294899463653564
+      - 1.0674391984939575
+    center:
+    - -0.020355582237243652
+    - 4.827976226806641e-06
+    length: 4.618268728256226
+    width: 2.1348687410354614
+  StopSign:
+    bounding_box:
+    - - 0.07454484701156616
+      - 0.7002328038215637
+    - - 0.07454484701156616
+      - -0.6865848302841187
+    - - -0.07454782724380493
+      - -0.6865848302841187
+    - - -0.07454782724380493
+      - 0.7002328038215637
+    center:
+    - -1.4901161193847656e-06
+    - 0.006823986768722534
+    length: 0.1490926742553711
+    width: 1.3868176341056824
+  TrafficLight:
+    bounding_box:
+    - - 0.32314467430114746
+      - 3.66133975982666
+    - - 0.32314467430114746
+      - -3.658132314682007
+    - - -0.2902834117412567
+      - -3.658132314682007
+    - - -0.2902834117412567
+      - 3.66133975982666
+    center:
+    - 0.016430631279945374
+    - 0.0016037225723266602
+    length: 0.6134280860424042
+    width: 7.319472074508667
+  Truck:
+    bounding_box:
+    - - 2.459498882293701
+      - 0.8482210040092468
+    - - 2.459498882293701
+      - -0.8475002646446228
+    - - -2.454247236251831
+      - -0.8475002646446228
+    - - -2.454247236251831
+      - 0.8482210040092468
+    center:
+    - 0.0026258230209350586
+    - 0.0003603696823120117
+    length: 4.913746118545532
+    width: 1.6957212686538696
+  test:
+    height: 10
+    width: 10

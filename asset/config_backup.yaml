@@ -1,0 +1,61 @@
+tag:
+  istaglist: False
+  tag: "pede"
+#  taglist: ["crosswalksign", "americancrosswalksign", "crosswalk", "americancrosswalk", ]
+  selecttag: "pede"
+path:
+  assetfolder: "D:/research/dataset/.objaverse/hf-objaverse-v1"
+  raw_assetfolder: "D:/research/dataset/raw_asset_folder"
+  metaurbanasset: 'D:/research/MetaVQA/metaurban/assets/models/test'  # Folder where you want to copy the files
+  metaurbanassetgltf: 'D:/research/dataset/pede'  # Folder where you want to copy the files
+  parentfolder: "D:/research/dataset"
+  subfolders:
+    all_tag_path: "all_tag_list.json"
+    raw_asset_path_folder: "raw_asset_path_folder" # raw asset with certain tag, saved as uid: path, generated from download_assets.py
+    filter_asset_path_folder: "filter_asset_path_folder" # filtered asset with annotated tags
+    match_uid_path_folder: "match_uid_path_folder"
+    adj_parameter_folder: "adj_parameter_folder"
+    ignore_adj_folder: "ignore_adj_folder"
+    layout_static_info_folder: "layout_static_info_folder"
+type:
+  vehicle: ["SUV","Sedan", "Truck", "SportCar", "Jeep", "Pickup", "Junk Car"]
+  two_wheeled: ["Bike", "Motorcycle"]
+  guidance_objects:  ["Cone", "StopSign", "Warning", "Wall", "NoAccess", "TrafficLight"]
+  structures:  ["Tollgate", "BusStop", "Curbside", "GasStation", "FireHose" , "Parking Meter"]
+typeinfo:
+  test:
+    height: 10
+    width: 10
+others:
+  color: [
+    "Red", "Blue", "Green", "Yellow", "Black", "White", "Purple", "Orange",
+    "Brown", "Gray", "Cyan", "Lime", "Pink", "Gold", "Teal", "Maroon",
+    "Navy", "Olive", "Silver", "Violet"
+]
+
+
+
+
+
+
+
+
+#tag:
+#  istaglist: False
+#  tag: "crosswalk"
+#  taglist: ["crosswalksign", "americancrosswalksign", "crosswalk", "americancrosswalk", ]
+#  selecttag: "crosswalk"
+#path:
+#  assetfolder: "D:/research/dataset/.objaverse/hf-objaverse-v1"
+#  metaurbanasset: 'D:/research/MetaVQA/metaurban/assets/models/test'  # Folder where you want to copy the files
+#  metaurbanassetgltf: 'D:/research/MetaVQA/metaurban/assets/models'  # Folder where you want to copy the files
+#  parentfolder: "D:/research/dataset"
+#  subfolders:
+#    all_tag_path: "all_tag_list.json"
+#    raw_asset_path_folder: "raw_asset_path_folder" # raw asset with certain tag, saved as uid: path, generated from download_assets.py
+#    filter_asset_path_folder: "filter_asset_path_folder" # filtered asset with annotated tags
+#    match_uid_path_folder: "match_uid_path_folder"
+#    adj_parameter_folder: "adj_parameter_folder"
+#    ignore_adj_folder: "ignore_adj_folder"
+#    layout_static_info_folder: "layout_static_info_folder"
+#

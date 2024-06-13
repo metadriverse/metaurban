@@ -1,0 +1,1944 @@
+<root>
+    <agents number="1" type="orca-par-ecbs">
+        <agents size="0.3" movespeed="1" agentsmaxnum="10" timeboundary="5.4" sightradius="3.0" timeboundaryobst="33"/>
+        <agent id="0" size="0.3" start.xr="96" start.yr="154" goal.xr="104.5" goal.yr="189.5"/>
+    </agents>
+    <obstacles number="38">
+        <obstacle>
+            <vertex xr="108" yr="2"/>
+            <vertex xr="108" yr="1"/>
+            <vertex xr="93" yr="2"/>
+            <vertex xr="93" yr="45"/>
+            <vertex xr="92" yr="46"/>
+            <vertex xr="92" yr="47"/>
+            <vertex xr="91" yr="48"/>
+            <vertex xr="91" yr="51"/>
+            <vertex xr="90" yr="52"/>
+            <vertex xr="90" yr="53"/>
+            <vertex xr="89" yr="54"/>
+            <vertex xr="89" yr="55"/>
+            <vertex xr="88" yr="56"/>
+            <vertex xr="88" yr="57"/>
+            <vertex xr="87" yr="58"/>
+            <vertex xr="87" yr="59"/>
+            <vertex xr="86" yr="60"/>
+            <vertex xr="86" yr="60"/>
+            <vertex xr="85" yr="61"/>
+            <vertex xr="85" yr="61"/>
+            <vertex xr="84" yr="62"/>
+            <vertex xr="84" yr="62"/>
+            <vertex xr="83" yr="63"/>
+            <vertex xr="83" yr="64"/>
+            <vertex xr="81" yr="65"/>
+            <vertex xr="81" yr="65"/>
+            <vertex xr="80" yr="66"/>
+            <vertex xr="80" yr="67"/>
+            <vertex xr="78" yr="68"/>
+            <vertex xr="78" yr="68"/>
+            <vertex xr="77" yr="69"/>
+            <vertex xr="77" yr="69"/>
+            <vertex xr="76" yr="70"/>
+            <vertex xr="76" yr="70"/>
+            <vertex xr="74" yr="71"/>
+            <vertex xr="74" yr="71"/>
+            <vertex xr="72" yr="72"/>
+            <vertex xr="72" yr="72"/>
+            <vertex xr="70" yr="73"/>
+            <vertex xr="70" yr="73"/>
+            <vertex xr="66" yr="74"/>
+            <vertex xr="66" yr="74"/>
+            <vertex xr="64" yr="75"/>
+            <vertex xr="64" yr="75"/>
+            <vertex xr="58" yr="76"/>
+            <vertex xr="58" yr="76"/>
+            <vertex xr="4" yr="77"/>
+            <vertex xr="4" yr="84"/>
+            <vertex xr="1" yr="85"/>
+            <vertex xr="2" yr="109"/>
+            <vertex xr="3" yr="110"/>
+            <vertex xr="4" yr="117"/>
+            <vertex xr="59" yr="118"/>
+            <vertex xr="60" yr="118"/>
+            <vertex xr="66" yr="119"/>
+            <vertex xr="67" yr="119"/>
+            <vertex xr="68" yr="120"/>
+            <vertex xr="69" yr="120"/>
+            <vertex xr="70" yr="121"/>
+            <vertex xr="71" yr="121"/>
+            <vertex xr="72" yr="122"/>
+            <vertex xr="73" yr="122"/>
+            <vertex xr="74" yr="123"/>
+            <vertex xr="75" yr="123"/>
+            <vertex xr="76" yr="124"/>
+            <vertex xr="77" yr="124"/>
+            <vertex xr="77" yr="125"/>
+            <vertex xr="78" yr="125"/>
+            <vertex xr="79" yr="126"/>
+            <vertex xr="80" yr="126"/>
+            <vertex xr="80" yr="127"/>
+            <vertex xr="81" yr="127"/>
+            <vertex xr="81" yr="128"/>
+            <vertex xr="82" yr="128"/>
+            <vertex xr="82" yr="129"/>
+            <vertex xr="83" yr="129"/>
+            <vertex xr="83" yr="130"/>
+            <vertex xr="84" yr="130"/>
+            <vertex xr="84" yr="131"/>
+            <vertex xr="85" yr="131"/>
+            <vertex xr="85" yr="132"/>
+            <vertex xr="86" yr="133"/>
+            <vertex xr="86" yr="134"/>
+            <vertex xr="87" yr="134"/>
+            <vertex xr="87" yr="135"/>
+            <vertex xr="88" yr="135"/>
+            <vertex xr="88" yr="136"/>
+            <vertex xr="89" yr="137"/>
+            <vertex xr="89" yr="138"/>
+            <vertex xr="90" yr="139"/>
+            <vertex xr="90" yr="140"/>
+            <vertex xr="91" yr="141"/>
+            <vertex xr="91" yr="142"/>
+            <vertex xr="92" yr="145"/>
+            <vertex xr="92" yr="146"/>
+            <vertex xr="93" yr="147"/>
+            <vertex xr="93" yr="148"/>
+            <vertex xr="94" yr="192"/>
+            <vertex xr="101" yr="193"/>
+            <vertex xr="102" yr="195"/>
+            <vertex xr="127" yr="195"/>
+            <vertex xr="128" yr="192"/>
+            <vertex xr="135" yr="192"/>
+            <vertex xr="136" yr="150"/>
+            <vertex xr="136" yr="150"/>
+            <vertex xr="137" yr="146"/>
+            <vertex xr="137" yr="146"/>
+            <vertex xr="138" yr="144"/>
+            <vertex xr="138" yr="144"/>
+            <vertex xr="139" yr="141"/>
+            <vertex xr="139" yr="141"/>
+            <vertex xr="140" yr="138"/>
+            <vertex xr="140" yr="138"/>
+            <vertex xr="141" yr="136"/>
+            <vertex xr="141" yr="136"/>
+            <vertex xr="142" yr="135"/>
+            <vertex xr="142" yr="135"/>
+            <vertex xr="143" yr="133"/>
+            <vertex xr="143" yr="133"/>
+            <vertex xr="144" yr="132"/>
+            <vertex xr="144" yr="132"/>
+            <vertex xr="145" yr="131"/>
+            <vertex xr="145" yr="131"/>
+            <vertex xr="146" yr="130"/>
+            <vertex xr="146" yr="130"/>
+            <vertex xr="147" yr="129"/>
+            <vertex xr="147" yr="129"/>
+            <vertex xr="148" yr="128"/>
+            <vertex xr="148" yr="128"/>
+            <vertex xr="149" yr="127"/>
+            <vertex xr="149" yr="127"/>
+            <vertex xr="150" yr="126"/>
+            <vertex xr="150" yr="126"/>
+            <vertex xr="151" yr="125"/>
+            <vertex xr="151" yr="125"/>
+            <vertex xr="152" yr="124"/>
+            <vertex xr="153" yr="124"/>
+            <vertex xr="154" yr="123"/>
+            <vertex xr="154" yr="123"/>
+            <vertex xr="155" yr="122"/>
+            <vertex xr="157" yr="122"/>
+            <vertex xr="158" yr="121"/>
+            <vertex xr="159" yr="121"/>
+            <vertex xr="160" yr="120"/>
+            <vertex xr="161" yr="120"/>
+            <vertex xr="162" yr="119"/>
+            <vertex xr="165" yr="119"/>
+            <vertex xr="166" yr="118"/>
+            <vertex xr="169" yr="118"/>
+            <vertex xr="170" yr="117"/>
+            <vertex xr="210" yr="117"/>
+            <vertex xr="210" yr="103"/>
+            <vertex xr="167" yr="104"/>
+            <vertex xr="167" yr="104"/>
+            <vertex xr="162" yr="105"/>
+            <vertex xr="162" yr="105"/>
+            <vertex xr="159" yr="106"/>
+            <vertex xr="159" yr="106"/>
+            <vertex xr="156" yr="107"/>
+            <vertex xr="156" yr="107"/>
+            <vertex xr="153" yr="108"/>
+            <vertex xr="153" yr="108"/>
+            <vertex xr="151" yr="109"/>
+            <vertex xr="151" yr="109"/>
+            <vertex xr="149" yr="110"/>
+            <vertex xr="149" yr="110"/>
+            <vertex xr="147" yr="111"/>
+            <vertex xr="147" yr="111"/>
+            <vertex xr="146" yr="112"/>
+            <vertex xr="146" yr="112"/>
+            <vertex xr="144" yr="113"/>
+            <vertex xr="144" yr="113"/>
+            <vertex xr="143" yr="114"/>
+            <vertex xr="143" yr="114"/>
+            <vertex xr="142" yr="115"/>
+            <vertex xr="143" yr="115"/>
+            <vertex xr="143" yr="115"/>
+            <vertex xr="144" yr="114"/>
+            <vertex xr="145" yr="115"/>
+            <vertex xr="146" yr="115"/>
+            <vertex xr="146" yr="116"/>
+            <vertex xr="146" yr="117"/>
+            <vertex xr="145" yr="118"/>
+            <vertex xr="146" yr="118"/>
+            <vertex xr="146" yr="119"/>
+            <vertex xr="147" yr="120"/>
+            <vertex xr="147" yr="121"/>
+            <vertex xr="147" yr="121"/>
+            <vertex xr="146" yr="122"/>
+            <vertex xr="146" yr="122"/>
+            <vertex xr="145" yr="122"/>
+            <vertex xr="145" yr="121"/>
+            <vertex xr="144" yr="121"/>
+            <vertex xr="144" yr="120"/>
+            <vertex xr="143" yr="121"/>
+            <vertex xr="143" yr="121"/>
+            <vertex xr="142" yr="121"/>
+            <vertex xr="142" yr="120"/>
+            <vertex xr="141" yr="120"/>
+            <vertex xr="141" yr="119"/>
+            <vertex xr="140" yr="119"/>
+            <vertex xr="140" yr="118"/>
+            <vertex xr="139" yr="118"/>
+            <vertex xr="140" yr="117"/>
+            <vertex xr="140" yr="117"/>
+            <vertex xr="141" yr="116"/>
+            <vertex xr="141" yr="116"/>
+            <vertex xr="141" yr="115"/>
+            <vertex xr="140" yr="116"/>
+            <vertex xr="140" yr="116"/>
+            <vertex xr="139" yr="117"/>
+            <vertex xr="139" yr="117"/>
+            <vertex xr="138" yr="118"/>
+            <vertex xr="138" yr="118"/>
+            <vertex xr="137" yr="119"/>
+            <vertex xr="137" yr="119"/>
+            <vertex xr="136" yr="120"/>
+            <vertex xr="136" yr="120"/>
+            <vertex xr="135" yr="121"/>
+            <vertex xr="135" yr="121"/>
+            <vertex xr="134" yr="122"/>
+            <vertex xr="134" yr="122"/>
+            <vertex xr="133" yr="123"/>
+            <vertex xr="133" yr="123"/>
+            <vertex xr="132" yr="124"/>
+            <vertex xr="132" yr="124"/>
+            <vertex xr="131" yr="125"/>
+            <vertex xr="131" yr="126"/>
+            <vertex xr="130" yr="127"/>
+            <vertex xr="130" yr="128"/>
+            <vertex xr="129" yr="129"/>
+            <vertex xr="129" yr="129"/>
+            <vertex xr="128" yr="130"/>
+            <vertex xr="128" yr="131"/>
+            <vertex xr="127" yr="132"/>
+            <vertex xr="127" yr="133"/>
+            <vertex xr="126" yr="134"/>
+            <vertex xr="126" yr="134"/>
+            <vertex xr="125" yr="135"/>
+            <vertex xr="125" yr="136"/>
+            <vertex xr="124" yr="137"/>
+            <vertex xr="124" yr="139"/>
+            <vertex xr="123" yr="140"/>
+            <vertex xr="123" yr="144"/>
+            <vertex xr="122" yr="145"/>
+            <vertex xr="122" yr="147"/>
+            <vertex xr="121" yr="148"/>
+            <vertex xr="121" yr="188"/>
+            <vertex xr="108" yr="188"/>
+            <vertex xr="108" yr="152"/>
+            <vertex xr="107" yr="152"/>
+            <vertex xr="107" yr="146"/>
+            <vertex xr="102" yr="147"/>
+            <vertex xr="102" yr="147"/>
+            <vertex xr="98" yr="147"/>
+            <vertex xr="98" yr="144"/>
+            <vertex xr="97" yr="144"/>
+            <vertex xr="97" yr="143"/>
+            <vertex xr="96" yr="143"/>
+            <vertex xr="96" yr="141"/>
+            <vertex xr="95" yr="141"/>
+            <vertex xr="96" yr="139"/>
+            <vertex xr="96" yr="139"/>
+            <vertex xr="96" yr="138"/>
+            <vertex xr="95" yr="138"/>
+            <vertex xr="95" yr="136"/>
+            <vertex xr="94" yr="136"/>
+            <vertex xr="95" yr="134"/>
+            <vertex xr="96" yr="134"/>
+            <vertex xr="96" yr="133"/>
+            <vertex xr="95" yr="133"/>
+            <vertex xr="96" yr="131"/>
+            <vertex xr="96" yr="131"/>
+            <vertex xr="97" yr="130"/>
+            <vertex xr="98" yr="130"/>
+            <vertex xr="99" yr="129"/>
+            <vertex xr="99" yr="130"/>
+            <vertex xr="100" yr="130"/>
+            <vertex xr="100" yr="131"/>
+            <vertex xr="101" yr="131"/>
+            <vertex xr="101" yr="131"/>
+            <vertex xr="101" yr="130"/>
+            <vertex xr="100" yr="130"/>
+            <vertex xr="100" yr="128"/>
+            <vertex xr="99" yr="128"/>
+            <vertex xr="99" yr="127"/>
+            <vertex xr="98" yr="127"/>
+            <vertex xr="98" yr="125"/>
+            <vertex xr="97" yr="125"/>
+            <vertex xr="97" yr="124"/>
+            <vertex xr="96" yr="124"/>
+            <vertex xr="96" yr="122"/>
+            <vertex xr="95" yr="122"/>
+            <vertex xr="95" yr="121"/>
+            <vertex xr="94" yr="121"/>
+            <vertex xr="94" yr="120"/>
+            <vertex xr="93" yr="120"/>
+            <vertex xr="93" yr="119"/>
+            <vertex xr="92" yr="119"/>
+            <vertex xr="92" yr="118"/>
+            <vertex xr="91" yr="118"/>
+            <vertex xr="91" yr="117"/>
+            <vertex xr="90" yr="117"/>
+            <vertex xr="90" yr="116"/>
+            <vertex xr="89" yr="116"/>
+            <vertex xr="89" yr="115"/>
+            <vertex xr="87" yr="115"/>
+            <vertex xr="87" yr="114"/>
+            <vertex xr="86" yr="115"/>
+            <vertex xr="86" yr="115"/>
+            <vertex xr="85" yr="116"/>
+            <vertex xr="85" yr="117"/>
+            <vertex xr="84" yr="118"/>
+            <vertex xr="84" yr="118"/>
+            <vertex xr="83" yr="119"/>
+            <vertex xr="83" yr="119"/>
+            <vertex xr="82" yr="120"/>
+            <vertex xr="82" yr="120"/>
+            <vertex xr="80" yr="120"/>
+            <vertex xr="80" yr="119"/>
+            <vertex xr="79" yr="120"/>
+            <vertex xr="79" yr="120"/>
+            <vertex xr="78" yr="120"/>
+            <vertex xr="78" yr="119"/>
+            <vertex xr="76" yr="119"/>
+            <vertex xr="77" yr="117"/>
+            <vertex xr="77" yr="117"/>
+            <vertex xr="77" yr="114"/>
+            <vertex xr="74" yr="114"/>
+            <vertex xr="74" yr="113"/>
+            <vertex xr="73" yr="113"/>
+            <vertex xr="73" yr="112"/>
+            <vertex xr="72" yr="112"/>
+            <vertex xr="73" yr="110"/>
+            <vertex xr="73" yr="110"/>
+            <vertex xr="74" yr="108"/>
+            <vertex xr="75" yr="109"/>
+            <vertex xr="76" yr="109"/>
+            <vertex xr="77" yr="109"/>
+            <vertex xr="77" yr="108"/>
+            <vertex xr="75" yr="108"/>
+            <vertex xr="75" yr="107"/>
+            <vertex xr="74" yr="107"/>
+            <vertex xr="74" yr="106"/>
+            <vertex xr="72" yr="106"/>
+            <vertex xr="72" yr="105"/>
+            <vertex xr="66" yr="105"/>
+            <vertex xr="66" yr="104"/>
+            <vertex xr="64" yr="104"/>
+            <vertex xr="64" yr="103"/>
+            <vertex xr="58" yr="103"/>
+            <vertex xr="59" yr="90"/>
+            <vertex xr="61" yr="90"/>
+            <vertex xr="62" yr="89"/>
+            <vertex xr="67" yr="89"/>
+            <vertex xr="68" yr="88"/>
+            <vertex xr="70" yr="88"/>
+            <vertex xr="71" yr="87"/>
+            <vertex xr="73" yr="87"/>
+            <vertex xr="74" yr="86"/>
+            <vertex xr="75" yr="86"/>
+            <vertex xr="76" yr="85"/>
+            <vertex xr="78" yr="85"/>
+            <vertex xr="79" yr="84"/>
+            <vertex xr="80" yr="84"/>
+            <vertex xr="81" yr="83"/>
+            <vertex xr="81" yr="83"/>
+            <vertex xr="82" yr="82"/>
+            <vertex xr="83" yr="82"/>
+            <vertex xr="84" yr="81"/>
+            <vertex xr="85" yr="81"/>
+            <vertex xr="86" yr="80"/>
+            <vertex xr="86" yr="80"/>
+            <vertex xr="87" yr="79"/>
+            <vertex xr="87" yr="79"/>
+            <vertex xr="88" yr="78"/>
+            <vertex xr="88" yr="78"/>
+            <vertex xr="89" yr="77"/>
+            <vertex xr="89" yr="77"/>
+            <vertex xr="90" yr="76"/>
+            <vertex xr="90" yr="76"/>
+            <vertex xr="91" yr="75"/>
+            <vertex xr="91" yr="75"/>
+            <vertex xr="92" yr="74"/>
+            <vertex xr="92" yr="74"/>
+            <vertex xr="93" yr="73"/>
+            <vertex xr="93" yr="73"/>
+            <vertex xr="94" yr="72"/>
+            <vertex xr="94" yr="72"/>
+            <vertex xr="95" yr="71"/>
+            <vertex xr="95" yr="71"/>
+            <vertex xr="96" yr="70"/>
+            <vertex xr="96" yr="70"/>
+            <vertex xr="97" yr="69"/>
+            <vertex xr="97" yr="69"/>
+            <vertex xr="98" yr="68"/>
+            <vertex xr="98" yr="68"/>
+            <vertex xr="99" yr="66"/>
+            <vertex xr="99" yr="66"/>
+            <vertex xr="100" yr="65"/>
+            <vertex xr="100" yr="65"/>
+            <vertex xr="101" yr="63"/>
+            <vertex xr="101" yr="63"/>
+            <vertex xr="102" yr="61"/>
+            <vertex xr="102" yr="61"/>
+            <vertex xr="103" yr="60"/>
+            <vertex xr="103" yr="60"/>
+            <vertex xr="104" yr="57"/>
+            <vertex xr="104" yr="57"/>
+            <vertex xr="105" yr="54"/>
+            <vertex xr="105" yr="54"/>
+            <vertex xr="106" yr="51"/>
+            <vertex xr="106" yr="51"/>
+            <vertex xr="107" yr="49"/>
+            <vertex xr="107" yr="49"/>
+            <vertex xr="107" yr="41"/>
+            <vertex xr="106" yr="42"/>
+            <vertex xr="106" yr="47"/>
+            <vertex xr="105" yr="48"/>
+            <vertex xr="105" yr="48"/>
+            <vertex xr="102" yr="48"/>
+            <vertex xr="103" yr="45"/>
+            <vertex xr="104" yr="45"/>
+            <vertex xr="104" yr="44"/>
+            <vertex xr="101" yr="44"/>
+            <vertex xr="102" yr="41"/>
+            <vertex xr="102" yr="41"/>
+            <vertex xr="103" yr="40"/>
+            <vertex xr="103" yr="40"/>
+            <vertex xr="104" yr="37"/>
+            <vertex xr="107" yr="38"/>
+            <vertex xr="108" yr="40"/>
+            <vertex xr="108" yr="40"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="129" yr="168"/>
+            <vertex xr="129" yr="169"/>
+            <vertex xr="130" yr="174"/>
+            <vertex xr="130" yr="175"/>
+            <vertex xr="130" yr="178"/>
+            <vertex xr="129" yr="179"/>
+            <vertex xr="129" yr="184"/>
+            <vertex xr="127" yr="185"/>
+            <vertex xr="127" yr="187"/>
+            <vertex xr="122" yr="187"/>
+            <vertex xr="123" yr="183"/>
+            <vertex xr="125" yr="183"/>
+            <vertex xr="125" yr="171"/>
+            <vertex xr="122" yr="171"/>
+            <vertex xr="123" yr="168"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="103" yr="167"/>
+            <vertex xr="103" yr="168"/>
+            <vertex xr="104" yr="177"/>
+            <vertex xr="107" yr="178"/>
+            <vertex xr="107" yr="180"/>
+            <vertex xr="99" yr="180"/>
+            <vertex xr="99" yr="174"/>
+            <vertex xr="98" yr="174"/>
+            <vertex xr="99" yr="170"/>
+            <vertex xr="99" yr="170"/>
+            <vertex xr="100" yr="167"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="107" yr="161"/>
+            <vertex xr="107" yr="162"/>
+            <vertex xr="107" yr="165"/>
+            <vertex xr="102" yr="165"/>
+            <vertex xr="103" yr="161"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="101" yr="157"/>
+            <vertex xr="101" yr="158"/>
+            <vertex xr="101" yr="160"/>
+            <vertex xr="97" yr="160"/>
+            <vertex xr="98" yr="157"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="125" yr="148"/>
+            <vertex xr="125" yr="149"/>
+            <vertex xr="126" yr="149"/>
+            <vertex xr="127" yr="150"/>
+            <vertex xr="127" yr="152"/>
+            <vertex xr="126" yr="153"/>
+            <vertex xr="126" yr="156"/>
+            <vertex xr="122" yr="156"/>
+            <vertex xr="123" yr="148"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="125" yr="144"/>
+            <vertex xr="125" yr="145"/>
+            <vertex xr="126" yr="145"/>
+            <vertex xr="127" yr="146"/>
+            <vertex xr="127" yr="148"/>
+            <vertex xr="125" yr="148"/>
+            <vertex xr="125" yr="147"/>
+            <vertex xr="123" yr="147"/>
+            <vertex xr="124" yr="144"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="102" yr="133"/>
+            <vertex xr="102" yr="132"/>
+            <vertex xr="100" yr="133"/>
+            <vertex xr="100" yr="133"/>
+            <vertex xr="98" yr="134"/>
+            <vertex xr="99" yr="135"/>
+            <vertex xr="99" yr="136"/>
+            <vertex xr="100" yr="138"/>
+            <vertex xr="100" yr="139"/>
+            <vertex xr="101" yr="140"/>
+            <vertex xr="101" yr="141"/>
+            <vertex xr="102" yr="143"/>
+            <vertex xr="102" yr="144"/>
+            <vertex xr="103" yr="144"/>
+            <vertex xr="103" yr="144"/>
+            <vertex xr="104" yr="143"/>
+            <vertex xr="105" yr="144"/>
+            <vertex xr="106" yr="145"/>
+            <vertex xr="106" yr="145"/>
+            <vertex xr="106" yr="141"/>
+            <vertex xr="105" yr="141"/>
+            <vertex xr="105" yr="138"/>
+            <vertex xr="104" yr="138"/>
+            <vertex xr="104" yr="135"/>
+            <vertex xr="103" yr="135"/>
+            <vertex xr="103" yr="134"/>
+            <vertex xr="102" yr="134"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="133" yr="125"/>
+            <vertex xr="133" yr="126"/>
+            <vertex xr="134" yr="126"/>
+            <vertex xr="135" yr="127"/>
+            <vertex xr="136" yr="127"/>
+            <vertex xr="136" yr="128"/>
+            <vertex xr="137" yr="128"/>
+            <vertex xr="137" yr="129"/>
+            <vertex xr="138" yr="129"/>
+            <vertex xr="138" yr="130"/>
+            <vertex xr="138" yr="130"/>
+            <vertex xr="137" yr="131"/>
+            <vertex xr="138" yr="131"/>
+            <vertex xr="138" yr="132"/>
+            <vertex xr="138" yr="132"/>
+            <vertex xr="137" yr="133"/>
+            <vertex xr="137" yr="134"/>
+            <vertex xr="135" yr="134"/>
+            <vertex xr="135" yr="133"/>
+            <vertex xr="133" yr="134"/>
+            <vertex xr="133" yr="134"/>
+            <vertex xr="132" yr="135"/>
+            <vertex xr="132" yr="136"/>
+            <vertex xr="131" yr="137"/>
+            <vertex xr="131" yr="138"/>
+            <vertex xr="128" yr="138"/>
+            <vertex xr="128" yr="137"/>
+            <vertex xr="126" yr="137"/>
+            <vertex xr="127" yr="135"/>
+            <vertex xr="127" yr="135"/>
+            <vertex xr="128" yr="133"/>
+            <vertex xr="128" yr="133"/>
+            <vertex xr="129" yr="131"/>
+            <vertex xr="129" yr="131"/>
+            <vertex xr="130" yr="130"/>
+            <vertex xr="130" yr="131"/>
+            <vertex xr="131" yr="131"/>
+            <vertex xr="132" yr="131"/>
+            <vertex xr="133" yr="130"/>
+            <vertex xr="133" yr="130"/>
+            <vertex xr="134" yr="129"/>
+            <vertex xr="134" yr="129"/>
+            <vertex xr="134" yr="128"/>
+            <vertex xr="132" yr="128"/>
+            <vertex xr="132" yr="127"/>
+            <vertex xr="131" yr="127"/>
+            <vertex xr="132" yr="126"/>
+            <vertex xr="132" yr="126"/>
+            <vertex xr="133" yr="125"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="94" yr="121"/>
+            <vertex xr="94" yr="122"/>
+            <vertex xr="95" yr="123"/>
+            <vertex xr="95" yr="124"/>
+            <vertex xr="96" yr="124"/>
+            <vertex xr="96" yr="125"/>
+            <vertex xr="97" yr="125"/>
+            <vertex xr="97" yr="126"/>
+            <vertex xr="97" yr="127"/>
+            <vertex xr="96" yr="128"/>
+            <vertex xr="96" yr="128"/>
+            <vertex xr="95" yr="129"/>
+            <vertex xr="95" yr="129"/>
+            <vertex xr="94" yr="129"/>
+            <vertex xr="94" yr="128"/>
+            <vertex xr="93" yr="128"/>
+            <vertex xr="93" yr="127"/>
+            <vertex xr="92" yr="128"/>
+            <vertex xr="92" yr="128"/>
+            <vertex xr="91" yr="129"/>
+            <vertex xr="91" yr="129"/>
+            <vertex xr="89" yr="129"/>
+            <vertex xr="90" yr="127"/>
+            <vertex xr="90" yr="127"/>
+            <vertex xr="91" yr="124"/>
+            <vertex xr="91" yr="124"/>
+            <vertex xr="92" yr="123"/>
+            <vertex xr="92" yr="123"/>
+            <vertex xr="93" yr="122"/>
+            <vertex xr="93" yr="122"/>
+            <vertex xr="94" yr="121"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="139" yr="118"/>
+            <vertex xr="139" yr="119"/>
+            <vertex xr="140" yr="119"/>
+            <vertex xr="140" yr="120"/>
+            <vertex xr="141" yr="121"/>
+            <vertex xr="141" yr="122"/>
+            <vertex xr="141" yr="122"/>
+            <vertex xr="140" yr="123"/>
+            <vertex xr="140" yr="124"/>
+            <vertex xr="139" yr="125"/>
+            <vertex xr="139" yr="125"/>
+            <vertex xr="138" yr="125"/>
+            <vertex xr="138" yr="124"/>
+            <vertex xr="136" yr="124"/>
+            <vertex xr="136" yr="123"/>
+            <vertex xr="135" yr="123"/>
+            <vertex xr="136" yr="121"/>
+            <vertex xr="136" yr="121"/>
+            <vertex xr="137" yr="120"/>
+            <vertex xr="137" yr="120"/>
+            <vertex xr="138" yr="119"/>
+            <vertex xr="138" yr="119"/>
+            <vertex xr="139" yr="118"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="90" yr="117"/>
+            <vertex xr="90" yr="118"/>
+            <vertex xr="91" yr="119"/>
+            <vertex xr="92" yr="120"/>
+            <vertex xr="92" yr="121"/>
+            <vertex xr="91" yr="122"/>
+            <vertex xr="91" yr="122"/>
+            <vertex xr="90" yr="123"/>
+            <vertex xr="90" yr="123"/>
+            <vertex xr="89" yr="123"/>
+            <vertex xr="89" yr="122"/>
+            <vertex xr="86" yr="122"/>
+            <vertex xr="86" yr="121"/>
+            <vertex xr="85" yr="121"/>
+            <vertex xr="86" yr="120"/>
+            <vertex xr="86" yr="120"/>
+            <vertex xr="87" yr="119"/>
+            <vertex xr="87" yr="119"/>
+            <vertex xr="88" yr="118"/>
+            <vertex xr="88" yr="118"/>
+            <vertex xr="89" yr="117"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="164" yr="105"/>
+            <vertex xr="164" yr="106"/>
+            <vertex xr="165" yr="110"/>
+            <vertex xr="165" yr="111"/>
+            <vertex xr="165" yr="112"/>
+            <vertex xr="164" yr="113"/>
+            <vertex xr="164" yr="113"/>
+            <vertex xr="161" yr="114"/>
+            <vertex xr="161" yr="115"/>
+            <vertex xr="156" yr="116"/>
+            <vertex xr="156" yr="116"/>
+            <vertex xr="153" yr="117"/>
+            <vertex xr="153" yr="117"/>
+            <vertex xr="152" yr="117"/>
+            <vertex xr="152" yr="115"/>
+            <vertex xr="150" yr="116"/>
+            <vertex xr="150" yr="116"/>
+            <vertex xr="149" yr="116"/>
+            <vertex xr="149" yr="115"/>
+            <vertex xr="148" yr="115"/>
+            <vertex xr="148" yr="113"/>
+            <vertex xr="147" yr="113"/>
+            <vertex xr="148" yr="111"/>
+            <vertex xr="149" yr="111"/>
+            <vertex xr="150" yr="110"/>
+            <vertex xr="150" yr="111"/>
+            <vertex xr="151" yr="111"/>
+            <vertex xr="151" yr="112"/>
+            <vertex xr="152" yr="113"/>
+            <vertex xr="153" yr="113"/>
+            <vertex xr="154" yr="112"/>
+            <vertex xr="154" yr="112"/>
+            <vertex xr="155" yr="111"/>
+            <vertex xr="157" yr="111"/>
+            <vertex xr="158" yr="110"/>
+            <vertex xr="160" yr="110"/>
+            <vertex xr="161" yr="109"/>
+            <vertex xr="162" yr="109"/>
+            <vertex xr="162" yr="108"/>
+            <vertex xr="161" yr="108"/>
+            <vertex xr="162" yr="106"/>
+            <vertex xr="162" yr="106"/>
+            <vertex xr="163" yr="105"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="80" yr="110"/>
+            <vertex xr="80" yr="109"/>
+            <vertex xr="78" yr="110"/>
+            <vertex xr="79" yr="110"/>
+            <vertex xr="79" yr="111"/>
+            <vertex xr="80" yr="111"/>
+            <vertex xr="80" yr="112"/>
+            <vertex xr="80" yr="112"/>
+            <vertex xr="79" yr="113"/>
+            <vertex xr="80" yr="115"/>
+            <vertex xr="83" yr="115"/>
+            <vertex xr="84" yr="113"/>
+            <vertex xr="84" yr="114"/>
+            <vertex xr="85" yr="114"/>
+            <vertex xr="85" yr="114"/>
+            <vertex xr="85" yr="113"/>
+            <vertex xr="84" yr="113"/>
+            <vertex xr="84" yr="112"/>
+            <vertex xr="83" yr="112"/>
+            <vertex xr="83" yr="111"/>
+            <vertex xr="82" yr="111"/>
+            <vertex xr="82" yr="110"/>
+            <vertex xr="80" yr="110"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="178" yr="109"/>
+            <vertex xr="178" yr="110"/>
+            <vertex xr="178" yr="113"/>
+            <vertex xr="175" yr="113"/>
+            <vertex xr="176" yr="109"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="43" yr="104"/>
+            <vertex xr="43" yr="105"/>
+            <vertex xr="43" yr="111"/>
+            <vertex xr="37" yr="112"/>
+            <vertex xr="37" yr="112"/>
+            <vertex xr="33" yr="112"/>
+            <vertex xr="33" yr="111"/>
+            <vertex xr="27" yr="111"/>
+            <vertex xr="27" yr="109"/>
+            <vertex xr="24" yr="109"/>
+            <vertex xr="25" yr="104"/>
+            <vertex xr="28" yr="105"/>
+            <vertex xr="29" yr="107"/>
+            <vertex xr="40" yr="107"/>
+            <vertex xr="41" yr="104"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="198" yr="104"/>
+            <vertex xr="198" yr="105"/>
+            <vertex xr="198" yr="111"/>
+            <vertex xr="192" yr="112"/>
+            <vertex xr="192" yr="112"/>
+            <vertex xr="188" yr="112"/>
+            <vertex xr="188" yr="111"/>
+            <vertex xr="185" yr="111"/>
+            <vertex xr="186" yr="107"/>
+            <vertex xr="195" yr="107"/>
+            <vertex xr="196" yr="104"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="21" yr="104"/>
+            <vertex xr="21" yr="105"/>
+            <vertex xr="21" yr="108"/>
+            <vertex xr="18" yr="109"/>
+            <vertex xr="18" yr="109"/>
+            <vertex xr="14" yr="109"/>
+            <vertex xr="15" yr="104"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="62" yr="104"/>
+            <vertex xr="62" yr="105"/>
+            <vertex xr="62" yr="109"/>
+            <vertex xr="58" yr="109"/>
+            <vertex xr="58" yr="108"/>
+            <vertex xr="55" yr="108"/>
+            <vertex xr="56" yr="104"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="66" yr="105"/>
+            <vertex xr="66" yr="106"/>
+            <vertex xr="66" yr="109"/>
+            <vertex xr="63" yr="109"/>
+            <vertex xr="64" yr="105"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="183" yr="104"/>
+            <vertex xr="183" yr="105"/>
+            <vertex xr="183" yr="109"/>
+            <vertex xr="179" yr="109"/>
+            <vertex xr="180" yr="104"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="51" yr="90"/>
+            <vertex xr="51" yr="91"/>
+            <vertex xr="51" yr="103"/>
+            <vertex xr="8" yr="103"/>
+            <vertex xr="9" yr="90"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="135" yr="2"/>
+            <vertex xr="135" yr="1"/>
+            <vertex xr="121" yr="2"/>
+            <vertex xr="122" yr="46"/>
+            <vertex xr="122" yr="47"/>
+            <vertex xr="123" yr="49"/>
+            <vertex xr="123" yr="49"/>
+            <vertex xr="124" yr="47"/>
+            <vertex xr="125" yr="47"/>
+            <vertex xr="126" yr="46"/>
+            <vertex xr="130" yr="47"/>
+            <vertex xr="131" yr="47"/>
+            <vertex xr="131" yr="48"/>
+            <vertex xr="132" yr="50"/>
+            <vertex xr="133" yr="51"/>
+            <vertex xr="134" yr="56"/>
+            <vertex xr="134" yr="57"/>
+            <vertex xr="135" yr="58"/>
+            <vertex xr="134" yr="59"/>
+            <vertex xr="134" yr="59"/>
+            <vertex xr="133" yr="60"/>
+            <vertex xr="134" yr="61"/>
+            <vertex xr="134" yr="62"/>
+            <vertex xr="134" yr="62"/>
+            <vertex xr="133" yr="63"/>
+            <vertex xr="133" yr="63"/>
+            <vertex xr="131" yr="64"/>
+            <vertex xr="131" yr="64"/>
+            <vertex xr="129" yr="64"/>
+            <vertex xr="129" yr="62"/>
+            <vertex xr="128" yr="62"/>
+            <vertex xr="129" yr="60"/>
+            <vertex xr="129" yr="60"/>
+            <vertex xr="130" yr="59"/>
+            <vertex xr="131" yr="59"/>
+            <vertex xr="131" yr="58"/>
+            <vertex xr="130" yr="58"/>
+            <vertex xr="130" yr="56"/>
+            <vertex xr="129" yr="56"/>
+            <vertex xr="129" yr="54"/>
+            <vertex xr="128" yr="54"/>
+            <vertex xr="128" yr="51"/>
+            <vertex xr="127" yr="51"/>
+            <vertex xr="127" yr="49"/>
+            <vertex xr="125" yr="50"/>
+            <vertex xr="125" yr="50"/>
+            <vertex xr="123" yr="51"/>
+            <vertex xr="124" yr="52"/>
+            <vertex xr="124" yr="53"/>
+            <vertex xr="125" yr="55"/>
+            <vertex xr="125" yr="56"/>
+            <vertex xr="126" yr="57"/>
+            <vertex xr="126" yr="58"/>
+            <vertex xr="127" yr="60"/>
+            <vertex xr="127" yr="61"/>
+            <vertex xr="128" yr="63"/>
+            <vertex xr="128" yr="64"/>
+            <vertex xr="129" yr="64"/>
+            <vertex xr="129" yr="65"/>
+            <vertex xr="130" yr="66"/>
+            <vertex xr="130" yr="67"/>
+            <vertex xr="131" yr="67"/>
+            <vertex xr="131" yr="68"/>
+            <vertex xr="132" yr="68"/>
+            <vertex xr="132" yr="69"/>
+            <vertex xr="133" yr="69"/>
+            <vertex xr="133" yr="70"/>
+            <vertex xr="134" yr="70"/>
+            <vertex xr="134" yr="70"/>
+            <vertex xr="134" yr="69"/>
+            <vertex xr="133" yr="69"/>
+            <vertex xr="133" yr="68"/>
+            <vertex xr="132" yr="68"/>
+            <vertex xr="132" yr="67"/>
+            <vertex xr="131" yr="67"/>
+            <vertex xr="132" yr="66"/>
+            <vertex xr="132" yr="66"/>
+            <vertex xr="133" yr="65"/>
+            <vertex xr="134" yr="65"/>
+            <vertex xr="135" yr="65"/>
+            <vertex xr="136" yr="65"/>
+            <vertex xr="137" yr="65"/>
+            <vertex xr="138" yr="64"/>
+            <vertex xr="139" yr="65"/>
+            <vertex xr="140" yr="65"/>
+            <vertex xr="140" yr="66"/>
+            <vertex xr="140" yr="66"/>
+            <vertex xr="139" yr="67"/>
+            <vertex xr="139" yr="67"/>
+            <vertex xr="138" yr="68"/>
+            <vertex xr="139" yr="68"/>
+            <vertex xr="139" yr="69"/>
+            <vertex xr="139" yr="69"/>
+            <vertex xr="138" yr="70"/>
+            <vertex xr="138" yr="70"/>
+            <vertex xr="136" yr="71"/>
+            <vertex xr="136" yr="71"/>
+            <vertex xr="135" yr="72"/>
+            <vertex xr="136" yr="72"/>
+            <vertex xr="137" yr="72"/>
+            <vertex xr="138" yr="71"/>
+            <vertex xr="138" yr="71"/>
+            <vertex xr="139" yr="70"/>
+            <vertex xr="141" yr="71"/>
+            <vertex xr="142" yr="71"/>
+            <vertex xr="143" yr="72"/>
+            <vertex xr="143" yr="73"/>
+            <vertex xr="142" yr="74"/>
+            <vertex xr="142" yr="75"/>
+            <vertex xr="141" yr="76"/>
+            <vertex xr="141" yr="76"/>
+            <vertex xr="140" yr="76"/>
+            <vertex xr="140" yr="75"/>
+            <vertex xr="139" yr="76"/>
+            <vertex xr="140" yr="76"/>
+            <vertex xr="140" yr="77"/>
+            <vertex xr="141" yr="77"/>
+            <vertex xr="141" yr="78"/>
+            <vertex xr="142" yr="78"/>
+            <vertex xr="142" yr="79"/>
+            <vertex xr="143" yr="79"/>
+            <vertex xr="143" yr="80"/>
+            <vertex xr="144" yr="80"/>
+            <vertex xr="144" yr="81"/>
+            <vertex xr="145" yr="81"/>
+            <vertex xr="146" yr="82"/>
+            <vertex xr="147" yr="82"/>
+            <vertex xr="148" yr="83"/>
+            <vertex xr="149" yr="83"/>
+            <vertex xr="149" yr="84"/>
+            <vertex xr="150" yr="84"/>
+            <vertex xr="151" yr="85"/>
+            <vertex xr="152" yr="85"/>
+            <vertex xr="153" yr="85"/>
+            <vertex xr="153" yr="84"/>
+            <vertex xr="152" yr="84"/>
+            <vertex xr="152" yr="83"/>
+            <vertex xr="149" yr="83"/>
+            <vertex xr="149" yr="82"/>
+            <vertex xr="148" yr="82"/>
+            <vertex xr="149" yr="81"/>
+            <vertex xr="149" yr="81"/>
+            <vertex xr="149" yr="78"/>
+            <vertex xr="148" yr="78"/>
+            <vertex xr="148" yr="77"/>
+            <vertex xr="146" yr="78"/>
+            <vertex xr="146" yr="79"/>
+            <vertex xr="145" yr="80"/>
+            <vertex xr="145" yr="80"/>
+            <vertex xr="144" yr="80"/>
+            <vertex xr="144" yr="79"/>
+            <vertex xr="143" yr="79"/>
+            <vertex xr="144" yr="76"/>
+            <vertex xr="144" yr="76"/>
+            <vertex xr="145" yr="75"/>
+            <vertex xr="145" yr="75"/>
+            <vertex xr="146" yr="74"/>
+            <vertex xr="146" yr="74"/>
+            <vertex xr="147" yr="72"/>
+            <vertex xr="147" yr="73"/>
+            <vertex xr="148" yr="73"/>
+            <vertex xr="151" yr="74"/>
+            <vertex xr="152" yr="74"/>
+            <vertex xr="152" yr="75"/>
+            <vertex xr="152" yr="76"/>
+            <vertex xr="151" yr="77"/>
+            <vertex xr="152" yr="78"/>
+            <vertex xr="153" yr="79"/>
+            <vertex xr="154" yr="79"/>
+            <vertex xr="154" yr="80"/>
+            <vertex xr="155" yr="80"/>
+            <vertex xr="156" yr="81"/>
+            <vertex xr="156" yr="83"/>
+            <vertex xr="155" yr="84"/>
+            <vertex xr="155" yr="85"/>
+            <vertex xr="154" yr="86"/>
+            <vertex xr="155" yr="86"/>
+            <vertex xr="157" yr="87"/>
+            <vertex xr="158" yr="87"/>
+            <vertex xr="159" yr="88"/>
+            <vertex xr="160" yr="88"/>
+            <vertex xr="162" yr="89"/>
+            <vertex xr="163" yr="89"/>
+            <vertex xr="168" yr="90"/>
+            <vertex xr="169" yr="90"/>
+            <vertex xr="210" yr="90"/>
+            <vertex xr="210" yr="76"/>
+            <vertex xr="172" yr="76"/>
+            <vertex xr="172" yr="75"/>
+            <vertex xr="165" yr="75"/>
+            <vertex xr="165" yr="74"/>
+            <vertex xr="162" yr="74"/>
+            <vertex xr="162" yr="73"/>
+            <vertex xr="160" yr="73"/>
+            <vertex xr="160" yr="72"/>
+            <vertex xr="157" yr="72"/>
+            <vertex xr="157" yr="71"/>
+            <vertex xr="155" yr="71"/>
+            <vertex xr="155" yr="70"/>
+            <vertex xr="154" yr="70"/>
+            <vertex xr="154" yr="69"/>
+            <vertex xr="152" yr="69"/>
+            <vertex xr="152" yr="68"/>
+            <vertex xr="150" yr="68"/>
+            <vertex xr="150" yr="67"/>
+            <vertex xr="149" yr="67"/>
+            <vertex xr="149" yr="66"/>
+            <vertex xr="148" yr="66"/>
+            <vertex xr="148" yr="65"/>
+            <vertex xr="147" yr="65"/>
+            <vertex xr="147" yr="64"/>
+            <vertex xr="146" yr="64"/>
+            <vertex xr="146" yr="63"/>
+            <vertex xr="145" yr="63"/>
+            <vertex xr="145" yr="62"/>
+            <vertex xr="144" yr="62"/>
+            <vertex xr="144" yr="61"/>
+            <vertex xr="143" yr="61"/>
+            <vertex xr="143" yr="59"/>
+            <vertex xr="142" yr="59"/>
+            <vertex xr="142" yr="58"/>
+            <vertex xr="141" yr="58"/>
+            <vertex xr="141" yr="56"/>
+            <vertex xr="140" yr="56"/>
+            <vertex xr="140" yr="53"/>
+            <vertex xr="139" yr="53"/>
+            <vertex xr="139" yr="51"/>
+            <vertex xr="138" yr="51"/>
+            <vertex xr="138" yr="49"/>
+            <vertex xr="137" yr="49"/>
+            <vertex xr="137" yr="45"/>
+            <vertex xr="136" yr="45"/>
+            <vertex xr="136" yr="42"/>
+            <vertex xr="135" yr="42"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="36" yr="80"/>
+            <vertex xr="36" yr="81"/>
+            <vertex xr="37" yr="81"/>
+            <vertex xr="39" yr="82"/>
+            <vertex xr="39" yr="85"/>
+            <vertex xr="29" yr="86"/>
+            <vertex xr="29" yr="89"/>
+            <vertex xr="26" yr="89"/>
+            <vertex xr="27" yr="81"/>
+            <vertex xr="32" yr="81"/>
+            <vertex xr="33" yr="80"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="45" yr="84"/>
+            <vertex xr="45" yr="85"/>
+            <vertex xr="45" yr="89"/>
+            <vertex xr="41" yr="89"/>
+            <vertex xr="42" yr="84"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="55" yr="84"/>
+            <vertex xr="55" yr="85"/>
+            <vertex xr="55" yr="89"/>
+            <vertex xr="48" yr="89"/>
+            <vertex xr="49" yr="85"/>
+            <vertex xr="51" yr="85"/>
+            <vertex xr="52" yr="84"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="169" yr="83"/>
+            <vertex xr="169" yr="84"/>
+            <vertex xr="170" yr="84"/>
+            <vertex xr="170" yr="85"/>
+            <vertex xr="171" yr="85"/>
+            <vertex xr="174" yr="86"/>
+            <vertex xr="174" yr="89"/>
+            <vertex xr="169" yr="89"/>
+            <vertex xr="169" yr="88"/>
+            <vertex xr="166" yr="88"/>
+            <vertex xr="166" yr="86"/>
+            <vertex xr="165" yr="87"/>
+            <vertex xr="165" yr="88"/>
+            <vertex xr="162" yr="88"/>
+            <vertex xr="163" yr="86"/>
+            <vertex xr="163" yr="86"/>
+            <vertex xr="164" yr="84"/>
+            <vertex xr="166" yr="85"/>
+            <vertex xr="167" yr="85"/>
+            <vertex xr="167" yr="85"/>
+            <vertex xr="168" yr="83"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="196" yr="80"/>
+            <vertex xr="196" yr="81"/>
+            <vertex xr="197" yr="81"/>
+            <vertex xr="202" yr="82"/>
+            <vertex xr="203" yr="84"/>
+            <vertex xr="205" yr="85"/>
+            <vertex xr="205" yr="89"/>
+            <vertex xr="201" yr="89"/>
+            <vertex xr="201" yr="85"/>
+            <vertex xr="189" yr="86"/>
+            <vertex xr="189" yr="89"/>
+            <vertex xr="186" yr="89"/>
+            <vertex xr="187" yr="81"/>
+            <vertex xr="192" yr="81"/>
+            <vertex xr="193" yr="80"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="76" yr="76"/>
+            <vertex xr="76" yr="77"/>
+            <vertex xr="77" yr="77"/>
+            <vertex xr="77" yr="78"/>
+            <vertex xr="78" yr="78"/>
+            <vertex xr="78" yr="78"/>
+            <vertex xr="79" yr="77"/>
+            <vertex xr="80" yr="78"/>
+            <vertex xr="81" yr="78"/>
+            <vertex xr="81" yr="79"/>
+            <vertex xr="82" yr="80"/>
+            <vertex xr="82" yr="81"/>
+            <vertex xr="82" yr="81"/>
+            <vertex xr="81" yr="82"/>
+            <vertex xr="81" yr="82"/>
+            <vertex xr="79" yr="83"/>
+            <vertex xr="79" yr="83"/>
+            <vertex xr="78" yr="83"/>
+            <vertex xr="78" yr="82"/>
+            <vertex xr="77" yr="82"/>
+            <vertex xr="77" yr="80"/>
+            <vertex xr="75" yr="81"/>
+            <vertex xr="75" yr="81"/>
+            <vertex xr="74" yr="82"/>
+            <vertex xr="74" yr="82"/>
+            <vertex xr="71" yr="83"/>
+            <vertex xr="71" yr="83"/>
+            <vertex xr="68" yr="84"/>
+            <vertex xr="68" yr="84"/>
+            <vertex xr="67" yr="85"/>
+            <vertex xr="68" yr="85"/>
+            <vertex xr="68" yr="86"/>
+            <vertex xr="68" yr="87"/>
+            <vertex xr="66" yr="88"/>
+            <vertex xr="66" yr="88"/>
+            <vertex xr="65" yr="88"/>
+            <vertex xr="65" yr="86"/>
+            <vertex xr="64" yr="86"/>
+            <vertex xr="64" yr="82"/>
+            <vertex xr="63" yr="82"/>
+            <vertex xr="64" yr="80"/>
+            <vertex xr="67" yr="80"/>
+            <vertex xr="68" yr="79"/>
+            <vertex xr="68" yr="79"/>
+            <vertex xr="69" yr="78"/>
+            <vertex xr="70" yr="78"/>
+            <vertex xr="71" yr="77"/>
+            <vertex xr="71" yr="78"/>
+            <vertex xr="72" yr="78"/>
+            <vertex xr="72" yr="78"/>
+            <vertex xr="73" yr="77"/>
+            <vertex xr="74" yr="77"/>
+            <vertex xr="75" yr="76"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="54" yr="79"/>
+            <vertex xr="54" yr="80"/>
+            <vertex xr="54" yr="83"/>
+            <vertex xr="51" yr="83"/>
+            <vertex xr="52" yr="79"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="84" yr="71"/>
+            <vertex xr="84" yr="72"/>
+            <vertex xr="85" yr="72"/>
+            <vertex xr="87" yr="73"/>
+            <vertex xr="88" yr="73"/>
+            <vertex xr="88" yr="74"/>
+            <vertex xr="89" yr="75"/>
+            <vertex xr="89" yr="76"/>
+            <vertex xr="89" yr="76"/>
+            <vertex xr="88" yr="77"/>
+            <vertex xr="88" yr="77"/>
+            <vertex xr="86" yr="78"/>
+            <vertex xr="86" yr="79"/>
+            <vertex xr="84" yr="79"/>
+            <vertex xr="84" yr="78"/>
+            <vertex xr="83" yr="78"/>
+            <vertex xr="83" yr="77"/>
+            <vertex xr="82" yr="77"/>
+            <vertex xr="83" yr="76"/>
+            <vertex xr="83" yr="76"/>
+            <vertex xr="83" yr="74"/>
+            <vertex xr="82" yr="74"/>
+            <vertex xr="82" yr="73"/>
+            <vertex xr="81" yr="73"/>
+            <vertex xr="82" yr="72"/>
+            <vertex xr="82" yr="72"/>
+            <vertex xr="83" yr="71"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="91" yr="67"/>
+            <vertex xr="91" yr="68"/>
+            <vertex xr="92" yr="68"/>
+            <vertex xr="92" yr="69"/>
+            <vertex xr="93" yr="69"/>
+            <vertex xr="93" yr="70"/>
+            <vertex xr="94" yr="70"/>
+            <vertex xr="94" yr="71"/>
+            <vertex xr="94" yr="71"/>
+            <vertex xr="93" yr="72"/>
+            <vertex xr="93" yr="72"/>
+            <vertex xr="92" yr="73"/>
+            <vertex xr="92" yr="73"/>
+            <vertex xr="91" yr="74"/>
+            <vertex xr="91" yr="74"/>
+            <vertex xr="90" yr="74"/>
+            <vertex xr="90" yr="73"/>
+            <vertex xr="89" yr="73"/>
+            <vertex xr="89" yr="72"/>
+            <vertex xr="88" yr="72"/>
+            <vertex xr="89" yr="71"/>
+            <vertex xr="89" yr="71"/>
+            <vertex xr="89" yr="70"/>
+            <vertex xr="88" yr="70"/>
+            <vertex xr="89" yr="69"/>
+            <vertex xr="89" yr="69"/>
+            <vertex xr="90" yr="68"/>
+            <vertex xr="90" yr="68"/>
+            <vertex xr="91" yr="67"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="138" yr="74"/>
+            <vertex xr="138" yr="73"/>
+            <vertex xr="137" yr="74"/>
+            <vertex xr="138" yr="74"/>
+            <vertex xr="138" yr="74"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="101" yr="54"/>
+            <vertex xr="101" yr="55"/>
+            <vertex xr="102" yr="55"/>
+            <vertex xr="103" yr="56"/>
+            <vertex xr="103" yr="56"/>
+            <vertex xr="102" yr="57"/>
+            <vertex xr="102" yr="59"/>
+            <vertex xr="101" yr="60"/>
+            <vertex xr="101" yr="61"/>
+            <vertex xr="100" yr="62"/>
+            <vertex xr="100" yr="62"/>
+            <vertex xr="99" yr="62"/>
+            <vertex xr="99" yr="61"/>
+            <vertex xr="96" yr="62"/>
+            <vertex xr="96" yr="63"/>
+            <vertex xr="95" yr="64"/>
+            <vertex xr="96" yr="64"/>
+            <vertex xr="96" yr="65"/>
+            <vertex xr="97" yr="65"/>
+            <vertex xr="97" yr="66"/>
+            <vertex xr="97" yr="67"/>
+            <vertex xr="96" yr="68"/>
+            <vertex xr="96" yr="68"/>
+            <vertex xr="95" yr="68"/>
+            <vertex xr="95" yr="67"/>
+            <vertex xr="94" yr="67"/>
+            <vertex xr="94" yr="66"/>
+            <vertex xr="93" yr="66"/>
+            <vertex xr="93" yr="65"/>
+            <vertex xr="91" yr="65"/>
+            <vertex xr="91" yr="64"/>
+            <vertex xr="90" yr="64"/>
+            <vertex xr="91" yr="63"/>
+            <vertex xr="91" yr="63"/>
+            <vertex xr="92" yr="60"/>
+            <vertex xr="92" yr="60"/>
+            <vertex xr="93" yr="58"/>
+            <vertex xr="94" yr="59"/>
+            <vertex xr="95" yr="59"/>
+            <vertex xr="96" yr="59"/>
+            <vertex xr="97" yr="58"/>
+            <vertex xr="97" yr="58"/>
+            <vertex xr="98" yr="56"/>
+            <vertex xr="98" yr="56"/>
+            <vertex xr="99" yr="55"/>
+            <vertex xr="99" yr="55"/>
+            <vertex xr="100" yr="54"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="131" yr="33"/>
+            <vertex xr="131" yr="34"/>
+            <vertex xr="131" yr="36"/>
+            <vertex xr="127" yr="36"/>
+            <vertex xr="128" yr="33"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="127" yr="28"/>
+            <vertex xr="127" yr="29"/>
+            <vertex xr="127" yr="32"/>
+            <vertex xr="122" yr="32"/>
+            <vertex xr="123" yr="28"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="129" yr="13"/>
+            <vertex xr="129" yr="14"/>
+            <vertex xr="130" yr="19"/>
+            <vertex xr="130" yr="20"/>
+            <vertex xr="130" yr="23"/>
+            <vertex xr="129" yr="24"/>
+            <vertex xr="129" yr="26"/>
+            <vertex xr="125" yr="26"/>
+            <vertex xr="125" yr="16"/>
+            <vertex xr="122" yr="16"/>
+            <vertex xr="123" yr="13"/>
+        </obstacle>
+        <obstacle>
+            <vertex xr="107" yr="6"/>
+            <vertex xr="107" yr="7"/>
+            <vertex xr="107" yr="10"/>
+            <vertex xr="103" yr="11"/>
+            <vertex xr="104" yr="22"/>
+            <vertex xr="107" yr="23"/>
+            <vertex xr="107" yr="25"/>
+            <vertex xr="99" yr="25"/>
+            <vertex xr="99" yr="19"/>
+            <vertex xr="98" yr="19"/>
+            <vertex xr="99" yr="15"/>
+            <vertex xr="99" yr="15"/>
+            <vertex xr="100" yr="9"/>
+            <vertex xr="102" yr="9"/>
+            <vertex xr="103" yr="6"/>
+        </obstacle>
+    </obstacles>
+    <map>
+        <width>213</width>
+        <height>198</height>
+        <cellsize>1</cellsize>
+        <grid>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 0 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 1 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 0 0 0 0 0 0 0 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1</row>
+            <row>1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 0 0 0 0 0 0 0 0 1 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 1 0 1 1 0 0 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 0 0 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 0 0 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 0 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+            <row>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</row>
+        </grid>
+    </map>
+    <algorithm>
+        <searchtype>thetastar</searchtype>
+        <breakingties>0</breakingties>
+        <allowsqueeze>false</allowsqueeze>
+        <cutcorners>false</cutcorners>
+        <hweight>1</hweight>
+        <timestep>0.1</timestep>
+        <delta>0.1</delta>
+        <trigger>speed-buffer</trigger>
+        <mapfnum>3</mapfnum>
+    </algorithm>
+    <log>
+        <summary successrate="100.000000" runtime="0.010000" flowtime="37.700001" makespan="37.700001" collisions="0" collisionsobst="0"/>
+        <agent id="0">
+            <path pathfound="true" steps="377">
+                <step number="0" xr="96" yr="154" next.xr="96" next.yr="154"/>
+                <step number="1" xr="96.011551" yr="154.09933" next.xr="98.5" next.yr="175.5"/>
+                <step number="2" xr="96.023102" yr="154.19867" next.xr="98.5" next.yr="175.5"/>
+                <step number="3" xr="96.034653" yr="154.298" next.xr="98.5" next.yr="175.5"/>
+                <step number="4" xr="96.046204" yr="154.39734" next.xr="98.5" next.yr="175.5"/>
+                <step number="5" xr="96.057755" yr="154.49667" next.xr="98.5" next.yr="175.5"/>
+                <step number="6" xr="96.069305" yr="154.59601" next.xr="98.5" next.yr="175.5"/>
+                <step number="7" xr="96.080856" yr="154.69534" next.xr="98.5" next.yr="175.5"/>
+                <step number="8" xr="96.092407" yr="154.79468" next.xr="98.5" next.yr="175.5"/>
+                <step number="9" xr="96.103958" yr="154.89401" next.xr="98.5" next.yr="175.5"/>
+                <step number="10" xr="96.115509" yr="154.99335" next.xr="98.5" next.yr="175.5"/>
+                <step number="11" xr="96.12706" yr="155.09268" next.xr="98.5" next.yr="175.5"/>
+                <step number="12" xr="96.138611" yr="155.19202" next.xr="98.5" next.yr="175.5"/>
+                <step number="13" xr="96.150162" yr="155.29135" next.xr="98.5" next.yr="175.5"/>
+                <step number="14" xr="96.161713" yr="155.39069" next.xr="98.5" next.yr="175.5"/>
+                <step number="15" xr="96.173264" yr="155.49002" next.xr="98.5" next.yr="175.5"/>
+                <step number="16" xr="96.184814" yr="155.58936" next.xr="98.5" next.yr="175.5"/>
+                <step number="17" xr="96.196365" yr="155.68869" next.xr="98.5" next.yr="175.5"/>
+                <step number="18" xr="96.207916" yr="155.78802" next.xr="98.5" next.yr="175.5"/>
+                <step number="19" xr="96.219467" yr="155.88736" next.xr="98.5" next.yr="175.5"/>
+                <step number="20" xr="96.231018" yr="155.98669" next.xr="98.5" next.yr="175.5"/>
+                <step number="21" xr="96.242569" yr="156.08603" next.xr="98.5" next.yr="175.5"/>
+                <step number="22" xr="96.25412" yr="156.18536" next.xr="98.5" next.yr="175.5"/>
+                <step number="23" xr="96.265671" yr="156.2847" next.xr="98.5" next.yr="175.5"/>
+                <step number="24" xr="96.277222" yr="156.38403" next.xr="98.5" next.yr="175.5"/>
+                <step number="25" xr="96.288773" yr="156.48337" next.xr="98.5" next.yr="175.5"/>
+                <step number="26" xr="96.300323" yr="156.5827" next.xr="98.5" next.yr="175.5"/>
+                <step number="27" xr="96.311874" yr="156.68204" next.xr="98.5" next.yr="175.5"/>
+                <step number="28" xr="96.323425" yr="156.78137" next.xr="98.5" next.yr="175.5"/>
+                <step number="29" xr="96.334976" yr="156.88071" next.xr="98.5" next.yr="175.5"/>
+                <step number="30" xr="96.346527" yr="156.98004" next.xr="98.5" next.yr="175.5"/>
+                <step number="31" xr="96.358078" yr="157.07938" next.xr="98.5" next.yr="175.5"/>
+                <step number="32" xr="96.369629" yr="157.17871" next.xr="98.5" next.yr="175.5"/>
+                <step number="33" xr="96.38118" yr="157.27805" next.xr="98.5" next.yr="175.5"/>
+                <step number="34" xr="96.392731" yr="157.37738" next.xr="98.5" next.yr="175.5"/>
+                <step number="35" xr="96.404282" yr="157.47672" next.xr="98.5" next.yr="175.5"/>
+                <step number="36" xr="96.415833" yr="157.57605" next.xr="98.5" next.yr="175.5"/>
+                <step number="37" xr="96.427383" yr="157.67538" next.xr="98.5" next.yr="175.5"/>
+                <step number="38" xr="96.438934" yr="157.77472" next.xr="98.5" next.yr="175.5"/>
+                <step number="39" xr="96.450485" yr="157.87405" next.xr="98.5" next.yr="175.5"/>
+                <step number="40" xr="96.462036" yr="157.97339" next.xr="98.5" next.yr="175.5"/>
+                <step number="41" xr="96.473587" yr="158.07272" next.xr="98.5" next.yr="175.5"/>
+                <step number="42" xr="96.485138" yr="158.17206" next.xr="98.5" next.yr="175.5"/>
+                <step number="43" xr="96.496689" yr="158.27139" next.xr="98.5" next.yr="175.5"/>
+                <step number="44" xr="96.50824" yr="158.37073" next.xr="98.5" next.yr="175.5"/>
+                <step number="45" xr="96.51078" yr="158.47029" next.xr="98.5" next.yr="175.5"/>
+                <step number="46" xr="96.513321" yr="158.56985" next.xr="98.5" next.yr="175.5"/>
+                <step number="47" xr="96.515862" yr="158.6694" next.xr="98.5" next.yr="175.5"/>
+                <step number="48" xr="96.518402" yr="158.76895" next.xr="98.5" next.yr="175.5"/>
+                <step number="49" xr="96.520943" yr="158.8685" next.xr="98.5" next.yr="175.5"/>
+                <step number="50" xr="96.523483" yr="158.96803" next.xr="98.5" next.yr="175.5"/>
+                <step number="51" xr="96.526024" yr="159.06757" next.xr="98.5" next.yr="175.5"/>
+                <step number="52" xr="96.528564" yr="159.1671" next.xr="98.5" next.yr="175.5"/>
+                <step number="53" xr="96.531105" yr="159.26662" next.xr="98.5" next.yr="175.5"/>
+                <step number="54" xr="96.533646" yr="159.36613" next.xr="98.5" next.yr="175.5"/>
+                <step number="55" xr="96.536186" yr="159.46564" next.xr="98.5" next.yr="175.5"/>
+                <step number="56" xr="96.538734" yr="159.56514" next.xr="98.5" next.yr="175.5"/>
+                <step number="57" xr="96.541275" yr="159.66464" next.xr="98.5" next.yr="175.5"/>
+                <step number="58" xr="96.543823" yr="159.76413" next.xr="98.5" next.yr="175.5"/>
+                <step number="59" xr="96.546364" yr="159.86362" next.xr="98.5" next.yr="175.5"/>
+                <step number="60" xr="96.548912" yr="159.9631" next.xr="98.5" next.yr="175.5"/>
+                <step number="61" xr="96.551453" yr="160.06258" next.xr="98.5" next.yr="175.5"/>
+                <step number="62" xr="96.563972" yr="160.16179" next.xr="98.5" next.yr="175.5"/>
+                <step number="63" xr="96.576492" yr="160.261" next.xr="98.5" next.yr="175.5"/>
+                <step number="64" xr="96.589012" yr="160.36021" next.xr="98.5" next.yr="175.5"/>
+                <step number="65" xr="96.601532" yr="160.45943" next.xr="98.5" next.yr="175.5"/>
+                <step number="66" xr="96.614052" yr="160.55864" next.xr="98.5" next.yr="175.5"/>
+                <step number="67" xr="96.626572" yr="160.65785" next.xr="98.5" next.yr="175.5"/>
+                <step number="68" xr="96.639091" yr="160.75706" next.xr="98.5" next.yr="175.5"/>
+                <step number="69" xr="96.651611" yr="160.85628" next.xr="98.5" next.yr="175.5"/>
+                <step number="70" xr="96.664131" yr="160.95549" next.xr="98.5" next.yr="175.5"/>
+                <step number="71" xr="96.676651" yr="161.0547" next.xr="98.5" next.yr="175.5"/>
+                <step number="72" xr="96.690331" yr="161.15376" next.xr="99.5" next.yr="181.5"/>
+                <step number="73" xr="96.70401" yr="161.25282" next.xr="99.5" next.yr="181.5"/>
+                <step number="74" xr="96.71769" yr="161.35188" next.xr="99.5" next.yr="181.5"/>
+                <step number="75" xr="96.731369" yr="161.45094" next.xr="99.5" next.yr="181.5"/>
+                <step number="76" xr="96.745049" yr="161.55" next.xr="99.5" next.yr="181.5"/>
+                <step number="77" xr="96.758728" yr="161.64906" next.xr="99.5" next.yr="181.5"/>
+                <step number="78" xr="96.772408" yr="161.74812" next.xr="99.5" next.yr="181.5"/>
+                <step number="79" xr="96.786087" yr="161.84718" next.xr="99.5" next.yr="181.5"/>
+                <step number="80" xr="96.799767" yr="161.94624" next.xr="99.5" next.yr="181.5"/>
+                <step number="81" xr="96.813446" yr="162.0453" next.xr="99.5" next.yr="181.5"/>
+                <step number="82" xr="96.827126" yr="162.14436" next.xr="99.5" next.yr="181.5"/>
+                <step number="83" xr="96.840805" yr="162.24342" next.xr="99.5" next.yr="181.5"/>
+                <step number="84" xr="96.854485" yr="162.34248" next.xr="99.5" next.yr="181.5"/>
+                <step number="85" xr="96.868164" yr="162.44154" next.xr="99.5" next.yr="181.5"/>
+                <step number="86" xr="96.881844" yr="162.5406" next.xr="99.5" next.yr="181.5"/>
+                <step number="87" xr="96.895523" yr="162.63966" next.xr="99.5" next.yr="181.5"/>
+                <step number="88" xr="96.909203" yr="162.73872" next.xr="99.5" next.yr="181.5"/>
+                <step number="89" xr="96.922882" yr="162.83778" next.xr="99.5" next.yr="181.5"/>
+                <step number="90" xr="96.936562" yr="162.93684" next.xr="99.5" next.yr="181.5"/>
+                <step number="91" xr="96.950241" yr="163.0359" next.xr="99.5" next.yr="181.5"/>
+                <step number="92" xr="96.963921" yr="163.13496" next.xr="99.5" next.yr="181.5"/>
+                <step number="93" xr="96.9776" yr="163.23402" next.xr="99.5" next.yr="181.5"/>
+                <step number="94" xr="96.99128" yr="163.33308" next.xr="99.5" next.yr="181.5"/>
+                <step number="95" xr="97.004959" yr="163.43214" next.xr="99.5" next.yr="181.5"/>
+                <step number="96" xr="97.01725" yr="163.53139" next.xr="98.5" next.yr="175.5"/>
+                <step number="97" xr="97.029541" yr="163.63063" next.xr="98.5" next.yr="175.5"/>
+                <step number="98" xr="97.041832" yr="163.72987" next.xr="98.5" next.yr="175.5"/>
+                <step number="99" xr="97.054123" yr="163.82912" next.xr="98.5" next.yr="175.5"/>
+                <step number="100" xr="97.066414" yr="163.92836" next.xr="98.5" next.yr="175.5"/>
+                <step number="101" xr="97.078712" yr="164.0276" next.xr="98.5" next.yr="175.5"/>
+                <step number="102" xr="97.091003" yr="164.12685" next.xr="98.5" next.yr="175.5"/>
+                <step number="103" xr="97.103302" yr="164.22609" next.xr="98.5" next.yr="175.5"/>
+                <step number="104" xr="97.115601" yr="164.32533" next.xr="98.5" next.yr="175.5"/>
+                <step number="105" xr="97.127892" yr="164.42458" next.xr="98.5" next.yr="175.5"/>
+                <step number="106" xr="97.14019" yr="164.52382" next.xr="98.5" next.yr="175.5"/>
+                <step number="107" xr="97.152481" yr="164.62306" next.xr="98.5" next.yr="175.5"/>
+                <step number="108" xr="97.16478" yr="164.72231" next.xr="98.5" next.yr="175.5"/>
+                <step number="109" xr="97.177071" yr="164.82155" next.xr="98.5" next.yr="175.5"/>
+                <step number="110" xr="97.189369" yr="164.92079" next.xr="98.5" next.yr="175.5"/>
+                <step number="111" xr="97.20166" yr="165.02003" next.xr="98.5" next.yr="175.5"/>
+                <step number="112" xr="97.213959" yr="165.11928" next.xr="98.5" next.yr="175.5"/>
+                <step number="113" xr="97.22625" yr="165.21852" next.xr="98.5" next.yr="175.5"/>
+                <step number="114" xr="97.238548" yr="165.31776" next.xr="98.5" next.yr="175.5"/>
+                <step number="115" xr="97.250839" yr="165.41701" next.xr="98.5" next.yr="175.5"/>
+                <step number="116" xr="97.263138" yr="165.51625" next.xr="98.5" next.yr="175.5"/>
+                <step number="117" xr="97.275429" yr="165.61549" next.xr="98.5" next.yr="175.5"/>
+                <step number="118" xr="97.287727" yr="165.71474" next.xr="98.5" next.yr="175.5"/>
+                <step number="119" xr="97.300018" yr="165.81398" next.xr="98.5" next.yr="175.5"/>
+                <step number="120" xr="97.312317" yr="165.91322" next.xr="98.5" next.yr="175.5"/>
+                <step number="121" xr="97.324615" yr="166.01247" next.xr="98.5" next.yr="175.5"/>
+                <step number="122" xr="97.336906" yr="166.11171" next.xr="98.5" next.yr="175.5"/>
+                <step number="123" xr="97.349205" yr="166.21095" next.xr="98.5" next.yr="175.5"/>
+                <step number="124" xr="97.361496" yr="166.3102" next.xr="98.5" next.yr="175.5"/>
+                <step number="125" xr="97.373795" yr="166.40944" next.xr="98.5" next.yr="175.5"/>
+                <step number="126" xr="97.386086" yr="166.50868" next.xr="98.5" next.yr="175.5"/>
+                <step number="127" xr="97.398384" yr="166.60793" next.xr="98.5" next.yr="175.5"/>
+                <step number="128" xr="97.410675" yr="166.70717" next.xr="98.5" next.yr="175.5"/>
+                <step number="129" xr="97.422974" yr="166.80641" next.xr="98.5" next.yr="175.5"/>
+                <step number="130" xr="97.435265" yr="166.90565" next.xr="98.5" next.yr="175.5"/>
+                <step number="131" xr="97.447563" yr="167.0049" next.xr="98.5" next.yr="175.5"/>
+                <step number="132" xr="97.459854" yr="167.10414" next.xr="98.5" next.yr="175.5"/>
+                <step number="133" xr="97.472153" yr="167.20338" next.xr="98.5" next.yr="175.5"/>
+                <step number="134" xr="97.484444" yr="167.30263" next.xr="98.5" next.yr="175.5"/>
+                <step number="135" xr="97.496742" yr="167.40187" next.xr="98.5" next.yr="175.5"/>
+                <step number="136" xr="97.509033" yr="167.50111" next.xr="98.5" next.yr="175.5"/>
+                <step number="137" xr="97.521332" yr="167.60036" next.xr="98.5" next.yr="175.5"/>
+                <step number="138" xr="97.53363" yr="167.6996" next.xr="98.5" next.yr="175.5"/>
+                <step number="139" xr="97.545921" yr="167.79884" next.xr="98.5" next.yr="175.5"/>
+                <step number="140" xr="97.55822" yr="167.89809" next.xr="98.5" next.yr="175.5"/>
+                <step number="141" xr="97.570511" yr="167.99733" next.xr="98.5" next.yr="175.5"/>
+                <step number="142" xr="97.582809" yr="168.09657" next.xr="98.5" next.yr="175.5"/>
+                <step number="143" xr="97.59697" yr="168.19557" next.xr="99.5" next.yr="181.5"/>
+                <step number="144" xr="97.61113" yr="168.29457" next.xr="99.5" next.yr="181.5"/>
+                <step number="145" xr="97.62529" yr="168.39357" next.xr="99.5" next.yr="181.5"/>
+                <step number="146" xr="97.63945" yr="168.49257" next.xr="99.5" next.yr="181.5"/>
+                <step number="147" xr="97.65361" yr="168.59157" next.xr="99.5" next.yr="181.5"/>
+                <step number="148" xr="97.66777" yr="168.69057" next.xr="99.5" next.yr="181.5"/>
+                <step number="149" xr="97.681931" yr="168.78957" next.xr="99.5" next.yr="181.5"/>
+                <step number="150" xr="97.696091" yr="168.88857" next.xr="99.5" next.yr="181.5"/>
+                <step number="151" xr="97.710251" yr="168.98756" next.xr="99.5" next.yr="181.5"/>
+                <step number="152" xr="97.724411" yr="169.08656" next.xr="99.5" next.yr="181.5"/>
+                <step number="153" xr="97.738571" yr="169.18556" next.xr="99.5" next.yr="181.5"/>
+                <step number="154" xr="97.752731" yr="169.28456" next.xr="99.5" next.yr="181.5"/>
+                <step number="155" xr="97.766891" yr="169.38356" next.xr="99.5" next.yr="181.5"/>
+                <step number="156" xr="97.781052" yr="169.48256" next.xr="99.5" next.yr="181.5"/>
+                <step number="157" xr="97.795212" yr="169.58156" next.xr="99.5" next.yr="181.5"/>
+                <step number="158" xr="97.809372" yr="169.68056" next.xr="99.5" next.yr="181.5"/>
+                <step number="159" xr="97.823532" yr="169.77956" next.xr="99.5" next.yr="181.5"/>
+                <step number="160" xr="97.837692" yr="169.87856" next.xr="99.5" next.yr="181.5"/>
+                <step number="161" xr="97.851852" yr="169.97755" next.xr="99.5" next.yr="181.5"/>
+                <step number="162" xr="97.866013" yr="170.07655" next.xr="99.5" next.yr="181.5"/>
+                <step number="163" xr="97.880173" yr="170.17555" next.xr="99.5" next.yr="181.5"/>
+                <step number="164" xr="97.894333" yr="170.27455" next.xr="99.5" next.yr="181.5"/>
+                <step number="165" xr="97.908493" yr="170.37355" next.xr="99.5" next.yr="181.5"/>
+                <step number="166" xr="97.89888" yr="170.47018" next.xr="99.5" next.yr="181.5"/>
+                <step number="167" xr="97.889275" yr="170.56676" next.xr="99.5" next.yr="181.5"/>
+                <step number="168" xr="97.879677" yr="170.66328" next.xr="99.5" next.yr="181.5"/>
+                <step number="169" xr="97.870079" yr="170.75977" next.xr="99.5" next.yr="181.5"/>
+                <step number="170" xr="97.860489" yr="170.85619" next.xr="99.5" next.yr="181.5"/>
+                <step number="171" xr="97.850906" yr="170.95255" next.xr="99.5" next.yr="181.5"/>
+                <step number="172" xr="97.841324" yr="171.04886" next.xr="99.5" next.yr="181.5"/>
+                <step number="173" xr="97.831749" yr="171.14511" next.xr="99.5" next.yr="181.5"/>
+                <step number="174" xr="97.822182" yr="171.2413" next.xr="99.5" next.yr="181.5"/>
+                <step number="175" xr="97.812622" yr="171.33743" next.xr="99.5" next.yr="181.5"/>
+                <step number="176" xr="97.803062" yr="171.4335" next.xr="99.5" next.yr="181.5"/>
+                <step number="177" xr="97.79351" yr="171.52951" next.xr="99.5" next.yr="181.5"/>
+                <step number="178" xr="97.783966" yr="171.62544" next.xr="99.5" next.yr="181.5"/>
+                <step number="179" xr="97.774429" yr="171.72131" next.xr="99.5" next.yr="181.5"/>
+                <step number="180" xr="97.7649" yr="171.81711" next.xr="99.5" next.yr="181.5"/>
+                <step number="181" xr="97.755379" yr="171.91284" next.xr="99.5" next.yr="181.5"/>
+                <step number="182" xr="97.745865" yr="172.0085" next.xr="99.5" next.yr="181.5"/>
+                <step number="183" xr="97.736359" yr="172.10408" next.xr="99.5" next.yr="181.5"/>
+                <step number="184" xr="97.72686" yr="172.19958" next.xr="99.5" next.yr="181.5"/>
+                <step number="185" xr="97.717369" yr="172.29501" next.xr="99.5" next.yr="181.5"/>
+                <step number="186" xr="97.707886" yr="172.39035" next.xr="99.5" next.yr="181.5"/>
+                <step number="187" xr="97.69841" yr="172.48561" next.xr="99.5" next.yr="181.5"/>
+                <step number="188" xr="97.688942" yr="172.58078" next.xr="99.5" next.yr="181.5"/>
+                <step number="189" xr="97.679482" yr="172.67586" next.xr="99.5" next.yr="181.5"/>
+                <step number="190" xr="97.670036" yr="172.77084" next.xr="99.5" next.yr="181.5"/>
+                <step number="191" xr="97.660599" yr="172.86574" next.xr="99.5" next.yr="181.5"/>
+                <step number="192" xr="97.651169" yr="172.96053" next.xr="99.5" next.yr="181.5"/>
+                <step number="193" xr="97.641747" yr="173.05522" next.xr="99.5" next.yr="181.5"/>
+                <step number="194" xr="97.632339" yr="173.14981" next.xr="99.5" next.yr="181.5"/>
+                <step number="195" xr="97.62294" yr="173.24429" next.xr="99.5" next.yr="181.5"/>
+                <step number="196" xr="97.613556" yr="173.33867" next.xr="99.5" next.yr="181.5"/>
+                <step number="197" xr="97.604179" yr="173.43292" next.xr="99.5" next.yr="181.5"/>
+                <step number="198" xr="97.594818" yr="173.52707" next.xr="99.5" next.yr="181.5"/>
+                <step number="199" xr="97.585464" yr="173.62109" next.xr="99.5" next.yr="181.5"/>
+                <step number="200" xr="97.576126" yr="173.715" next.xr="99.5" next.yr="181.5"/>
+                <step number="201" xr="97.566803" yr="173.80876" next.xr="99.5" next.yr="181.5"/>
+                <step number="202" xr="97.557487" yr="173.90239" next.xr="99.5" next.yr="181.5"/>
+                <step number="203" xr="97.548187" yr="173.99588" next.xr="99.5" next.yr="181.5"/>
+                <step number="204" xr="97.556152" yr="174.09406" next.xr="99.5" next.yr="181.5"/>
+                <step number="205" xr="97.581543" yr="174.19078" next.xr="99.5" next.yr="181.5"/>
+                <step number="206" xr="97.606934" yr="174.28751" next.xr="99.5" next.yr="181.5"/>
+                <step number="207" xr="97.632324" yr="174.38423" next.xr="99.5" next.yr="181.5"/>
+                <step number="208" xr="97.657715" yr="174.48096" next.xr="99.5" next.yr="181.5"/>
+                <step number="209" xr="97.683105" yr="174.57768" next.xr="99.5" next.yr="181.5"/>
+                <step number="210" xr="97.708496" yr="174.67441" next.xr="99.5" next.yr="181.5"/>
+                <step number="211" xr="97.733887" yr="174.77113" next.xr="99.5" next.yr="181.5"/>
+                <step number="212" xr="97.759277" yr="174.86786" next.xr="99.5" next.yr="181.5"/>
+                <step number="213" xr="97.784668" yr="174.96458" next.xr="99.5" next.yr="181.5"/>
+                <step number="214" xr="97.810059" yr="175.06131" next.xr="99.5" next.yr="181.5"/>
+                <step number="215" xr="97.835442" yr="175.15804" next.xr="99.5" next.yr="181.5"/>
+                <step number="216" xr="97.860832" yr="175.25476" next.xr="99.5" next.yr="181.5"/>
+                <step number="217" xr="97.886215" yr="175.35149" next.xr="99.5" next.yr="181.5"/>
+                <step number="218" xr="97.911606" yr="175.44821" next.xr="99.5" next.yr="181.5"/>
+                <step number="219" xr="97.936996" yr="175.54494" next.xr="99.5" next.yr="181.5"/>
+                <step number="220" xr="97.962379" yr="175.64166" next.xr="99.5" next.yr="181.5"/>
+                <step number="221" xr="97.98777" yr="175.73839" next.xr="99.5" next.yr="181.5"/>
+                <step number="222" xr="98.013153" yr="175.83511" next.xr="99.5" next.yr="181.5"/>
+                <step number="223" xr="98.025742" yr="175.93347" next.xr="99.5" next.yr="181.5"/>
+                <step number="224" xr="98.03833" yr="176.0318" next.xr="99.5" next.yr="181.5"/>
+                <step number="225" xr="98.050911" yr="176.1301" next.xr="99.5" next.yr="181.5"/>
+                <step number="226" xr="98.063492" yr="176.22836" next.xr="99.5" next.yr="181.5"/>
+                <step number="227" xr="98.076065" yr="176.3266" next.xr="99.5" next.yr="181.5"/>
+                <step number="228" xr="98.088638" yr="176.4248" next.xr="99.5" next.yr="181.5"/>
+                <step number="229" xr="98.101204" yr="176.52296" next.xr="99.5" next.yr="181.5"/>
+                <step number="230" xr="98.11377" yr="176.62109" next.xr="99.5" next.yr="181.5"/>
+                <step number="231" xr="98.126328" yr="176.71918" next.xr="99.5" next.yr="181.5"/>
+                <step number="232" xr="98.138878" yr="176.81721" next.xr="99.5" next.yr="181.5"/>
+                <step number="233" xr="98.151421" yr="176.91521" next.xr="99.5" next.yr="181.5"/>
+                <step number="234" xr="98.163956" yr="177.01315" next.xr="99.5" next.yr="181.5"/>
+                <step number="235" xr="98.176491" yr="177.11104" next.xr="99.5" next.yr="181.5"/>
+                <step number="236" xr="98.189018" yr="177.20888" next.xr="99.5" next.yr="181.5"/>
+                <step number="237" xr="98.201538" yr="177.30666" next.xr="99.5" next.yr="181.5"/>
+                <step number="238" xr="98.21405" yr="177.40437" next.xr="99.5" next.yr="181.5"/>
+                <step number="239" xr="98.226547" yr="177.50201" next.xr="99.5" next.yr="181.5"/>
+                <step number="240" xr="98.239037" yr="177.59958" next.xr="99.5" next.yr="181.5"/>
+                <step number="241" xr="98.251518" yr="177.69707" next.xr="99.5" next.yr="181.5"/>
+                <step number="242" xr="98.263985" yr="177.79448" next.xr="99.5" next.yr="181.5"/>
+                <step number="243" xr="98.276443" yr="177.8918" next.xr="99.5" next.yr="181.5"/>
+                <step number="244" xr="98.288887" yr="177.98901" next.xr="99.5" next.yr="181.5"/>
+                <step number="245" xr="98.301323" yr="178.08614" next.xr="99.5" next.yr="181.5"/>
+                <step number="246" xr="98.313744" yr="178.18314" next.xr="99.5" next.yr="181.5"/>
+                <step number="247" xr="98.326149" yr="178.28001" next.xr="99.5" next.yr="181.5"/>
+                <step number="248" xr="98.338531" yr="178.37677" next.xr="99.5" next.yr="181.5"/>
+                <step number="249" xr="98.350899" yr="178.47337" next.xr="99.5" next.yr="181.5"/>
+                <step number="250" xr="98.363243" yr="178.56982" next.xr="99.5" next.yr="181.5"/>
+                <step number="251" xr="98.375572" yr="178.66611" next.xr="99.5" next.yr="181.5"/>
+                <step number="252" xr="98.387871" yr="178.76221" next.xr="99.5" next.yr="181.5"/>
+                <step number="253" xr="98.400146" yr="178.85811" next.xr="99.5" next.yr="181.5"/>
+                <step number="254" xr="98.412392" yr="178.95378" next.xr="99.5" next.yr="181.5"/>
+                <step number="255" xr="98.424606" yr="179.04921" next.xr="99.5" next.yr="181.5"/>
+                <step number="256" xr="98.43631" yr="179.14059" next.xr="104.5" next.yr="189.5"/>
+                <step number="257" xr="98.447998" yr="179.23187" next.xr="104.5" next.yr="189.5"/>
+                <step number="258" xr="98.459663" yr="179.32303" next.xr="104.5" next.yr="189.5"/>
+                <step number="259" xr="98.471321" yr="179.41406" next.xr="104.5" next.yr="189.5"/>
+                <step number="260" xr="98.482956" yr="179.50497" next.xr="104.5" next.yr="189.5"/>
+                <step number="261" xr="98.494576" yr="179.59576" next.xr="104.5" next.yr="189.5"/>
+                <step number="262" xr="98.50618" yr="179.68643" next.xr="104.5" next.yr="189.5"/>
+                <step number="263" xr="98.517769" yr="179.77696" next.xr="104.5" next.yr="189.5"/>
+                <step number="264" xr="98.529343" yr="179.86736" next.xr="104.5" next.yr="189.5"/>
+                <step number="265" xr="98.540901" yr="179.95761" next.xr="104.5" next.yr="189.5"/>
+                <step number="266" xr="98.552437" yr="180.04773" next.xr="104.5" next.yr="189.5"/>
+                <step number="267" xr="98.563965" yr="180.13771" next.xr="104.5" next.yr="189.5"/>
+                <step number="268" xr="98.610382" yr="180.22592" next.xr="104.5" next.yr="189.5"/>
+                <step number="269" xr="98.663994" yr="180.31033" next.xr="104.5" next.yr="189.5"/>
+                <step number="270" xr="98.717606" yr="180.39474" next.xr="104.5" next.yr="189.5"/>
+                <step number="271" xr="98.771217" yr="180.47916" next.xr="104.5" next.yr="189.5"/>
+                <step number="272" xr="98.824829" yr="180.56357" next.xr="104.5" next.yr="189.5"/>
+                <step number="273" xr="98.878441" yr="180.64798" next.xr="104.5" next.yr="189.5"/>
+                <step number="274" xr="98.932053" yr="180.73239" next.xr="104.5" next.yr="189.5"/>
+                <step number="275" xr="98.985664" yr="180.8168" next.xr="104.5" next.yr="189.5"/>
+                <step number="276" xr="99.039276" yr="180.90121" next.xr="104.5" next.yr="189.5"/>
+                <step number="277" xr="99.100258" yr="180.98047" next.xr="99.5" next.yr="181.5"/>
+                <step number="278" xr="99.16124" yr="181.05972" next.xr="99.5" next.yr="181.5"/>
+                <step number="279" xr="99.214699" yr="181.14424" next.xr="104.5" next.yr="189.5"/>
+                <step number="280" xr="99.268158" yr="181.22876" next.xr="104.5" next.yr="189.5"/>
+                <step number="281" xr="99.321617" yr="181.31328" next.xr="104.5" next.yr="189.5"/>
+                <step number="282" xr="99.375076" yr="181.3978" next.xr="104.5" next.yr="189.5"/>
+                <step number="283" xr="99.428535" yr="181.48232" next.xr="104.5" next.yr="189.5"/>
+                <step number="284" xr="99.481995" yr="181.56683" next.xr="104.5" next.yr="189.5"/>
+                <step number="285" xr="99.535454" yr="181.65135" next.xr="104.5" next.yr="189.5"/>
+                <step number="286" xr="99.588913" yr="181.73587" next.xr="104.5" next.yr="189.5"/>
+                <step number="287" xr="99.642372" yr="181.82039" next.xr="104.5" next.yr="189.5"/>
+                <step number="288" xr="99.695831" yr="181.90491" next.xr="104.5" next.yr="189.5"/>
+                <step number="289" xr="99.74929" yr="181.98943" next.xr="104.5" next.yr="189.5"/>
+                <step number="290" xr="99.80275" yr="182.07394" next.xr="104.5" next.yr="189.5"/>
+                <step number="291" xr="99.856209" yr="182.15846" next.xr="104.5" next.yr="189.5"/>
+                <step number="292" xr="99.909668" yr="182.24298" next.xr="104.5" next.yr="189.5"/>
+                <step number="293" xr="99.963127" yr="182.3275" next.xr="104.5" next.yr="189.5"/>
+                <step number="294" xr="100.01659" yr="182.41202" next.xr="104.5" next.yr="189.5"/>
+                <step number="295" xr="100.07005" yr="182.49654" next.xr="104.5" next.yr="189.5"/>
+                <step number="296" xr="100.1235" yr="182.58105" next.xr="104.5" next.yr="189.5"/>
+                <step number="297" xr="100.17696" yr="182.66557" next.xr="104.5" next.yr="189.5"/>
+                <step number="298" xr="100.23042" yr="182.75009" next.xr="104.5" next.yr="189.5"/>
+                <step number="299" xr="100.28388" yr="182.83461" next.xr="104.5" next.yr="189.5"/>
+                <step number="300" xr="100.33734" yr="182.91913" next.xr="104.5" next.yr="189.5"/>
+                <step number="301" xr="100.3908" yr="183.00365" next.xr="104.5" next.yr="189.5"/>
+                <step number="302" xr="100.44426" yr="183.08817" next.xr="104.5" next.yr="189.5"/>
+                <step number="303" xr="100.49772" yr="183.17268" next.xr="104.5" next.yr="189.5"/>
+                <step number="304" xr="100.55118" yr="183.2572" next.xr="104.5" next.yr="189.5"/>
+                <step number="305" xr="100.60464" yr="183.34172" next.xr="104.5" next.yr="189.5"/>
+                <step number="306" xr="100.6581" yr="183.42624" next.xr="104.5" next.yr="189.5"/>
+                <step number="307" xr="100.71156" yr="183.51076" next.xr="104.5" next.yr="189.5"/>
+                <step number="308" xr="100.76501" yr="183.59528" next.xr="104.5" next.yr="189.5"/>
+                <step number="309" xr="100.81847" yr="183.67979" next.xr="104.5" next.yr="189.5"/>
+                <step number="310" xr="100.87193" yr="183.76431" next.xr="104.5" next.yr="189.5"/>
+                <step number="311" xr="100.92539" yr="183.84883" next.xr="104.5" next.yr="189.5"/>
+                <step number="312" xr="100.97885" yr="183.93335" next.xr="104.5" next.yr="189.5"/>
+                <step number="313" xr="101.03231" yr="184.01787" next.xr="104.5" next.yr="189.5"/>
+                <step number="314" xr="101.08577" yr="184.10239" next.xr="104.5" next.yr="189.5"/>
+                <step number="315" xr="101.13923" yr="184.1869" next.xr="104.5" next.yr="189.5"/>
+                <step number="316" xr="101.19269" yr="184.27142" next.xr="104.5" next.yr="189.5"/>
+                <step number="317" xr="101.24615" yr="184.35594" next.xr="104.5" next.yr="189.5"/>
+                <step number="318" xr="101.29961" yr="184.44046" next.xr="104.5" next.yr="189.5"/>
+                <step number="319" xr="101.35307" yr="184.52498" next.xr="104.5" next.yr="189.5"/>
+                <step number="320" xr="101.40652" yr="184.6095" next.xr="104.5" next.yr="189.5"/>
+                <step number="321" xr="101.45998" yr="184.69402" next.xr="104.5" next.yr="189.5"/>
+                <step number="322" xr="101.51344" yr="184.77853" next.xr="104.5" next.yr="189.5"/>
+                <step number="323" xr="101.5669" yr="184.86305" next.xr="104.5" next.yr="189.5"/>
+                <step number="324" xr="101.62036" yr="184.94757" next.xr="104.5" next.yr="189.5"/>
+                <step number="325" xr="101.67382" yr="185.03209" next.xr="104.5" next.yr="189.5"/>
+                <step number="326" xr="101.72728" yr="185.11661" next.xr="104.5" next.yr="189.5"/>
+                <step number="327" xr="101.78074" yr="185.20113" next.xr="104.5" next.yr="189.5"/>
+                <step number="328" xr="101.8342" yr="185.28564" next.xr="104.5" next.yr="189.5"/>
+                <step number="329" xr="101.88766" yr="185.37016" next.xr="104.5" next.yr="189.5"/>
+                <step number="330" xr="101.94112" yr="185.45468" next.xr="104.5" next.yr="189.5"/>
+                <step number="331" xr="101.99458" yr="185.5392" next.xr="104.5" next.yr="189.5"/>
+                <step number="332" xr="102.04803" yr="185.62372" next.xr="104.5" next.yr="189.5"/>
+                <step number="333" xr="102.10149" yr="185.70824" next.xr="104.5" next.yr="189.5"/>
+                <step number="334" xr="102.15495" yr="185.79276" next.xr="104.5" next.yr="189.5"/>
+                <step number="335" xr="102.20841" yr="185.87727" next.xr="104.5" next.yr="189.5"/>
+                <step number="336" xr="102.26187" yr="185.96179" next.xr="104.5" next.yr="189.5"/>
+                <step number="337" xr="102.31533" yr="186.04631" next.xr="104.5" next.yr="189.5"/>
+                <step number="338" xr="102.36879" yr="186.13083" next.xr="104.5" next.yr="189.5"/>
+                <step number="339" xr="102.42225" yr="186.21535" next.xr="104.5" next.yr="189.5"/>
+                <step number="340" xr="102.47571" yr="186.29987" next.xr="104.5" next.yr="189.5"/>
+                <step number="341" xr="102.52917" yr="186.38438" next.xr="104.5" next.yr="189.5"/>
+                <step number="342" xr="102.58263" yr="186.4689" next.xr="104.5" next.yr="189.5"/>
+                <step number="343" xr="102.63609" yr="186.55342" next.xr="104.5" next.yr="189.5"/>
+                <step number="344" xr="102.68954" yr="186.63794" next.xr="104.5" next.yr="189.5"/>
+                <step number="345" xr="102.743" yr="186.72246" next.xr="104.5" next.yr="189.5"/>
+                <step number="346" xr="102.79646" yr="186.80698" next.xr="104.5" next.yr="189.5"/>
+                <step number="347" xr="102.84992" yr="186.89149" next.xr="104.5" next.yr="189.5"/>
+                <step number="348" xr="102.90338" yr="186.97601" next.xr="104.5" next.yr="189.5"/>
+                <step number="349" xr="102.95684" yr="187.06052" next.xr="104.5" next.yr="189.5"/>
+                <step number="350" xr="103.0103" yr="187.14503" next.xr="104.5" next.yr="189.5"/>
+                <step number="351" xr="103.06376" yr="187.22954" next.xr="104.5" next.yr="189.5"/>
+                <step number="352" xr="103.11722" yr="187.31404" next.xr="104.5" next.yr="189.5"/>
+                <step number="353" xr="103.17068" yr="187.39856" next.xr="104.5" next.yr="189.5"/>
+                <step number="354" xr="103.22414" yr="187.48306" next.xr="104.5" next.yr="189.5"/>
+                <step number="355" xr="103.2776" yr="187.56758" next.xr="104.5" next.yr="189.5"/>
+                <step number="356" xr="103.33105" yr="187.65208" next.xr="104.5" next.yr="189.5"/>
+                <step number="357" xr="103.38451" yr="187.7366" next.xr="104.5" next.yr="189.5"/>
+                <step number="358" xr="103.43797" yr="187.82111" next.xr="104.5" next.yr="189.5"/>
+                <step number="359" xr="103.49143" yr="187.90562" next.xr="104.5" next.yr="189.5"/>
+                <step number="360" xr="103.54489" yr="187.99013" next.xr="104.5" next.yr="189.5"/>
+                <step number="361" xr="103.59835" yr="188.07465" next.xr="104.5" next.yr="189.5"/>
+                <step number="362" xr="103.65181" yr="188.15915" next.xr="104.5" next.yr="189.5"/>
+                <step number="363" xr="103.70527" yr="188.24367" next.xr="104.5" next.yr="189.5"/>
+                <step number="364" xr="103.75873" yr="188.32817" next.xr="104.5" next.yr="189.5"/>
+                <step number="365" xr="103.81219" yr="188.41267" next.xr="104.5" next.yr="189.5"/>
+                <step number="366" xr="103.86565" yr="188.49719" next.xr="104.5" next.yr="189.5"/>
+                <step number="367" xr="103.91911" yr="188.5817" next.xr="104.5" next.yr="189.5"/>
+                <step number="368" xr="103.97256" yr="188.66621" next.xr="104.5" next.yr="189.5"/>
+                <step number="369" xr="104.02602" yr="188.75072" next.xr="104.5" next.yr="189.5"/>
+                <step number="370" xr="104.07948" yr="188.83524" next.xr="104.5" next.yr="189.5"/>
+                <step number="371" xr="104.13294" yr="188.91974" next.xr="104.5" next.yr="189.5"/>
+                <step number="372" xr="104.1864" yr="189.00426" next.xr="104.5" next.yr="189.5"/>
+                <step number="373" xr="104.23986" yr="189.08876" next.xr="104.5" next.yr="189.5"/>
+                <step number="374" xr="104.29332" yr="189.17328" next.xr="104.5" next.yr="189.5"/>
+                <step number="375" xr="104.34678" yr="189.25778" next.xr="104.5" next.yr="189.5"/>
+                <step number="376" xr="104.40024" yr="189.3423" next.xr="104.5" next.yr="189.5"/>
+                <step number="377" xr="104.4537" yr="189.4268" next.xr="104.5" next.yr="189.5"/>
+            </path>
+        </agent>
+    </log>
+</root>
