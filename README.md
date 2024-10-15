@@ -1,6 +1,7 @@
-# MetaUrban: A Simulation Platform for Embodied AI in Urban Spaces
+# MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility
 
-[A tiny version for review]
+[A tiny version (unofficial)]
+
 
 ## 🛠 Quick Start
 Install MetaUrban (Tiny Version) via:
