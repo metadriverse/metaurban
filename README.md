@@ -2,7 +2,7 @@
 
 ## 🛠 Quick Start
 ### Hardware Recommendation
-We have tested the project on Linux, Windows WSL2 and MacOS. We strongly recommend using Ubuntu with Nvidia GPUs (with at least **8GB RAM** and **3GB VRAM**) to run the simulator. The performance benchmarks are conducted on different machines with **Nvidia RTX-3090, RTX-4080, RTX-4090, RTX-A5000 and Tesla V100**. It's normal that running PointNavigation env by `metaurban/examples/drive_in_static_env.py` with **~60FPS** and **~2GB** GPU Memory. 
+We have tested the project on Linux, Windows WSL2 and MacOS. We strongly recommend using Ubuntu with Nvidia GPUs (with at least **8GB RAM**, **3GB VRAM** and **10GB of storage space**) to run the simulator. The performance benchmarks are conducted on different machines with **Nvidia RTX-3090, RTX-4080, RTX-4090, RTX-A5000 and Tesla V100**. It's normal that running PointNavigation env by `metaurban/examples/drive_in_static_env.py` with **~60FPS** and **~2GB** GPU Memory. 
 
 ### Installation
 
@@ -22,10 +22,12 @@ cd metaurban/orca_algo && rm -rf build
 bash compile.sh && cd ../..
 ```
 
+it should be noticed that you should install ```cmake,make,gcc``` on your system before installing ORCA, more details can be found in [FAQs](documentation/FAQs.md).
+
 install libs to use MetaUrban for RL training
 
 ```bash
-pip install stable_baselines3 tensorboard wandb scikit-image pyyaml gdown
+pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown
 ```
 
 assets will be downloaded automatically when first running the script 
@@ -71,7 +73,8 @@ Run the following command to launch a simple scenario with manual control. Press
 
 
 ```bash
-python -m metaurban.examples.drive_in_static_env
+python -m metaurban.examples.drive_in_static_env 
+--density_obj 0.4
 ```
 
 Press key ```R``` for loading a new scenario. If there is no response when you press `W,S,A,D`, press `T` to enable manual control.
@@ -83,6 +86,7 @@ Run the following command to launch a simple scenario with manual control. Press
 
 ```bash
 python -m metaurban.examples.drive_in_dynamic_env
+--density_obj 0.4 --density_ped 1.0
 ```
 ## 🤖 Run a Pre-Trained (PPO) Model 
 
@@ -107,6 +111,8 @@ for PPO training in PointNav Env. You can change the parameters in the file.
 python RL/SocialNav/train_ppo.py
 ```
 for PPO training in Social Env. You can change the parameters in the file.
+
+#### We only test RL training on Linux, there may be some issues on Windows and MacOS.
 
 ### Evaluation
 We provide a script used to evaluate the quantitative performance of the RL agent

@@ -39,11 +39,17 @@ Fork	        WIP
 """
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
+    parser.add_argument("--density_obj", type=float, default=0.4)
+    parser.add_argument("--density_ped", type=float, default=1.0)
+    args = parser.parse_args()
+    
     map_type = 'X'
-    den_scale = 1.0
+    den_scale = args.density_ped
     config = dict(
         crswalk_density=1,
-        object_density=0.8,
+        object_density=args.density_obj,
         use_render=True,
         map = map_type, # 5
         manual_control=True,
@@ -81,9 +87,7 @@ if __name__ == "__main__":
         max_lateral_dist=5.0,
         
     )
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
-    args = parser.parse_args()
+
     if args.observation == "all":
         config.update(
             dict(

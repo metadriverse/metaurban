@@ -26,7 +26,7 @@ from functools import partial
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--unique_id', type=int)
+parser.add_argument('--unique_id', type=int, default=0)
 args = parser.parse_args()
 
 set_random_seed(args.unique_id)

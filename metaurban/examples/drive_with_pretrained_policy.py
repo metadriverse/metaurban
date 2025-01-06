@@ -155,7 +155,7 @@ if __name__ == "__main__":
     map_type = 'X'
     config = dict(
         crswalk_density=1,
-        object_density=0.8,
+        object_density=0.4,
         use_render=True,
         map = map_type,
         manual_control=False,
