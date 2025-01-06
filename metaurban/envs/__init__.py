@@ -1,0 +1,2 @@
+from metaurban.envs.sidewalk_dynamic_env import SidewalkDynamicMetaUrbanEnv
+from metaurban.envs.sidewalk_static_env import SidewalkStaticMetaUrbanEnv
