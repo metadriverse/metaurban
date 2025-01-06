@@ -1,0 +1,19 @@
+path:
+  # Specify location of the asset within metaurban, download "asset-model.zip" from github release and put it at corresponding location.
+  metaurbanasset: metaurban/assets/models/test
+  # The parent path for the subfolders below
+  parentfolder: metaurban/assets
+  subfolders:
+    # Major folder, contain annotations for each assets, download "adj_parameter_folder.zip" from github release and put it at corresponding location
+    adj_parameter_folder: adj_parameter_folder
+    # List all tags in objaverse, used in "download_assets,py"
+    all_tag_path: all_tag_list.json
+    # Used in "objverse_filter_asset.py", save intermediate info after filtering the raw asset downloaded from objaverse
+    filter_asset_path_folder: filter_asset_path_folder
+    # Used in "objverse_change_asset_script.py", save ignored uid of the asset
+    ignore_adj_folder: ignore_adj_folder
+    # Used in "layout_static_obj.py", only useful if you want to layout asset in a static scene for demo purpose
+    layout_static_info_folder: layout_static_info_folder
+    # Used in "objverse_filter_asset.py", save matched uid
+    match_uid_path_folder: match_uid_path_folder
+    raw_asset_path_folder: raw_asset_path_folder
