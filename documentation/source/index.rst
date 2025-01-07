@@ -12,12 +12,6 @@ MetaUrban Documentation
 
 
 Welcome to the MetaUrban documentation!
-.. MetaDrive is an efficient and compositional driving simulator with the following key features:
-
-.. * Compositional: It supports generating infinite scenes with various road maps and traffic settings for the research of generalizable RL.
-.. * Lightweight: It is easy to install and run. It can run up to 1,500 FPS on a standard PC.
-.. * Realistic: Accurate physics simulation and multiple sensory input including Lidar, RGB images, top-down semantic map and first-person view images.
-
 
 This documentation brings you the information on installation, usages and more of MetaUrban!
 
@@ -31,8 +25,6 @@ Please feel free to contact us if you have any suggestions or ideas!
    :caption: Quick Start
 
    install.rst
-..    get_start.rst
-..    before_reading.ipynb
 
 .. toctree::
    :hidden:
