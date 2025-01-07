@@ -85,7 +85,7 @@ def add_hyperlink_to_notebook(notebook_path):
     Add the colab link to notebook!
     """
     nb = nbformat.read(notebook_path, as_version=4)
-    link_text = "https://colab.research.google.com/github/DhlinV/metaurban-private-release/blob/main/documentation/ipynbs/{}".format(
+    link_text = "https://colab.research.google.com/github/DhlinV/metaurban-private-release/blob/main/documentation/source/{}".format(
         os.path.basename(notebook_path))
     link_text = "[![Click and Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({})".format(
         link_text)
