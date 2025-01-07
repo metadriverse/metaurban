@@ -30,5 +30,5 @@ Please feel free to contact us if you have any suggestions or ideas!
    :hidden:
    :maxdepth: 2
    :caption: RL Training with MetaDrive
-
-      action_space.ipynb
+   
+   action_space.ipynb
