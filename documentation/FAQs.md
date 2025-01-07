@@ -100,7 +100,8 @@ You can test the cameras via
 metaurban/tests/latest_updated/test_semantic_camera_synbody.py
 ```
 If everything functions properly, you should observe paired images like the example below
-![Paired images](./source//target_paired_img.png)
+
+![Paired images](./source/figs/target_paired_img.png)
 
 ## 🚀 RL training
 If you plan to train RL agents on your PC, make sure to adjust the number of environments in the scripts:
@@ -118,4 +119,5 @@ python -m metaurban.examples.drive_with_pretrained_policy
 ```
 
 and the target result would be
-![pretrained](./source/pretrained.gif)
+
+![pretrained](./source/figs/pretrained.gif)
