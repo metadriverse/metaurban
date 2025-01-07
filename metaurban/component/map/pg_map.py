@@ -51,20 +51,17 @@ class PGMap(BaseMap):
         """
         parent_node_path, physics_world = self.engine.worldNP, self.engine.physics_world
         generate_type = self._config[self.GENERATE_TYPE]
-        self.sidewalk_type_all = ['Narrow Sidewalk', 
-                                  'Narrow Sidewalk with Trees', 
-                                  'Ribbon Sidewalk', 
-                                  'Neighborhood 1', 
-                                  'Neighborhood 2', 
-                                  'Medium Commercial', 
-                                  'Wide Commercial']
+        self.sidewalk_type_all = [
+            'Narrow Sidewalk', 'Narrow Sidewalk with Trees', 'Ribbon Sidewalk', 'Neighborhood 1', 'Neighborhood 2',
+            'Medium Commercial', 'Wide Commercial'
+        ]
         if 'training' in self.engine.global_config:
             training_ = self.engine.global_config['training']
             use_all = False
         else:
             training_ = False
             use_all = True
-        
+
         if not use_all:
             # print('Current mode is not [use-all], training types and validation are different')
             self.sidewalk_type_all = self.sidewalk_type_all[:-1] if training_ else self.sidewalk_type_all[-1:]
@@ -81,7 +78,7 @@ class PGMap(BaseMap):
         self.sidewalk_type = np.random.choice(self.sidewalk_type_all, p=prob)
         # print('Generated sidewalk type is : ', self.sidewalk_type)
         self.engine.global_config['sidewalk_type'] = self.sidewalk_type
-        
+
         if generate_type == BigGenerateMethod.BLOCK_NUM or generate_type == BigGenerateMethod.BLOCK_SEQUENCE:
             self._big_generate(parent_node_path, physics_world)
 
@@ -95,7 +92,7 @@ class PGMap(BaseMap):
 
     def _big_generate(self, parent_node_path: NodePath, physics_world: PhysicsWorld):
         big_map = BIG(
-            self._config.get(self.LANE_NUM, 3), ####### 2
+            self._config.get(self.LANE_NUM, 3),  ####### 2
             self._config.get(self.LANE_WIDTH, 3.5),
             self.road_network,
             parent_node_path,
@@ -115,12 +112,12 @@ class PGMap(BaseMap):
         self.sidewalks_farfrom_road_buffer = {}
         self.valid_region = {}
         for block in self.blocks:
-            self.sidewalks.update(block.sidewalks)   
+            self.sidewalks.update(block.sidewalks)
             self.crosswalks.update(block.crosswalks)
-            
-            self.sidewalks_near_road.update(block.sidewalks_near_road)   
+
+            self.sidewalks_near_road.update(block.sidewalks_near_road)
             self.sidewalks_farfrom_road.update(block.sidewalks_farfrom_road)
-            self.sidewalks_near_road_buffer.update(block.sidewalks_near_road_buffer)   
+            self.sidewalks_near_road_buffer.update(block.sidewalks_near_road_buffer)
             self.sidewalks_farfrom_road_buffer.update(block.sidewalks_farfrom_road_buffer)
             self.valid_region.update(block.valid_region)
         big_map.destroy()

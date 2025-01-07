@@ -95,7 +95,7 @@ BASE_DEFAULT_CONFIG = dict(
     # Smooth the camera movement
     camera_smooth=True,
     # How many frames used to smooth the camera
-    camera_smooth_buffer_size=20, # HACK: Default 20
+    camera_smooth_buffer_size=20,  # HACK: Default 20
     # FOV of main camera
     camera_fov=65,
     # Only available in MARL setting, choosing which agent to track. Values should be "agent0", "agent1" or so on
@@ -564,9 +564,9 @@ class BaseEnv(gym.Env):
                 for name, sensor in self.engine.sensors.items():
                     if hasattr(sensor, "track") and name != "main_camera":
                         sensor.track(current_track_agent.origin, [0., 0.8, 1.5], [0, 0.59681, 0])
-        
+
         self.engine.taskMgr.step()
-        
+
     def _get_reset_return(self, reset_info):
         # TODO: figure out how to get the information of the before step
         scene_manager_before_step_infos = reset_info
@@ -636,8 +636,8 @@ class BaseEnv(gym.Env):
                 step_infos[v_id]["is_success"] = step_infos[v_id]["arrive_dest"]
             except:
                 step_infos[v_id]["is_success"] = False
-        
-        # TODO: need to check if this should be set on every step 
+
+        # TODO: need to check if this should be set on every step
 
         if not self.is_multi_agent:
             return self._wrap_as_single_agent(obses), self._wrap_as_single_agent(rewards), \
@@ -919,7 +919,7 @@ class BaseEnv(gym.Env):
                 "Can't load last scenario! Current seed is already the min scenario index"
                 "Allowed index: {}-{}".format(self.start_index, self.start_index + self.num_scenarios - 1)
             )
-            
+
     def _reset_global_seed_sequentially(self, force_seed=None):
         """
         Reset the environment sequentially. It will reset the environment with seed 0, 1, 2, 3, ...

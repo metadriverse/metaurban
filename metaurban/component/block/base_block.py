@@ -76,7 +76,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
         self.sidewalks_farfrom_road = {}
         self.sidewalks_farfrom_road_buffer = {}
         self.valid_region = {}
-        
+
         if 'sidewalk_type_texture' not in self.engine.global_config:
             self.engine.global_config['sidewalk_type_texture'] = npy.random.choice([i for i in range(5)])
 
@@ -84,25 +84,33 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             if self.engine.global_config['sidewalk_type_texture'] == 0:
                 # sidewalk
                 # near road buffer
-                self.nearroad_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg"))
+                self.nearroad_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg")
+                )
                 self.nearroad_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_buffer_texture.setAnisotropicDegree(1)
-                self.nearroad_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
+                self.nearroad_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg")
+                )
                 self.nearroad_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # near road
-                self.nearroad_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_diff_4k.jpg"))
+                self.nearroad_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_diff_4k.jpg")
+                )
                 self.nearroad_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_texture.setAnisotropicDegree(1)
-                self.nearroad_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_nor_gl_4k.jpg"))
+                self.nearroad_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_nor_gl_4k.jpg")
+                )
                 self.nearroad_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # side
                 self.side_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "color.png"))
                 # self.side_texture.set_format(Texture.F_srgb)
@@ -114,287 +122,395 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                 # self.side_normal.set_format(Texture.F_srgb)
                 self.side_normal.setWrapU(Texture.WM_repeat)
                 self.side_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road buffer
-                self.farfrom_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg"))
+                self.farfrom_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg")
+                )
                 self.farfrom_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_buffer_texture.setAnisotropicDegree(1)
-                self.farfrom_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg"))
+                self.farfrom_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg")
+                )
                 self.farfrom_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road
-                self.farfrom_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg"))
+                self.farfrom_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg")
+                )
                 self.farfrom_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_texture.setAnisotropicDegree(1)
-                self.farfrom_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg"))
+                self.farfrom_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg")
+                )
                 self.farfrom_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # valid boundary
-                self.valid_region_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sci", "color.jpg"))
+                self.valid_region_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sci", "color.jpg")
+                )
                 self.valid_region_texture.setWrapU(Texture.WM_repeat)
                 self.valid_region_texture.setWrapV(Texture.WM_repeat)
                 self.valid_region_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.valid_region_texture.setAnisotropicDegree(1)
-                self.valid_region_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "normal.png"))
+                self.valid_region_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "normal.png")
+                )
                 self.valid_region_normal.setWrapU(Texture.WM_repeat)
                 self.valid_region_normal.setWrapV(Texture.WM_repeat)
             if self.engine.global_config['sidewalk_type_texture'] == 1:
                 # sidewalk
                 # near road buffer
-                self.nearroad_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg"))
+                self.nearroad_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg")
+                )
                 self.nearroad_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_buffer_texture.setAnisotropicDegree(1)
-                self.nearroad_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
+                self.nearroad_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg")
+                )
                 self.nearroad_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # near road
-                self.nearroad_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_diff_4k.jpg"))
+                self.nearroad_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_diff_4k.jpg")
+                )
                 self.nearroad_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_texture.setAnisotropicDegree(1)
-                self.nearroad_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_nor_gl_4k.jpg"))
+                self.nearroad_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_nor_gl_4k.jpg")
+                )
                 self.nearroad_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # side
-                self.side_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg"))
+                self.side_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg")
+                )
                 # self.side_texture.set_format(Texture.F_srgb)
                 self.side_texture.setWrapU(Texture.WM_repeat)
                 self.side_texture.setWrapV(Texture.WM_repeat)
                 self.side_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.side_texture.setAnisotropicDegree(1)
-                self.side_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
+                self.side_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg")
+                )
                 # self.side_normal.set_format(Texture.F_srgb)
                 self.side_normal.setWrapU(Texture.WM_repeat)
                 self.side_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road buffer
-                self.farfrom_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg"))
+                self.farfrom_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg")
+                )
                 self.farfrom_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_buffer_texture.setAnisotropicDegree(1)
-                self.farfrom_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg"))
+                self.farfrom_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg")
+                )
                 self.farfrom_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road
-                self.farfrom_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg"))
+                self.farfrom_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg")
+                )
                 self.farfrom_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_texture.setAnisotropicDegree(1)
-                self.farfrom_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg"))
+                self.farfrom_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg")
+                )
                 self.farfrom_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # valid boundary
-                self.valid_region_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sci", "color.jpg"))
+                self.valid_region_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sci", "color.jpg")
+                )
                 self.valid_region_texture.setWrapU(Texture.WM_repeat)
                 self.valid_region_texture.setWrapV(Texture.WM_repeat)
                 self.valid_region_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.valid_region_texture.setAnisotropicDegree(1)
-                self.valid_region_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "normal.png"))
+                self.valid_region_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "normal.png")
+                )
                 self.valid_region_normal.setWrapU(Texture.WM_repeat)
                 self.valid_region_normal.setWrapV(Texture.WM_repeat)
             if self.engine.global_config['sidewalk_type_texture'] == 2:
                 # sidewalk
                 # near road buffer
-                self.nearroad_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg"))
+                self.nearroad_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg")
+                )
                 self.nearroad_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_buffer_texture.setAnisotropicDegree(1)
-                self.nearroad_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
+                self.nearroad_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg")
+                )
                 self.nearroad_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # near road
-                self.nearroad_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg"))
+                self.nearroad_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg")
+                )
                 self.nearroad_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_texture.setAnisotropicDegree(1)
-                self.nearroad_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
+                self.nearroad_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg")
+                )
                 self.nearroad_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # side
-                self.side_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_diff_4k.jpg"))
+                self.side_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_diff_4k.jpg")
+                )
                 # self.side_texture.set_format(Texture.F_srgb)
                 self.side_texture.setWrapU(Texture.WM_repeat)
                 self.side_texture.setWrapV(Texture.WM_repeat)
                 self.side_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.side_texture.setAnisotropicDegree(1)
-                self.side_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_nor_gl_4k.jpg"))
+                self.side_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_nor_gl_4k.jpg")
+                )
                 # self.side_normal.set_format(Texture.F_srgb)
                 self.side_normal.setWrapU(Texture.WM_repeat)
                 self.side_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road buffer
-                self.farfrom_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg"))
+                self.farfrom_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg")
+                )
                 self.farfrom_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_buffer_texture.setAnisotropicDegree(1)
-                self.farfrom_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg"))
+                self.farfrom_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg")
+                )
                 self.farfrom_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road
-                self.farfrom_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg"))
+                self.farfrom_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg")
+                )
                 self.farfrom_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_texture.setAnisotropicDegree(1)
-                self.farfrom_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg"))
+                self.farfrom_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg")
+                )
                 self.farfrom_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # valid boundary
-                self.valid_region_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sci", "color.jpg"))
+                self.valid_region_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sci", "color.jpg")
+                )
                 self.valid_region_texture.setWrapU(Texture.WM_repeat)
                 self.valid_region_texture.setWrapV(Texture.WM_repeat)
                 self.valid_region_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.valid_region_texture.setAnisotropicDegree(1)
-                self.valid_region_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "normal.png"))
+                self.valid_region_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "normal.png")
+                )
                 self.valid_region_normal.setWrapU(Texture.WM_repeat)
                 self.valid_region_normal.setWrapV(Texture.WM_repeat)
             if self.engine.global_config['sidewalk_type_texture'] == 4:
                 # sidewalk
                 # near road buffer
-                self.nearroad_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg"))
+                self.nearroad_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg")
+                )
                 self.nearroad_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_buffer_texture.setAnisotropicDegree(1)
-                self.nearroad_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
+                self.nearroad_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg")
+                )
                 self.nearroad_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # near road
-                self.nearroad_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_diff_4k.jpg"))
+                self.nearroad_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_diff_4k.jpg")
+                )
                 self.nearroad_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_texture.setAnisotropicDegree(1)
-                self.nearroad_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_nor_gl_4k.jpg"))
+                self.nearroad_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "herringbone_brick_nor_gl_4k.jpg")
+                )
                 self.nearroad_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # side
-                self.side_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "square_tiles_diff_4k.jpg"))
+                self.side_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "square_tiles_diff_4k.jpg")
+                )
                 # self.side_texture.set_format(Texture.F_srgb)
                 self.side_texture.setWrapU(Texture.WM_repeat)
                 self.side_texture.setWrapV(Texture.WM_repeat)
                 self.side_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.side_texture.setAnisotropicDegree(1)
-                self.side_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "square_tiles_nor_gl_4k.jpg"))
+                self.side_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "square_tiles_nor_gl_4k.jpg")
+                )
                 # self.side_normal.set_format(Texture.F_srgb)
                 self.side_normal.setWrapU(Texture.WM_repeat)
                 self.side_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road buffer
-                self.farfrom_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg"))
+                self.farfrom_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg")
+                )
                 self.farfrom_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_buffer_texture.setAnisotropicDegree(1)
-                self.farfrom_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg"))
+                self.farfrom_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg")
+                )
                 self.farfrom_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road
-                self.farfrom_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg"))
+                self.farfrom_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg")
+                )
                 self.farfrom_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_texture.setAnisotropicDegree(1)
-                self.farfrom_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg"))
+                self.farfrom_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg")
+                )
                 self.farfrom_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # valid boundary
-                self.valid_region_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sci", "color.jpg"))
+                self.valid_region_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sci", "color.jpg")
+                )
                 self.valid_region_texture.setWrapU(Texture.WM_repeat)
                 self.valid_region_texture.setWrapV(Texture.WM_repeat)
                 self.valid_region_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.valid_region_texture.setAnisotropicDegree(1)
-                self.valid_region_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "normal.png"))
+                self.valid_region_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "normal.png")
+                )
                 self.valid_region_normal.setWrapU(Texture.WM_repeat)
-                self.valid_region_normal.setWrapV(Texture.WM_repeat)    
-                
+                self.valid_region_normal.setWrapV(Texture.WM_repeat)
+
             if self.engine.global_config['sidewalk_type_texture'] == 3:
                 # sidewalk
                 # near road buffer
-                self.nearroad_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg"))
+                self.nearroad_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_diff_4k.jpg")
+                )
                 self.nearroad_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_buffer_texture.setAnisotropicDegree(1)
-                self.nearroad_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
+                self.nearroad_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg")
+                )
                 self.nearroad_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # near road
-                self.nearroad_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_diff_4k.jpg"))
+                self.nearroad_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_diff_4k.jpg")
+                )
                 self.nearroad_texture.setWrapU(Texture.WM_repeat)
                 self.nearroad_texture.setWrapV(Texture.WM_repeat)
                 self.nearroad_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.nearroad_texture.setAnisotropicDegree(1)
-                self.nearroad_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_nor_gl_4k.jpg"))
+                self.nearroad_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_nor_gl_4k.jpg")
+                )
                 self.nearroad_normal.setWrapU(Texture.WM_repeat)
                 self.nearroad_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # side
-                self.side_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "square_tiles_diff_4k.jpg"))
+                self.side_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "square_tiles_diff_4k.jpg")
+                )
                 # self.side_texture.set_format(Texture.F_srgb)
                 self.side_texture.setWrapU(Texture.WM_repeat)
                 self.side_texture.setWrapV(Texture.WM_repeat)
                 self.side_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.side_texture.setAnisotropicDegree(1)
-                self.side_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "square_tiles_nor_gl_4k.jpg"))
+                self.side_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "square_tiles_nor_gl_4k.jpg")
+                )
                 # self.side_normal.set_format(Texture.F_srgb)
                 self.side_normal.setWrapU(Texture.WM_repeat)
                 self.side_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road buffer
-                self.farfrom_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg"))
+                self.farfrom_buffer_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg")
+                )
                 self.farfrom_buffer_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_buffer_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_buffer_texture.setAnisotropicDegree(1)
-                self.farfrom_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg"))
+                self.farfrom_buffer_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg")
+                )
                 self.farfrom_buffer_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_buffer_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # farfrom road
-                self.farfrom_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg"))
+                self.farfrom_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg")
+                )
                 self.farfrom_texture.setWrapU(Texture.WM_repeat)
                 self.farfrom_texture.setWrapV(Texture.WM_repeat)
                 self.farfrom_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.farfrom_texture.setAnisotropicDegree(1)
-                self.farfrom_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg"))
+                self.farfrom_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg")
+                )
                 self.farfrom_normal.setWrapU(Texture.WM_repeat)
                 self.farfrom_normal.setWrapV(Texture.WM_repeat)
-                
+
                 # valid boundary
-                self.valid_region_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sci", "color.jpg"))
+                self.valid_region_texture = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sci", "color.jpg")
+                )
                 self.valid_region_texture.setWrapU(Texture.WM_repeat)
                 self.valid_region_texture.setWrapV(Texture.WM_repeat)
                 self.valid_region_texture.setMinfilter(SamplerState.FT_linear_mipmap_linear)
                 self.valid_region_texture.setAnisotropicDegree(1)
-                self.valid_region_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "normal.png"))
+                self.valid_region_normal = self.loader.loadTexture(
+                    AssetLoader.file_path("textures", "sidewalk", "normal.png")
+                )
                 self.valid_region_normal.setWrapU(Texture.WM_repeat)
                 self.valid_region_normal.setWrapV(Texture.WM_repeat)
             # sidewalk
@@ -407,7 +523,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             # self.nearroad_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "concrete_layers_02_nor_gl_4k.jpg"))
             # self.nearroad_buffer_normal.setWrapU(Texture.WM_repeat)
             # self.nearroad_buffer_normal.setWrapV(Texture.WM_repeat)
-            
+
             # # near road
             # self.nearroad_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_diff_4k.jpg"))
             # self.nearroad_texture.setWrapU(Texture.WM_repeat)
@@ -417,7 +533,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             # self.nearroad_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rock_wall_07_nor_gl_4k.jpg"))
             # self.nearroad_normal.setWrapU(Texture.WM_repeat)
             # self.nearroad_normal.setWrapV(Texture.WM_repeat)
-            
+
             # # side
             # self.side_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "color.png"))
             # # self.side_texture.set_format(Texture.F_srgb)
@@ -429,7 +545,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             # # self.side_normal.set_format(Texture.F_srgb)
             # self.side_normal.setWrapU(Texture.WM_repeat)
             # self.side_normal.setWrapV(Texture.WM_repeat)
-            
+
             # # farfrom road buffer
             # self.farfrom_buffer_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_diff_4k.jpg"))
             # self.farfrom_buffer_texture.setWrapU(Texture.WM_repeat)
@@ -439,7 +555,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             # self.farfrom_buffer_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "rustic_stone_wall_02_nor_gl_4k.jpg"))
             # self.farfrom_buffer_normal.setWrapU(Texture.WM_repeat)
             # self.farfrom_buffer_normal.setWrapV(Texture.WM_repeat)
-            
+
             # # farfrom road
             # self.farfrom_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_diff_4k.jpg"))
             # self.farfrom_texture.setWrapU(Texture.WM_repeat)
@@ -449,7 +565,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             # self.farfrom_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "stone_wall_04_nor_gl_4k.jpg"))
             # self.farfrom_normal.setWrapU(Texture.WM_repeat)
             # self.farfrom_normal.setWrapV(Texture.WM_repeat)
-            
+
             # # valid boundary
             # self.valid_region_texture = self.loader.loadTexture(AssetLoader.file_path("textures", "sci", "color.jpg"))
             # self.valid_region_texture.setWrapU(Texture.WM_repeat)
@@ -459,7 +575,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             # self.valid_region_normal = self.loader.loadTexture(AssetLoader.file_path("textures", "sidewalk", "normal.png"))
             # self.valid_region_normal.setWrapU(Texture.WM_repeat)
             # self.valid_region_normal.setWrapV(Texture.WM_repeat)
-            
+
             self.line_seg = make_polygon_model([(-0.5, 0.5), (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5)], 0)
 
     def _sample_topology(self) -> bool:
@@ -501,7 +617,6 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
         self.attach_to_world(root_render_np, physics_world)
 
         # self.draw_polygons_in_network_block(self.block_network)
-
 
         if not attach_to_world:
             self.detach_from_world(physics_world)
@@ -600,16 +715,16 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
         help improve efficiency
         """
         self.lane_line_node_path = NodePath(RigidBodyCombiner(self.name + "_lane_line"))
-        
+
         self.sidewalk_node_path = NodePath(RigidBodyCombiner(self.name + "_sidewalk"))
         self.nearroad_node_path = NodePath(RigidBodyCombiner(self.name + "_nearroad"))
         self.farfromroad_node_path = NodePath(RigidBodyCombiner(self.name + "_farfromroad"))
         self.nearroad_buffer_node_path = NodePath(RigidBodyCombiner(self.name + "_nearroad_buffer"))
         self.farfromroad_buffer_node_path = NodePath(RigidBodyCombiner(self.name + "_farfromroad_buffer"))
         self.valid_region_node_path = NodePath(RigidBodyCombiner(self.name + "_valid_region"))
-        
+
         self.crosswalk_node_path = NodePath(RigidBodyCombiner(self.name + "_crosswalk"))
-        
+
         self.lane_node_path = NodePath(RigidBodyCombiner(self.name + "_lane"))
 
         if skip:  # for debug
@@ -643,7 +758,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             self.nearroad_buffer_node_path.setTexture(self.nearroad_buffer_texture)
             self.farfromroad_buffer_node_path.setTexture(self.farfrom_buffer_texture)
             self.valid_region_node_path.setTexture(self.valid_region_texture)
-                        
+
             ts = TextureStage("normal")
             ts.setMode(TextureStage.MNormal)
             self.sidewalk_node_path.setTexture(ts, self.side_normal)
@@ -652,7 +767,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             self.nearroad_buffer_node_path.setTexture(ts, self.nearroad_buffer_normal)
             self.farfromroad_buffer_node_path.setTexture(ts, self.farfrom_buffer_normal)
             self.valid_region_node_path.setTexture(ts, self.valid_region_normal)
-            
+
             material = Material()
             self.sidewalk_node_path.setMaterial(material, True)
             self.nearroad_node_path.setMaterial(material, True)
@@ -660,7 +775,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
             self.nearroad_buffer_node_path.setMaterial(material, True)
             self.farfromroad_buffer_node_path.setMaterial(material, True)
             self.valid_region_node_path.setMaterial(material, True)
-            
+
         self.crosswalk_node_path.flattenStrong()
         self.crosswalk_node_path.node().collect()
         self.crosswalk_node_path.hide(CamMask.AllOn)
@@ -842,7 +957,8 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                 for polygon in polygons[int(len(polygons) // 2):]:
                     height = sidewalk.get("height", None)
                     if height is None:
-                        height = PGDrivableAreaProperty.SIDEWALK_THICKNESS + 200 * 0.006 * self.engine.global_config['test_slope_system']
+                        height = PGDrivableAreaProperty.SIDEWALK_THICKNESS + 200 * 0.006 * self.engine.global_config[
+                            'test_slope_system']
                     if self.engine.global_config['test_terrain_system']:
                         scale = 6.
                     else:
@@ -875,7 +991,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + 200 * 0.001 + 200 * 0.005 + idx * 0.01
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -895,14 +1011,14 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                         body_node.addShape(shape)
                         self.dynamic_nodes.append(body_node)
                         body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
-                        self._node_path_list.append(np)   
+                        self._node_path_list.append(np)
             if self.engine.global_config['test_rough_system']:
                 for _, valid_region in enumerate(self.slo_s):
                     polygons = TerrainProperty.clip_polygon(valid_region)
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + npy.random.uniform(0, 0.04, 1)
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -922,7 +1038,8 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                         body_node.addShape(shape)
                         self.dynamic_nodes.append(body_node)
                         body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
-                        self._node_path_list.append(np)     
+                        self._node_path_list.append(np)
+
     def _construct_crosswalk(self):
         """
         Construct the crosswalk for semantic Cam
@@ -954,7 +1071,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     self.static_nodes.append(body_node)
                     body_node.setIntoCollideMask(CollisionGroup.Crosswalk)
                     np.removeNode()
-                    
+
     def _construct_nearroadsidewalk(self):
         """
         Construct the sidewalk with collision shape
@@ -999,7 +1116,8 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                 for polygon in polygons[int(len(polygons) // 2):]:
                     height = nearroad_sidewalk.get("height", None)
                     if height is None:
-                        height = PGDrivableAreaProperty.SIDEWALK_THICKNESS + 200 * 0.001 * self.engine.global_config['test_slope_system']
+                        height = PGDrivableAreaProperty.SIDEWALK_THICKNESS + 200 * 0.001 * self.engine.global_config[
+                            'test_slope_system']
                     if self.engine.global_config['test_terrain_system']:
                         scale = 2.5
                     else:
@@ -1032,7 +1150,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + 200 * 0.001 + idx * 0.005
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -1052,14 +1170,14 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                         body_node.addShape(shape)
                         self.dynamic_nodes.append(body_node)
                         body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
-                        self._node_path_list.append(np)     
+                        self._node_path_list.append(np)
             if self.engine.global_config['test_rough_system']:
                 for _, valid_region in enumerate(self.slo_n):
                     polygons = TerrainProperty.clip_polygon(valid_region)
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + npy.random.uniform(0, 0.02, 1)
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -1079,7 +1197,8 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                         body_node.addShape(shape)
                         self.dynamic_nodes.append(body_node)
                         body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
-                        self._node_path_list.append(np)   
+                        self._node_path_list.append(np)
+
     def _construct_farfromroadsidewalk(self):
         """
         Construct the sidewalk with collision shape
@@ -1151,7 +1270,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     self.dynamic_nodes.append(body_node)
                     body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
                     self._node_path_list.append(np)
-                    
+
     def _construct_nearroadsidewalk_buffer(self):
         """
         Construct the sidewalk with collision shape
@@ -1195,7 +1314,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + idx * 0.001
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -1222,7 +1341,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + npy.random.uniform(0, 0.01, 1)
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -1243,7 +1362,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                         self.dynamic_nodes.append(body_node)
                         body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
                         self._node_path_list.append(np)
-                    
+
     def _construct_farfromroadsidewalk_buffer(self):
         """
         Construct the sidewalk with collision shape
@@ -1264,7 +1383,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     else:
                         scale = 1.
                     z_pos = height / 2 * scale
-                    
+
                     np = make_polygon_model(polygon, height * scale)
                     np.reparentTo(self.farfromroad_buffer_node_path)
                     np.setPos(0, 0, z_pos)
@@ -1288,13 +1407,14 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                 for polygon in polygons[int(len(polygons) // 2):]:
                     height = farfromroad_sidewalk.get("height", None)
                     if height is None:
-                        height = PGDrivableAreaProperty.SIDEWALK_THICKNESS + 200 * 0.016 * self.engine.global_config['test_slope_system']
+                        height = PGDrivableAreaProperty.SIDEWALK_THICKNESS + 200 * 0.016 * self.engine.global_config[
+                            'test_slope_system']
                     if self.engine.global_config['test_terrain_system']:
                         scale = 10.
                     else:
                         scale = 1.
                     z_pos = height / 2 * scale
-                    
+
                     np = make_polygon_model(polygon, height * scale)
                     np.reparentTo(self.farfromroad_buffer_node_path)
                     np.setPos(0, 0, z_pos)
@@ -1321,7 +1441,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + 200 * 0.001 + 200 * 0.005 + 200 * 0.01 + 200 * 0.015
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -1348,7 +1468,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     for idx, polygon in enumerate(polygons):
                         height = 0.3 + 200 * 0.001 + 200 * 0.005 + 200 * 0.01 + 200 * 0.015
                         z_pos = height / 2
-                        
+
                         np = make_polygon_model(polygon, height)
                         np.reparentTo(self.farfromroad_node_path)
                         np.setPos(0, 0, z_pos)
@@ -1368,7 +1488,8 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                         body_node.addShape(shape)
                         self.dynamic_nodes.append(body_node)
                         body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
-                        self._node_path_list.append(np)                
+                        self._node_path_list.append(np)
+
     def _construct_valid_region(self):
         """
         Construct the sidewalk with collision shape
@@ -1392,7 +1513,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     else:
                         scale = 1.
                     z_pos = height / 2 * scale
-                    
+
                     np = make_polygon_model(polygon, height * scale)
                     np.reparentTo(self.valid_region_node_path)
                     np.setPos(0, 0, z_pos)
@@ -1413,7 +1534,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     self.dynamic_nodes.append(body_node)
                     body_node.setIntoCollideMask(CollisionGroup.Sidewalk)
                     self._node_path_list.append(np)
-                
+
                 for polygon in polygons[int(len(polygons) // 2):]:
                     height = valid_region.get("height", None)
                     if height is None:
@@ -1423,7 +1544,7 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     else:
                         scale = 1.
                     z_pos = height / 2 * scale
-                    
+
                     np = make_polygon_model(polygon, height * scale)
                     np.reparentTo(self.valid_region_node_path)
                     np.setPos(0, 0, z_pos)
@@ -1481,14 +1602,14 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     # Panda coordinate is different from metaurban coordinate
                     point_up = LPoint3f(*point, up_z)
                     shape.addPoint(LPoint3f(*point_up))
-                    point_down = LPoint3f(*point, up_z-0.1)
+                    point_down = LPoint3f(*point, up_z - 0.1)
                     shape.addPoint(LPoint3f(*point_down))
                     up_z += delta_z
                 for point in polygon[int(len(polygon)) // 2:]:
                     # Panda coordinate is different from metaurban coordinate
                     point_up = LPoint3f(*point, up_z)
                     shape.addPoint(LPoint3f(*point_up))
-                    point_down = LPoint3f(*point, up_z-0.1)
+                    point_down = LPoint3f(*point, up_z - 0.1)
                     shape.addPoint(LPoint3f(*point_down))
                     up_z -= delta_z
             else:
@@ -1559,7 +1680,6 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
 
         return node_path_list
 
-
     def draw_polygons_in_network_block(self, network_block):
         """
         Visualize the polygons  with matplot lib
@@ -1583,11 +1703,18 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
                     rectangle_points = npy.array(polygon)
 
                     # Plot the rectangle
-                    plt.plot(*zip(*npy.append(rectangle_points, [rectangle_points[0]], axis=0)), marker='o', label='['+x+']'+'['+y+']'+'['+str(i)+']', c=npy.random.rand(1, 3))
+                    plt.plot(
+                        *zip(*npy.append(rectangle_points, [rectangle_points[0]], axis=0)),
+                        marker='o',
+                        label='[' + x + ']' + '[' + y + ']' + '[' + str(i) + ']',
+                        c=npy.random.rand(1, 3)
+                    )
 
                     # Fill the rectangle with light opacity
                     plt.fill(
-                        *zip(*npy.append(rectangle_points, [rectangle_points[0]], axis=0)), alpha=0.3, c=npy.random.rand(1, 3)
+                        *zip(*npy.append(rectangle_points, [rectangle_points[0]], axis=0)),
+                        alpha=0.3,
+                        c=npy.random.rand(1, 3)
                     )
 
         # Set equal scaling and labels

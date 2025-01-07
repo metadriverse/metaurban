@@ -42,7 +42,6 @@
 # import random
 # logger = get_logger()
 
-
 # class BasePedestrianState:
 #     def __init__(self):
 #         self.init_state_info()
@@ -71,7 +70,6 @@
 #         # contact results, a set containing objects type name for rendering
 #         self.contact_results = set()
 
-
 # class BasePedestrian(BaseObject, BasePedestrianState):
 #     """
 
@@ -96,7 +94,6 @@
 #     speed = 0
 #     steering = 0
 
-
 #     def __init__(
 #         self,
 #         vehicle_config: Union[dict, Config] = None,
@@ -115,7 +112,7 @@
 #         # check
 #         assert vehicle_config is not None, "Please specify the vehicle config."
 #         assert engine_initialized(), "Please make sure game engine is successfully initialized!"
-        
+
 #         # NOTE: it is the game engine, not vehicle drivetrain
 #         # self.engine = get_engine()
 #         BaseObject.__init__(self, name, random_seed, self.engine.global_config["vehicle_config"])
@@ -166,7 +163,6 @@
 #         # if self.engine.current_map is not None:
 #         if _calling_reset:
 #             self.reset(position=position, heading=heading, vehicle_config=vehicle_config)
-
 
 #     def _init_step_info(self):
 #         # done info will be initialized every frame
@@ -400,11 +396,9 @@
 #         # self.system.setSteeringValue(steering, 1)
 #         self._apply_throttle_brake(action[1])
 
-
 #     """---------------------------------------- vehicle info ----------------------------------------------"""
 #     def get_forward_vector(self):
 #         return get_engine().render.getRelativeVector(self.origin,Vec3(0,1,0))
-
 
 #     def update_dist_to_left_right(self):
 #         self.dist_to_left_side, self.dist_to_right_side = self._dist_to_route_left_right()
@@ -418,7 +412,6 @@
 #         lateral_to_left = lateral_to_reference + self.navigation.get_current_lane_width() / 2
 #         lateral_to_right = self.navigation.get_current_lateral_range(self.position, self.engine) - lateral_to_left
 #         return lateral_to_left, lateral_to_right
-
 
 #     @property
 #     def velocity(self) -> np.ndarray:
@@ -502,10 +495,10 @@
 #         return lane.local_coordinates(vehicle.position)[0] - lane.local_coordinates(self.position)[0]
 
 #     """-------------------------------------- for vehicle making ------------------------------------------"""
-#     @property 
+#     @property
 #     def MAX_ACTOR_NUM(self):
 #         raise NotImplementedError()
-    
+
 #     @property
 #     def LENGTH(self):
 #         raise NotImplementedError()
@@ -525,7 +518,6 @@
 #     @property
 #     def MOTION_PATH(self):
 #         raise NotImplementedError()
-
 
 #     def _create_pedestrian_character(self):
 #         bullet_shape = BulletCylinderShape(self.RADIUS, self.HEIGHT)
@@ -567,12 +559,12 @@
 #         # if self.cur_state != state:
 #             self.actor.loop(state, fromFrame=self.loop_start)
 #             self.cur_state = state
-#             self.cur_state_transit_time = curtime 
+#             self.cur_state_transit_time = curtime
 
 #     def _add_visualization(self):
 #         if self.render:
 #             self.actor = Actor(self.ACTOR_PATH)
-            
+
 #             motion_path = deepcopy(self.MOTION_PATH)
 #             rotation = 180 if 'rotation' not in motion_path else motion_path.pop('rotation')
 #             self.loop_start = 0 if 'loop_start' not in motion_path else motion_path.pop('loop_start')
@@ -581,7 +573,7 @@
 #             self.cur_state = random.choice(self.STATES)
 #             if self.cur_state not in motion_path: self.cur_state='idle'
 #             self.cur_state_transit_time = time.time()
-#             self.actor.loadAnims(motion_path)    
+#             self.actor.loadAnims(motion_path)
 #             # playrate = self.actor.getPlayRate(self.cur_""" state)
 #             # print("Play rate: {}".format(playrate)) """
 #             for each_state in self.STATES:
@@ -1909,27 +1901,6 @@
 #
 #
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 from direct.actor.Actor import Actor
 from panda3d.bullet import BulletCylinderShape, BulletCapsuleShape
 
@@ -2028,7 +1999,6 @@ class BasePedestrian(BaseObject, BasePedestrianState):
     speed = 0
     steering = 0
 
-
     def __init__(
         self,
         vehicle_config: Union[dict, Config] = None,
@@ -2057,7 +2027,7 @@ class BasePedestrian(BaseObject, BasePedestrianState):
 
         # body = self._create_pedestrian_character()
         # self.add_body(body)
-        
+
         body = self._create_vehicle_chassis().getChassis()
         self.add_body(body)
 
@@ -2100,7 +2070,6 @@ class BasePedestrian(BaseObject, BasePedestrianState):
         # if self.engine.current_map is not None:
         if _calling_reset:
             self.reset(position=position, heading=heading, vehicle_config=vehicle_config)
-
 
     def _init_step_info(self):
         # done info will be initialized every frame
@@ -2250,7 +2219,7 @@ class BasePedestrian(BaseObject, BasePedestrianState):
         except Exception:
             pass
             # print("error self.reset_navigation()")
-        
+
         # self.body.setLinearMovement(Vec3(0, 0, 0), True)
         # self.body.setAngularMovement(0)
 
@@ -2286,7 +2255,7 @@ class BasePedestrian(BaseObject, BasePedestrianState):
 
         # if self.config["spawn_velocity"] is not None:
         #     self.set_velocity(self.config["spawn_velocity"], in_local_frame=self.config["spawn_velocity_car_frame"])
-        
+
         self.body.clearForces()
         self.body.setLinearVelocity(Vec3(0, 0, 0))
         self.body.setAngularVelocity(Vec3(0, 0, 0))
@@ -2332,7 +2301,7 @@ class BasePedestrian(BaseObject, BasePedestrianState):
         if action is None:
             return
 
-        steering = action[0] * 90 # / np.pi * 180
+        steering = action[0] * 90  # / np.pi * 180
         speed = action[1] * 10
 
         # print("action",self.speed, action)
@@ -2364,11 +2333,10 @@ class BasePedestrian(BaseObject, BasePedestrianState):
         # self.system.setSteeringValue(steering, 1)
         self._apply_throttle_brake(action[1])
 
-
     """---------------------------------------- vehicle info ----------------------------------------------"""
-    def get_forward_vector(self):
-        return get_engine().render.getRelativeVector(self.origin,Vec3(0,1,0))
 
+    def get_forward_vector(self):
+        return get_engine().render.getRelativeVector(self.origin, Vec3(0, 1, 0))
 
     def update_dist_to_left_right(self):
         self.dist_to_left_side, self.dist_to_right_side = self._dist_to_route_left_right()
@@ -2382,7 +2350,6 @@ class BasePedestrian(BaseObject, BasePedestrianState):
         lateral_to_left = lateral_to_reference + self.navigation.get_current_lane_width() / 2
         lateral_to_right = self.navigation.get_current_lateral_range(self.position, self.engine) - lateral_to_left
         return lateral_to_left, lateral_to_right
-
 
     @property
     def velocity(self) -> np.ndarray:
@@ -2487,7 +2454,6 @@ class BasePedestrian(BaseObject, BasePedestrianState):
     def MOTION_PATH(self):
         raise NotImplementedError()
 
-
     def _create_pedestrian_character(self):
         bullet_shape = BulletCylinderShape(self.RADIUS, self.HEIGHT)
 
@@ -2502,7 +2468,7 @@ class BasePedestrian(BaseObject, BasePedestrianState):
         physics_world.attachCharacter(character)
 
         return character
-    
+
     def _create_vehicle_chassis(self):
         # self.LENGTH = type(self).LENGTH
         # self.WIDTH = type(self).WIDTH
@@ -2548,10 +2514,10 @@ class BasePedestrian(BaseObject, BasePedestrianState):
 
         curtime = time.time()
         if curtime - self.cur_state_transit_time > 3 and self.cur_state != state:
-        # if self.cur_state != state:
+            # if self.cur_state != state:
             self.actor.loop(state, fromFrame=self.loop_start)
             self.cur_state = state
-            self.cur_state_transit_time = curtime 
+            self.cur_state_transit_time = curtime
 
     def _add_visualization(self):
         self.cur_state = random.choice(self.STATES)
@@ -2563,7 +2529,6 @@ class BasePedestrian(BaseObject, BasePedestrianState):
             rotation = 180 if 'rotation' not in motion_path else motion_path.pop('rotation')
             self.loop_start = 0 if 'loop_start' not in motion_path else motion_path.pop('loop_start')
 
-            
             self.actor.loadAnims(motion_path)
             self.actor.loop(self.cur_state, fromFrame=self.loop_start)
 

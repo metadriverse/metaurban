@@ -35,7 +35,9 @@ class Pedestrian(BaseTrafficParticipant):
         if self.render:
             if len(Pedestrian._MODEL) == 0:
                 self.init_pedestrian_model()
-            self._instance = Pedestrian._MODEL[self.current_speed_model].instanceTo(self.origin)    ######## TODO: speed up for more pedestrain
+            self._instance = Pedestrian._MODEL[self.current_speed_model].instanceTo(
+                self.origin
+            )  ######## TODO: speed up for more pedestrain
             self.show_coordinates()
 
     def reset(self, position, heading_theta: float = 0., random_seed=None, name=None, *args, **kwargs):

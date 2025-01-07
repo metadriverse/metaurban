@@ -37,25 +37,20 @@ def test_override(capture, msg):
     with capture:
         assert m.runExampleVirt(ex12, 20) == 30
     assert (
-        capture
-        == """
+        capture == """
         Original implementation of ExampleVirt::run(state=10, value=20, str1=default1, str2=default2)
     """
     )
 
     with pytest.raises(RuntimeError) as excinfo:
         m.runExampleVirtVirtual(ex12)
-    assert (
-        msg(excinfo.value)
-        == 'Tried to call pure virtual function "ExampleVirt::pure_virtual"'
-    )
+    assert (msg(excinfo.value) == 'Tried to call pure virtual function "ExampleVirt::pure_virtual"')
 
     ex12p = ExtendedExampleVirt(10)
     with capture:
         assert m.runExampleVirt(ex12p, 20) == 32
     assert (
-        capture
-        == """
+        capture == """
         ExtendedExampleVirt::run(20), calling parent..
         Original implementation of ExampleVirt::run(state=11, value=21, str1=override1, str2=default2)
     """
@@ -71,8 +66,7 @@ def test_override(capture, msg):
     with capture:
         assert m.runExampleVirt(ex12p2, 50) == 68
     assert (
-        capture
-        == """
+        capture == """
         ExtendedExampleVirt::run(50), calling parent..
         Original implementation of ExampleVirt::run(state=17, value=51, str1=override1, str2=override2)
     """
@@ -93,7 +87,6 @@ def test_alias_delay_initialization1(capture):
     If we just create and use an A instance directly, the trampoline initialization is
     bypassed and we only initialize an A() instead (for performance reasons).
     """
-
     class B(m.A):
         def __init__(self):
             super().__init__()
@@ -115,15 +108,12 @@ def test_alias_delay_initialization1(capture):
         m.call_f(b)
         del b
         pytest.gc_collect()
-    assert (
-        capture
-        == """
+    assert (capture == """
         PyA.PyA()
         PyA.f()
         In python f()
         PyA.~PyA()
-    """
-    )
+    """)
 
 
 def test_alias_delay_initialization2(capture):
@@ -133,7 +123,6 @@ def test_alias_delay_initialization2(capture):
     performance penalty, it also allows us to do more things with the trampoline
     class such as defining local variables and performing construction/destruction.
     """
-
     class B2(m.A2):
         def __init__(self):
             super().__init__()
@@ -152,8 +141,7 @@ def test_alias_delay_initialization2(capture):
         del a3
         pytest.gc_collect()
     assert (
-        capture
-        == """
+        capture == """
         PyA2.PyA2()
         PyA2.f()
         A2.f()
@@ -171,23 +159,18 @@ def test_alias_delay_initialization2(capture):
         m.call_f(b2)
         del b2
         pytest.gc_collect()
-    assert (
-        capture
-        == """
+    assert (capture == """
         PyA2.PyA2()
         PyA2.f()
         In python B2.f()
         PyA2.~PyA2()
-    """
-    )
+    """)
 
 
 # PyPy: Reference count > 1 causes call with noncopyable instance
 # to fail in ncv1.print_nc()
 @pytest.mark.xfail("env.PYPY")
-@pytest.mark.skipif(
-    not hasattr(m, "NCVirt"), reason="NCVirt does not work on Intel/PGI/NVCC compilers"
-)
+@pytest.mark.skipif(not hasattr(m, "NCVirt"), reason="NCVirt does not work on Intel/PGI/NVCC compilers")
 def test_move_support():
     class NCVirtExt(m.NCVirt):
         def get_noncopyable(self, a, b):
@@ -235,7 +218,6 @@ def test_move_support():
 
 def test_dispatch_issue(msg):
     """#159: virtual function dispatch has problems with similar-named functions"""
-
     class PyClass1(m.DispatchIssue):
         def dispatch(self):
             return "Yay.."
@@ -244,10 +226,7 @@ def test_dispatch_issue(msg):
         def dispatch(self):
             with pytest.raises(RuntimeError) as excinfo:
                 super().dispatch()
-            assert (
-                msg(excinfo.value)
-                == 'Tried to call pure virtual function "Base::dispatch"'
-            )
+            assert (msg(excinfo.value) == 'Tried to call pure virtual function "Base::dispatch"')
 
             return m.dispatch_issue_go(PyClass1())
 
@@ -257,7 +236,6 @@ def test_dispatch_issue(msg):
 
 def test_recursive_dispatch_issue():
     """#3357: Recursive dispatch fails to find python function override"""
-
     class Data(m.Data):
         def __init__(self, value):
             super().__init__()

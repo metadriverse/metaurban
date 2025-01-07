@@ -162,7 +162,6 @@ def test_sequence():
 
 def test_sequence_length():
     """#2076: Exception raised by len(arg) should be propagated"""
-
     class BadLen(RuntimeError):
         pass
 

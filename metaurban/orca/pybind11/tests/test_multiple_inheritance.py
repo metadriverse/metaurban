@@ -173,14 +173,14 @@ def test_multiple_inheritance_python_many_bases():
             m.BaseN8.__init__(self, 8)
 
     class MIMany916(
-        m.BaseN9,
-        m.BaseN10,
-        m.BaseN11,
-        m.BaseN12,
-        m.BaseN13,
-        m.BaseN14,
-        m.BaseN15,
-        m.BaseN16,
+            m.BaseN9,
+            m.BaseN10,
+            m.BaseN11,
+            m.BaseN12,
+            m.BaseN13,
+            m.BaseN14,
+            m.BaseN15,
+            m.BaseN16,
     ):
         def __init__(self):
             m.BaseN9.__init__(self, 9)
@@ -473,7 +473,6 @@ def test_pr3635_diamond_f():
 
 def test_python_inherit_from_mi():
     """Tests extending a Python class from a single inheritor of a MI class"""
-
     class PyMVF(m.MVF):
         g = 7
 

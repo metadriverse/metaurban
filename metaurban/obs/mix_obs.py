@@ -1,4 +1,3 @@
-
 import gymnasium as gym
 from metaurban.component.sensors.base_camera import BaseCamera
 import numpy as np
@@ -43,8 +42,8 @@ class ImageStateObservation(BaseObservation):
         super(ImageStateObservation, self).destroy()
         self.img_obs.destroy()
         self.state_obs.destroy()
-        
-        
+
+
 class ThreeSourceMixObservation(BaseObservation):
     IMAGE = "image"
     DEPTH = 'depth'
@@ -70,10 +69,12 @@ class ThreeSourceMixObservation(BaseObservation):
         )
 
     def observe(self, vehicle: BaseVehicle):
-        return {self.IMAGE: self.img_obs.observe(), 
-                self.STATE: self.state_obs.observe(vehicle), 
-                self.DEPTH: self.depth_obs.observe(),
-                self.SEMANTIC: self.semantic_obs.observe()}
+        return {
+            self.IMAGE: self.img_obs.observe(),
+            self.STATE: self.state_obs.observe(vehicle),
+            self.DEPTH: self.depth_obs.observe(),
+            self.SEMANTIC: self.semantic_obs.observe()
+        }
 
     def destroy(self):
         super(ThreeSourceMixObservation, self).destroy()

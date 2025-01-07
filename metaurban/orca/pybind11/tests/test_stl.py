@@ -40,10 +40,7 @@ def test_array(doc):
     assert m.load_array(tuple(lst))
 
     assert doc(m.cast_array) == "cast_array() -> Annotated[list[int], FixedSize(2)]"
-    assert (
-        doc(m.load_array)
-        == "load_array(arg0: Annotated[list[int], FixedSize(2)]) -> bool"
-    )
+    assert (doc(m.load_array) == "load_array(arg0: Annotated[list[int], FixedSize(2)]) -> bool")
 
 
 def test_valarray(doc):
@@ -144,9 +141,7 @@ def test_optional():
     assert int(props.access_by_copy) == 42
 
 
-@pytest.mark.skipif(
-    not hasattr(m, "has_exp_optional"), reason="no <experimental/optional>"
-)
+@pytest.mark.skipif(not hasattr(m, "has_exp_optional"), reason="no <experimental/optional>")
 def test_exp_optional():
     assert m.double_or_zero_exp(None) == 0
     assert m.double_or_zero_exp(42) == 84
@@ -266,14 +261,10 @@ def test_variant(doc):
 
     assert m.cast_variant() == (5, "Hello")
 
-    assert (
-        doc(m.load_variant) == "load_variant(arg0: Union[int, str, float, None]) -> str"
-    )
+    assert (doc(m.load_variant) == "load_variant(arg0: Union[int, str, float, None]) -> str")
 
 
-@pytest.mark.skipif(
-    not hasattr(m, "load_monostate_variant"), reason="no std::monostate"
-)
+@pytest.mark.skipif(not hasattr(m, "load_monostate_variant"), reason="no std::monostate")
 def test_variant_monostate(doc):
     assert m.load_monostate_variant(None) == "std::monostate"
     assert m.load_monostate_variant(1) == "int"
@@ -281,17 +272,13 @@ def test_variant_monostate(doc):
 
     assert m.cast_monostate_variant() == (None, 5, "Hello")
 
-    assert (
-        doc(m.load_monostate_variant)
-        == "load_monostate_variant(arg0: Union[None, int, str]) -> str"
-    )
+    assert (doc(m.load_monostate_variant) == "load_monostate_variant(arg0: Union[None, int, str]) -> str")
 
 
 def test_vec_of_reference_wrapper():
     """#171: Can't return reference wrappers (or STL structures containing them)"""
     assert (
-        str(m.return_vec_of_reference_wrapper(UserType(4)))
-        == "[UserType(1), UserType(2), UserType(3), UserType(4)]"
+        str(m.return_vec_of_reference_wrapper(UserType(4))) == "[UserType(1), UserType(2), UserType(3), UserType(4)]"
     )
 
 
@@ -300,8 +287,7 @@ def test_stl_pass_by_pointer(msg):
     with pytest.raises(TypeError) as excinfo:
         m.stl_pass_by_pointer()  # default value is `nullptr`
     assert (
-        msg(excinfo.value)
-        == """
+        msg(excinfo.value) == """
         stl_pass_by_pointer(): incompatible function arguments. The following argument types are supported:
             1. (v: list[int] = None) -> list[int]
 
@@ -312,8 +298,7 @@ def test_stl_pass_by_pointer(msg):
     with pytest.raises(TypeError) as excinfo:
         m.stl_pass_by_pointer(None)
     assert (
-        msg(excinfo.value)
-        == """
+        msg(excinfo.value) == """
         stl_pass_by_pointer(): incompatible function arguments. The following argument types are supported:
             1. (v: list[int] = None) -> list[int]
 

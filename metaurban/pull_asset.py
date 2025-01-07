@@ -18,6 +18,7 @@ ROOT_DIR = Path(__file__).parent
 ASSET_URL = "https://drive.google.com/file/d/1IL8FldCAn8GLa8QY1lryN33wrzbHHRVl/view?usp=sharing"
 ASSET_PEDE_URL = 'https://drive.google.com/file/d/1XUGfG57Cof43dX2pkMYBhsFVirJ4DQ1o/view?usp=drive_link'
 
+
 class MyProgressBar():
     def __init__(self):
         self.pbar = None
@@ -80,7 +81,12 @@ def pull_asset(update):
             # Download assets
             logger.info("Pull assets of static objects from {} to {}".format(ASSET_URL, zip_path))
             gdown.download(ASSET_URL, str(zip_path), fuzzy=True)
-            logger.info("Pull assets of agents from {} to {}".format(ASSET_PEDE_URL, str(zip_path).replace('assets', 'assets_pedestrain')))
+            logger.info(
+                "Pull assets of agents from {} to {}".format(
+                    ASSET_PEDE_URL,
+                    str(zip_path).replace('assets', 'assets_pedestrain')
+                )
+            )
             gdown.download(ASSET_PEDE_URL, str(zip_path).replace('assets', 'assets_pedestrain'), fuzzy=True)
             # extra_arg = [MyProgressBar()] if logger.level == logging.INFO else []
             # urllib.request.urlretrieve(ASSET_URL, zip_path, *extra_arg)
@@ -96,17 +102,24 @@ def pull_asset(update):
             logger.info("Extracting assets of objects.")
             shutil.unpack_archive(filename=str(zip_path), extract_dir=temp_assets_folder)
             shutil.move(str(temp_assets_folder / 'assets'), str(ROOT_DIR))
-            
+
             # Prepare for extraction
             if os.path.exists(str(assets_folder).replace('assets', 'assets_pedestrain')):
-                logger.info("Remove existing assets of agents. Files: {}".format(os.listdir(assets_folder).replace('assets', 'assets_pedestrain')))
+                logger.info(
+                    "Remove existing assets of agents. Files: {}".format(
+                        os.listdir(assets_folder).replace('assets', 'assets_pedestrain')
+                    )
+                )
                 shutil.rmtree(str(assets_folder).replace('assets', 'assets_pedestrain'), ignore_errors=True)
             if os.path.exists(str(temp_assets_folder).replace('assets', 'assets_pedestrain')):
                 shutil.rmtree(str(temp_assets_folder).replace('assets', 'assets_pedestrain'), ignore_errors=True)
 
             # Extract to temporary directory
             logger.info("Extracting assets of agents.")
-            shutil.unpack_archive(filename=str(zip_path).replace('assets.zip', 'assets_pedestrain.zip'), extract_dir=str(temp_assets_folder).replace('assets', 'assets_pedestrain'))
+            shutil.unpack_archive(
+                filename=str(zip_path).replace('assets.zip', 'assets_pedestrain.zip'),
+                extract_dir=str(temp_assets_folder).replace('assets', 'assets_pedestrain')
+            )
             shutil.move(str(temp_assets_folder / 'assets').replace('assets', 'assets_pedestrain'), str(ROOT_DIR))
 
     except Timeout:  # Timeout will be raised if the lock can not be acquired in 1s.
@@ -125,7 +138,8 @@ def pull_asset(update):
                     shutil.rmtree(path, ignore_errors=True)
                 else:
                     os.remove(path)
-        for path in [str(zip_path).replace('assets.zip', 'assets_pedestrain.zip'), lock_path, str(temp_assets_folder).replace('assets', 'assets_pedestrain')]:
+        for path in [str(zip_path).replace('assets.zip', 'assets_pedestrain.zip'), lock_path,
+                     str(temp_assets_folder).replace('assets', 'assets_pedestrain')]:
             if os.path.exists(path):
                 if os.path.isdir(path):
                     shutil.rmtree(path, ignore_errors=True)

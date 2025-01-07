@@ -71,9 +71,7 @@ def test_simple_setup_py(monkeypatch, tmpdir, parallel, std):
         encoding="ascii",
     )
 
-    out = subprocess.check_output(
-        [sys.executable, "setup.py", "build_ext", "--inplace"],
-    )
+    out = subprocess.check_output([sys.executable, "setup.py", "build_ext", "--inplace"], )
     if not WIN:
         assert b"-g0" in out
     out = subprocess.check_output(
@@ -88,24 +86,18 @@ def test_simple_setup_py(monkeypatch, tmpdir, parallel, std):
     for item in tmpdir.listdir():
         print(item.basename)
 
-    assert (
-        len([f for f in tmpdir.listdir() if f.basename.startswith("simple_setup")]) == 1
-    )
+    assert (len([f for f in tmpdir.listdir() if f.basename.startswith("simple_setup")]) == 1)
     assert len(list(tmpdir.listdir())) == 4  # two files + output + build_dir
 
     (tmpdir / "test.py").write_text(
-        dedent(
-            """\
+        dedent("""\
             import simple_setup
             assert simple_setup.f(3) == 9
-            """
-        ),
+            """),
         encoding="ascii",
     )
 
-    subprocess.check_call(
-        [sys.executable, "test.py"], stdout=sys.stdout, stderr=sys.stderr
-    )
+    subprocess.check_call([sys.executable, "test.py"], stdout=sys.stdout, stderr=sys.stderr)
 
 
 def test_intree_extensions(monkeypatch, tmpdir):
@@ -121,10 +113,10 @@ def test_intree_extensions(monkeypatch, tmpdir):
     src = subdir / "ext.cpp"
     src.ensure()
     relpath = src.relto(tmpdir)
-    (ext,) = intree_extensions([relpath])
+    (ext, ) = intree_extensions([relpath])
     assert ext.name == "ext"
     subdir.ensure("__init__.py")
-    (ext,) = intree_extensions([relpath])
+    (ext, ) = intree_extensions([relpath])
     assert ext.name == "dir.ext"
 
 
@@ -140,12 +132,12 @@ def test_intree_extensions_package_dir(monkeypatch, tmpdir):
     subdir.ensure_dir()
     src = subdir / "ext.cpp"
     src.ensure()
-    (ext,) = intree_extensions([src.relto(tmpdir)], package_dir={"": "src"})
+    (ext, ) = intree_extensions([src.relto(tmpdir)], package_dir={"": "src"})
     assert ext.name == "dir.ext"
-    (ext,) = intree_extensions([src.relto(tmpdir)], package_dir={"foo": "src"})
+    (ext, ) = intree_extensions([src.relto(tmpdir)], package_dir={"foo": "src"})
     assert ext.name == "foo.dir.ext"
     subdir.ensure("__init__.py")
-    (ext,) = intree_extensions([src.relto(tmpdir)], package_dir={"": "src"})
+    (ext, ) = intree_extensions([src.relto(tmpdir)], package_dir={"": "src"})
     assert ext.name == "dir.ext"
-    (ext,) = intree_extensions([src.relto(tmpdir)], package_dir={"foo": "src"})
+    (ext, ) = intree_extensions([src.relto(tmpdir)], package_dir={"foo": "src"})
     assert ext.name == "foo.dir.ext"

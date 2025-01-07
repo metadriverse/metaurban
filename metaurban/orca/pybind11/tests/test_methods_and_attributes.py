@@ -6,15 +6,9 @@ import env  # noqa: F401
 from pybind11_tests import ConstructorStats
 from pybind11_tests import methods_and_attributes as m
 
-NO_GETTER_MSG = (
-    "unreadable attribute" if sys.version_info < (3, 11) else "object has no getter"
-)
-NO_SETTER_MSG = (
-    "can't set attribute" if sys.version_info < (3, 11) else "object has no setter"
-)
-NO_DELETER_MSG = (
-    "can't delete attribute" if sys.version_info < (3, 11) else "object has no deleter"
-)
+NO_GETTER_MSG = ("unreadable attribute" if sys.version_info < (3, 11) else "object has no getter")
+NO_SETTER_MSG = ("can't set attribute" if sys.version_info < (3, 11) else "object has no setter")
+NO_DELETER_MSG = ("can't delete attribute" if sys.version_info < (3, 11) else "object has no deleter")
 
 
 def test_methods_and_attributes():
@@ -184,10 +178,7 @@ def test_static_properties():
     # Only static attributes can be deleted
     del m.TestPropertiesOverride.def_readonly_static
     assert hasattr(m.TestPropertiesOverride, "def_readonly_static")
-    assert (
-        m.TestPropertiesOverride.def_readonly_static
-        is m.TestProperties.def_readonly_static
-    )
+    assert (m.TestPropertiesOverride.def_readonly_static is m.TestProperties.def_readonly_static)
     assert "def_readonly_static" not in m.TestPropertiesOverride.__dict__
     properties_override = m.TestPropertiesOverride()
     with pytest.raises(AttributeError) as excinfo:
@@ -216,10 +207,7 @@ def test_metaclass_override():
     assert type(m.MetaclassOverride).__name__ == "type"
 
     assert m.MetaclassOverride.readonly == 1
-    assert (
-        type(m.MetaclassOverride.__dict__["readonly"]).__name__
-        == "pybind11_static_property"
-    )
+    assert (type(m.MetaclassOverride.__dict__["readonly"]).__name__ == "pybind11_static_property")
 
     # Regular `type` replaces the property instead of calling `__set__()`
     m.MetaclassOverride.readonly = 2
@@ -233,12 +221,10 @@ def test_no_mixed_overloads():
     with pytest.raises(RuntimeError) as excinfo:
         m.ExampleMandA.add_mixed_overloads1()
     assert (
-        str(excinfo.value)
-        == "overloading a method with both static and instance methods is not supported; "
-        + (
+        str(excinfo.value) == "overloading a method with both static and instance methods is not supported; " + (
             "#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for more details"
-            if not detailed_error_messages_enabled
-            else "error while attempting to bind static method ExampleMandA.overload_mixed1"
+            if not detailed_error_messages_enabled else
+            "error while attempting to bind static method ExampleMandA.overload_mixed1"
             "(arg0: float) -> str"
         )
     )
@@ -246,12 +232,10 @@ def test_no_mixed_overloads():
     with pytest.raises(RuntimeError) as excinfo:
         m.ExampleMandA.add_mixed_overloads2()
     assert (
-        str(excinfo.value)
-        == "overloading a method with both static and instance methods is not supported; "
-        + (
+        str(excinfo.value) == "overloading a method with both static and instance methods is not supported; " + (
             "#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for more details"
-            if not detailed_error_messages_enabled
-            else "error while attempting to bind instance method ExampleMandA.overload_mixed2"
+            if not detailed_error_messages_enabled else
+            "error while attempting to bind instance method ExampleMandA.overload_mixed2"
             "(self: pybind11_tests.methods_and_attributes.ExampleMandA, arg0: int, arg1: int)"
             " -> str"
         )
@@ -363,9 +347,8 @@ def test_bad_arg_default(msg):
         m.bad_arg_def_named()
     assert msg(excinfo.value) == (
         "arg(): could not convert default argument 'a: UnregisteredType' in function "
-        "'should_fail' into a Python object (type not registered yet?)"
-        if detailed_error_messages_enabled
-        else "arg(): could not convert default argument into a Python object (type not registered "
+        "'should_fail' into a Python object (type not registered yet?)" if detailed_error_messages_enabled else
+        "arg(): could not convert default argument into a Python object (type not registered "
         "yet?). #define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for more information."
     )
 
@@ -373,9 +356,8 @@ def test_bad_arg_default(msg):
         m.bad_arg_def_unnamed()
     assert msg(excinfo.value) == (
         "arg(): could not convert default argument 'UnregisteredType' in function "
-        "'should_fail' into a Python object (type not registered yet?)"
-        if detailed_error_messages_enabled
-        else "arg(): could not convert default argument into a Python object (type not registered "
+        "'should_fail' into a Python object (type not registered yet?)" if detailed_error_messages_enabled else
+        "arg(): could not convert default argument into a Python object (type not registered "
         "yet?). #define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for more information."
     )
 
@@ -413,8 +395,7 @@ def test_accepts_none(msg):
     with pytest.raises(TypeError) as excinfo:
         assert m.ok_none1(None) == -1
     assert (
-        msg(excinfo.value)
-        == """
+        msg(excinfo.value) == """
         ok_none1(): incompatible function arguments. The following argument types are supported:
             1. (arg0: m.methods_and_attributes.NoneTester) -> int
 
@@ -461,8 +442,7 @@ def test_str_issue(msg):
     with pytest.raises(TypeError) as excinfo:
         str(m.StrIssue("no", "such", "constructor"))
     assert (
-        msg(excinfo.value)
-        == """
+        msg(excinfo.value) == """
         __init__(): incompatible constructor arguments. The following argument types are supported:
             1. m.methods_and_attributes.StrIssue(arg0: int)
             2. m.methods_and_attributes.StrIssue()

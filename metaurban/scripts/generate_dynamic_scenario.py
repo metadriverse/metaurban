@@ -6,7 +6,6 @@ Note: This script require rendering, please following the installation instructi
 environment that allows popping up an window.
 """
 
-
 import argparse
 import logging
 import random
@@ -49,7 +48,7 @@ if __name__ == "__main__":
         object_density=1.0,
         training=True,
         use_render=True,
-        map = map_type, # 5
+        map=map_type,  # 5
         manual_control=True,
         show_logo=False,
         crswalk_density=1,
@@ -60,7 +59,7 @@ if __name__ == "__main__":
         spawn_drobot_num=int(1 * den_scale),
         max_actor_num=1,
         drivable_area_extension=55,
-        height_scale = 1,
+        height_scale=1,
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
@@ -87,14 +86,14 @@ if __name__ == "__main__":
         start_seed=0,
         sequential_seeding=False,
     )
-    
+
     env = SidewalkDynamicMetaUrbanEnv(config)
     o, _ = env.reset(seed=int(np.random.choice(valid_seeds)))
     try:
         print(HELP_MESSAGE)
         for i in range(1, 1000000000):
-                
-            o, r, tm, tc, info = env.step([0., 0.])   ### reset; get next -> empty -> have multiple end points
+
+            o, r, tm, tc, info = env.step([0., 0.])  ### reset; get next -> empty -> have multiple end points
 
             if (tm or tc):
                 env.reset(int(np.random.choice(valid_seeds)))

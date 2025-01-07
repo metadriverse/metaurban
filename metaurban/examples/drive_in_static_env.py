@@ -39,15 +39,15 @@ if __name__ == "__main__":
     parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
     parser.add_argument("--density_obj", type=float, default=0.4)
     args = parser.parse_args()
-    
+
     config = dict(
         crswalk_density=1,
         object_density=args.density_obj,
         use_render=True,
-        map = map_type,
+        map=map_type,
         manual_control=True,
         drivable_area_extension=55,
-        height_scale = 1,
+        height_scale=1,
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
@@ -76,19 +76,23 @@ if __name__ == "__main__":
         config.update(
             dict(
                 image_observation=True,
-                sensors=dict(rgb_camera=(RGBCamera, 1920, 1080), depth_camera=(DepthCamera, 640, 640), semantic_camera=(SemanticCamera, 640, 640),),
+                sensors=dict(
+                    rgb_camera=(RGBCamera, 1920, 1080),
+                    depth_camera=(DepthCamera, 640, 640),
+                    semantic_camera=(SemanticCamera, 640, 640),
+                ),
                 agent_observation=ThreeSourceMixObservation,
                 interface_panel=[]
             )
         )
-    
+
     env = SidewalkStaticMetaUrbanEnv(config)
     o, _ = env.reset(seed=0)
     try:
         print(HELP_MESSAGE)
         for i in range(1, 1000000000):
-                
-            o, r, tm, tc, info = env.step([0., 0.0])   ### reset; get next -> empty -> have multiple end points
+
+            o, r, tm, tc, info = env.step([0., 0.0])  ### reset; get next -> empty -> have multiple end points
 
             if (tm or tc):
                 env.reset(env.current_seed + 1)

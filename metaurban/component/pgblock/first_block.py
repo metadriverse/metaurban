@@ -11,12 +11,11 @@ from metaurban.engine.core.physics_world import PhysicsWorld
 from metaurban.constants import PGDrivableAreaProperty, PGLineType
 import numpy as np
 
-
-
 # ----------------------
 # >                   >>
 # ----------------------
 # <<<                 <<
+
 
 class FirstPGBlock(PGBlock):
     """
@@ -124,8 +123,6 @@ class FirstPGBlock(PGBlock):
         """This block can not be destructed"""
         pass
 
-
-
     def draw_polygons_in_network_block(self, network_block):
         """
         Visualize the polygons  with matplot lib
@@ -149,11 +146,18 @@ class FirstPGBlock(PGBlock):
                     rectangle_points = np.array(polygon)
 
                     # Plot the rectangle
-                    plt.plot(*zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)), marker='o', label='['+x+']'+'['+y+']'+'['+str(i)+']', c=np.random.rand(1, 3))
+                    plt.plot(
+                        *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)),
+                        marker='o',
+                        label='[' + x + ']' + '[' + y + ']' + '[' + str(i) + ']',
+                        c=np.random.rand(1, 3)
+                    )
 
                     # Fill the rectangle with light opacity
                     plt.fill(
-                        *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)), alpha=0.3, c=np.random.rand(1, 3)
+                        *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)),
+                        alpha=0.3,
+                        c=np.random.rand(1, 3)
                     )
 
                 # Set equal scaling and labels
@@ -168,8 +172,6 @@ class FirstPGBlock(PGBlock):
 
                 input("Press Enter to continue...")
 
-
-
     def _generate_crosswalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         """
         Construct the sidewalk for this lane
@@ -179,38 +181,44 @@ class FirstPGBlock(PGBlock):
         Returns:
         """
         ### change_on_0516 ###
-        crosswalk_width = lane.width * 4 # 5  #3 ## length
-        start_lat = +lane.width_at(0) - crosswalk_width / 2 - 1.7 #1 #0.5 #0.7
-        side_lat = start_lat + crosswalk_width - 1.7#1 #0.5 #0.7
+        crosswalk_width = lane.width * 4  # 5  #3 ## length
+        start_lat = +lane.width_at(0) - crosswalk_width / 2 - 1.7  #1 #0.5 #0.7
+        side_lat = start_lat + crosswalk_width - 1.7  #1 #0.5 #0.7
         ### change_on_0516 ###
-
 
         ### Force first block only have one cross road
         # print('first block lane index: ' ,  lane.index) # ('>', '>>', 0)
         if (('>', '>>', 1) == lane.index or ('>', '>>', 0) == lane.index):
-            build_at_start = True 
+            build_at_start = True
             build_at_end = False
-        elif (('->>', '->', 1) == lane.index or ('->>', '->', 0) == lane.index): 
+        elif (('->>', '->', 1) == lane.index or ('->>', '->', 0) == lane.index):
             build_at_start = False
             build_at_end = True
         ### change_on_0516 ### add crosswalk at the end of first block
         elif (('>>', '>>>', 1) == lane.index or ('>>', '>>>', 2) == lane.index):
-            build_at_start = False 
+            build_at_start = False
             build_at_end = True
         elif (('->>>', '->>', 1) == lane.index or ('->>>', '->>', 2) == lane.index):
-            build_at_start = True 
+            build_at_start = True
             build_at_end = False
         ### change_on_0516 ### add crosswalk at the end of first block
-        else: 
+        else:
             build_at_end = False
             build_at_start = False
 
-        if build_at_end: 
-            longs = np.array([lane.length - PGDrivableAreaProperty.SIDEWALK_LENGTH, lane.length, lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH])
+        if build_at_end:
+            longs = np.array(
+                [
+                    lane.length - PGDrivableAreaProperty.SIDEWALK_LENGTH, lane.length,
+                    lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH
+                ]
+            )
             key = f"CRS_{self.ID}_" + str(lane.index)
             self.build_crosswalk_block(key, lane, sidewalk_height, lateral_direction, longs, start_lat, side_lat)
-            
+
         if build_at_start:
-            longs = np.array([0 - PGDrivableAreaProperty.SIDEWALK_LENGTH, 0, 0 + PGDrivableAreaProperty.SIDEWALK_LENGTH])
+            longs = np.array(
+                [0 - PGDrivableAreaProperty.SIDEWALK_LENGTH, 0, 0 + PGDrivableAreaProperty.SIDEWALK_LENGTH]
+            )
             key = f"CRS_{self.ID}_" + str(lane.index) + "_S"
             self.build_crosswalk_block(key, lane, sidewalk_height, lateral_direction, longs, start_lat, side_lat)

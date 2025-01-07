@@ -14,7 +14,6 @@ from metaurban.engine.asset_loader import AssetLoader
 from metaurban.engine.engine_utils import get_engine, engine_initialized
 from metaurban.engine.physics_node import BaseRigidBodyNode
 
-
 LaneIndex = Tuple[str, str, int]
 
 logging.basicConfig(level=logging.INFO)
@@ -28,7 +27,9 @@ class TestObject(TrafficObject):
     # MASS = 10
     CLASS_NAME = "TestObject"
 
-    def __init__(self, asset_metainfo, position, heading_theta, lane=None, static: bool = False, random_seed=None, name=None):
+    def __init__(
+        self, asset_metainfo, position, heading_theta, lane=None, static: bool = False, random_seed=None, name=None
+    ):
         super(TestObject, self).__init__(position, heading_theta, lane, random_seed, name)
         self.asset_metainfo = asset_metainfo
         if "general" in asset_metainfo.keys():
@@ -64,7 +65,6 @@ class TestObject(TrafficObject):
 
         # self.body.addShape(BulletBoxShape((self.WIDTH / 2, self.LENGTH / 2, self.height / 2)))
 
-
         # self.set_static(static)
         if self.render:
             # model_file_path1 = AssetLoader.file_path("models", "test", "stop sign-8be31e33b3df4d6db7c75730ff11dfd8.glb")
@@ -74,19 +74,21 @@ class TestObject(TrafficObject):
             model.setPos(self.pos0, self.pos1, self.pos2)
             model.setScale(self.scale)
             model.reparentTo(self.origin)
+
     def _create_building_chassis(self):
         shape = BulletBoxShape(Vec3(self.LENGTH / 2, self.WIDTH / 2, self.HEIGHT / 2))
         body_node = BaseRigidBodyNode(self.id, MetaUrbanType.BUILDING)
         ts = TransformState.makePos(Vec3(0, 0, self.HEIGHT / 2))
         body_node.addShape(shape, ts)
         body_node.setDeactivationEnabled(False)
-        body_node.notifyCollisions(True) 
+        body_node.notifyCollisions(True)
         body_node.setActive(False)
         body_node.setKinematic(False)
         body_node.setStatic(True)
         # body_node.addShape(shape)
         body_node.setIntoCollideMask(CollisionGroup.InvisibleWall)
         return body_node
+
     def _create_obj_chassis(self):
         chassis = BaseRigidBodyNode(self.name, MetaUrbanType.TRAFFIC_OBJECT)
         self._node_path_list.append(chassis)
@@ -101,31 +103,31 @@ class TestObject(TrafficObject):
         # vehicle_chassis.setCoordinateSystem(ZUp)
         self.dynamic_nodes.append(chassis)
         return chassis
+
     def get_asset_metainfo(self):
         return self.asset_metainfo
+
     @property
     def LENGTH(self):
-        return self._length #* self.scale
+        return self._length  #* self.scale
 
     @property
     def WIDTH(self):
-        return self._width #* self.scale
+        return self._width  #* self.scale
 
     @property
     def HEIGHT(self):
-        return self._height #* self.scale
+        return self._height  #* self.scale
 
     @property
     def top_down_length(self):
         # reverse the direction
-        return self.WIDTH * 2 #* self.scale
+        return self.WIDTH * 2  #* self.scale
 
     @property
     def top_down_width(self):
         # reverse the direction
-        return self.LENGTH #* self.scale
-
-
+        return self.LENGTH  #* self.scale
 
 
 class TestGLTFObject(TrafficObject):
@@ -135,7 +137,9 @@ class TestGLTFObject(TrafficObject):
     # MASS = 10
     CLASS_NAME = "TestObject"
 
-    def __init__(self, asset_metainfo, position, heading_theta, lane=None, static: bool = False, random_seed=None, name=None):
+    def __init__(
+        self, asset_metainfo, position, heading_theta, lane=None, static: bool = False, random_seed=None, name=None
+    ):
         super(TestGLTFObject, self).__init__(position, heading_theta, lane, random_seed, name)
         self.asset_metainfo = asset_metainfo
         self.set_metadrive_type(MetaUrbanType.TRAFFIC_OBJECT)
@@ -153,7 +157,9 @@ class TestGLTFObject(TrafficObject):
         self.scale = asset_metainfo["scale"]
 
         # self.body.addShape(BulletBoxShape((self.WIDTH / 2, self.LENGTH / 2, self.height / 2)))
-        self.body.addShape(BulletBoxShape((self.LENGTH * self.scale / 2, self.WIDTH * self.scale / 2, self.height * self.scale / 2)))
+        self.body.addShape(
+            BulletBoxShape((self.LENGTH * self.scale / 2, self.WIDTH * self.scale / 2, self.height * self.scale / 2))
+        )
         self.set_static(static)
         if self.render:
             # model_file_path1 = AssetLoader.file_path("models", "test", "stop sign-8be31e33b3df4d6db7c75730ff11dfd8.glb")
@@ -163,6 +169,7 @@ class TestGLTFObject(TrafficObject):
             model.setPos(self.pos0, self.pos1, self.pos2)
             model.setScale(self.scale)
             model.reparentTo(self.origin)
+
     @property
     def LENGTH(self):
         return self._length

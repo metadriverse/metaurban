@@ -73,8 +73,7 @@ def test_list(capture, doc):
         lst.append("value2")
         m.print_list(lst)
     assert (
-        capture.unordered
-        == """
+        capture.unordered == """
         Entry at position 0: value
         list item 0: inserted-0
         list item 1: overwritten
@@ -100,15 +99,12 @@ def test_set(capture, doc):
     s.add("key4")
     with capture:
         m.print_anyset(s)
-    assert (
-        capture.unordered
-        == """
+    assert (capture.unordered == """
         key: key1
         key: key2
         key: key3
         key: key4
-    """
-    )
+    """)
 
     m.set_add(s, "key5")
     assert m.anyset_size(s) == 5
@@ -131,14 +127,11 @@ def test_frozenset(capture, doc):
 
     with capture:
         m.print_anyset(s)
-    assert (
-        capture.unordered
-        == """
+    assert (capture.unordered == """
         key: key1
         key: key2
         key: key3
-    """
-    )
+    """)
     assert m.anyset_size(s) == 3
     assert not m.anyset_empty(s)
 
@@ -156,13 +149,10 @@ def test_dict(capture, doc):
     with capture:
         d["key2"] = "value2"
         m.print_dict(d)
-    assert (
-        capture.unordered
-        == """
+    assert (capture.unordered == """
         key: key, value=value
         key: key2, value=value2
-    """
-    )
+    """)
 
     assert not m.dict_contains({}, 42)
     assert m.dict_contains({42: None}, 42)
@@ -286,21 +276,17 @@ def test_capsule(capture):
         a = m.return_capsule_with_destructor()
         del a
         pytest.gc_collect()
-    assert (
-        capture.unordered
-        == """
+    assert (capture.unordered == """
         creating capsule
         destructing capsule
-    """
-    )
+    """)
 
     with capture:
         a = m.return_renamed_capsule_with_destructor()
         del a
         pytest.gc_collect()
     assert (
-        capture.unordered
-        == """
+        capture.unordered == """
         creating capsule
         renaming capsule
         destructing capsule
@@ -311,21 +297,17 @@ def test_capsule(capture):
         a = m.return_capsule_with_destructor_2()
         del a
         pytest.gc_collect()
-    assert (
-        capture.unordered
-        == """
+    assert (capture.unordered == """
         creating capsule
         destructing capsule: 1234
-    """
-    )
+    """)
 
     with capture:
         a = m.return_capsule_with_destructor_3()
         del a
         pytest.gc_collect()
     assert (
-        capture.unordered
-        == """
+        capture.unordered == """
         creating capsule
         destructing capsule: 1233
         original name: oname
@@ -337,8 +319,7 @@ def test_capsule(capture):
         del a
         pytest.gc_collect()
     assert (
-        capture.unordered
-        == """
+        capture.unordered == """
         creating capsule
         renaming capsule
         destructing capsule: 1234
@@ -350,8 +331,7 @@ def test_capsule(capture):
         del a
         pytest.gc_collect()
     assert (
-        capture.unordered
-        == """
+        capture.unordered == """
         created capsule (1234, 'pointer type description')
         destructing capsule (1234, 'pointer type description')
     """
@@ -361,12 +341,9 @@ def test_capsule(capture):
         a = m.return_capsule_with_explicit_nullptr_dtor()
         del a
         pytest.gc_collect()
-    assert (
-        capture.unordered
-        == """
+    assert (capture.unordered == """
         creating capsule with explicit nullptr dtor
-    """
-    )
+    """)
 
 
 def test_accessors():
@@ -464,9 +441,7 @@ def test_non_converting_constructors():
         for move in [True, False]:
             with pytest.raises(TypeError) as excinfo:
                 m.nonconverting_constructor(t, v, move)
-            expected_error = (
-                f"Object of type '{type(v).__name__}' is not an instance of '{t}'"
-            )
+            expected_error = (f"Object of type '{type(v).__name__}' is not an instance of '{t}'")
             assert str(excinfo.value) == expected_error
 
 
@@ -482,7 +457,7 @@ def test_pybind11_str_raw_str():
     assert cvt(2**65) == "36893488147419103232"
     assert cvt(-1.50) == "-1.5"
     assert cvt(()) == "()"
-    assert cvt((18,)) == "(18,)"
+    assert cvt((18, )) == "(18,)"
     assert cvt([]) == "[]"
     assert cvt([28]) == "[28]"
     assert cvt({}) == "{}"
@@ -532,8 +507,7 @@ def test_print(capture):
     with capture:
         m.print_function()
     assert (
-        capture
-        == """
+        capture == """
         Hello, World!
         1 2.0 three True -- multiple args
         *args-and-a-custom-separator
@@ -547,9 +521,8 @@ def test_print(capture):
     with pytest.raises(RuntimeError) as excinfo:
         m.print_failure()
     assert str(excinfo.value) == "Unable to convert call argument " + (
-        "'1' of type 'UnregisteredType' to Python object"
-        if detailed_error_messages_enabled
-        else "'1' to Python object (#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for details)"
+        "'1' of type 'UnregisteredType' to Python object" if detailed_error_messages_enabled else
+        "'1' to Python object (#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for details)"
     )
 
 
@@ -608,10 +581,10 @@ def test_issue2361():
 @pytest.mark.parametrize(
     ("method", "args", "fmt", "expected_view"),
     [
-        (m.test_memoryview_object, (b"red",), "B", b"red"),
-        (m.test_memoryview_buffer_info, (b"green",), "B", b"green"),
-        (m.test_memoryview_from_buffer, (False,), "h", [3, 1, 4, 1, 5]),
-        (m.test_memoryview_from_buffer, (True,), "H", [2, 7, 1, 8]),
+        (m.test_memoryview_object, (b"red", ), "B", b"red"),
+        (m.test_memoryview_buffer_info, (b"green", ), "B", b"green"),
+        (m.test_memoryview_from_buffer, (False, ), "h", [3, 1, 4, 1, 5]),
+        (m.test_memoryview_from_buffer, (True, ), "H", [2, 7, 1, 8]),
         (m.test_memoryview_from_buffer_nativeformat, (), "@i", [4, 7, 5]),
     ],
 )
@@ -832,9 +805,7 @@ def test_inplace_append(a, b):
     assert m.inplace_append(a, b) == expected
 
 
-@pytest.mark.parametrize(
-    ("a", "b"), [(3, 2), (3.0, 2.0), (set(range(3)), set(range(2)))]
-)
+@pytest.mark.parametrize(("a", "b"), [(3, 2), (3.0, 2.0), (set(range(3)), set(range(2)))])
 def test_inplace_subtract(a, b):
     expected = a - b
     assert m.inplace_subtract(a, b) == expected
@@ -899,23 +870,15 @@ def test_inplace_rshift(a, b):
 
 
 def test_tuple_nonempty_annotations(doc):
-    assert (
-        doc(m.annotate_tuple_float_str)
-        == "annotate_tuple_float_str(arg0: tuple[float, str]) -> None"
-    )
+    assert (doc(m.annotate_tuple_float_str) == "annotate_tuple_float_str(arg0: tuple[float, str]) -> None")
 
 
 def test_tuple_empty_annotations(doc):
-    assert (
-        doc(m.annotate_tuple_empty) == "annotate_tuple_empty(arg0: tuple[()]) -> None"
-    )
+    assert (doc(m.annotate_tuple_empty) == "annotate_tuple_empty(arg0: tuple[()]) -> None")
 
 
 def test_dict_annotations(doc):
-    assert (
-        doc(m.annotate_dict_str_int)
-        == "annotate_dict_str_int(arg0: dict[str, int]) -> None"
-    )
+    assert (doc(m.annotate_dict_str_int) == "annotate_dict_str_int(arg0: dict[str, int]) -> None")
 
 
 def test_list_annotations(doc):
@@ -927,21 +890,12 @@ def test_set_annotations(doc):
 
 
 def test_iterable_annotations(doc):
-    assert (
-        doc(m.annotate_iterable_str)
-        == "annotate_iterable_str(arg0: Iterable[str]) -> None"
-    )
+    assert (doc(m.annotate_iterable_str) == "annotate_iterable_str(arg0: Iterable[str]) -> None")
 
 
 def test_iterator_annotations(doc):
-    assert (
-        doc(m.annotate_iterator_int)
-        == "annotate_iterator_int(arg0: Iterator[int]) -> None"
-    )
+    assert (doc(m.annotate_iterator_int) == "annotate_iterator_int(arg0: Iterator[int]) -> None")
 
 
 def test_fn_annotations(doc):
-    assert (
-        doc(m.annotate_fn)
-        == "annotate_fn(arg0: Callable[[list[str], str], int]) -> None"
-    )
+    assert (doc(m.annotate_fn) == "annotate_fn(arg0: Callable[[list[str], str], int]) -> None")

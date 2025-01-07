@@ -101,18 +101,18 @@ class EngineCore(ShowBase.ShowBase):
     # loadPrcFileData("", "sync-video 1")
 
     if is_mac():
-      # latest macOS supported openGL version
-      # loadPrcFileData("", "gl-version 4 1")
-      loadPrcFileData("", "framebuffer-multisample 1")
-      loadPrcFileData("", "multisamples 4")
-      loadPrcFileData("", "load-display pandagl")
-      loadPrcFileData("", "gl-version 3 2")  
-      loadPrcFileData("", "gl-coordinate-system default")
-    #   loadPrcFileData("", "framebuffer-srgb true")  
-    #   loadPrcFileData("", "basic-shaders-only true") 
+        # latest macOS supported openGL version
+        # loadPrcFileData("", "gl-version 4 1")
+        loadPrcFileData("", "framebuffer-multisample 1")
+        loadPrcFileData("", "multisamples 4")
+        loadPrcFileData("", "load-display pandagl")
+        loadPrcFileData("", "gl-version 3 2")
+        loadPrcFileData("", "gl-coordinate-system default")
+    #   loadPrcFileData("", "framebuffer-srgb true")
+    #   loadPrcFileData("", "basic-shaders-only true")
     else:
-      loadPrcFileData("", "framebuffer-multisample 1")
-      loadPrcFileData("", "multisamples 8")
+        loadPrcFileData("", "framebuffer-multisample 1")
+        loadPrcFileData("", "multisamples 8")
 
     def __init__(self, global_config):
         # if EngineCore.global_config is not None:
@@ -275,7 +275,7 @@ class EngineCore(ShowBase.ShowBase):
             else:
                 if is_mac():
                     self.pbrpipe = init(
-                        msaa_samples = 4,
+                        msaa_samples=4,
                         # use_hardware_skinning=True,
                         use_330=True
                     )

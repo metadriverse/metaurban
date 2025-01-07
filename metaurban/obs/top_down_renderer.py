@@ -93,24 +93,18 @@ def draw_top_down_map_native(
 
         for key in crosswalk_keys:
             obj = all_lanes[key]
-            pygame.draw.polygon(
-                surface, np.array([125, 0, 0]),
-                [surface.pos2pix(p[0], p[1]) for p in obj["polygon"]]
-            )
+            pygame.draw.polygon(surface, np.array([125, 0, 0]), [surface.pos2pix(p[0], p[1]) for p in obj["polygon"]])
             # pts = np.array([(p[0], p[1]) for p in np.array(obj["polygon"]) + 50], np.int32)
             # pts = pts.reshape((-1,1,2))
             # cv2.fillPoly(img, [pts], [255, 255, 255])
 
         for key in sidewalk_keys:
             obj = all_lanes[key]
-            pygame.draw.polygon(
-                surface, np.array([0, 125, 0]),
-                [surface.pos2pix(p[0], p[1]) for p in obj["polygon"]]
-            )
+            pygame.draw.polygon(surface, np.array([0, 125, 0]), [surface.pos2pix(p[0], p[1]) for p in obj["polygon"]])
             # pts = np.array([(p[0], p[1]) for p in np.array(obj["polygon"]) + 50], np.int32)
             # pts = pts.reshape((-1,1,2))
             # cv2.fillPoly(img, [pts], [255, 255, 255])
-            
+
     else:
         if isinstance(map, ScenarioMap):
             line_sample_interval = 2

@@ -1,4 +1,3 @@
-
 from direct.actor.Actor import Actor
 from panda3d.bullet import BulletCylinderShape, BulletCapsuleShape
 
@@ -97,7 +96,6 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
     speed = 0
     steering = 0
 
-
     def __init__(
         self,
         vehicle_config: Union[dict, Config] = None,
@@ -166,7 +164,6 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         # if self.engine.current_map is not None:
         if _calling_reset:
             self.reset(position=position, heading=heading, vehicle_config=vehicle_config)
-
 
     def _init_step_info(self):
         # done info will be initialized every frame
@@ -351,7 +348,7 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
 
         # if self.config["spawn_velocity"] is not None:
         #     self.set_velocity(self.config["spawn_velocity"], in_local_frame=self.config["spawn_velocity_car_frame"])
-        
+
         self.body.clearForces()
         self.body.setLinearVelocity(Vec3(0, 0, 0))
         self.body.setAngularVelocity(Vec3(0, 0, 0))
@@ -397,7 +394,7 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         if action is None:
             return
 
-        steering = action[0] * 90 # / np.pi * 180
+        steering = action[0] * 90  # / np.pi * 180
         speed = action[1] * 10
 
         self._body.setAngularMovement(steering)
@@ -415,11 +412,10 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         # self.system.setSteeringValue(steering, 1)
         self._apply_throttle_brake(action[1])
 
-
     """---------------------------------------- vehicle info ----------------------------------------------"""
-    def get_forward_vector(self):
-        return get_engine().render.getRelativeVector(self.origin,Vec3(0,1,0))
 
+    def get_forward_vector(self):
+        return get_engine().render.getRelativeVector(self.origin, Vec3(0, 1, 0))
 
     def update_dist_to_left_right(self):
         self.dist_to_left_side, self.dist_to_right_side = self._dist_to_route_left_right()
@@ -433,7 +429,6 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         lateral_to_left = lateral_to_reference + self.navigation.get_current_lane_width() / 2
         lateral_to_right = self.navigation.get_current_lateral_range(self.position, self.engine) - lateral_to_left
         return lateral_to_left, lateral_to_right
-
 
     @property
     def velocity(self) -> np.ndarray:
@@ -522,7 +517,6 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
     def MOTION_PATH(self):
         raise NotImplementedError()
 
-
     def _create_pedestrian_character(self):
         bullet_shape = BulletCylinderShape(self.RADIUS, self.HEIGHT)
 
@@ -537,7 +531,7 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         physics_world.attachCharacter(character)
 
         return character
-    
+
     def _create_vehicle_chassis(self):
         # self.LENGTH = type(self).LENGTH
         # self.WIDTH = type(self).WIDTH
@@ -1231,13 +1225,16 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         self.set_pitch(0)
         self.set_roll(0)
         position = self.navigation.init_position
-        
+
         # position = [0, 0]
         self.navigation.reference_trajectory
-        heading = np.arctan2(self.navigation.position_list[1][1] - self.navigation.position_list[0][1], 
-                             self.navigation.position_list[1][0] - self.navigation.position_list[0][0])
+        heading = np.arctan2(
+            self.navigation.position_list[1][1] - self.navigation.position_list[0][1],
+            self.navigation.position_list[1][0] - self.navigation.position_list[0][0]
+        )
         # heading = 0.
-        if self.engine.global_config['test_terrain_system'] or self.engine.global_config['test_slope_system'] or self.engine.global_config['test_rough_system']:
+        if self.engine.global_config['test_terrain_system'] or self.engine.global_config[
+                'test_slope_system'] or self.engine.global_config['test_rough_system']:
             position = [10, 0]
             heading = np.pi / 2.
         self.spawn_place = position
@@ -1520,7 +1517,7 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
                 car_model.setTwoSided(False)
                 EgoDeliveryRobot.model_collection[path] = car_model
                 # scale = 0.15 # for white one
-                scale = 1.5 # for gradient
+                scale = 1.5  # for gradient
                 car_model.setScale(scale)
                 # model default, face to y
                 HPR = (180, 0, 0)
@@ -1529,27 +1526,27 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
                 car_model.setZ(-self.TIRE_RADIUS - self.CHASSIS_TO_WHEEL_AXIS + offset[-1])
                 from panda3d.core import TextNode
                 from panda3d.core import TransparencyAttrib
-                
+
             else:
                 car_model = EgoDeliveryRobot.model_collection[path]
-            
+
             # text_node = TextNode('3d_text')
             # text_node.setText("Partially Transparent")
-            # text_node.setTextColor(1, 0, 0, 1) 
+            # text_node.setTextColor(1, 0, 0, 1)
             # text_node.setAlign(TextNode.ACenter)  # 文字居中对齐
-            
+
             # 设置文字挤出，以便成为3D效果
             # text_node.setExtrudeDepth(0.1)  # 文字的厚度
             # text_node.setCardColor(0.1, 0.1, 0.1, 0.1)
             # text_node.setCardAsMargin(0.5, 0.5, 0.5, 0.5)
-            # text_node.setCardDecal(True) 
+            # text_node.setCardDecal(True)
             # # text_node.setFrameColor(1, 1, 1, 1)  # 文字框的颜色
             # # text_node.setFrameAsMargin(0.5, 0.5, 0.5, 0.5)  # 设置文字的边框
-            
+
             # # 创建 NodePath
             # text_np = NodePath(text_node)
             # text_np.reparentTo(car_model)  # 将文字附加到场景图
-            
+
             # # 调整 3D 文字的位置和缩放
             # text_np.setScale(0.5)
             # text_np.setPos(0, 5, 1)
@@ -1558,7 +1555,7 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
             # text_np.setDepthWrite(False)
             # self._node_path_list.append(text_np)
             # text_np.setTransparency(TransparencyAttrib.MAlpha)
-            
+
             car_model.instanceTo(self.origin)
             # text_np.setTransparency(TransparencyAttrib.MAlpha)
             # self.text_node = TextNode('target_text')
@@ -1583,7 +1580,7 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
             # text.setFrameAsMargin(-self.GAP, self.PARA_VIS_LENGTH, 0, 0)
             # text.setAlign(TextNode.ARight)
             # textNodePath.setPos(-1.125111, 0, 0.9 - i * 0.08)
-            
+
             # text_np = NodePath(self.text_node)
             # text_np.reparentTo(car_model)  # 将文本附加到模型
             # self._node_path_list.append(text_np)
@@ -1649,7 +1646,8 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         return wheel
 
     def add_navigation(self):
-        if self.navigation is not None or self.config["ego_navigation_module"] is None or self.engine.current_map is None:
+        if self.navigation is not None or self.config["ego_navigation_module"
+                                                      ] is None or self.engine.current_map is None:
             return
         navi = self.config["ego_navigation_module"]
         self.navigation = navi(

@@ -78,7 +78,6 @@ WIN = sys.platform.startswith("win32") and "mingw" not in sysconfig.get_platform
 MACOS = sys.platform.startswith("darwin")
 STD_TMPL = "/std:c++{}" if WIN else "-std=c++{}"
 
-
 # It is recommended to use PEP 518 builds if using this module. However, this
 # file explicitly supports being copied into a user's project directory
 # standalone, and pulling pybind11 with the deprecated setup_requires feature.
@@ -171,9 +170,7 @@ class Pybind11Extension(_Extension):
     @cxx_std.setter
     def cxx_std(self, level: int) -> None:
         if self._cxx_level:
-            warnings.warn(
-                "You cannot safely change the cxx_level after setting it!", stacklevel=2
-            )
+            warnings.warn("You cannot safely change the cxx_level after setting it!", stacklevel=2)
 
         # MSVC 2015 Update 3 and later only have 14 (and later 17) modes, so
         # force a valid flag here.
@@ -274,7 +271,6 @@ class build_ext(_build_ext):  # noqa: N801
     C++ level for Pybind11Extension. This is only needed for the auto-search
     for now, and is completely optional otherwise.
     """
-
     def build_extensions(self) -> None:
         """
         Build extensions, injecting C++ std for Pybind11Extension if needed.
@@ -287,9 +283,7 @@ class build_ext(_build_ext):  # noqa: N801
         super().build_extensions()
 
 
-def intree_extensions(
-    paths: Iterable[str], package_dir: Optional[Dict[str, str]] = None
-) -> List[Pybind11Extension]:
+def intree_extensions(paths: Iterable[str], package_dir: Optional[Dict[str, str]] = None) -> List[Pybind11Extension]:
     """
     Generate Pybind11Extensions from source files directly located in a Python
     source tree.
@@ -320,10 +314,7 @@ def intree_extensions(
                 exts.append(Pybind11Extension(qualified_name, [path]))
                 break
         else:
-            msg = (
-                f"path {path} is not a child of any of the directories listed "
-                f"in 'package_dir' ({package_dir})"
-            )
+            msg = (f"path {path} is not a child of any of the directories listed " f"in 'package_dir' ({package_dir})")
             raise ValueError(msg)
 
     return exts
@@ -348,20 +339,17 @@ def no_recompile(obg: str, src: str) -> bool:  # noqa: ARG001
 
 S = TypeVar("S", bound="ParallelCompile")
 
-CCompilerMethod = Callable[
-    [
-        distutils.ccompiler.CCompiler,
-        List[str],
-        Optional[str],
-        Optional[Union[Tuple[str], Tuple[str, Optional[str]]]],
-        Optional[List[str]],
-        bool,
-        Optional[List[str]],
-        Optional[List[str]],
-        Optional[List[str]],
-    ],
+CCompilerMethod = Callable[[
+    distutils.ccompiler.CCompiler,
     List[str],
-]
+    Optional[str],
+    Optional[Union[Tuple[str], Tuple[str, Optional[str]]]],
+    Optional[List[str]],
+    bool,
+    Optional[List[str]],
+    Optional[List[str]],
+    Optional[List[str]],
+], List[str], ]
 
 
 # Optional parallel compile utility
@@ -424,7 +412,6 @@ class ParallelCompile:
         """
         Builds a function object usable as distutils.ccompiler.CCompiler.compile.
         """
-
         def compile_function(
             compiler: distutils.ccompiler.CCompiler,
             sources: List[str],

@@ -144,7 +144,7 @@ def _intentional_deadlock():
     m.intentional_deadlock()
 
 
-ALL_BASIC_TESTS_PLUS_INTENTIONAL_DEADLOCK = ALL_BASIC_TESTS + (_intentional_deadlock,)
+ALL_BASIC_TESTS_PLUS_INTENTIONAL_DEADLOCK = ALL_BASIC_TESTS + (_intentional_deadlock, )
 
 
 def _run_in_process(target, *args, **kwargs):
@@ -157,9 +157,7 @@ def _run_in_process(target, *args, **kwargs):
         t_start = time.time()
         process.start()
         if timeout >= 100:  # For debugging.
-            print(
-                "\nprocess.pid STARTED", process.pid, (sys.argv, target, args, kwargs)
-            )
+            print("\nprocess.pid STARTED", process.pid, (sys.argv, target, args, kwargs))
             print(f"COPY-PASTE-THIS: gdb {sys.argv[0]} -p {process.pid}", flush=True)
         process.join(timeout=timeout)
         if timeout >= 100:
@@ -169,9 +167,7 @@ def _run_in_process(target, *args, **kwargs):
             # WOULD-BE-NICE-TO-HAVE: Check that the message below is actually in the output.
             # Maybe this could work:
             # https://gist.github.com/alexeygrigorev/01ce847f2e721b513b42ea4a6c96905e
-            pytest.skip(
-                "ThreadSanitizer: starting new threads after multi-threaded fork is not supported."
-            )
+            pytest.skip("ThreadSanitizer: starting new threads after multi-threaded fork is not supported.")
         elif test_fn is _intentional_deadlock:
             assert process.exitcode is None
             return 0

@@ -6,7 +6,6 @@ Note: This script require rendering, please following the installation instructi
 environment that allows popping up an window.
 """
 
-
 import argparse
 import logging
 import random
@@ -21,7 +20,6 @@ from metaurban.obs.state_obs import LidarStateObservation
 from metaurban.component.sensors.semantic_camera import SemanticCamera
 from metaurban.obs.mix_obs import ThreeSourceMixObservation
 import torch
-
 """
 Block Type	    ID
 Straight	    S  
@@ -44,14 +42,14 @@ if __name__ == "__main__":
     parser.add_argument("--density_obj", type=float, default=0.4)
     parser.add_argument("--density_ped", type=float, default=1.0)
     args = parser.parse_args()
-    
+
     map_type = 'X'
     den_scale = args.density_ped
     config = dict(
         crswalk_density=1,
         object_density=args.density_obj,
         use_render=True,
-        map = map_type, # 5
+        map=map_type,  # 5
         manual_control=True,
         # traffic_mode = "respawn",
         spawn_human_num=int(20 * den_scale),
@@ -61,7 +59,7 @@ if __name__ == "__main__":
         spawn_drobot_num=int(1 * den_scale),
         max_actor_num=1,
         drivable_area_extension=55,
-        height_scale = 1,
+        height_scale=1,
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
@@ -85,14 +83,17 @@ if __name__ == "__main__":
         window_size=(960, 960),
         relax_out_of_road_done=True,
         max_lateral_dist=5.0,
-        
     )
 
     if args.observation == "all":
         config.update(
             dict(
                 image_observation=True,
-                sensors=dict(rgb_camera=(RGBCamera, 1920, 1080), depth_camera=(DepthCamera, 640, 640), semantic_camera=(SemanticCamera, 640, 640),),
+                sensors=dict(
+                    rgb_camera=(RGBCamera, 1920, 1080),
+                    depth_camera=(DepthCamera, 640, 640),
+                    semantic_camera=(SemanticCamera, 640, 640),
+                ),
                 agent_observation=ThreeSourceMixObservation,
                 interface_panel=[]
             )
@@ -100,11 +101,11 @@ if __name__ == "__main__":
 
     env = SidewalkDynamicMetaUrbanEnv(config)
     o, _ = env.reset(seed=930)
-    
+
     try:
         print(HELP_MESSAGE)
         for i in range(1, 1000000000):
-            o, r, tm, tc, info = env.step([0., 0.0])   ### reset; get next -> empty -> have multiple end points
+            o, r, tm, tc, info = env.step([0., 0.0])  ### reset; get next -> empty -> have multiple end points
 
             if (tm or tc):
                 env.reset(env.current_seed + 1)

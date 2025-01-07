@@ -270,7 +270,7 @@ class VehicleParameterSpace:
         max_steering=ConstantSpace(35),
         max_speed_km_h=ConstantSpace(80),
     )
-    
+
     ROBOT_ = dict(
         wheel_friction=ConstantSpace(0.7),
         max_engine_force=BoxSpace(300, 450),
@@ -295,7 +295,7 @@ class BlockParameterSpace:
         Parameter.dir: DiscreteSpace(min=0, max=1)
     }
     INTERSECTION = {
-        Parameter.radius: ConstantSpace(55), #55
+        Parameter.radius: ConstantSpace(55),  #55
         Parameter.change_lane_num: DiscreteSpace(min=0, max=1),  # 0, 1
         Parameter.decrease_increase: DiscreteSpace(min=0, max=1)  # 0, decrease, 1 increase
         # Parameter.decrease_increase: DiscreteSpace(min=1, max=1)  # 0, decrease, 1 increase

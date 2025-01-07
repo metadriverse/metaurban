@@ -108,82 +108,56 @@ def test_convert_tensor_to_py(m, func_name):
 
 @pytest.mark.parametrize("m", submodules)
 def test_bad_cpp_to_python_casts(m):
-    with pytest.raises(
-        RuntimeError, match="Cannot use reference internal when there is no parent"
-    ):
+    with pytest.raises(RuntimeError, match="Cannot use reference internal when there is no parent"):
         m.reference_tensor_internal()
 
     with pytest.raises(RuntimeError, match="Cannot move from a constant reference"):
         m.move_const_tensor()
 
-    with pytest.raises(
-        RuntimeError, match="Cannot take ownership of a const reference"
-    ):
+    with pytest.raises(RuntimeError, match="Cannot take ownership of a const reference"):
         m.take_const_tensor()
 
     with pytest.raises(
-        RuntimeError,
-        match="Invalid return_value_policy for Eigen Map type, must be either reference or reference_internal",
+            RuntimeError,
+            match="Invalid return_value_policy for Eigen Map type, must be either reference or reference_internal",
     ):
         m.take_view_tensor()
 
 
 @pytest.mark.parametrize("m", submodules)
 def test_bad_python_to_cpp_casts(m):
-    with pytest.raises(
-        TypeError, match=r"^round_trip_tensor\(\): incompatible function arguments"
-    ):
+    with pytest.raises(TypeError, match=r"^round_trip_tensor\(\): incompatible function arguments"):
         m.round_trip_tensor(np.zeros((2, 3)))
 
     with pytest.raises(TypeError, match=r"^Cannot cast array data from dtype"):
         m.round_trip_tensor(np.zeros(dtype=np.str_, shape=(2, 3, 1)))
 
     with pytest.raises(
-        TypeError,
-        match=r"^round_trip_tensor_noconvert\(\): incompatible function arguments",
+            TypeError,
+            match=r"^round_trip_tensor_noconvert\(\): incompatible function arguments",
     ):
         m.round_trip_tensor_noconvert(tensor_ref)
 
-    assert_equal_tensor_ref(
-        m.round_trip_tensor_noconvert(tensor_ref.astype(np.float64))
-    )
+    assert_equal_tensor_ref(m.round_trip_tensor_noconvert(tensor_ref.astype(np.float64)))
 
     bad_options = "C" if m.needed_options == "F" else "F"
     # Shape, dtype and the order need to be correct for a TensorMap cast
-    with pytest.raises(
-        TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"
-    ):
-        m.round_trip_view_tensor(
-            np.zeros((3, 5, 2), dtype=np.float64, order=bad_options)
-        )
+    with pytest.raises(TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"):
+        m.round_trip_view_tensor(np.zeros((3, 5, 2), dtype=np.float64, order=bad_options))
 
-    with pytest.raises(
-        TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"
-    ):
-        m.round_trip_view_tensor(
-            np.zeros((3, 5, 2), dtype=np.float32, order=m.needed_options)
-        )
+    with pytest.raises(TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"):
+        m.round_trip_view_tensor(np.zeros((3, 5, 2), dtype=np.float32, order=m.needed_options))
 
-    with pytest.raises(
-        TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"
-    ):
-        m.round_trip_view_tensor(
-            np.zeros((3, 5), dtype=np.float64, order=m.needed_options)
-        )
+    with pytest.raises(TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"):
+        m.round_trip_view_tensor(np.zeros((3, 5), dtype=np.float64, order=m.needed_options))
 
     temp = np.zeros((3, 5, 2), dtype=np.float64, order=m.needed_options)
-    with pytest.raises(
-        TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"
-    ):
-        m.round_trip_view_tensor(
-            temp[:, ::-1, :],
-        )
+    with pytest.raises(TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"):
+        m.round_trip_view_tensor(temp[:, ::-1, :], )
 
     temp = np.zeros((3, 5, 2), dtype=np.float64, order=m.needed_options)
     temp.setflags(write=False)
-    with pytest.raises(
-        TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"
-    ):
+    with pytest.raises(TypeError, match=r"^round_trip_view_tensor\(\): incompatible function arguments"):
         m.round_trip_view_tensor(temp)
 
 
@@ -221,33 +195,27 @@ def test_round_trip(m):
     copy.setflags(write=False)
     assert_equal_tensor_ref(m.round_trip_const_view_tensor(copy))
 
-    np.testing.assert_array_equal(
-        tensor_ref[:, ::-1, :], m.round_trip_tensor(tensor_ref[:, ::-1, :])
-    )
+    np.testing.assert_array_equal(tensor_ref[:, ::-1, :], m.round_trip_tensor(tensor_ref[:, ::-1, :]))
 
     assert m.round_trip_rank_0(np.float64(3.5)) == 3.5
     assert m.round_trip_rank_0(3.5) == 3.5
 
     with pytest.raises(
-        TypeError,
-        match=r"^round_trip_rank_0_noconvert\(\): incompatible function arguments",
+            TypeError,
+            match=r"^round_trip_rank_0_noconvert\(\): incompatible function arguments",
     ):
         m.round_trip_rank_0_noconvert(np.float64(3.5))
 
     with pytest.raises(
-        TypeError,
-        match=r"^round_trip_rank_0_noconvert\(\): incompatible function arguments",
+            TypeError,
+            match=r"^round_trip_rank_0_noconvert\(\): incompatible function arguments",
     ):
         m.round_trip_rank_0_noconvert(3.5)
 
-    with pytest.raises(
-        TypeError, match=r"^round_trip_rank_0_view\(\): incompatible function arguments"
-    ):
+    with pytest.raises(TypeError, match=r"^round_trip_rank_0_view\(\): incompatible function arguments"):
         m.round_trip_rank_0_view(np.float64(3.5))
 
-    with pytest.raises(
-        TypeError, match=r"^round_trip_rank_0_view\(\): incompatible function arguments"
-    ):
+    with pytest.raises(TypeError, match=r"^round_trip_rank_0_view\(\): incompatible function arguments"):
         m.round_trip_rank_0_view(3.5)
 
 
@@ -265,17 +233,9 @@ def test_round_trip_references_actually_refer(m):
 
 @pytest.mark.parametrize("m", submodules)
 def test_doc_string(m, doc):
-    assert (
-        doc(m.copy_tensor) == "copy_tensor() -> numpy.ndarray[numpy.float64[?, ?, ?]]"
-    )
-    assert (
-        doc(m.copy_fixed_tensor)
-        == "copy_fixed_tensor() -> numpy.ndarray[numpy.float64[3, 5, 2]]"
-    )
-    assert (
-        doc(m.reference_const_tensor)
-        == "reference_const_tensor() -> numpy.ndarray[numpy.float64[?, ?, ?]]"
-    )
+    assert (doc(m.copy_tensor) == "copy_tensor() -> numpy.ndarray[numpy.float64[?, ?, ?]]")
+    assert (doc(m.copy_fixed_tensor) == "copy_fixed_tensor() -> numpy.ndarray[numpy.float64[3, 5, 2]]")
+    assert (doc(m.reference_const_tensor) == "reference_const_tensor() -> numpy.ndarray[numpy.float64[?, ?, ?]]")
 
     order_flag = f"flags.{m.needed_options.lower()}_contiguous"
     assert doc(m.round_trip_view_tensor) == (

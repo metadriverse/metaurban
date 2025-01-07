@@ -61,8 +61,7 @@ class StraightLane(PGLane):
         return self.start + longitudinal * self.direction + lateral * self.direction_lateral
 
     def position_crosswalk(self, longitudinal: float, lateral: float) -> np.ndarray:
-        return (self.start + [0, self.width/2]) + longitudinal * self.direction + lateral * self.direction_lateral
-
+        return (self.start + [0, self.width / 2]) + longitudinal * self.direction + lateral * self.direction_lateral
 
     def heading_theta_at(self, longitudinal: float) -> float:
         return self.heading

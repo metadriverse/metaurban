@@ -52,13 +52,24 @@ def test_keyword_args_and_generalized_unpacking():
     assert m.test_tuple_unpacking(f) == (("positional", 1, 2, 3, 4, 5, 6), {})
     assert m.test_dict_unpacking(f) == (
         ("positional", 1),
-        {"key": "value", "a": 1, "b": 2},
+        {
+            "key": "value",
+            "a": 1,
+            "b": 2
+        },
     )
     assert m.test_keyword_args(f) == ((), {"x": 10, "y": 20})
     assert m.test_unpacking_and_keywords1(f) == ((1, 2), {"c": 3, "d": 4})
     assert m.test_unpacking_and_keywords2(f) == (
         ("positional", 1, 2, 3, 4, 5),
-        {"key": "value", "a": 1, "b": 2, "c": 3, "d": 4, "e": 5},
+        {
+            "key": "value",
+            "a": 1,
+            "b": 2,
+            "c": 3,
+            "d": 4,
+            "e": 5
+        },
     )
 
     with pytest.raises(TypeError) as excinfo:
@@ -72,17 +83,15 @@ def test_keyword_args_and_generalized_unpacking():
     with pytest.raises(RuntimeError) as excinfo:
         m.test_arg_conversion_error1(f)
     assert str(excinfo.value) == "Unable to convert call argument " + (
-        "'1' of type 'UnregisteredType' to Python object"
-        if detailed_error_messages_enabled
-        else "'1' to Python object (#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for details)"
+        "'1' of type 'UnregisteredType' to Python object" if detailed_error_messages_enabled else
+        "'1' to Python object (#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for details)"
     )
 
     with pytest.raises(RuntimeError) as excinfo:
         m.test_arg_conversion_error2(f)
     assert str(excinfo.value) == "Unable to convert call argument " + (
         "'expected_name' of type 'UnregisteredType' to Python object"
-        if detailed_error_messages_enabled
-        else "'expected_name' to Python object "
+        if detailed_error_messages_enabled else "'expected_name' to Python object "
         "(#define PYBIND11_DETAILED_ERROR_MESSAGES or compile in debug mode for details)"
     )
 
@@ -103,22 +112,11 @@ def test_cpp_callable_cleanup():
 def test_cpp_function_roundtrip():
     """Test if passing a function pointer from C++ -> Python -> C++ yields the original pointer"""
 
-    assert (
-        m.test_dummy_function(m.dummy_function) == "matches dummy_function: eval(1) = 2"
-    )
-    assert (
-        m.test_dummy_function(m.roundtrip(m.dummy_function))
-        == "matches dummy_function: eval(1) = 2"
-    )
-    assert (
-        m.test_dummy_function(m.dummy_function_overloaded)
-        == "matches dummy_function: eval(1) = 2"
-    )
+    assert (m.test_dummy_function(m.dummy_function) == "matches dummy_function: eval(1) = 2")
+    assert (m.test_dummy_function(m.roundtrip(m.dummy_function)) == "matches dummy_function: eval(1) = 2")
+    assert (m.test_dummy_function(m.dummy_function_overloaded) == "matches dummy_function: eval(1) = 2")
     assert m.roundtrip(None, expect_none=True) is None
-    assert (
-        m.test_dummy_function(lambda x: x + 2)
-        == "can't convert to function pointer: eval(1) = 3"
-    )
+    assert (m.test_dummy_function(lambda x: x + 2) == "can't convert to function pointer: eval(1) = 3")
 
     with pytest.raises(TypeError) as excinfo:
         m.test_dummy_function(m.dummy_function2)
@@ -126,10 +124,7 @@ def test_cpp_function_roundtrip():
 
     with pytest.raises(TypeError) as excinfo:
         m.test_dummy_function(lambda x, y: x + y)
-    assert any(
-        s in str(excinfo.value)
-        for s in ("missing 1 required positional argument", "takes exactly 2 arguments")
-    )
+    assert any(s in str(excinfo.value) for s in ("missing 1 required positional argument", "takes exactly 2 arguments"))
 
 
 def test_function_signatures(doc):
@@ -197,9 +192,7 @@ def test_callback_num_times():
         rates.append(rate)
         if not rep:
             print()
-        print(
-            f"callback_num_times: {num_millions:d} million / {td:.3f} seconds = {rate:.3f} million / second"
-        )
+        print(f"callback_num_times: {num_millions:d} million / {td:.3f} seconds = {rate:.3f} million / second")
     if len(rates) > 1:
         print("Min    Mean   Max")
         print(f"{min(rates):6.3f} {sum(rates) / len(rates):6.3f} {max(rates):6.3f}")
@@ -210,16 +203,11 @@ def test_custom_func():
     assert m.roundtrip(m.custom_function)(4) == 36
 
 
-@pytest.mark.skipif(
-    m.custom_function2 is None, reason="Current PYBIND11_INTERNALS_VERSION too low"
-)
+@pytest.mark.skipif(m.custom_function2 is None, reason="Current PYBIND11_INTERNALS_VERSION too low")
 def test_custom_func2():
     assert m.custom_function2(3) == 27
     assert m.roundtrip(m.custom_function2)(3) == 27
 
 
 def test_callback_docstring():
-    assert (
-        m.test_tuple_unpacking.__doc__.strip()
-        == "test_tuple_unpacking(arg0: Callable) -> object"
-    )
+    assert (m.test_tuple_unpacking.__doc__.strip() == "test_tuple_unpacking(arg0: Callable) -> object")

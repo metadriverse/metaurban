@@ -36,7 +36,7 @@ class ImageStateObservation(BaseObservation):
         )
 
     def observe(self, vehicle: BaseVehicle):
-        return {self.IMAGE: self.img_obs.observe()}#, self.STATE: self.state_obs.observe(vehicle)}
+        return {self.IMAGE: self.img_obs.observe()}  #, self.STATE: self.state_obs.observe(vehicle)}
 
     def destroy(self):
         super(ImageStateObservation, self).destroy()

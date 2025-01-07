@@ -180,7 +180,7 @@ class BaseObject(BaseRunnable, MetaUrbanType, ABC):
             # add it to physics world, in which this object will interact with other object (like collision)
             if not (isinstance(physics_body, BulletBodyNode) \
                     or isinstance(physics_body, BulletCharacterControllerNode)):
-            # if not isinstance(physics_body, BulletBodyNode):
+                # if not isinstance(physics_body, BulletBodyNode):
                 raise ValueError("The physics body is not BulletBodyNode type")
             self._body = physics_body
             new_origin = NodePath(self._body)
@@ -428,7 +428,7 @@ class BaseObject(BaseRunnable, MetaUrbanType, ABC):
     def set_static(self, flag):
         try:
             self.body.setStatic(flag)
-        except Exception: # TODO
+        except Exception:  # TODO
             print("### set static error for pedestrian agent. fix it later")
 
     def get_panda_pos(self):

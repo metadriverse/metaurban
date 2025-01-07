@@ -138,7 +138,7 @@ class BaseCamera(ImageBuffer, BaseSensor):
             original_object = self.cam.getParent()
             original_hpr = self.cam.getHpr()
             original_position = self.cam.getPos()
-            
+
             change_poshpr = (original_hpr != Vec3(*hpr)) * (original_position != Vec3(*position))
 
             # reparent to new parent node

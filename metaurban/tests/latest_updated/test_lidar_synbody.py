@@ -9,8 +9,7 @@
 # 2. use pos and hpr to control the depth camera successfully
 
 # Changes:
-# 1. 
-
+# 1.
 
 from metaurban import SidewalkStaticMetaUrbanEnv
 import cv2
@@ -27,10 +26,10 @@ if __name__ == "__main__":
         crswalk_density=1,
         object_density=0.8,
         use_render=True,
-        map = map_type,
+        map=map_type,
         manual_control=False,
         drivable_area_extension=55,
-        height_scale = 1,
+        height_scale=1,
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
@@ -56,29 +55,31 @@ if __name__ == "__main__":
         window_size=(960, 960),
         relax_out_of_road_done=True,
         max_lateral_dist=5.0,
-        
         image_observation=False,
         interface_panel=[],
     )
-    
+
     env = SidewalkStaticMetaUrbanEnv(config)
     o, _ = env.reset(seed=0)
     env.engine.toggleDebug()
-    
+
     # spawn some pedestrians
     from metaurban.component.agents.pedestrian.pedestrian_type import SimplePedestrian
     agent_pos = [env.agents['default_agent'].position[0], env.agents['default_agent'].position[1]]
-    pos_list = [(agent_pos[0] - 2, agent_pos[1] - 2), (agent_pos[0] - 2, agent_pos[1] + 2), (agent_pos[0] + 2, agent_pos[1] + 2), (agent_pos[0] + 2, agent_pos[1] - 2)]
+    pos_list = [
+        (agent_pos[0] - 2, agent_pos[1] - 2), (agent_pos[0] - 2, agent_pos[1] + 2),
+        (agent_pos[0] + 2, agent_pos[1] + 2), (agent_pos[0] + 2, agent_pos[1] - 2)
+    ]
     ped_list = []
     for i, pos in enumerate(pos_list):
         random_humanoid_config = {"spawn_position_heading": [pos, -1.5]}
         ped = env.engine.spawn_object(SimplePedestrian, vehicle_config=random_humanoid_config)
         ped_list.append(ped)
-        
+
     try:
         for t in range(1, 20000):
-                
-            o, r, tm, tc, info = env.step([0., 0.0])  
+
+            o, r, tm, tc, info = env.step([0., 0.0])
 
             if (tm or tc):
                 for ped in ped_list:

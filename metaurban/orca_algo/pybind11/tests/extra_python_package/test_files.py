@@ -22,7 +22,6 @@ Version: {VERSION}
 Cflags: -I${{includedir}}
 """
 
-
 main_headers = {
     "include/pybind11/attr.h",
     "include/pybind11/buffer_info.h",
@@ -95,7 +94,6 @@ headers = main_headers | detail_headers | eigen_headers | stl_headers
 src_files = headers | cmake_files | pkgconfig_files
 all_files = src_files | py_files
 
-
 sdist_files = {
     "pybind11",
     "pybind11/include",
@@ -142,11 +140,9 @@ def normalize_line_endings(value: bytes) -> bytes:
 def test_build_sdist(monkeypatch, tmpdir):
     monkeypatch.chdir(MAIN_DIR)
 
-    subprocess.run(
-        [sys.executable, "-m", "build", "--sdist", f"--outdir={tmpdir}"], check=True
-    )
+    subprocess.run([sys.executable, "-m", "build", "--sdist", f"--outdir={tmpdir}"], check=True)
 
-    (sdist,) = tmpdir.visit("*.tar.gz")
+    (sdist, ) = tmpdir.visit("*.tar.gz")
 
     with tarfile.open(str(sdist), "r:gz") as tar:
         start = tar.getnames()[0] + "/"
@@ -156,14 +152,9 @@ def test_build_sdist(monkeypatch, tmpdir):
         setup_py = read_tz_file(tar, "setup.py")
         pyproject_toml = read_tz_file(tar, "pyproject.toml")
         pkgconfig = read_tz_file(tar, "pybind11/share/pkgconfig/pybind11.pc")
-        cmake_cfg = read_tz_file(
-            tar, "pybind11/share/cmake/pybind11/pybind11Config.cmake"
-        )
+        cmake_cfg = read_tz_file(tar, "pybind11/share/cmake/pybind11/pybind11Config.cmake")
 
-    assert (
-        'set(pybind11_INCLUDE_DIR "${PACKAGE_PREFIX_DIR}/include")'
-        in cmake_cfg.decode("utf-8")
-    )
+    assert ('set(pybind11_INCLUDE_DIR "${PACKAGE_PREFIX_DIR}/include")' in cmake_cfg.decode("utf-8"))
 
     files = {f"pybind11/{n}" for n in all_files}
     files |= sdist_files
@@ -173,11 +164,7 @@ def test_build_sdist(monkeypatch, tmpdir):
     assert simpler == files
 
     with open(os.path.join(MAIN_DIR, "tools", "setup_main.py.in"), "rb") as f:
-        contents = (
-            string.Template(f.read().decode("utf-8"))
-            .substitute(version=version, extra_cmd="")
-            .encode("utf-8")
-        )
+        contents = (string.Template(f.read().decode("utf-8")).substitute(version=version, extra_cmd="").encode("utf-8"))
     assert setup_py == contents
 
     with open(os.path.join(MAIN_DIR, "tools", "pyproject.toml"), "rb") as f:
@@ -192,11 +179,9 @@ def test_build_sdist(monkeypatch, tmpdir):
 def test_build_global_dist(monkeypatch, tmpdir):
     monkeypatch.chdir(MAIN_DIR)
     monkeypatch.setenv("PYBIND11_GLOBAL_SDIST", "1")
-    subprocess.run(
-        [sys.executable, "-m", "build", "--sdist", "--outdir", str(tmpdir)], check=True
-    )
+    subprocess.run([sys.executable, "-m", "build", "--sdist", "--outdir", str(tmpdir)], check=True)
 
-    (sdist,) = tmpdir.visit("*.tar.gz")
+    (sdist, ) = tmpdir.visit("*.tar.gz")
 
     with tarfile.open(str(sdist), "r:gz") as tar:
         start = tar.getnames()[0] + "/"
@@ -206,14 +191,9 @@ def test_build_global_dist(monkeypatch, tmpdir):
         setup_py = read_tz_file(tar, "setup.py")
         pyproject_toml = read_tz_file(tar, "pyproject.toml")
         pkgconfig = read_tz_file(tar, "pybind11/share/pkgconfig/pybind11.pc")
-        cmake_cfg = read_tz_file(
-            tar, "pybind11/share/cmake/pybind11/pybind11Config.cmake"
-        )
+        cmake_cfg = read_tz_file(tar, "pybind11/share/cmake/pybind11/pybind11Config.cmake")
 
-    assert (
-        'set(pybind11_INCLUDE_DIR "${PACKAGE_PREFIX_DIR}/include")'
-        in cmake_cfg.decode("utf-8")
-    )
+    assert ('set(pybind11_INCLUDE_DIR "${PACKAGE_PREFIX_DIR}/include")' in cmake_cfg.decode("utf-8"))
 
     files = {f"pybind11/{n}" for n in all_files}
     files |= sdist_files
@@ -221,11 +201,7 @@ def test_build_global_dist(monkeypatch, tmpdir):
     assert simpler == files
 
     with open(os.path.join(MAIN_DIR, "tools", "setup_global.py.in"), "rb") as f:
-        contents = (
-            string.Template(f.read().decode())
-            .substitute(version=version, extra_cmd="")
-            .encode("utf-8")
-        )
+        contents = (string.Template(f.read().decode()).substitute(version=version, extra_cmd="").encode("utf-8"))
         assert setup_py == contents
 
     with open(os.path.join(MAIN_DIR, "tools", "pyproject.toml"), "rb") as f:
@@ -240,11 +216,9 @@ def test_build_global_dist(monkeypatch, tmpdir):
 def tests_build_wheel(monkeypatch, tmpdir):
     monkeypatch.chdir(MAIN_DIR)
 
-    subprocess.run(
-        [sys.executable, "-m", "pip", "wheel", ".", "-w", str(tmpdir)], check=True
-    )
+    subprocess.run([sys.executable, "-m", "pip", "wheel", ".", "-w", str(tmpdir)], check=True)
 
-    (wheel,) = tmpdir.visit("*.whl")
+    (wheel, ) = tmpdir.visit("*.whl")
 
     files = {f"pybind11/{n}" for n in all_files}
     files |= {
@@ -268,11 +242,9 @@ def tests_build_global_wheel(monkeypatch, tmpdir):
     monkeypatch.chdir(MAIN_DIR)
     monkeypatch.setenv("PYBIND11_GLOBAL_SDIST", "1")
 
-    subprocess.run(
-        [sys.executable, "-m", "pip", "wheel", ".", "-w", str(tmpdir)], check=True
-    )
+    subprocess.run([sys.executable, "-m", "pip", "wheel", ".", "-w", str(tmpdir)], check=True)
 
-    (wheel,) = tmpdir.visit("*.whl")
+    (wheel, ) = tmpdir.visit("*.whl")
 
     files = {f"data/data/{n}" for n in src_files}
     files |= {f"data/headers/{n[8:]}" for n in headers}
@@ -288,6 +260,6 @@ def tests_build_global_wheel(monkeypatch, tmpdir):
         names = z.namelist()
 
     beginning = names[0].split("/", 1)[0].rsplit(".", 1)[0]
-    trimmed = {n[len(beginning) + 1 :] for n in names}
+    trimmed = {n[len(beginning) + 1:] for n in names}
 
     assert files == trimmed

@@ -13,43 +13,39 @@ from typing import Union, Optional
 import os
 
 
-
-
-
 def convert_path(pth):
     return Filename.from_os_specific(pth).get_fullpath()
 
+
 class CustomizedCar(BaseDeliveryRobot):
     PARAMETER_SPACE = ParameterSpace(VehicleParameterSpace.BASE_VEHICLE)
-    TIRE_RADIUS = 0.3305#0.313
+    TIRE_RADIUS = 0.3305  #0.313
     CHASSIS_TO_WHEEL_AXIS = 0.2
-    TIRE_WIDTH = 0.255#0.25
-    MASS = 1595#1100
-    LATERAL_TIRE_TO_CENTER = 1#0.815
-    FRONT_WHEELBASE = 1.36#1.05234
-    REAR_WHEELBASE = 1.45#1.4166
+    TIRE_WIDTH = 0.255  #0.25
+    MASS = 1595  #1100
+    LATERAL_TIRE_TO_CENTER = 1  #0.815
+    FRONT_WHEELBASE = 1.36  #1.05234
+    REAR_WHEELBASE = 1.45  #1.4166
     #path = ['ferra/vehicle.gltf', (1, 1, 1), (0, 0.075, 0.), (0, 0, 0)]
-    path = ['lambo/vehicle.glb', (0.5,0.5,0.5), (1.09, 0, 0.6), (0, 0, 0)]
+    path = ['lambo/vehicle.glb', (0.5, 0.5, 0.5), (1.09, 0, 0.6), (0, 0, 0)]
 
     def __init__(
-            self,
-            test_asset_meta_info: dict,
-            vehicle_config: Union[dict, Config] = None,
-            name: str = None,
-            random_seed=None,
-            position=None,
-            heading=None
+        self,
+        test_asset_meta_info: dict,
+        vehicle_config: Union[dict, Config] = None,
+        name: str = None,
+        random_seed=None,
+        position=None,
+        heading=None
     ):
         # print("init!")
         self.asset_meta_info = test_asset_meta_info
         self.update_asset_metainfo(test_asset_meta_info)
-        super().__init__( vehicle_config,
-            name,
-            random_seed,
-            position,
-            heading)
+        super().__init__(vehicle_config, name, random_seed, position, heading)
+
     def get_asset_metainfo(self):
         return self.asset_meta_info
+
     @classmethod
     def update_asset_metainfo(cls, asset_metainfo: dict):
         # print(asset_metainfo)
@@ -61,8 +57,12 @@ class CustomizedCar(BaseDeliveryRobot):
         cls.FRONT_WHEELBASE = asset_metainfo["FRONT_WHEELBASE"]  # 1.05234
         cls.REAR_WHEELBASE = asset_metainfo["REAR_WHEELBASE"]  # 1.4166
         # path = ['ferra/vehicle.gltf', (1, 1, 1), (0, 0.075, 0.), (0, 0, 0)]
-        cls.path = [asset_metainfo["MODEL_PATH"], tuple(asset_metainfo["MODEL_SCALE"]),
-                    tuple(asset_metainfo["MODEL_OFFSET"]), tuple(asset_metainfo["MODEL_HPR"])]
+        cls.path = [
+            asset_metainfo["MODEL_PATH"],
+            tuple(asset_metainfo["MODEL_SCALE"]),
+            tuple(asset_metainfo["MODEL_OFFSET"]),
+            tuple(asset_metainfo["MODEL_HPR"])
+        ]
         cls.LENGTH = asset_metainfo["LENGTH"]
         cls.HEIGHT = asset_metainfo["HEIGHT"]
         cls.WIDTH = asset_metainfo["WIDTH"]
@@ -76,6 +76,7 @@ class CustomizedCar(BaseDeliveryRobot):
         cls.CHASSIS_TO_WHEEL_AXIS = asset_metainfo["CHASSIS_TO_WHEEL_AXIS"]
         cls.TIRE_SCALE = asset_metainfo["TIRE_SCALE"]
         cls.TIRE_OFFSET = asset_metainfo["TIRE_OFFSET"]
+
     def _create_vehicle_chassis(self):
         # self.LENGTH = type(self).LENGTH
         # self.WIDTH = type(self).WIDTH
@@ -87,7 +88,9 @@ class CustomizedCar(BaseDeliveryRobot):
         chassis = BaseRigidBodyNode(self.name, MetaUrbanType.VEHICLE)
         self._node_path_list.append(chassis)
 
-        chassis_shape = BulletBoxShape(Vec3(self.WIDTH / 2, self.LENGTH / 2, (self.HEIGHT-self.TIRE_RADIUS-self.CHASSIS_TO_WHEEL_AXIS) / 2))
+        chassis_shape = BulletBoxShape(
+            Vec3(self.WIDTH / 2, self.LENGTH / 2, (self.HEIGHT - self.TIRE_RADIUS - self.CHASSIS_TO_WHEEL_AXIS) / 2)
+        )
         ts = TransformState.makePos(Vec3(0, 0, self.TIRE_RADIUS + self.CHASSIS_TO_WHEEL_AXIS))
         # ts = TransformState.makePos(Vec3(0, 0, self.TIRE_RADIUS))
         chassis.addShape(chassis_shape, ts)
@@ -99,15 +102,19 @@ class CustomizedCar(BaseDeliveryRobot):
         vehicle_chassis.setCoordinateSystem(ZUp)
         self.dynamic_nodes.append(vehicle_chassis)
         return vehicle_chassis
+
     @classmethod
     def LENGTH(cls):
         return cls.LENGTH
+
     @classmethod
     def HEIGHT(cls):
         return cls.HEIGHT
+
     @classmethod
     def WIDTH(cls):
         return cls.WIDTH
+
     def _add_visualization(self):
         if self.render:
             [path, scale, offset, HPR] = self.path
@@ -136,6 +143,7 @@ class CustomizedCar(BaseDeliveryRobot):
                 material.setShininess(self.MATERIAL_SHININESS)
                 material.setTwoside(False)
                 self.origin.setMaterial(material, True)
+
     def _create_wheel(self):
         f_l = self.FRONT_WHEELBASE
         r_l = -self.REAR_WHEELBASE
@@ -148,6 +156,7 @@ class CustomizedCar(BaseDeliveryRobot):
             wheel = self._add_wheel(pos, radius, True if k < 2 else False, True if k == 0 or k == 2 else False)
             wheels.append(wheel)
         return wheels
+
     def _add_wheel(self, pos: Vec3, radius: float, front: bool, left):
         wheel_np = self.origin.attachNewNode("wheel")
         self._node_path_list.append(wheel_np)
@@ -158,7 +167,10 @@ class CustomizedCar(BaseDeliveryRobot):
             wheel_model = self.loader.loadModel(model_path)
             wheel_model.setTwoSided(self.TIRE_TWO_SIDED)
             wheel_model.reparentTo(wheel_np)
-            wheel_model.set_scale(1 * self.TIRE_SCALE * self.TIRE_MODEL_CORRECT if left else -1 * self.TIRE_SCALE *self.TIRE_MODEL_CORRECT)
+            wheel_model.set_scale(
+                1 * self.TIRE_SCALE * self.TIRE_MODEL_CORRECT if left else -1 * self.TIRE_SCALE *
+                self.TIRE_MODEL_CORRECT
+            )
         wheel = self.system.createWheel()
         wheel.setNode(wheel_np.node())
         wheel.setChassisConnectionPointCs(pos)
@@ -177,7 +189,6 @@ class CustomizedCar(BaseDeliveryRobot):
         return wheel
 
 
-
 class EgoVehicle(EgoDeliveryRobot):
     PARAMETER_SPACE = ParameterSpace(VehicleParameterSpace.ROBOT_)
     # LENGTH = 4.25
@@ -185,10 +196,10 @@ class EgoVehicle(EgoDeliveryRobot):
     # HEIGHT = 1.7
     LATERAL_TIRE_TO_CENTER = 0.7
     TIRE_TWO_SIDED = True
-    FRONT_WHEELBASE =1.385# 0.3#0.3#0.5#0.3#0.5#0.25#1.385
-    REAR_WHEELBASE = 1.11#0.3#0.3#0.5#0.3#0.5#0.25#1.11
-    TIRE_RADIUS = 0.376#0.2#0.1#0.2#0.05#0.15#0.1#0.376
-    TIRE_WIDTH = 0.25#0.2#0.1#0.2#0.05#0.1#0.1#0.25
+    FRONT_WHEELBASE = 1.385  # 0.3#0.3#0.5#0.3#0.5#0.25#1.385
+    REAR_WHEELBASE = 1.11  #0.3#0.3#0.5#0.3#0.5#0.25#1.11
+    TIRE_RADIUS = 0.376  #0.2#0.1#0.2#0.05#0.15#0.1#0.376
+    TIRE_WIDTH = 0.25  #0.2#0.1#0.2#0.05#0.1#0.1#0.25
     MASS = 500
     LIGHT_POSITION = (-0.57, 1.86, 0.23)
     path = ['coco-gradient.glb', (1, 1, 1), (0, 0.075, 0.), (0, 0, 0)]
@@ -204,11 +215,10 @@ class EgoVehicle(EgoDeliveryRobot):
     @property
     def WIDTH(self):
         return 1.0  # meters
-    
+
     @property
     def RADIUS(self):
         return 1.5
-
 
 
 class DefaultVehicle(BaseDeliveryRobot):
@@ -237,10 +247,11 @@ class DefaultVehicle(BaseDeliveryRobot):
     @property
     def WIDTH(self):
         return 1.0  # meters
-    
+
     @property
     def RADIUS(self):
         return 1.5
+
 
 # When using DefaultVehicle as traffic, please use this class.
 
@@ -482,9 +493,6 @@ def random_DeliveryRobot_type(np_random, p=None):
     return DeliveryRobot_type[np_random.choice(list(DeliveryRobot_type.keys()), p=prob)]
 
 
-DeliveryRobot_type = {
-    "default": DefaultVehicle,
-    'ego': EgoVehicle
-}
+DeliveryRobot_type = {"default": DefaultVehicle, 'ego': EgoVehicle}
 
 DeliveryRobot_class_to_type = inv_map = {v: k for k, v in DeliveryRobot_type.items()}

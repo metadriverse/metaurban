@@ -120,7 +120,6 @@ default_role = "any"
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -280,7 +279,6 @@ latex_documents = [
 # If false, no module index is generated.
 # latex_domain_indices = True
 
-
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
@@ -289,7 +287,6 @@ man_pages = [(master_doc, "pybind11", "pybind11 Documentation", [author], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
-
 
 # -- Options for Texinfo output -------------------------------------------
 
@@ -344,7 +341,7 @@ def prepare(app):
 
     if app.builder.name == "latex":
         # Remove badges and stuff from start
-        contents = contents[contents.find(r".. start") :]
+        contents = contents[contents.find(r".. start"):]
 
         # Filter out section titles for index.rst for LaTeX
         contents = re.sub(r"^(.*)\n[-~]{3,}$", r"**\1**", contents, flags=re.MULTILINE)

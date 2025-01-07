@@ -36,7 +36,7 @@ metaurban_DEFAULT_CONFIG = dict(
     store_map=True,
     crswalk_density=0.1,  #####
     spawn_human_num=1,
-    show_mid_block_map=False, 
+    show_mid_block_map=False,
     # ===== Traffic =====
     traffic_density=0.1,
     need_inverse_traffic=False,
@@ -117,7 +117,7 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
         # scenario setting
         self.start_seed = self.start_index = self.config["start_seed"]
         self.env_num = self.num_scenarios
-        
+
         # record previous agent state
         self.previous_agent_actions = {}
 
@@ -242,7 +242,7 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
             lat = abs(vehicle.navigation.current_lateral)
             done = lat > self.config["max_lateral_dist"]
             return done
-        
+
     def record_previous_agent_state(self, vehicle_id: str):
         self.previous_agent_actions[vehicle_id] = self.agents[vehicle_id].current_action
 
@@ -264,7 +264,7 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
         # dense driving reward
         reward = 0
         reward += self.config["driving_reward"] * (long_now - long_last)
-        
+
         # reward for lane keeping, without it vehicle can learn to overtake but fail to keep in lane
         lateral_factor = abs(lateral_now) / self.config["max_lateral_dist"]
         lateral_penalty = -lateral_factor * self.config["lateral_penalty"]
@@ -282,23 +282,24 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
         overflowed_steering = min((allowed_steering - steering), 0)
         steering_range_penalty = overflowed_steering * self.config["steering_range_penalty"]
         reward += steering_range_penalty
-        
-        # steering smoothness 
+
+        # steering smoothness
         steering_reward = 0
-        if vehicle_id not in self.previous_agent_actions or "steering_penalty" not in self.config or self.config["steering_penalty"] == 0:
+        if vehicle_id not in self.previous_agent_actions or "steering_penalty" not in self.config or self.config[
+                "steering_penalty"] == 0:
             steering_reward = 0
         else:
             steering = vehicle.current_action[0]
             prev_steering = self.previous_agent_actions[vehicle_id][0]
             steering_diff = abs(steering - prev_steering)
-            steering_reward = -steering_diff * self.config["steering_penalty"] # 0.25 is to make the reward more spiky
-            steering_reward = steering_reward * vehicle.speed / vehicle.max_speed_km_h # when the vehicle is faster, the penalty is more significant
+            steering_reward = -steering_diff * self.config["steering_penalty"]  # 0.25 is to make the reward more spiky
+            steering_reward = steering_reward * vehicle.speed / vehicle.max_speed_km_h  # when the vehicle is faster, the penalty is more significant
         reward += steering_reward
-        
+
         if 'speed_reward' in self.config:
             positive_road = 1 if not self._is_out_of_road(vehicle) else -1
             reward += self.config["speed_reward"] * (vehicle.speed_km_h / vehicle.max_speed_km_h) * positive_road
-        
+
         if self.config["no_negative_reward"]:
             reward = max(reward, 0)
 
@@ -333,9 +334,9 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
         step_info["step_reward_heading"] = heading_penalty
         step_info["step_reward_action_smooth"] = steering_range_penalty
         step_info["steering_reward"] = steering_reward
-        
+
         self.record_previous_agent_state(vehicle_id)
-        
+
         return float(reward), step_info
 
     def setup_engine(self):
@@ -347,7 +348,7 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
         self.engine.register_manager("asset_manager", AssetManager())
         if abs(self.config["accident_prob"] - 0) > 1e-2:
             self.engine.register_manager("object_manager", TrafficObjectManager())
-            
+
     def _get_agent_manager(self):
         from metaurban.manager.agent_manager import DeliveryRobotAgentManager
         return DeliveryRobotAgentManager(init_observations=self._get_observations())

@@ -9,8 +9,7 @@
 # 2. use pos and hpr to control the depth camera successfully
 
 # Changes:
-# 1. 
-
+# 1.
 
 from metaurban import SidewalkStaticMetaUrbanEnv
 import cv2
@@ -27,10 +26,10 @@ if __name__ == "__main__":
         crswalk_density=1,
         object_density=0.8,
         use_render=True,
-        map = map_type,
+        map=map_type,
         manual_control=False,
         drivable_area_extension=55,
-        height_scale = 1,
+        height_scale=1,
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
@@ -56,16 +55,19 @@ if __name__ == "__main__":
         window_size=(960, 960),
         relax_out_of_road_done=True,
         max_lateral_dist=5.0,
-        
         image_observation=True,
-        sensors=dict(rgb_camera=(RGBCamera, 128, 128), depth_camera=(DepthCamera, 128, 128), semantic_camera=(SemanticCamera, 128, 128),),
+        sensors=dict(
+            rgb_camera=(RGBCamera, 128, 128),
+            depth_camera=(DepthCamera, 128, 128),
+            semantic_camera=(SemanticCamera, 128, 128),
+        ),
         agent_observation=ThreeSourceMixObservation,
         interface_panel=[]
     )
-    
+
     env = SidewalkStaticMetaUrbanEnv(config)
     o, _ = env.reset(seed=0)
-    
+
     depth_image = o['depth'][..., -1].reshape(128, 128, -1)
     depth_image_normalized = (depth_image - depth_image.min()) / (depth_image.max() - depth_image.min())
 
@@ -75,5 +77,5 @@ if __name__ == "__main__":
     plt.title('Normalized Depth Image')
     plt.axis('off')
     plt.show()
-    
+
     env.close()

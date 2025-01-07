@@ -1,6 +1,7 @@
 from metaurban.constants import TerminationState
 from metaurban.examples.ppo_expert import expert
 
+
 def get_terminal_state(info):
     if info[TerminationState.CRASH_VEHICLE]:
         state = "Crash Vehicle"

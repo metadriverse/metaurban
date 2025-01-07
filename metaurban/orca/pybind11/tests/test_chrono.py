@@ -70,9 +70,7 @@ def test_chrono_system_clock_roundtrip_date():
     assert time2.microsecond == 0
 
 
-SKIP_TZ_ENV_ON_WIN = pytest.mark.skipif(
-    "env.WIN", reason="TZ environment variable only supported on POSIX"
-)
+SKIP_TZ_ENV_ON_WIN = pytest.mark.skipif("env.WIN", reason="TZ environment variable only supported on POSIX")
 
 
 @pytest.mark.parametrize(

@@ -291,20 +291,20 @@ class PGDrivableAreaProperty:
     STRIPE_LENGTH = 1.5
     LANE_LINE_WIDTH = 0.15
     LANE_LINE_THICKNESS = 0.016
-    
+
     # Narrow sidewalk
     scale = 2.
     NARROW_SIDEWALK_NEAR_ROAD_MIN_WIDTH = 0.6 * scale
     NARROW_SIDEWALK_NEAR_ROAD_MAX_WIDTH = 0.8 * scale
     NARROW_SIDEWALK_MAIN_MIN_WIDTH = 2.4 * scale
     NARROW_SIDEWALK_MAIN_MAX_WIDTH = 2.8 * scale
-    
+
     # Narrow sidewalk with trees
     NARROWT_SIDEWALK_NEAR_ROAD_MIN_WIDTH = 1.5 * scale
     NARROWT_SIDEWALK_NEAR_ROAD_MAX_WIDTH = 1.8 * scale
     NARROWT_SIDEWALK_MAIN_MIN_WIDTH = 2.4 * scale
     NARROWT_SIDEWALK_MAIN_MAX_WIDTH = 2.8 * scale
-    
+
     # Ribbon Sidewalk
     RIBBON_SIDEWALK_NEAR_ROAD_MIN_WIDTH = 1.5 * scale
     RIBBON_SIDEWALK_NEAR_ROAD_MAX_WIDTH = 1.8 * scale
@@ -312,7 +312,7 @@ class PGDrivableAreaProperty:
     RIBBON_SIDEWALK_MAIN_MAX_WIDTH = 2.4 * scale
     RIBBON_SIDEWALK_FAR_MIN_WIDTH = 0.5 * scale
     RIBBON_SIDEWALK_FAR_MAX_WIDTH = 0.8 * scale
-    
+
     # Neighborhood Main Street 1
     NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MIN_WIDTH = 1.0 * scale
     NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MAX_WIDTH = 1.2 * scale
@@ -320,7 +320,7 @@ class PGDrivableAreaProperty:
     NEIGHBORHOOD_SIDEWALK_BUFFER_NEAR_MAX_WIDTH = 2.4 * scale
     NEIGHBORHOOD_SIDEWALK_MAIN_MIN_WIDTH = 2.4 * scale
     NEIGHBORHOOD_SIDEWALK_MAIN_MAX_WIDTH = 2.8 * scale
-    
+
     # Neighborhood Main Street 2
     NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MIN_WIDTH = 1.5 * scale
     NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MAX_WIDTH = 1.8 * scale
@@ -328,16 +328,16 @@ class PGDrivableAreaProperty:
     NEIGHBORHOOD2_SIDEWALK_MAIN_MAX_WIDTH = 3.3 * scale
     NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MIN_WIDTH = 1.5 * scale
     NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MAX_WIDTH = 1.8 * scale
-    
-    # Medium Commercial 
+
+    # Medium Commercial
     MediumCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH = 1.5 * scale
     MediumCommercial_SIDEWALK_NEAR_ROAD_MAX_WIDTH = 1.8 * scale
     MediumCommercial_SIDEWALK_MAIN_MIN_WIDTH = 3.0 * scale
     MediumCommercial_SIDEWALK_MAIN_MAX_WIDTH = 3.3 * scale
     MediumCommercial_SIDEWALK_FAR_MIN_WIDTH = 3.0 * scale
     MediumCommercial_SIDEWALK_FAR_MAX_WIDTH = 3.3 * scale
-    
-    # Wide Commercial 
+
+    # Wide Commercial
     WideCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH = 1.5 * scale
     WideCommercial_SIDEWALK_NEAR_ROAD_MAX_WIDTH = 1.8 * scale
     WideCommercial_SIDEWALK_MAIN_MIN_WIDTH = 3.0 * scale
@@ -354,7 +354,7 @@ class PGDrivableAreaProperty:
     CROSSWALK_LENGTH = 1
     SIDEWALK_LINE_DIST = 0.6
     HOUSE_WIDTH = 35.
-        
+
     SIDEWALK_NEAR_ROAD_WIDTH = 4
     SIDEWALK_FARFROM_ROAD_WIDTH = 4
     OFF_SIDEWALK_VALID_WIDTH = 6
@@ -435,16 +435,16 @@ class Semantics:
     # CROSSWALK = label_color("CROSSWALK", (128, 64, 128))
 
     # TODO: for @yunsong, add more classes here.
-    BUS = label_color("BUS", (0,60, 100))  # I just randomly choose a color.
-    
+    BUS = label_color("BUS", (0, 60, 100))  # I just randomly choose a color.
+
     # TREE
-    TREE = label_color("TREE", (107,142, 35))
-    BONSAI = label_color("BONSAI", (107,142, 35))
+    TREE = label_color("TREE", (107, 142, 35))
+    BONSAI = label_color("BONSAI", (107, 142, 35))
     # BUILDING
     BUILDING = label_color("BUILDING", (70, 70, 70))
     # ROBOT
-    EDOG = label_color("EDOG", (111, 74,  0))
-    EROBOT = label_color("EROBOT", (  0,  0,110))
+    EDOG = label_color("EDOG", (111, 74, 0))
+    EROBOT = label_color("EROBOT", (0, 0, 110))
 
 
 class MapTerrainSemanticColor:
@@ -600,97 +600,115 @@ class CameraTagStateKey:
 
 
 import random, os
+
+
 class PedestrianAssetPaths:
     global PEDESTRIAN_ROOT, RP_PEDESTRIAN_MOTIONS, SYNBODY_PEDESTRIAN_MOTIONS
     PEDESTRIAN_ROOT = os.path.abspath("./metaurban/assets_pedestrain/") + "/"
-    
+
     @staticmethod
     def get_random_texture():
         return random.choice(list(PedestrianAssetPaths.PEDESTRIAN_TEXTURE.values()))
 
     SYNBODY_PEDESTRIAN_MOTIONS = {
         # 'rotation': -90,
-        'walk': PEDESTRIAN_ROOT + 'motions_yup/synbody_walking426.fbx.gltf', 
-        'run': PEDESTRIAN_ROOT + 'motions_yup/synbody_jog426.fbx.gltf', 
+        'walk': PEDESTRIAN_ROOT + 'motions_yup/synbody_walking426.fbx.gltf',
+        'run': PEDESTRIAN_ROOT + 'motions_yup/synbody_jog426.fbx.gltf',
         'idle': PEDESTRIAN_ROOT + 'motions_yup/synbody_idle426.fbx.gltf',
     }
-    
-    RP_PEDESTRIAN_MOTIONS ={
+
+    RP_PEDESTRIAN_MOTIONS = {
         'walk': PEDESTRIAN_ROOT + "RPtest_GLTF/rp_amit_rigged_008_yup_t_motion.gltf",  ## large size
-        'run': PEDESTRIAN_ROOT + 'RPtest_GLTF/RP_jogging.fbx.gltf', 
-        'idle': PEDESTRIAN_ROOT + 'RPtest_GLTF/toshiro_idle7.fbx.gltf' 
+        'run': PEDESTRIAN_ROOT + 'RPtest_GLTF/RP_jogging.fbx.gltf',
+        'idle': PEDESTRIAN_ROOT + 'RPtest_GLTF/toshiro_idle7.fbx.gltf'
     }
 
-    EDOG_MOTIONS =  {'walk': PEDESTRIAN_ROOT+'special_agents/EDog_ReScale_motion.fbx.gltf', 
-                    'run': PEDESTRIAN_ROOT+'special_agents/EDog_ReScale_motion.fbx.gltf',
-                    'idle': PEDESTRIAN_ROOT+'special_agents/EDog_ReScale_motion.fbx.gltf'}
-    AGILE_MOTIONS = {'walk': PEDESTRIAN_ROOT+'special_agents/agility_animation2.fbx.gltf', 
-                    'run': PEDESTRIAN_ROOT+'special_agents/agility_animation2.fbx.gltf',
-                    'idle': PEDESTRIAN_ROOT+'special_agents/agility_animation2.fbx.gltf'} 
-    
+    EDOG_MOTIONS = {
+        'walk': PEDESTRIAN_ROOT + 'special_agents/EDog_ReScale_motion.fbx.gltf',
+        'run': PEDESTRIAN_ROOT + 'special_agents/EDog_ReScale_motion.fbx.gltf',
+        'idle': PEDESTRIAN_ROOT + 'special_agents/EDog_ReScale_motion.fbx.gltf'
+    }
+    AGILE_MOTIONS = {
+        'walk': PEDESTRIAN_ROOT + 'special_agents/agility_animation2.fbx.gltf',
+        'run': PEDESTRIAN_ROOT + 'special_agents/agility_animation2.fbx.gltf',
+        'idle': PEDESTRIAN_ROOT + 'special_agents/agility_animation2.fbx.gltf'
+    }
+
     PEDESTRIAN_ACTORS = {
         ##### eDog #####
-        'edog': {'actor_path': PEDESTRIAN_ROOT + "special_agents/EDog_ReScale_color1.fbx.gltf", 
-               'motion_path': EDOG_MOTIONS,
-               'height': 2},
-        'agile': {'actor_path': PEDESTRIAN_ROOT + "special_agents/agility_model2.fbx.gltf", 
-               'motion_path': AGILE_MOTIONS,
-               'height': 2},
+        'edog': {
+            'actor_path': PEDESTRIAN_ROOT + "special_agents/EDog_ReScale_color1.fbx.gltf",
+            'motion_path': EDOG_MOTIONS,
+            'height': 2
+        },
+        'agile': {
+            'actor_path': PEDESTRIAN_ROOT + "special_agents/agility_model2.fbx.gltf",
+            'motion_path': AGILE_MOTIONS,
+            'height': 2
+        },
 
-    
         ##### Synbody #####
-        "s0000001": {'actor_path': PEDESTRIAN_ROOT + "SynBody_actor/0007221.gltf", #converted/0006112.gltf", 
-              'motion_path': SYNBODY_PEDESTRIAN_MOTIONS,
-              'height': 1.5},
-        
+        "s0000001": {
+            'actor_path': PEDESTRIAN_ROOT + "SynBody_actor/0007221.gltf",  #converted/0006112.gltf", 
+            'motion_path': SYNBODY_PEDESTRIAN_MOTIONS,
+            'height': 1.5
+        },
+
         ### test for fail actor
-        "wheelchair":{"actor_path": PEDESTRIAN_ROOT + 'special_agents/free3DVersion.gltf', #"characters_yup/0000001.gltf",
-                   'motion_path': {'walk':PEDESTRIAN_ROOT+'special_agents/free3DVersion.gltf',#"motions_bedlam/converted/motion_seq_5.gltf",
-                                    'idle':PEDESTRIAN_ROOT+'special_agents/free3DVersion.gltf',#"motions_bedlam/converted/motion_seq_5.gltf",
-                                    'run':PEDESTRIAN_ROOT+'special_agents/free3DVersion.gltf'},#"motions_bedlam/converted/motion_seq_6.gltf"},#SYNBODY_PEDESTRIAN_MOTIONS,
-                    'height': 1.7},
-                    # 0006088
+        "wheelchair": {
+            "actor_path": PEDESTRIAN_ROOT + 'special_agents/free3DVersion.gltf',  #"characters_yup/0000001.gltf",
+            'motion_path': {
+                'walk': PEDESTRIAN_ROOT +
+                'special_agents/free3DVersion.gltf',  #"motions_bedlam/converted/motion_seq_5.gltf",
+                'idle': PEDESTRIAN_ROOT +
+                'special_agents/free3DVersion.gltf',  #"motions_bedlam/converted/motion_seq_5.gltf",
+                'run': PEDESTRIAN_ROOT + 'special_agents/free3DVersion.gltf'
+            },  #"motions_bedlam/converted/motion_seq_6.gltf"},#SYNBODY_PEDESTRIAN_MOTIONS,
+            'height': 1.7
+        },
+        # 0006088
 
         ##### Render People #####
-        "r1": {'actor_path':   
-                    PEDESTRIAN_ROOT + "RPtest_GLTF/rp_amit_rigged_008_yup_t_model.gltf", 
-               'motion_path': {
-                   'walk': PEDESTRIAN_ROOT + 'RPtest_GLTF/rp_amit_rigged_008_yup_t_motion.gltf',
-                   'run': PEDESTRIAN_ROOT + 'RPtest_GLTF/RP_jogging.fbx.gltf',
-                   'idle': PEDESTRIAN_ROOT + 'RPtest_GLTF/rp_idle_sophia.fbx.gltf'},
-               'height': 1.29714}, 
+        "r1": {
+            'actor_path': PEDESTRIAN_ROOT + "RPtest_GLTF/rp_amit_rigged_008_yup_t_model.gltf",
+            'motion_path': {
+                'walk': PEDESTRIAN_ROOT + 'RPtest_GLTF/rp_amit_rigged_008_yup_t_motion.gltf',
+                'run': PEDESTRIAN_ROOT + 'RPtest_GLTF/RP_jogging.fbx.gltf',
+                'idle': PEDESTRIAN_ROOT + 'RPtest_GLTF/rp_idle_sophia.fbx.gltf'
+            },
+            'height': 1.29714
+        },
     }
 
-    
-    
     ## construct actors ###
     MAX_ACTOR_NUM = 20  # TODO : 1.max_actor_num (pass from main file)
 
-    PEDESTRIAN_ACTORS_BATCH = [] #{}
+    PEDESTRIAN_ACTORS_BATCH = []  #{}
     from glob import glob
     ### SYNBODY ###   # -> has root center offset problem -> 1100 assets -32 -> 1067 # 71kpts
     syn_actors = list(glob(PEDESTRIAN_ROOT + 'SynBody_actor/converted/*.gltf'))
     random.shuffle(syn_actors)
-    
+
     # MAX_ACTOR_NUM = min(10,len(syn_actors))   ###
     for actor in syn_actors[:MAX_ACTOR_NUM]:
-        PEDESTRIAN_ACTORS_BATCH.append({'actor_path': actor,
-                                              'motion_path':SYNBODY_PEDESTRIAN_MOTIONS,
-                                              'height': 1.5}) 
-        
+        PEDESTRIAN_ACTORS_BATCH.append({'actor_path': actor, 'motion_path': SYNBODY_PEDESTRIAN_MOTIONS, 'height': 1.5})
+
     PEDESTRIAN_ACTORS_BATCH_NUM = len(PEDESTRIAN_ACTORS_BATCH)
 
-    BELDAM_PEDESTRIAN_MOTIONS =  list(glob(PEDESTRIAN_ROOT + 'motions_bedlam/converted/*.gltf'))
+    BELDAM_PEDESTRIAN_MOTIONS = list(glob(PEDESTRIAN_ROOT + 'motions_bedlam/converted/*.gltf'))
     BELDAM_PEDESTRIAN_MOTIONS_NUM = len(BELDAM_PEDESTRIAN_MOTIONS)
 
     @staticmethod
     def get_static_random_actor():
-        used_actor_idx = random.randint(0,PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH_NUM-1)
-        used_motion_idx = random.randint(0,PedestrianAssetPaths.BELDAM_PEDESTRIAN_MOTIONS_NUM-1)
-        static_actor = {'actor_path': PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH[used_actor_idx]['actor_path'],
-                        'motion_path': {'idle':PedestrianAssetPaths.BELDAM_PEDESTRIAN_MOTIONS[used_motion_idx]},
-                        'height':0,
-                        }
+        used_actor_idx = random.randint(0, PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH_NUM - 1)
+        used_motion_idx = random.randint(0, PedestrianAssetPaths.BELDAM_PEDESTRIAN_MOTIONS_NUM - 1)
+        static_actor = {
+            'actor_path': PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH[used_actor_idx]['actor_path'],
+            'motion_path': {
+                'idle': PedestrianAssetPaths.BELDAM_PEDESTRIAN_MOTIONS[used_motion_idx]
+            },
+            'height': 0,
+        }
         # print('get result: ', static_actor)
         return static_actor
 
@@ -707,10 +725,10 @@ class PedestrianAssetPaths:
         return PedestrianAssetPaths.PEDESTRIAN_ACTORS['agile']
 
     @staticmethod
-    def get_random_actor(): #(agent_type='synbody'):
+    def get_random_actor():  #(agent_type='synbody'):
         # return random.choice(list(PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH.values()))  # fps<10
 
-        used_actor_idx = random.randint(0,PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH_NUM-1)
+        used_actor_idx = random.randint(0, PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH_NUM - 1)
         actor = PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH[used_actor_idx]
         # del PedestrianAssetPaths.PEDESTRIAN_ACTORS_BATCH[used_actor_name] ### for test, need to be dict, makesure all actors are diff
         # if os.path.basename(actor['actor_path']) in ['0000001.gltf','0006295.gltf','0006805.gltf' ,'0000065.gltf','0006323.gltf','0006330.gltf','0006443.gltf']:
@@ -718,10 +736,10 @@ class PedestrianAssetPaths:
         # # actor['height'] = 0.05
         # if os.path.basename(actor['actor_path']) in ['0000020.gltf','0000024.gltf','0000117.gltf' ,'0000083.gltf','0000235.gltf','0000305.gltf']:
         #     actor['height'] = 0.05
-        return actor 
+        return actor
 
         # return PedestrianAssetPaths.PEDESTRIAN_ACTORS['s0000001']
 
 
 class AssetPaths:
-    Pedestrian=PedestrianAssetPaths
+    Pedestrian = PedestrianAssetPaths

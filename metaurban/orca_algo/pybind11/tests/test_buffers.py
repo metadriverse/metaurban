@@ -39,28 +39,20 @@ CPP_NAME_FORMAT_NP_DTYPE_TABLE = [
     ("std::complex<long double>", "Zg", np_complex256),
 ]
 CPP_NAME_FORMAT_TABLE = [
-    (cpp_name, format)
-    for cpp_name, format, np_dtype in CPP_NAME_FORMAT_NP_DTYPE_TABLE
-    if np_dtype is not None
+    (cpp_name, format) for cpp_name, format, np_dtype in CPP_NAME_FORMAT_NP_DTYPE_TABLE if np_dtype is not None
 ]
-CPP_NAME_NP_DTYPE_TABLE = [
-    (cpp_name, np_dtype) for cpp_name, _, np_dtype in CPP_NAME_FORMAT_NP_DTYPE_TABLE
-]
+CPP_NAME_NP_DTYPE_TABLE = [(cpp_name, np_dtype) for cpp_name, _, np_dtype in CPP_NAME_FORMAT_NP_DTYPE_TABLE]
 
 
 @pytest.mark.parametrize(("cpp_name", "np_dtype"), CPP_NAME_NP_DTYPE_TABLE)
 def test_format_descriptor_format_buffer_info_equiv(cpp_name, np_dtype):
     if np_dtype is None:
-        pytest.skip(
-            f"cpp_name=`{cpp_name}`: `long double` and `double` have same size."
-        )
+        pytest.skip(f"cpp_name=`{cpp_name}`: `long double` and `double` have same size.")
     if isinstance(np_dtype, str):
         pytest.skip(f"np.{np_dtype} does not exist.")
     np_array = np.array([], dtype=np_dtype)
     for other_cpp_name, expected_format in CPP_NAME_FORMAT_TABLE:
-        format, np_array_is_matching = m.format_descriptor_format_buffer_info_equiv(
-            other_cpp_name, np_array
-        )
+        format, np_array_is_matching = m.format_descriptor_format_buffer_info_equiv(other_cpp_name, np_array)
         assert format == expected_format
         if other_cpp_name == cpp_name:
             assert np_array_is_matching
@@ -93,9 +85,7 @@ def test_from_python():
 
 # https://foss.heptapod.net/pypy/pypy/-/issues/2444
 # TODO: fix on recent PyPy
-@pytest.mark.xfail(
-    env.PYPY, reason="PyPy 7.3.7 doesn't clear this anymore", strict=False
-)
+@pytest.mark.xfail(env.PYPY, reason="PyPy 7.3.7 doesn't clear this anymore", strict=False)
 def test_to_python():
     mat = m.Matrix(5, 4)
     assert memoryview(mat).shape == (5, 4)
@@ -105,8 +95,8 @@ def test_to_python():
     mat[3, 2] = 7.0
     assert mat[2, 3] == 4
     assert mat[3, 2] == 7
-    assert struct.unpack_from("f", mat, (3 * 4 + 2) * 4) == (7,)
-    assert struct.unpack_from("f", mat, (2 * 4 + 3) * 4) == (4,)
+    assert struct.unpack_from("f", mat, (3 * 4 + 2) * 4) == (7, )
+    assert struct.unpack_from("f", mat, (2 * 4 + 3) * 4) == (4, )
 
     mat2 = np.array(mat, copy=False)
     assert mat2.shape == (5, 4)
@@ -222,7 +212,4 @@ def test_ctypes_from_buffer():
 
 
 def test_buffer_docstring():
-    assert (
-        m.get_buffer_info.__doc__.strip()
-        == "get_buffer_info(arg0: Buffer) -> pybind11_tests.buffers.buffer_info"
-    )
+    assert (m.get_buffer_info.__doc__.strip() == "get_buffer_info(arg0: Buffer) -> pybind11_tests.buffers.buffer_info")

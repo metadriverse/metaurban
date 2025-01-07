@@ -22,12 +22,9 @@ ENTRY = re.compile(
 
 print()
 
-
 api = ghapi.all.GhApi(owner="pybind", repo="pybind11")
 
-issues_pages = ghapi.page.paged(
-    api.issues.list_for_repo, labels="needs changelog", state="closed"
-)
+issues_pages = ghapi.page.paged(api.issues.list_for_repo, labels="needs changelog", state="closed")
 issues = (issue for page in issues_pages for issue in page)
 missing = []
 cats_descr = {
@@ -48,7 +45,7 @@ for issue in issues:
     if not changelog or not changelog[0]:
         missing.append(issue)
     else:
-        (msg,) = changelog
+        (msg, ) = changelog
         if msg.startswith("- "):
             msg = msg[2:]
         if not msg.startswith("* "):

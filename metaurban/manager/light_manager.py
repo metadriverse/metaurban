@@ -35,13 +35,13 @@ class LightManager(BaseManager):
                     if str(_from) + '_' + str(_to) in self.generated_lane_pair:
                         continue
                     self.generated_lane_pair.append(str(_from) + '_' + str(_to))
-                    
+
                     name = self.OBJECT_PREFIX + '_' + str(_from) + '_' + str(_to) + '_' + str(_id)
                     traffic_light = self.spawn_object(BaseTrafficLight, lane=lane, name=name)
-                    
+
                     self._scenario_id_to_obj_id[str(_to) + '_' + str(_id)] = traffic_light.id
                     self._obj_id_to_scenario_id[traffic_light.id] = str(_to) + '_' + str(_id)
-                    
+
                     traffic_light.set_status('TRAFFIC_LIGHT_GREEN')
         print(self.generated_lane_pair)
         # for scenario_lane_id, light_info in self._episode_light_data.items():

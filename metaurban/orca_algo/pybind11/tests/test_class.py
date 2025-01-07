@@ -44,9 +44,7 @@ def test_type():
     with pytest.raises(RuntimeError) as execinfo:
         m.check_type(0)
 
-    assert "pybind11::detail::get_type_info: unable to find type info" in str(
-        execinfo.value
-    )
+    assert "pybind11::detail::get_type_info: unable to find type info" in str(execinfo.value)
     assert "Invalid" in str(execinfo.value)
 
     # Currently not supported
@@ -89,8 +87,7 @@ def test_docstrings(doc):
     assert UserType.get_value.__module__ == "pybind11_tests"
 
     assert (
-        doc(UserType.get_value)
-        == """
+        doc(UserType.get_value) == """
         get_value(self: m.UserType) -> int
 
         Get value using a method
@@ -99,8 +96,7 @@ def test_docstrings(doc):
     assert doc(UserType.value) == "Get/set value using a property"
 
     assert (
-        doc(m.NoConstructor.new_instance)
-        == """
+        doc(m.NoConstructor.new_instance) == """
         new_instance() -> m.class_.NoConstructor
 
         Return an instance
@@ -114,33 +110,22 @@ def test_qualname(doc):
     assert m.NestBase.__qualname__ == "NestBase"
     assert m.NestBase.Nested.__qualname__ == "NestBase.Nested"
 
-    assert (
-        doc(m.NestBase.__init__)
-        == """
+    assert (doc(m.NestBase.__init__) == """
         __init__(self: m.class_.NestBase) -> None
-    """
-    )
-    assert (
-        doc(m.NestBase.g)
-        == """
+    """)
+    assert (doc(m.NestBase.g) == """
         g(self: m.class_.NestBase, arg0: m.class_.NestBase.Nested) -> None
-    """
-    )
-    assert (
-        doc(m.NestBase.Nested.__init__)
-        == """
+    """)
+    assert (doc(m.NestBase.Nested.__init__) == """
         __init__(self: m.class_.NestBase.Nested) -> None
-    """
-    )
+    """)
     assert (
-        doc(m.NestBase.Nested.fn)
-        == """
+        doc(m.NestBase.Nested.fn) == """
         fn(self: m.class_.NestBase.Nested, arg0: int, arg1: m.class_.NestBase, arg2: m.class_.NestBase.Nested) -> None
     """
     )
     assert (
-        doc(m.NestBase.Nested.fa)
-        == """
+        doc(m.NestBase.Nested.fa) == """
         fa(self: m.class_.NestBase.Nested, a: int, b: m.class_.NestBase, c: m.class_.NestBase.Nested) -> None
     """
     )
@@ -169,8 +154,7 @@ def test_inheritance(msg):
     with pytest.raises(TypeError) as excinfo:
         m.dog_bark(polly)
     assert (
-        msg(excinfo.value)
-        == """
+        msg(excinfo.value) == """
         dog_bark(): incompatible function arguments. The following argument types are supported:
             1. (arg0: m.class_.Dog) -> str
 
@@ -205,13 +189,9 @@ def test_inheritance_init(msg):
     assert msg(exc_info.value) == expected
 
 
-@pytest.mark.parametrize(
-    "mock_return_value", [None, (1, 2, 3), m.Pet("Polly", "parrot"), m.Dog("Molly")]
-)
+@pytest.mark.parametrize("mock_return_value", [None, (1, 2, 3), m.Pet("Polly", "parrot"), m.Dog("Molly")])
 def test_mock_new(mock_return_value):
-    with mock.patch.object(
-        m.Pet, "__new__", return_value=mock_return_value
-    ) as mock_new:
+    with mock.patch.object(m.Pet, "__new__", return_value=mock_return_value) as mock_new:
         obj = m.Pet("Noname", "Nospecies")
     assert obj is mock_return_value
     mock_new.assert_called_once_with(m.Pet, "Noname", "Nospecies")
@@ -278,7 +258,6 @@ def test_implicit_conversion_life_support():
 
 def test_operator_new_delete(capture):
     """Tests that class-specific operator new/delete functions are invoked"""
-
     class SubAliased(m.AliasedHasOpNewDelSize):
         pass
 
@@ -286,14 +265,11 @@ def test_operator_new_delete(capture):
         a = m.HasOpNewDel()
         b = m.HasOpNewDelSize()
         d = m.HasOpNewDelBoth()
-    assert (
-        capture
-        == """
+    assert (capture == """
         A new 8
         B new 4
         D new 32
-    """
-    )
+    """)
     sz_alias = str(m.AliasedHasOpNewDelSize.size_alias)
     sz_noalias = str(m.AliasedHasOpNewDelSize.size_noalias)
     with capture:
@@ -308,14 +284,11 @@ def test_operator_new_delete(capture):
         pytest.gc_collect()
         del d
         pytest.gc_collect()
-    assert (
-        capture
-        == """
+    assert (capture == """
         A delete
         B delete 4
         D delete
-    """
-    )
+    """)
 
     with capture:
         del c
@@ -385,8 +358,7 @@ def test_reentrant_implicit_conversion_failure(msg):
     with pytest.raises(TypeError) as excinfo:
         m.BogusImplicitConversion(0)
     assert (
-        msg(excinfo.value)
-        == """
+        msg(excinfo.value) == """
         __init__(): incompatible constructor arguments. The following argument types are supported:
             1. m.class_.BogusImplicitConversion(arg0: m.class_.BogusImplicitConversion)
 
@@ -398,9 +370,7 @@ def test_reentrant_implicit_conversion_failure(msg):
 def test_error_after_conversions():
     with pytest.raises(TypeError) as exc_info:
         m.test_error_after_conversions("hello")
-    assert str(exc_info.value).startswith(
-        "Unable to convert function return value to a Python type!"
-    )
+    assert str(exc_info.value).startswith("Unable to convert function return value to a Python type!")
 
 
 def test_aligned():
@@ -466,10 +436,7 @@ def test_register_duplicate_class():
     module_scope = types.ModuleType("module_scope")
     with pytest.raises(RuntimeError) as exc_info:
         m.register_duplicate_class_name(module_scope)
-    expected = (
-        'generic_type: cannot initialize type "Duplicate": '
-        "an object with that name is already defined"
-    )
+    expected = ('generic_type: cannot initialize type "Duplicate": ' "an object with that name is already defined")
     assert str(exc_info.value) == expected
     with pytest.raises(RuntimeError) as exc_info:
         m.register_duplicate_class_type(module_scope)
@@ -493,7 +460,4 @@ def test_register_duplicate_class():
 
 
 def test_pr4220_tripped_over_this():
-    assert (
-        m.Empty0().get_msg()
-        == "This is really only meant to exercise successful compilation."
-    )
+    assert (m.Empty0().get_msg() == "This is really only meant to exercise successful compilation.")

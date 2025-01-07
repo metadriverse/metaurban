@@ -15,6 +15,8 @@ import numpy as np
 import cv2
 import json
 import random
+
+
 class GridCell:
     """
     Represents a single cell in a grid, which can be occupied by an object.
@@ -52,6 +54,8 @@ class GridCell:
         """
         self.occupied = False
         self.object = None
+
+
 class ObjectPlacer:
     """
     This class is used to place objects on a grid, ensuring that they do not overlap.
@@ -119,81 +123,84 @@ class ObjectPlacer:
                     assert 'spawn_long_gap' in obj
                     for i in range(last_long + obj['spawn_long_gap'], len(self.grid)):
                         for j in range(1):
-                            if self.can_place(i+1, j+1, obj):
-                                return (i+1, j+1)  # Top-left position where the object can be placed
+                            if self.can_place(i + 1, j + 1, obj):
+                                return (i + 1, j + 1)  # Top-left position where the object can be placed
                     return None
-                
+
                 for i in range(len(self.grid)):
-                        for j in range(1):
-                            if self.can_place(i+1, j+1, obj):
-                                return (i+1, j+1)  # Top-left position where the object can be placed
-                            
+                    for j in range(1):
+                        if self.can_place(i + 1, j + 1, obj):
+                            return (i + 1, j + 1)  # Top-left position where the object can be placed
+
                 return None
-            
+
             if obj['obj_generation_mode'] == 'normal':
                 if last_long is not None:
                     assert 'spawn_long_gap' in obj
                     for i in range(last_long + obj['spawn_long_gap'], len(self.grid)):
                         for j in range(len(self.grid[i])):
-                            if self.can_place(i+1, j+1, obj):
-                                return (i+1, j+1)  # Top-left position where the object can be placed
+                            if self.can_place(i + 1, j + 1, obj):
+                                return (i + 1, j + 1)  # Top-left position where the object can be placed
                     return None
-                
+
                 for i in range(len(self.grid)):
-                        for j in range(len(self.grid[i])):
-                            if self.can_place(i+1, j+1, obj):
-                                return (i+1, j+1)  # Top-left position where the object can be placed
-            
+                    for j in range(len(self.grid[i])):
+                        if self.can_place(i + 1, j + 1, obj):
+                            return (i + 1, j + 1)  # Top-left position where the object can be placed
+
             if obj['obj_generation_mode'] == 'random_start':
                 if last_long is not None:
                     assert 'spawn_long_gap' in obj
                     if last_long + obj['spawn_long_gap'] >= len(self.grid) - 5:
                         return None
-                    start_long = np.random.randint(last_long + obj['spawn_long_gap'], min(len(self.grid) - 5, last_long + obj['spawn_long_gap'] + 1), 1)[0]
+                    start_long = np.random.randint(
+                        last_long + obj['spawn_long_gap'],
+                        min(len(self.grid) - 5, last_long + obj['spawn_long_gap'] + 1), 1
+                    )[0]
                     start_lat = np.random.randint(0, max(len(self.grid[0]) - 10, 1), 1)[0]
                     for i in range(start_long, len(self.grid)):
                         for j in range(start_lat, len(self.grid[i])):
-                            if self.can_place(i+1, j+1, obj):
-                                return (i+1, j+1)  # Top-left position where the object can be placed
+                            if self.can_place(i + 1, j + 1, obj):
+                                return (i + 1, j + 1)  # Top-left position where the object can be placed
                     return None
-                
+
                 start_long = np.random.randint(0, max(len(self.grid) - 10, 1), 1)[0]
                 start_lat = np.random.randint(0, max(len(self.grid[0]) - 10, 1), 1)[0]
                 for i in range(start_long, len(self.grid)):
                     for j in range(start_lat, len(self.grid[i])):
-                            return (i+1, j+1)  # Top-left position where the object can be placed
-                            
+                        return (i + 1, j + 1)  # Top-left position where the object can be placed
+
                 return None
-            
+
             if obj['obj_generation_mode'] == 'inverse':
                 if last_long is not None:
                     assert 'spawn_long_gap' in obj
                     for i in range(len(self.grid) - 1, last_long + obj['spawn_long_gap'], -1):
                         for j in range(len(self.grid[i]) - 1, 0, -1):
-                            if self.can_place(i+1, j+1, obj):
-                                return (i+1, j+1)  # Top-left position where the object can be placed
+                            if self.can_place(i + 1, j + 1, obj):
+                                return (i + 1, j + 1)  # Top-left position where the object can be placed
                     return None
-                
+
                 for i in range(len(self.grid)):
-                        for j in range(len(self.grid[i])):
-                            if self.can_place(i+1, j+1, obj):
-                                return (i+1, j+1)  # Top-left position where the object can be placed
-                            
+                    for j in range(len(self.grid[i])):
+                        if self.can_place(i + 1, j + 1, obj):
+                            return (i + 1, j + 1)  # Top-left position where the object can be placed
+
                 return None
         else:
             if last_long is not None:
                 assert 'spawn_long_gap' in obj
                 for i in range(last_long + obj['spawn_long_gap'], len(self.grid)):
                     for j in range(len(self.grid[i])):
-                        if self.can_place(i+1, j+1, obj):
-                            return (i+1, j+1)  # Top-left position where the object can be placed
+                        if self.can_place(i + 1, j + 1, obj):
+                            return (i + 1, j + 1)  # Top-left position where the object can be placed
                 return None
-            
+
             for i in range(len(self.grid)):
-                    for j in range(len(self.grid[i])):
-                        if self.can_place(i+1, j+1, obj):
-                            return (i+1, j+1)  # Top-left position where the object can be placed
-                        
+                for j in range(len(self.grid[i])):
+                    if self.can_place(i + 1, j + 1, obj):
+                        return (i + 1, j + 1)  # Top-left position where the object can be placed
+
             return None
 
     def can_place(self, start_i, start_j, obj):
@@ -265,6 +272,7 @@ class ObjectPlacer:
                     return True
         return False
 
+
 class AssetManager(BaseManager):
     """
     This class is used to spawn static objects on the sidewalk
@@ -273,23 +281,22 @@ class AssetManager(BaseManager):
     """
     PRIORITY = 9
 
-
     def __init__(self):
         super(AssetManager, self).__init__()
         self.debug = True
         self.density = self.engine.global_config['object_density']
-        
+
         self.config = configReader()
         self.path_config = self.config.loadPath()
-        self.init_static_adj_list() # Load the metainfo for all static objects
-        self.get_attr() # Get the number and position of objects to spawn
-        
+        self.init_static_adj_list()  # Load the metainfo for all static objects
+        self.get_attr()  # Get the number and position of objects to spawn
+
         self.init_regular_objects()
-        
+
         self.all_object_polygons = []
-        
+
     def init_regular_objects(self):
-        
+
         # regular objects
         self.regular_objects = {
             'Tree': [['nearroad_buffer_sidewalk', 'nearroad_sidewalk'], 0, 'parallel_only', []],
@@ -336,17 +343,17 @@ class AssetManager(BaseManager):
             'Wheelchair': [['valid_region'], 24, 'random_start', []],
         }
         self.regular_object_type_list = list(self.regular_objects.keys())
-        
+
         # rank
         self.regular_object_by_rank = ['' for _ in range(len(list(self.regular_objects.keys())))]
         rank_list = [v[1] for v in self.regular_objects.values()]
         assert np.max(rank_list) == len(rank_list) - 1
         assert np.min(rank_list) == 0
-        
+
         # object by rank
         for k, v in self.regular_objects.items():
             self.regular_object_by_rank[v[1]] = k
-            
+
         # padding objects
         self.padding_objects = {
             'Tree': [['valid_region'], 0, 'normal', []],
@@ -356,11 +363,11 @@ class AssetManager(BaseManager):
         rank_list = [v[1] for v in self.padding_objects.values()]
         assert np.max(rank_list) == len(rank_list) - 1
         assert np.min(rank_list) == 0
-        
+
         # object by rank
         for k, v in self.padding_objects.items():
             self.padding_object_by_rank[v[1]] = k
-            
+
         # intersection specific objects
         self.intersection_objects = {
             'Traffic_light': [['main_sidewalk'], 0, 'normal', []],
@@ -370,7 +377,7 @@ class AssetManager(BaseManager):
         rank_list = [v[1] for v in self.intersection_objects.values()]
         assert np.max(rank_list) == len(rank_list) - 1
         assert np.min(rank_list) == 0
-        
+
         # object by rank
         for k, v in self.intersection_objects.items():
             self.intersection_object_by_rank[v[1]] = k
@@ -404,7 +411,7 @@ class AssetManager(BaseManager):
         self.num_dict = dict()
         # The dictionary to store the position of objects to spawn for each type
         self.pos_dict = dict()
-        
+
         self.interval_long = dict()
         self.interval_lat = dict()
         self.random_gap = dict()
@@ -413,33 +420,39 @@ class AssetManager(BaseManager):
         self.heading_dict = dict()
         for detail_type in self.type_metainfo_dict.keys():
             self.num_dict[detail_type] = max(int(self.config.getSpawnNum(detail_type) * self.density), 1)
-            self.pos_dict[detail_type]  = self.config.getSpawnPos(detail_type)
-            self.interval_long[detail_type]  = max(min(int(self.config.getSpawnInterval(detail_type) * 1 / self.density), 40), 1)
-            self.interval_lat[detail_type]  = self.config.getSpawnLatInterval(detail_type)
-            self.random_gap[detail_type]  = self.config.getrandom_gap(detail_type)
-            self.rank_dict[detail_type]  = self.config.get_rank(detail_type)
+            self.pos_dict[detail_type] = self.config.getSpawnPos(detail_type)
+            self.interval_long[detail_type] = max(
+                min(int(self.config.getSpawnInterval(detail_type) * 1 / self.density), 40), 1
+            )
+            self.interval_lat[detail_type] = self.config.getSpawnLatInterval(detail_type)
+            self.random_gap[detail_type] = self.config.getrandom_gap(detail_type)
+            self.rank_dict[detail_type] = self.config.get_rank(detail_type)
             if self.config.getSpawnHeading(detail_type):
-                self.heading_dict[detail_type] = [heading * math.pi for heading in self.config.getSpawnHeading(detail_type)]
+                self.heading_dict[detail_type] = [
+                    heading * math.pi for heading in self.config.getSpawnHeading(detail_type)
+                ]
             else:
                 self.heading_dict[detail_type] = [0, math.pi]
-        
+
     @staticmethod
     def load_json_file(filepath):
         with open(filepath, 'r') as f:
             return json.load(f)
+
     def before_reset(self):
         """
         Update episode level config to this manager and clean element or detach element
         """
         items = self.clear_objects([object_id for object_id in self.spawned_objects.keys()])
         self.spawned_objects = {}
+
     def reset(self):
         """
         Reset the manager and spawn objects on the sidewalk.
         Main entry point for the manager.
         """
         super(AssetManager, self).reset()
-        
+
         seed = self.engine.global_seed
         import os, random
         import numpy as np
@@ -450,9 +463,9 @@ class AssetManager(BaseManager):
         torch.manual_seed(seed)
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
-        
+
         self.generated_lane = []
-        
+
         self.count = 0
         self.all_object_polygons = []
         engine = get_engine()
@@ -462,7 +475,7 @@ class AssetManager(BaseManager):
         for block in engine.current_map.blocks:
             if isinstance(block, FirstPGBlock):
                 continue
-            
+
             # Iterate over both lanes in the block (Each block has a positive and negative lane, representing the two directions of traffic)
             if block.ID == 'S':
                 self.block_type = 'S'
@@ -479,60 +492,160 @@ class AssetManager(BaseManager):
                     far_from_buffer_width = block.far_from_buffer_width
                     far_from_width = block.far_from_width
                     valid_house_width = block.valid_house_width
-                    
-                    width_list = [near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width, valid_house_width]
-                    
+
+                    width_list = [
+                        near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width,
+                        valid_house_width
+                    ]
+
                     self.sidewalk_type = block.sidewalk_type
                     if self.sidewalk_type == 'Narrow Sidewalk':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Narrow Sidewalk with Trees':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Ribbon Sidewalk':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 1':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 2':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Medium Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Wide Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid),
+                            ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     else:
                         raise NotImplementedError
-                    
+
                     # init placers
                     object_placer_dict = {}
-                    for region, grid in name_grid_list:                    
+                    for region, grid in name_grid_list:
                         object_placer = ObjectPlacer(grid)
                         object_placer_dict.update({region: object_placer})
-                        
+
                     # regular generation by rank
                     regular_object_by_rank = self.regular_object_by_rank
                     for obj_detail_type in regular_object_by_rank:
@@ -546,12 +659,14 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.regular_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode
+                            )
+
                             if generated_type:
                                 break
-                          
-                    delta_scale = None  
+
+                    delta_scale = None
                     regular_object_by_rank = self.padding_object_by_rank
                     for obj_detail_type in regular_object_by_rank:
                         if obj_detail_type.lower() == 'wall' and self.sidewalk_type != 'Wide Commercial':
@@ -564,11 +679,13 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.padding_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                            )
+
                             if generated_type:
                                 break
-                                            
+
                     # detach to world
                     for region, grid in name_grid_list:
                         object_placer = object_placer_dict[region]
@@ -578,33 +695,45 @@ class AssetManager(BaseManager):
                                 coeff = 1
                             else:
                                 coeff = 0
-                            lane_position = self.convert_grid_to_lane_position([grid_position[0], grid_position[1] + (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff], lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
+                            lane_position = self.convert_grid_to_lane_position(
+                                [
+                                    grid_position[0], grid_position[1] +
+                                    (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff
+                                ], lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
                             span_length = math.ceil(obj['general']['length']) + self.buffer
                             span_width = math.ceil(obj['general']['width']) + self.buffer
-                            start_lane_position = self.convert_grid_to_longitudelateral(grid_position, lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
-                            end_lane_position = self.convert_grid_to_longitudelateral((grid_position[0] + span_length, grid_position[1] + span_width), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
+                            start_lane_position = self.convert_grid_to_longitudelateral(
+                                grid_position, lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
+                            end_lane_position = self.convert_grid_to_longitudelateral(
+                                (grid_position[0] + span_length, grid_position[1] + span_width), lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
                             self.count += 1
                             self.spawn_object(
                                 TestObject,
-                                force_spawn = True,
+                                force_spawn=True,
                                 lane=lane,
                                 position=lane_position,
                                 static=self.engine.global_config["static_traffic_object"],
-                                heading_theta=lane.heading_theta_at(lane_position[0]) + obj['general'].get(
-                                    'heading', 0),
+                                heading_theta=lane.heading_theta_at(lane_position[0]) +
+                                obj['general'].get('heading', 0),
                                 asset_metainfo=obj
                             )
-                            
+
                             polygon = []
                             start_lat = start_lane_position[1]
                             side_lat = end_lane_position[1]
                             longs = []
                             for i in range(span_length):
-                                lane_long = self.convert_grid_to_longitudelateral((grid_position[0] + i, grid_position[1] + (math.ceil(obj['general']['width'])) // 2), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))[0]
+                                lane_long = self.convert_grid_to_longitudelateral(
+                                    (
+                                        grid_position[0] + i, grid_position[1] +
+                                        (math.ceil(obj['general']['width'])) // 2
+                                    ), lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                                )[0]
                                 longs.append(lane_long)
                             for k, lateral in enumerate([start_lat, side_lat]):
                                 if k == 1:
@@ -614,7 +743,7 @@ class AssetManager(BaseManager):
                                     point = lane.position(longitude, lateral)
                                     polygon.append([point[0], point[1]])
                             self.all_object_polygons.append(polygon)
-            
+
             if block.ID == 'O':
                 walkable_map = self.walkable_region_for_roundabout(self.current_map)
                 self.block_type = 'O'
@@ -644,10 +773,10 @@ class AssetManager(BaseManager):
                     if 'ROAD_EDGE_BOUNDARY' in lane.line_types:
                         valid_lane_tmp.append(lane)
                 valid_lane = valid_lane_tmp
-                
+
                 pos_lane_list = []
                 neg_lane_list = []
-                
+
                 for k, v in block._sockets.items():
                     pos_lane = v.get_positive_lanes(block._global_network)[-1]
                     # ray_localization
@@ -655,7 +784,8 @@ class AssetManager(BaseManager):
                     pos_lane_list.append(pos_lane)
                     neg_lane_list.append(neg_lane)
 
-                for lane in [block.positive_basic_lane, block.negative_basic_lane] + pos_lane_list + neg_lane_list + valid_lane:
+                for lane in [block.positive_basic_lane, block.negative_basic_lane
+                             ] + pos_lane_list + neg_lane_list + valid_lane:
                     if lane in self.generated_lane:
                         continue
                     self.generated_lane.append(lane)
@@ -666,60 +796,160 @@ class AssetManager(BaseManager):
                     far_from_buffer_width = block.far_from_buffer_width
                     far_from_width = block.far_from_width
                     valid_house_width = block.valid_house_width
-                    
-                    width_list = [near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width, valid_house_width]
-                    
+
+                    width_list = [
+                        near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width,
+                        valid_house_width
+                    ]
+
                     self.sidewalk_type = block.sidewalk_type
                     if self.sidewalk_type == 'Narrow Sidewalk':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Narrow Sidewalk with Trees':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Ribbon Sidewalk':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 1':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 2':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Medium Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Wide Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid),
+                            ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     else:
                         raise NotImplementedError
-                    
+
                     # init placers
                     object_placer_dict = {}
-                    for region, grid in name_grid_list:                    
+                    for region, grid in name_grid_list:
                         object_placer = ObjectPlacer(grid)
                         object_placer_dict.update({region: object_placer})
-                        
+
                     # regular generation by rank
                     regular_object_by_rank = self.regular_object_by_rank
                     for obj_detail_type in regular_object_by_rank:
@@ -733,12 +963,14 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.regular_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode
+                            )
+
                             if generated_type:
                                 break
-                          
-                    delta_scale = None  
+
+                    delta_scale = None
                     regular_object_by_rank = self.padding_object_by_rank
                     for obj_detail_type in regular_object_by_rank:
                         if obj_detail_type.lower() == 'wall' and self.sidewalk_type != 'Wide Commercial':
@@ -751,11 +983,13 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.padding_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                            )
+
                             if generated_type:
                                 break
-                                            
+
                     # detach to world
                     for region, grid in name_grid_list:
                         object_placer = object_placer_dict[region]
@@ -765,23 +999,35 @@ class AssetManager(BaseManager):
                                 coeff = 1
                             else:
                                 coeff = 0
-                            lane_position = self.convert_grid_to_lane_position([grid_position[0], grid_position[1] + (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff], lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
+                            lane_position = self.convert_grid_to_lane_position(
+                                [
+                                    grid_position[0], grid_position[1] +
+                                    (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff
+                                ], lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
                             span_length = math.ceil(obj['general']['length']) + self.buffer
                             span_width = math.ceil(obj['general']['width']) + self.buffer
-                            start_lane_position = self.convert_grid_to_longitudelateral(grid_position, lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
-                            end_lane_position = self.convert_grid_to_longitudelateral((grid_position[0] + span_length, grid_position[1] + span_width), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
-                            
+                            start_lane_position = self.convert_grid_to_longitudelateral(
+                                grid_position, lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
+                            end_lane_position = self.convert_grid_to_longitudelateral(
+                                (grid_position[0] + span_length, grid_position[1] + span_width), lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
+
                             # check on the sidewalk
                             polygon = []
                             start_lat = start_lane_position[1]
                             side_lat = end_lane_position[1]
                             longs = []
                             for i in range(span_length):
-                                lane_long = self.convert_grid_to_longitudelateral((grid_position[0] + i, grid_position[1] + (math.ceil(obj['general']['width'])) // 2), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))[0]
+                                lane_long = self.convert_grid_to_longitudelateral(
+                                    (
+                                        grid_position[0] + i, grid_position[1] +
+                                        (math.ceil(obj['general']['width'])) // 2
+                                    ), lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                                )[0]
                                 longs.append(lane_long)
                             for k, lateral in enumerate([start_lat, side_lat]):
                                 if k == 1:
@@ -799,29 +1045,33 @@ class AssetManager(BaseManager):
                             walkable_regions_mask = copy.deepcopy(walkable_map)
                             cv2.fillPoly(walkable_regions_mask, [polygon_array], [0, 0, 0])
                             # cv2.imwrite('./1112.png', walkable_regions_mask)
-                            if ((walkable_regions_mask - walkable_map) ** 2).sum() == 0.:
+                            if ((walkable_regions_mask - walkable_map)**2).sum() == 0.:
                                 continue
-                                            
+
                             self.count += 1
-                            
+
                             self.spawn_object(
                                 TestObject,
-                                force_spawn = True,
+                                force_spawn=True,
                                 lane=lane,
                                 position=lane_position,
                                 static=self.engine.global_config["static_traffic_object"],
-                                heading_theta=lane.heading_theta_at(lane_position[0]) + obj['general'].get(
-                                    'heading', 0),
+                                heading_theta=lane.heading_theta_at(lane_position[0]) +
+                                obj['general'].get('heading', 0),
                                 asset_metainfo=obj
                             )
-                            
+
                             polygon = []
                             start_lat = start_lane_position[1]
                             side_lat = end_lane_position[1]
                             longs = []
                             for i in range(span_length):
-                                lane_long = self.convert_grid_to_longitudelateral((grid_position[0] + i, grid_position[1] + (math.ceil(obj['general']['width'])) // 2), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))[0]
+                                lane_long = self.convert_grid_to_longitudelateral(
+                                    (
+                                        grid_position[0] + i, grid_position[1] +
+                                        (math.ceil(obj['general']['width'])) // 2
+                                    ), lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                                )[0]
                                 longs.append(lane_long)
                             for k, lateral in enumerate([start_lat, side_lat]):
                                 if k == 1:
@@ -831,30 +1081,31 @@ class AssetManager(BaseManager):
                                     point = lane.position(longitude, lateral)
                                     polygon.append([point[0], point[1]])
                             self.all_object_polygons.append(polygon)
-            
+
             if block.ID == 'X' or block.ID == 'T':
                 self.block_type = 'X'
-                
+
                 pos_lane_list = []
                 neg_lane_list = []
-                
+
                 for k, v in block._sockets.items():
                     pos_lane = v.get_positive_lanes(block._global_network)[-1]
                     # ray_localization
                     neg_lane = v.get_negative_lanes(block._global_network)[-1]
                     pos_lane_list.append(pos_lane)
                     neg_lane_list.append(neg_lane)
-                    
+
                 valid_lane = []
-                
+
                 for lane in block.right_lanes:
-                    valid_lane.append(lane)  
+                    valid_lane.append(lane)
                 valid_lane = list(set(valid_lane))
                 for lane in [block.positive_basic_lane, block.negative_basic_lane] + pos_lane_list + neg_lane_list:
                     if lane in valid_lane:
                         valid_lane.remove(lane)
 
-                for lane in [block.positive_basic_lane, block.negative_basic_lane] + pos_lane_list + neg_lane_list + valid_lane:
+                for lane in [block.positive_basic_lane, block.negative_basic_lane
+                             ] + pos_lane_list + neg_lane_list + valid_lane:
                     if lane in self.generated_lane:
                         continue
                     self.generated_lane.append(lane)
@@ -869,67 +1120,167 @@ class AssetManager(BaseManager):
                     far_from_buffer_width = block.far_from_buffer_width
                     far_from_width = block.far_from_width
                     valid_house_width = block.valid_house_width
-                    
-                    width_list = [near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width, valid_house_width]
-                    
+
+                    width_list = [
+                        near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width,
+                        valid_house_width
+                    ]
+
                     self.sidewalk_type = block.sidewalk_type
                     if self.sidewalk_type == 'Narrow Sidewalk':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Narrow Sidewalk with Trees':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Ribbon Sidewalk':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 1':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 2':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Medium Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Wide Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid),
+                            ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     else:
                         raise NotImplementedError
-                    
+
                     # init placers
                     object_placer_dict = {}
 
                     if lane == block.positive_basic_lane:
-                        for region, grid in name_grid_list:                    
+                        for region, grid in name_grid_list:
                             for i in range(10):
                                 for j in range(len(grid[0])):
                                     grid[i][j].occupied = True
 
-                    for region, grid in name_grid_list:                    
+                    for region, grid in name_grid_list:
                         object_placer = ObjectPlacer(grid)
                         object_placer_dict.update({region: object_placer})
-                        
+
                     # regular generation by rank
                     regular_object_by_rank = self.regular_object_by_rank
                     for obj_detail_type in regular_object_by_rank:
@@ -943,11 +1294,13 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.regular_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                            )
+
                             if generated_type:
                                 break
-                            
+
                     # padding valid region
                     # regular generation by rank
                     regular_object_by_rank = self.padding_object_by_rank
@@ -962,11 +1315,13 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.padding_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                            )
+
                             if generated_type:
                                 break
-                            
+
                     # specific objects
                     if lane == block.positive_basic_lane or lane in neg_lane_list:
                         regular_object_by_rank = self.intersection_object_by_rank
@@ -982,8 +1337,10 @@ class AssetManager(BaseManager):
                                     generated_type = False
                                 object_placer = object_placer_dict[region]
                                 obj_generation_mode = self.intersection_objects[obj_detail_type][2]
-                                self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                                
+                                self.retrieve_target_object_for_region(
+                                    region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                                )
+
                                 if generated_type:
                                     break
                     else:
@@ -1000,48 +1357,62 @@ class AssetManager(BaseManager):
                                     generated_type = False
                                 object_placer = object_placer_dict[region]
                                 obj_generation_mode = self.intersection_objects[obj_detail_type][2]
-                                self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                                
+                                self.retrieve_target_object_for_region(
+                                    region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                                )
+
                                 if generated_type:
                                     break
-                                            
+
                     # detach to world
                     for region, grid in name_grid_list:
                         object_placer = object_placer_dict[region]
                         for obj_name, (grid_position, obj) in object_placer.placed_objects.items():
-                        # Convert the grid position to a lane position
+                            # Convert the grid position to a lane position
                             if 'region' in region:
                                 coeff = 1
                             else:
                                 coeff = 0
-                            lane_position = self.convert_grid_to_lane_position([grid_position[0], grid_position[1] + (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff], lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
+                            lane_position = self.convert_grid_to_lane_position(
+                                [
+                                    grid_position[0], grid_position[1] +
+                                    (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff
+                                ], lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
                             span_length = math.ceil(obj['general']['length']) + self.buffer
                             span_width = math.ceil(obj['general']['width']) + self.buffer
-                            start_lane_position = self.convert_grid_to_longitudelateral(grid_position, lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
-                            end_lane_position = self.convert_grid_to_longitudelateral((grid_position[0] + span_length, grid_position[1] + span_width), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
+                            start_lane_position = self.convert_grid_to_longitudelateral(
+                                grid_position, lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
+                            end_lane_position = self.convert_grid_to_longitudelateral(
+                                (grid_position[0] + span_length, grid_position[1] + span_width), lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
                             self.count += 1
-                            
+
                             self.spawn_object(
                                 TestObject,
-                                force_spawn = True,
+                                force_spawn=True,
                                 lane=lane,
                                 position=lane_position,
                                 static=self.engine.global_config["static_traffic_object"],
-                                heading_theta=lane.heading_theta_at(lane_position[0]) + obj['general'].get(
-                                    'heading', 0),
+                                heading_theta=lane.heading_theta_at(lane_position[0]) +
+                                obj['general'].get('heading', 0),
                                 asset_metainfo=obj
                             )
-                            
+
                             polygon = []
                             start_lat = start_lane_position[1]
                             side_lat = end_lane_position[1]
                             longs = []
                             for i in range(span_length):
-                                lane_long = self.convert_grid_to_longitudelateral((grid_position[0] + i, grid_position[1] + (math.ceil(obj['general']['width'])) // 2), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))[0]
+                                lane_long = self.convert_grid_to_longitudelateral(
+                                    (
+                                        grid_position[0] + i, grid_position[1] +
+                                        (math.ceil(obj['general']['width'])) // 2
+                                    ), lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                                )[0]
                                 longs.append(lane_long)
                             for k, lateral in enumerate([start_lat, side_lat]):
                                 if k == 1:
@@ -1050,10 +1421,10 @@ class AssetManager(BaseManager):
                                     longitude = min(lane.length + 0.1, longitude)
                                     point = lane.position(longitude, lateral)
                                     polygon.append([point[0], point[1]])
-                            self.all_object_polygons.append(polygon)     
-                
+                            self.all_object_polygons.append(polygon)
+
             if block.ID == 'C':
-                
+
                 self.block_type = 'C'
                 valid_lane = []
                 graph = block.block_network.graph
@@ -1075,7 +1446,7 @@ class AssetManager(BaseManager):
                     valid_lane.remove(block.positive_basic_lane)
                 if block.negative_basic_lane in valid_lane:
                     valid_lane.remove(block.negative_basic_lane)
-                
+
                 for lane in [block.positive_basic_lane, block.negative_basic_lane] + valid_lane:
                     if lane in self.generated_lane:
                         continue
@@ -1091,60 +1462,160 @@ class AssetManager(BaseManager):
                     far_from_buffer_width = block.far_from_buffer_width
                     far_from_width = block.far_from_width
                     valid_house_width = block.valid_house_width
-                    
-                    width_list = [near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width, valid_house_width]
-                    
+
+                    width_list = [
+                        near_road_buffer_width, near_road_width, main_width, far_from_buffer_width, far_from_width,
+                        valid_house_width
+                    ]
+
                     self.sidewalk_type = block.sidewalk_type
                     if self.sidewalk_type == 'Narrow Sidewalk':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Narrow Sidewalk with Trees':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Ribbon Sidewalk':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 1':
-                        nearroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "nearroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('nearroad_buffer_sidewalk', nearroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Neighborhood 2':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Medium Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('valid_region', valid_region_grid)
+                        ]
                     elif self.sidewalk_type == 'Wide Commercial':
-                        nearroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        main_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type))
-                        farfromroad_buffer_sidewalk_grid = self.create_grid(lane, self.calculate_lateral_range("farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type))
-                        valid_region_grid = self.create_grid(lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type))
-                        name_grid_list = [('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid), ('farfromroad_sidewalk', farfromroad_sidewalk_grid), ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid), ('valid_region', valid_region_grid)]
+                        nearroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("nearroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        main_sidewalk_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("main_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range("farfromroad_sidewalk", lane, width_list, self.sidewalk_type)
+                        )
+                        farfromroad_buffer_sidewalk_grid = self.create_grid(
+                            lane,
+                            self.calculate_lateral_range(
+                                "farfromroad_buffer_sidewalk", lane, width_list, self.sidewalk_type
+                            )
+                        )
+                        valid_region_grid = self.create_grid(
+                            lane, self.calculate_lateral_range("valid_region", lane, width_list, self.sidewalk_type)
+                        )
+                        name_grid_list = [
+                            ('nearroad_sidewalk', nearroad_sidewalk_grid), ('main_sidewalk', main_sidewalk_grid),
+                            ('farfromroad_sidewalk', farfromroad_sidewalk_grid),
+                            ('farfromroad_buffer_sidewalk', farfromroad_buffer_sidewalk_grid),
+                            ('valid_region', valid_region_grid)
+                        ]
                     else:
                         raise NotImplementedError
-                    
+
                     # init placers
                     object_placer_dict = {}
-                    for region, grid in name_grid_list:                    
+                    for region, grid in name_grid_list:
                         object_placer = ObjectPlacer(grid)
                         object_placer_dict.update({region: object_placer})
-                        
+
                     # regular generation by rank
                     regular_object_by_rank = self.regular_object_by_rank
                     for obj_detail_type in regular_object_by_rank:
@@ -1161,11 +1632,13 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.regular_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                            )
+
                             if generated_type:
                                 break
-                            
+
                     # padding valid region
                     # regular generation by rank
                     regular_object_by_rank = self.padding_object_by_rank
@@ -1180,48 +1653,62 @@ class AssetManager(BaseManager):
                                 generated_type = False
                             object_placer = object_placer_dict[region]
                             obj_generation_mode = self.padding_objects[obj_detail_type][2]
-                            self.retrieve_target_object_for_region(region, object_placer, obj_detail_type, obj_generation_mode, delta_scale)
-                            
+                            self.retrieve_target_object_for_region(
+                                region, object_placer, obj_detail_type, obj_generation_mode, delta_scale
+                            )
+
                             if generated_type:
                                 break
-                                            
+
                     # detach to world
                     for region, grid in name_grid_list:
                         object_placer = object_placer_dict[region]
                         for obj_name, (grid_position, obj) in object_placer.placed_objects.items():
-                        # Convert the grid position to a lane position
+                            # Convert the grid position to a lane position
                             if 'region' in region:
                                 coeff = 1
                             else:
                                 coeff = 0
-                            lane_position = self.convert_grid_to_lane_position([grid_position[0], grid_position[1] + (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff], lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
+                            lane_position = self.convert_grid_to_lane_position(
+                                [
+                                    grid_position[0], grid_position[1] +
+                                    (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff
+                                ], lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
                             span_length = math.ceil(obj['general']['length']) + self.buffer
                             span_width = math.ceil(obj['general']['width']) + self.buffer
-                            start_lane_position = self.convert_grid_to_longitudelateral(grid_position, lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
-                            end_lane_position = self.convert_grid_to_longitudelateral((grid_position[0] + span_length, grid_position[1] + span_width), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))
+                            start_lane_position = self.convert_grid_to_longitudelateral(
+                                grid_position, lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
+                            end_lane_position = self.convert_grid_to_longitudelateral(
+                                (grid_position[0] + span_length, grid_position[1] + span_width), lane,
+                                self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                            )
                             self.count += 1
-                            
+
                             self.spawn_object(
                                 TestObject,
-                                force_spawn = True,
+                                force_spawn=True,
                                 lane=lane,
                                 position=lane_position,
                                 static=self.engine.global_config["static_traffic_object"],
-                                heading_theta=lane.heading_theta_at(lane_position[0]) + obj['general'].get(
-                                    'heading', 0),
+                                heading_theta=lane.heading_theta_at(lane_position[0]) +
+                                obj['general'].get('heading', 0),
                                 asset_metainfo=obj
                             )
-                            
+
                             polygon = []
                             start_lat = start_lane_position[1]
                             side_lat = end_lane_position[1]
                             longs = []
                             for i in range(span_length):
-                                lane_long = self.convert_grid_to_longitudelateral((grid_position[0] + i, grid_position[1] + (math.ceil(obj['general']['width'])) // 2), lane,
-                                                                            self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type))[0]
+                                lane_long = self.convert_grid_to_longitudelateral(
+                                    (
+                                        grid_position[0] + i, grid_position[1] +
+                                        (math.ceil(obj['general']['width'])) // 2
+                                    ), lane, self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
+                                )[0]
                                 longs.append(lane_long)
                             for k, lateral in enumerate([start_lat, side_lat]):
                                 if k == 1:
@@ -1231,7 +1718,7 @@ class AssetManager(BaseManager):
                                     point = lane.position(longitude, lateral)
                                     polygon.append([point[0], point[1]])
                             self.all_object_polygons.append(polygon)
-                            
+
         self.engine.objects_counts = self.count
         self._get_walkable_regions(self.current_map)
 
@@ -1256,13 +1743,17 @@ class AssetManager(BaseManager):
         num_cells_lat = int((lateral_range[1] - lateral_range[0]) / cell_width)
 
         # Create the grid as a 2D array of GridCell objects
-        grid = [[GridCell(position=(i * cell_length, j * cell_width + lateral_range[0]))
-                 for j in range(num_cells_lat)] for i in range(num_cells_long)]
+        grid = [
+            [GridCell(position=(i * cell_length, j * cell_width + lateral_range[0])) for j in range(num_cells_lat)]
+            for i in range(num_cells_long)
+        ]
 
         return grid
-    
-    def retrieve_target_object_for_region(self, region, object_placer, obj_detail_type=None, obj_generation_mode=None, delta_scale=None):
-        
+
+    def retrieve_target_object_for_region(
+        self, region, object_placer, obj_detail_type=None, obj_generation_mode=None, delta_scale=None
+    ):
+
         seed = self.engine.global_seed + 21931
         import os, random
         import numpy as np
@@ -1273,7 +1764,7 @@ class AssetManager(BaseManager):
         torch.manual_seed(seed)
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
-        
+
         detail_type_groups = defaultdict(list)
         object_counts = defaultdict(int)  # Track how many objects of each type have been tried
         # last generated position
@@ -1281,7 +1772,7 @@ class AssetManager(BaseManager):
         for detail_type, objects in self.type_metainfo_dict.items():
             if detail_type != obj_detail_type:
                 continue
-            
+
             # change information about the tree
             if obj_detail_type.lower() == 'tree':
                 new_list = []
@@ -1291,7 +1782,7 @@ class AssetManager(BaseManager):
                     obj['general']['bounding_box'] = [[1.0, 1.0], [1.0, -1.0], [-1.0, -1.0], [-1.0, 1.0]]
                     new_list.append(obj)
                 self.type_metainfo_dict[detail_type] = new_list
-            
+
             # Note, we only place objects in the specified region
             self.pos_dict[detail_type] = region
             if self.pos_dict[detail_type] == region:
@@ -1304,9 +1795,9 @@ class AssetManager(BaseManager):
             self.buffer = 10
         # Set to keep track of tried objects
         any_object_placed = True
-        
+
         iteration_time = 0
-            
+
         # Continue round-robin placement until all objects are tried or count limit is reached
         if not hasattr(self, 'placed_types'):
             self.placed_types = {}
@@ -1334,27 +1825,31 @@ class AssetManager(BaseManager):
                         if object_counts[detail_type] < 1:
                             offset = 10 + len(self.placed_types[region]) * 8
                     obj['spawn_long_gap'] = interval_long
-                    
+
                     if delta_scale is not None and region == 'valid_region':
                         obj['spawn_long_gap'] = int(interval_long * delta_scale)
-                    
+
                     if obj_detail_type.lower() == 'tree' and region == 'valid_region':
                         interval_long = int(2 * 1 / self.density)
                         obj['spawn_long_gap'] = interval_long
                         offset = 0
-                        
+
                     object_placer.buffer = self.buffer
                     obj['obj_generation_mode'] = obj_generation_mode
                     if 'spawn_long_gap' in obj:
                         # print('Spawning Longititude Constraint is added')
                         if object_counts[detail_type] > 0:
-                            generated_, last_long = object_placer.place_object(obj, last_object_postion_long[detail_type] + offset)
+                            generated_, last_long = object_placer.place_object(
+                                obj, last_object_postion_long[detail_type] + offset
+                            )
                             if generated_:
                                 last_object_postion_long[detail_type] = last_long
                                 object_counts[detail_type] += 1
                                 any_object_placed = True
                         else:
-                            generated_, last_long = object_placer.place_object(obj, last_object_postion_long[detail_type] + offset)
+                            generated_, last_long = object_placer.place_object(
+                                obj, last_object_postion_long[detail_type] + offset
+                            )
                             if generated_:
                                 last_object_postion_long[detail_type] = last_long
                                 object_counts[detail_type] += 1
@@ -1362,12 +1857,12 @@ class AssetManager(BaseManager):
                     elif object_placer.place_object(obj):
                         object_counts[detail_type] += 1
                         any_object_placed = True
-                    
+
                     if detail_type not in self.placed_types[region]:
                         self.placed_types[region].append(detail_type)
-                
+
                 iteration_time += 1
-                
+
                 if not any_object_placed and all(object_counts[dt] >= self.num_dict[dt] for dt in detail_type_groups):
                     break
 
@@ -1395,7 +1890,7 @@ class AssetManager(BaseManager):
                     unique_id = (detail_type, idx)
                     detail_type_groups[detail_type].append(unique_id)
                     last_object_postion_long[detail_type] = 0
-        
+
         self.buffer = 2 if 'near' not in region else 0
         # Set to keep track of tried objects
         any_object_placed = True
@@ -1421,7 +1916,9 @@ class AssetManager(BaseManager):
                     if 'spawn_long_gap' in obj:
                         # print('Spawning Longititude Constraint is added')
                         if object_counts[detail_type] > 0:
-                            generated_, last_long = object_placer.place_object(obj, last_object_postion_long[detail_type] + offset)
+                            generated_, last_long = object_placer.place_object(
+                                obj, last_object_postion_long[detail_type] + offset
+                            )
                             if generated_:
                                 last_object_postion_long[detail_type] = last_long
                                 object_counts[detail_type] += 1
@@ -1450,14 +1947,14 @@ class AssetManager(BaseManager):
         """
         grid_i, grid_j = grid_position
         cell_length = 1  # Length of a cell along the lane, should be consistent with create_grid method
-        cell_width = 1   # Width of a cell across the lane, should be consistent with create_grid method
+        cell_width = 1  # Width of a cell across the lane, should be consistent with create_grid method
 
         # Convert grid position to longitudinal and lateral position relative to the lane
         longitude = grid_i * cell_length
         lateral = lateral_range[0] + grid_j * cell_width
 
         return lane.position(longitude, lateral)
-    
+
     def convert_grid_to_longitudelateral(self, grid_position, lane, lateral_range):
         """
         Convert a grid position to a lane position.
@@ -1470,14 +1967,14 @@ class AssetManager(BaseManager):
         """
         grid_i, grid_j = grid_position
         cell_length = 1  # Length of a cell along the lane, should be consistent with create_grid method
-        cell_width = 1   # Width of a cell across the lane, should be consistent with create_grid method
+        cell_width = 1  # Width of a cell across the lane, should be consistent with create_grid method
 
         # Convert grid position to longitudinal and lateral position relative to the lane
         longitude = grid_i * cell_length
         lateral = lateral_range[0] + grid_j * cell_width
 
         return (longitude, lateral)
-    
+
     def visualize_grid(self, grid):
         """
         Visualize the grid by printing it to the console.
@@ -1492,6 +1989,7 @@ class AssetManager(BaseManager):
                 char = 'X' if cell.is_occupied() else '.'
                 print(char, end=' ')
             print()  # Newline after each row
+
     def calculate_lateral_range(self, region, lane, width_list, sidewalk_type):
         """
         Calculate the lateral range for a given region of a lane.
@@ -1531,15 +2029,18 @@ class AssetManager(BaseManager):
             assert width_list[3] is not None
             assert width_list[4] is not None
         else:
-            raise NotImplementedError 
-        
+            raise NotImplementedError
+
         if sidewalk_type == 'Narrow Sidewalk':
             if region == 'nearroad_buffer_sidewalk':
                 return (lane.width_at(0) / 2, lane.width_at(0) / 2 + width_list[0])
             elif region == 'main_sidewalk':
                 return (lane.width_at(0) / 2 + width_list[0], lane.width_at(0) / 2 + width_list[0] + width_list[2])
             elif region == 'valid_region':
-                return (lane.width_at(0) / 2 + width_list[0] + width_list[2], lane.width_at(0) / 2 + width_list[0] + width_list[2] + width_list[-1])
+                return (
+                    lane.width_at(0) / 2 + width_list[0] + width_list[2],
+                    lane.width_at(0) / 2 + width_list[0] + width_list[2] + width_list[-1]
+                )
             else:
                 raise ValueError("Incorrect region type")
         elif sidewalk_type == 'Narrow Sidewalk with Trees':
@@ -1548,7 +2049,10 @@ class AssetManager(BaseManager):
             elif region == 'main_sidewalk':
                 return (lane.width_at(0) / 2 + width_list[1], lane.width_at(0) / 2 + width_list[1] + width_list[2])
             elif region == 'valid_region':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[-1])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[-1]
+                )
             else:
                 raise ValueError("Incorrect region type")
         elif sidewalk_type == 'Ribbon Sidewalk':
@@ -1557,9 +2061,15 @@ class AssetManager(BaseManager):
             elif region == 'main_sidewalk':
                 return (lane.width_at(0) / 2 + width_list[1], lane.width_at(0) / 2 + width_list[1] + width_list[2])
             elif region == 'farfromroad_sidewalk':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4]
+                )
             elif region == 'valid_region':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4] + width_list[-1])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4] + width_list[-1]
+                )
             else:
                 raise ValueError("Incorrect region type")
         elif sidewalk_type == 'Neighborhood 1':
@@ -1568,9 +2078,15 @@ class AssetManager(BaseManager):
             elif region == 'nearroad_sidewalk':
                 return (lane.width_at(0) / 2 + width_list[0], lane.width_at(0) / 2 + width_list[0] + width_list[1])
             elif region == 'main_sidewalk':
-                return (lane.width_at(0) / 2 + width_list[0] + width_list[1], lane.width_at(0) / 2 + width_list[0] + width_list[1] + width_list[2])
+                return (
+                    lane.width_at(0) / 2 + width_list[0] + width_list[1],
+                    lane.width_at(0) / 2 + width_list[0] + width_list[1] + width_list[2]
+                )
             elif region == 'valid_region':
-                return (lane.width_at(0) / 2 + width_list[0] + width_list[1] + width_list[2], lane.width_at(0) / 2 + width_list[0] + width_list[1] + width_list[2] + width_list[-1])
+                return (
+                    lane.width_at(0) / 2 + width_list[0] + width_list[1] + width_list[2],
+                    lane.width_at(0) / 2 + width_list[0] + width_list[1] + width_list[2] + width_list[-1]
+                )
             else:
                 raise ValueError("Incorrect region type")
         elif sidewalk_type == 'Neighborhood 2':
@@ -1579,9 +2095,15 @@ class AssetManager(BaseManager):
             elif region == 'main_sidewalk':
                 return (lane.width_at(0) / 2 + width_list[1], lane.width_at(0) / 2 + width_list[1] + width_list[2])
             elif region == 'farfromroad_sidewalk':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4]
+                )
             elif region == 'valid_region':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4] + width_list[-1])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4] + width_list[-1]
+                )
             else:
                 raise ValueError("Incorrect region type")
         elif sidewalk_type == 'Medium Commercial':
@@ -1590,9 +2112,15 @@ class AssetManager(BaseManager):
             elif region == 'main_sidewalk':
                 return (lane.width_at(0) / 2 + width_list[1], lane.width_at(0) / 2 + width_list[1] + width_list[2])
             elif region == 'farfromroad_sidewalk':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4]
+                )
             elif region == 'valid_region':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4] + width_list[-1])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[4] + width_list[-1]
+                )
             else:
                 raise ValueError("Incorrect region type")
         elif sidewalk_type == 'Wide Commercial':
@@ -1601,20 +2129,30 @@ class AssetManager(BaseManager):
             elif region == 'main_sidewalk':
                 return (lane.width_at(0) / 2 + width_list[1], lane.width_at(0) / 2 + width_list[1] + width_list[2])
             elif region == 'farfromroad_buffer_sidewalk':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3]
+                )
             elif region == 'farfromroad_sidewalk':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3] + width_list[4])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3] + width_list[4]
+                )
             elif region == 'valid_region':
-                return (lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3] + width_list[4], lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3] + width_list[4] + width_list[-1])
+                return (
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3] + width_list[4],
+                    lane.width_at(0) / 2 + width_list[1] + width_list[2] + width_list[3] + width_list[4] +
+                    width_list[-1]
+                )
             else:
                 raise ValueError("Incorrect region type")
         else:
             raise NotImplementedError
-        
+
     @property
     def current_map(self) -> object:
         return self.engine.map_manager.current_map
-    
+
     def walkable_region_for_roundabout(self, current_map):
         self.crosswalks = current_map.crosswalks
         self.sidewalks = current_map.sidewalks
@@ -1633,7 +2171,7 @@ class AssetManager(BaseManager):
             # if "CRS_I_" in crosswalk: continue
             polygon = self.crosswalks[crosswalk]['polygon']
             polygons += polygon
-            
+
         for sidewalk in self.sidewalks_near_road_buffer.keys():
             polygon = self.sidewalks_near_road_buffer[sidewalk]['polygon']
             polygons += polygon
@@ -1649,7 +2187,7 @@ class AssetManager(BaseManager):
         # for sidewalk in self.valid_region.keys():
         #     polygon = self.valid_region[sidewalk]['polygon']
         #     polygons += polygon
-            
+
         # for polygon in self.all_object_polygons:
         #     polygons += polygon
 
@@ -1659,10 +2197,10 @@ class AssetManager(BaseManager):
         min_y = np.min(polygon_array[:, 1])
         max_y = np.max(polygon_array[:, 1])
         self.mask_delta = 2
-        rows = math.ceil(max_y - min_y) + 2*self.mask_delta
-        columns = math.ceil(max_x - min_x) + 2*self.mask_delta
+        rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
+        columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
 
-        self.mask_translate = np.array([-min_x+self.mask_delta, -min_y+self.mask_delta])
+        self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
         walkable_regions_mask = np.zeros((rows, columns, 3), np.uint8)
         from shapely.geometry import Polygon
         all_area = 0
@@ -1685,7 +2223,7 @@ class AssetManager(BaseManager):
             area = Polygon(polygon).area
             all_area += area
             cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-            
+
         for sidewalk in self.sidewalks_near_road_buffer.keys():
             polygon_array = np.array(self.sidewalks_near_road_buffer[sidewalk]['polygon'])
             polygon_array += self.mask_translate
@@ -1718,9 +2256,9 @@ class AssetManager(BaseManager):
             area = Polygon(polygon).area
             all_area += area
             cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-            
+
         return walkable_regions_mask
-    
+
     def _get_walkable_regions(self, current_map):
         self.crosswalks = current_map.crosswalks
         self.sidewalks = current_map.sidewalks
@@ -1757,7 +2295,7 @@ class AssetManager(BaseManager):
         for sidewalk in self.valid_region.keys():
             polygon = self.valid_region[sidewalk]['polygon']
             polygons += polygon
-            
+
         for polygon in self.all_object_polygons:
             polygons += polygon
 
@@ -1767,10 +2305,10 @@ class AssetManager(BaseManager):
         min_y = np.min(polygon_array[:, 1])
         max_y = np.max(polygon_array[:, 1])
         self.mask_delta = 2
-        rows = math.ceil(max_y - min_y) + 2*self.mask_delta
-        columns = math.ceil(max_x - min_x) + 2*self.mask_delta
+        rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
+        columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
 
-        self.mask_translate = np.array([-min_x+self.mask_delta, -min_y+self.mask_delta])
+        self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
         walkable_regions_mask = np.zeros((rows, columns, 3), np.uint8)
         from shapely.geometry import Polygon
         all_area = 0
@@ -1793,7 +2331,7 @@ class AssetManager(BaseManager):
             area = Polygon(polygon).area
             all_area += area
             cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-            
+
         for sidewalk in self.sidewalks_near_road_buffer.keys():
             polygon_array = np.array(self.sidewalks_near_road_buffer[sidewalk]['polygon'])
             polygon_array += self.mask_translate
@@ -1832,7 +2370,7 @@ class AssetManager(BaseManager):
             polygon_array = np.floor(polygon_array).astype(int)
             polygon_array = polygon_array.reshape((-1, 1, 2))
             cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-        
+
         obj_area_total = 0
         for polygon in self.all_object_polygons:
             polygon_array = np.array(polygon)

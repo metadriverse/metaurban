@@ -427,13 +427,13 @@ class BaseEngine(EngineCore, Randomizable):
             # simulate or replay
             for name, manager in self.managers.items():
                 if 'traffic' in name:
-                    if self.episode_step >=  65:
+                    if self.episode_step >= 65:
                         continue
-                
+
                 if name != "record_manager":
                     manager.step()
             self.step_physics_world()
-            
+
             # the recording should happen after step physics world
             if "record_manager" in self.managers and i < step_num - 1:
                 # last recording should be finished in after_step(), as some objects may be created in after_step.

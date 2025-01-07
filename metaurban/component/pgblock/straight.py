@@ -6,6 +6,7 @@ from metaurban.component.road_network import Road
 from metaurban.constants import PGDrivableAreaProperty, PGLineType
 import numpy as np
 
+
 class Straight(PGBlock):
     """
     Straight Road
@@ -54,7 +55,6 @@ class Straight(PGBlock):
         self.add_sockets(PGBlockSocket(socket, _socket))
         return no_cross
 
-
     def _generate_crosswalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         """
         Construct the sidewalk for this lane
@@ -63,19 +63,25 @@ class Straight(PGBlock):
 
         Returns:
         """
-        crosswalk_width = lane.width * 4 # 3   
-        start_lat = +lane.width_at(0) - crosswalk_width / 2 - 1.7 #0.7
-        side_lat = start_lat + crosswalk_width - 1.7# 0.7
-
+        crosswalk_width = lane.width * 4  # 3
+        start_lat = +lane.width_at(0) - crosswalk_width / 2 - 1.7  #0.7
+        side_lat = start_lat + crosswalk_width - 1.7  # 0.7
 
         build_at_start = True
         build_at_end = True
         if build_at_end:
-            longs = np.array([lane.length - PGDrivableAreaProperty.SIDEWALK_LENGTH, lane.length, lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH])
+            longs = np.array(
+                [
+                    lane.length - PGDrivableAreaProperty.SIDEWALK_LENGTH, lane.length,
+                    lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH
+                ]
+            )
             key = f"CRS_{self.ID}_" + str(lane.index)
             self.build_crosswalk_block(key, lane, sidewalk_height, lateral_direction, longs, start_lat, side_lat)
-            
+
         if build_at_start:
-            longs = np.array([0 - PGDrivableAreaProperty.SIDEWALK_LENGTH, 0, 0 + PGDrivableAreaProperty.SIDEWALK_LENGTH])
+            longs = np.array(
+                [0 - PGDrivableAreaProperty.SIDEWALK_LENGTH, 0, 0 + PGDrivableAreaProperty.SIDEWALK_LENGTH]
+            )
             key = f"CRS_{self.ID}_" + str(lane.index) + "_S"
             self.build_crosswalk_block(key, lane, sidewalk_height, lateral_direction, longs, start_lat, side_lat)

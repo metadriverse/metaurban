@@ -31,11 +31,12 @@ def get_dest_heading(obj, dest_pos):
     dest = panda_vector(dest_pos[0], dest_pos[1])
     vec_to_2d = dest - position
     # dist_to = vec_to_2d.length()
-    #### 
-    
+    ####
+
     heading = Vec2(*obj.heading).signedAngleDeg(vec_to_2d)
     #####
     return heading
+
 
 class ORCATrajectoryNavigation(BaseNavigation):
     """
@@ -74,7 +75,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
 
         self._route_completion = 0
         self.checkpoints = None  # All check points
-        
+
         seed = self.engine.global_random_seed
         import os, random
         import numpy as np
@@ -85,7 +86,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
         torch.manual_seed(seed)
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
-        
+
         self.walkable_regions_mask = self._get_walkable_regions(self.map)
         self.start_points, self.end_points = self.random_start_and_end_points(self.walkable_regions_mask[:, :, 0], 1)
 
@@ -114,20 +115,21 @@ class ORCATrajectoryNavigation(BaseNavigation):
         self.last_current_long = deque([0.0, 0.0], maxlen=2)
         self.last_current_lat = deque([0.0, 0.0], maxlen=2)
         self.last_current_heading_theta_at_long = deque([0.0, 0.0], maxlen=2)
-    
+
     # TODO
     # No other objects
     # A*/other algos
     # * sidewalk centric coordinates
     # # 1. ego-orca
     # # 2. multi-agent orca
-    
+
     def get_box_pts_from_center_heading(self, length, width, xc, yc, heading):
         import numpy as np
-        def _rotate_pt(x, y, a):
-            return np.cos(a)*x - np.sin(a)*y, np.sin(a)*x + np.cos(a)*y
 
-        l, w = length / 2.0 , width / 2.0
+        def _rotate_pt(x, y, a):
+            return np.cos(a) * x - np.sin(a) * y, np.sin(a) * x + np.cos(a) * y
+
+        l, w = length / 2.0, width / 2.0
 
         ## box
         x1, y1 = l, w
@@ -149,7 +151,6 @@ class ORCATrajectoryNavigation(BaseNavigation):
         pt4 = [x4_ + xc, y4_ + yc]
 
         return [pt1, pt2, pt3, pt4]
-        
 
     def reset(self, vehicle):
         import numpy as np
@@ -158,28 +159,33 @@ class ORCATrajectoryNavigation(BaseNavigation):
         if 'ref_traj_path' in self.engine.global_config and self.engine.global_config['ref_traj_path'] != '':
             import pickle
             position_list = pickle.load(open(self.engine.global_config['ref_traj_path'], 'rb'))
-            assert self.engine.global_config['ref_traj_path'].split('_')[-1].split('.')[0].lower() == self.engine.global_config['map'].lower()
+            assert self.engine.global_config['ref_traj_path'].split('_')[-1].split('.')[0].lower(
+            ) == self.engine.global_config['map'].lower()
             self.position_list = [np.array(i).reshape(2, ) for i in position_list]
             # mask_before = self.walkable_regions_mask
             # cv2.imwrite('./tmp_before.png', self.walkable_regions_mask)
-            
+
             self.init_position = self.position_list[0]
-            
+
             super(ORCATrajectoryNavigation, self).reset(current_lane=self.reference_trajectory)
             self.set_route()
-            
+
             self.ref_position_list = self.checkpoints
             heading_list = []
             for p in range(1, len(self.ref_position_list)):
                 heading_list.append(
-                    np.arctan2(self.ref_position_list[p][1] - self.ref_position_list[p - 1][1], 
-                             self.ref_position_list[p][0] - self.ref_position_list[p - 1][0])
+                    np.arctan2(
+                        self.ref_position_list[p][1] - self.ref_position_list[p - 1][1],
+                        self.ref_position_list[p][0] - self.ref_position_list[p - 1][0]
+                    )
                 )
             self.heading_list = heading_list
             self.ref_position_list = self.ref_position_list[:-1]
             assert len(self.ref_position_list) == len(self.heading_list)
-            self.pop_path = [self.position_list[len(self.position_list) - 1 - i] for i in range(len(self.position_list))]
-            
+            self.pop_path = [
+                self.position_list[len(self.position_list) - 1 - i] for i in range(len(self.position_list))
+            ]
+
         else:
             seed = self.engine.global_random_seed
             import os, random
@@ -190,28 +196,22 @@ class ORCATrajectoryNavigation(BaseNavigation):
             torch.manual_seed(seed)
             torch.cuda.manual_seed(seed)
             torch.cuda.manual_seed_all(seed)
-            
+
             self.walkable_regions_mask = self._get_walkable_regions(self.map)
-            self.start_points, self.end_points = self.random_start_and_end_points(self.walkable_regions_mask[:, :, 0], 1)
+            self.start_points, self.end_points = self.random_start_and_end_points(
+                self.walkable_regions_mask[:, :, 0], 1
+            )
             # self.walkable_regions_mask[:] = 255
             # print( self.start_points, self.end_points)
             # self.start_points = [(10, 0)]
             # self.end_points = [(20, 0)]
             time_length, points, speed, early_stop_points = get_planning(
-                    [self.start_points],
-                    
-                    [self.walkable_regions_mask],
-                    
-                    [self.end_points],
-                    
-                    [len(self.start_points)],
-                    
-                    1
+                [self.start_points], [self.walkable_regions_mask], [self.end_points], [len(self.start_points)], 1
             )
-            
+
             # case-1
-            # start_point = self._to_block_coordinate(points[0][50][0]) 
-            # end_point = self._to_block_coordinate(points[0][60][0]) 
+            # start_point = self._to_block_coordinate(points[0][50][0])
+            # end_point = self._to_block_coordinate(points[0][60][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -223,9 +223,9 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # # 生成四个垂直点
             # distance = 1.5  # 每个点离线的距离
             # points2 = [start_point + i * distance * perpendicular for i in [-1, 1]]
-            
-            # start_point = self._to_block_coordinate(points[0][120][0]) 
-            # end_point = self._to_block_coordinate(points[0][125][0]) 
+
+            # start_point = self._to_block_coordinate(points[0][120][0])
+            # end_point = self._to_block_coordinate(points[0][125][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -240,7 +240,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # selected_humanoid_configs = []
             # for i, point in enumerate(points2, start=1):
             #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point) 
+            #     spawn_point = point#self._to_block_coordinate(point)
             #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
             #     selected_humanoid_configs.append(random_humanoid_config)
             # for kk, v_config in enumerate(selected_humanoid_configs):
@@ -249,10 +249,10 @@ class ORCATrajectoryNavigation(BaseNavigation):
             #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
             #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
             #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
-            
+
             # case-2
-            # start_point = self._to_block_coordinate(points[0][50][0]) 
-            # end_point = self._to_block_coordinate(points[0][60][0]) 
+            # start_point = self._to_block_coordinate(points[0][50][0])
+            # end_point = self._to_block_coordinate(points[0][60][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -264,9 +264,9 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # # 生成四个垂直点
             # distance = 1.5  # 每个点离线的距离
             # points2 = [start_point + i * distance * perpendicular for i in [-1, 1]]
-            
-            # start_point = self._to_block_coordinate(points[0][120][0]) 
-            # end_point = self._to_block_coordinate(points[0][125][0]) 
+
+            # start_point = self._to_block_coordinate(points[0][120][0])
+            # end_point = self._to_block_coordinate(points[0][125][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -281,7 +281,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # selected_humanoid_configs = []
             # for i, point in enumerate(points2, start=1):
             #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point) 
+            #     spawn_point = point#self._to_block_coordinate(point)
             #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
             #     selected_humanoid_configs.append(random_humanoid_config)
             # for kk, v_config in enumerate(selected_humanoid_configs):
@@ -290,10 +290,10 @@ class ORCATrajectoryNavigation(BaseNavigation):
             #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
             #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
             #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
-            
+
             # case-3
-            # start_point = self._to_block_coordinate(points[0][10][0]) 
-            # end_point = self._to_block_coordinate(points[0][20][0]) 
+            # start_point = self._to_block_coordinate(points[0][10][0])
+            # end_point = self._to_block_coordinate(points[0][20][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -305,9 +305,9 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # # 生成四个垂直点
             # distance = 1.5  # 每个点离线的距离
             # points2 = [start_point + i * distance * perpendicular for i in [-1, -0.8]]
-            
-            # start_point = self._to_block_coordinate(points[0][30][0]) 
-            # end_point = self._to_block_coordinate(points[0][40][0]) 
+
+            # start_point = self._to_block_coordinate(points[0][30][0])
+            # end_point = self._to_block_coordinate(points[0][40][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -322,7 +322,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # selected_humanoid_configs = []
             # for i, point in enumerate(points2, start=1):
             #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point) 
+            #     spawn_point = point#self._to_block_coordinate(point)
             #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
             #     selected_humanoid_configs.append(random_humanoid_config)
             # for kk, v_config in enumerate(selected_humanoid_configs):
@@ -331,10 +331,10 @@ class ORCATrajectoryNavigation(BaseNavigation):
             #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
             #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
             #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
-            
+
             # case-4
-            # start_point = self._to_block_coordinate(points[0][50][0]) 
-            # end_point = self._to_block_coordinate(points[0][60][0]) 
+            # start_point = self._to_block_coordinate(points[0][50][0])
+            # end_point = self._to_block_coordinate(points[0][60][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -346,9 +346,9 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # # 生成四个垂直点
             # distance = 1.5  # 每个点离线的距离
             # points2 = [start_point + i * distance * perpendicular for i in [-1, -0.8]]
-            
-            # start_point = self._to_block_coordinate(points[0][70][0]) 
-            # end_point = self._to_block_coordinate(points[0][80][0]) 
+
+            # start_point = self._to_block_coordinate(points[0][70][0])
+            # end_point = self._to_block_coordinate(points[0][80][0])
 
             # # 计算方向向量
             # direction = end_point - start_point
@@ -363,7 +363,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # selected_humanoid_configs = []
             # for i, point in enumerate(points2, start=1):
             #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point) 
+            #     spawn_point = point#self._to_block_coordinate(point)
             #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
             #     selected_humanoid_configs.append(random_humanoid_config)
             # for kk, v_config in enumerate(selected_humanoid_configs):
@@ -372,9 +372,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
             #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
             #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
-            
-            
-                
+
             positions = points[0]
             speeds = speed[0]
             self.position_list = []
@@ -387,7 +385,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             if self.engine.global_config["show_ego_navigation"]:
                 import matplotlib.pyplot as plt
                 fig, ax = plt.subplots()
-                plt.imshow(np.flipud(self.walkable_regions_mask), origin='lower')   ######
+                plt.imshow(np.flipud(self.walkable_regions_mask), origin='lower')  ######
                 # plt.imshow(map_mask)
                 ax.scatter([p[0] for p in self.end_points], [p[1] for p in self.end_points], marker='x')
                 ax.scatter([p[0] for p in self.start_points], [p[1] for p in self.start_points], marker='o')
@@ -397,18 +395,18 @@ class ORCATrajectoryNavigation(BaseNavigation):
 
     @property
     def reference_trajectory(self):
-        
+
         if not hasattr(self, 'position_list'):
             self.position_list = []
         elif len(self.position_list) > 0:
             return self.get_idm_route(self.position_list)
-                
+
         return self.get_idm_route(self.position_list)
-    
+
     def _to_block_coordinate(self, point_in_mask: object) -> object:
         point_in_block = point_in_mask - self.mask_translate
         return point_in_block
-    
+
     def random_start_and_end_points(self, map_mask, num):
         ### cv2.erode
         import os, random, torch, numpy as np
@@ -431,7 +429,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
         import math
         iteration = 0
         # goals = self._random_points_new(map_mask, num, generated_position=starts[0])
-        while distance <  5.0:
+        while distance < 5.0:
             seed = seed + 1
             np.random.seed(seed)
             torch.manual_seed(seed)
@@ -440,7 +438,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             goals = self._random_points_new(map_mask, num, generated_position=starts[0])
             goal_pos = self._to_block_coordinate(goals[0])
             start_pos = self._to_block_coordinate(starts[0])
-            distance = math.sqrt((goal_pos[0] - start_pos[0]) ** 2 + (goal_pos[1] - start_pos[1]) ** 2)
+            distance = math.sqrt((goal_pos[0] - start_pos[0])**2 + (goal_pos[1] - start_pos[1])**2)
             # print(iteration, distance, start_pos, goal_pos)
             iteration += 1
             if iteration > 100:
@@ -453,14 +451,13 @@ class ORCATrajectoryNavigation(BaseNavigation):
         if self.engine.global_config["show_mid_block_map"]:
             import matplotlib.pyplot as plt
             fig, ax = plt.subplots()
-            plt.imshow(np.flipud(map_mask), origin='lower')   ######
+            plt.imshow(np.flipud(map_mask), origin='lower')  ######
             # plt.imshow(map_mask)
             fixed_goal = ax.scatter([p[0] for p in goals], [p[1] for p in goals], marker='x')
             fixed_start = ax.scatter([p[0] for p in starts], [p[1] for p in starts], marker='o')
             plt.show()
         return starts, goals
-    
-    
+
     def _random_points_new(self, map_mask, num, min_dis=5, generated_position=None):
         import matplotlib.pyplot as plt
         from scipy.signal import convolve2d
@@ -478,11 +475,12 @@ class ORCATrajectoryNavigation(BaseNavigation):
         for p in flipped_contours:
             for m in p:
                 int_points.append((int(m[1]), int(m[0])))
+
         def find_walkable_area(map_mask):
             # kernel = np.array([[1,1,1,1,1],[1,1,1,1,1],[1,1,0,1,1],[1,1,1,1,1],[1,1,1,1,1]], dtype=np.uint8)
-            kernel = np.array([[1,1,1],[1,0,1],[1,1,1]], dtype=np.uint8)
-            conv_result= convolve2d(map_mask/255, kernel, mode='same')
-            ct_pts = np.where(conv_result==8) #8, 24
+            kernel = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]], dtype=np.uint8)
+            conv_result = convolve2d(map_mask / 255, kernel, mode='same')
+            ct_pts = np.where(conv_result == 8)  #8, 24
             ct_pts = list(zip(ct_pts[1], ct_pts[0]))
             # print('Len Before:', len(ct_pts))
             ct_pts = [c for c in ct_pts if c not in int_points]
@@ -490,25 +488,30 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # plt.imshow(map_mask, cmap='gray'); plt.scatter([pt[0] for pt in ct_pts], [pt[1] for pt in ct_pts], color='red')
             # plt.grid(True); plt.show()
             return ct_pts
+
         selected_pts = []
         walkable_pts = find_walkable_area(map_mask)
         if generated_position is not None:
-            dis_to_start = np.linalg.norm(np.array([(x[0], h - 1 - x[1]) for x in walkable_pts]) - generated_position, axis=1)
+            dis_to_start = np.linalg.norm(
+                np.array([(x[0], h - 1 - x[1]) for x in walkable_pts]) - generated_position, axis=1
+            )
             # print(dis_to_start[np.argsort(dis_to_start)[::-1]])
             walkable_pts = np.array(walkable_pts)[np.argsort(dis_to_start)[::-1]][:int(len(walkable_pts) / 10)].tolist()
         random.shuffle(walkable_pts)
-        if len(walkable_pts) < num: raise ValueError(" Walkable points are less than spawn number! ")
+        if len(walkable_pts) < num:
+            raise ValueError(" Walkable points are less than spawn number! ")
         try_time = 0
         while len(selected_pts) < num:
             # print(try_time)
-            if try_time > 10000: raise ValueError("Try too many time to get valid humanoid points!")
+            if try_time > 10000:
+                raise ValueError("Try too many time to get valid humanoid points!")
             cur_pt = random.choice(walkable_pts)
-            if all(math.dist(cur_pt, selected_pt) >= min_dis for selected_pt in selected_pts): 
+            if all(math.dist(cur_pt, selected_pt) >= min_dis for selected_pt in selected_pts):
                 selected_pts.append(cur_pt)
-            try_time+=1
+            try_time += 1
         selected_pts = [(x[0], h - 1 - x[1]) for x in selected_pts]
         return selected_pts
-    
+
     def _get_walkable_regions(self, current_map):
         self.crosswalks = current_map.crosswalks
         self.sidewalks = current_map.sidewalks
@@ -527,7 +530,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # if "CRS_I_" in crosswalk: continue
             polygon = self.crosswalks[crosswalk]['polygon']
             polygons += polygon
-            
+
         for sidewalk in self.sidewalks_near_road_buffer.keys():
             polygon = self.sidewalks_near_road_buffer[sidewalk]['polygon']
             polygons += polygon
@@ -550,13 +553,13 @@ class ORCATrajectoryNavigation(BaseNavigation):
         min_y = np.min(polygon_array[:, 1])
         max_y = np.max(polygon_array[:, 1])
 
-        rows = math.ceil(max_y - min_y) + 2*self.mask_delta
-        columns = math.ceil(max_x - min_x) + 2*self.mask_delta
+        rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
+        columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
 
-        self.mask_translate = np.array([-min_x+self.mask_delta, -min_y+self.mask_delta])
+        self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
         if hasattr(self.engine, 'walkable_regions_mask'):
             return self.engine.walkable_regions_mask
-        
+
         self.crosswalks = current_map.crosswalks
         self.sidewalks = current_map.sidewalks
         self.sidewalks_near_road = current_map.sidewalks_near_road
@@ -573,7 +576,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             # if "CRS_I_" in crosswalk: continue
             polygon = self.crosswalks[crosswalk]['polygon']
             polygons += polygon
-            
+
         for sidewalk in self.sidewalks_near_road_buffer.keys():
             polygon = self.sidewalks_near_road_buffer[sidewalk]['polygon']
             polygons += polygon
@@ -593,10 +596,10 @@ class ORCATrajectoryNavigation(BaseNavigation):
         min_y = np.min(polygon_array[:, 1])
         max_y = np.max(polygon_array[:, 1])
 
-        rows = math.ceil(max_y - min_y) + 2*self.mask_delta
-        columns = math.ceil(max_x - min_x) + 2*self.mask_delta
+        rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
+        columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
 
-        self.mask_translate = np.array([-min_x+self.mask_delta, -min_y+self.mask_delta])
+        self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
         walkable_regions_mask = np.zeros((rows, columns, 3), np.uint8)
 
         for sidewalk in self.sidewalks.keys():
@@ -614,7 +617,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             polygon_array = np.floor(polygon_array).astype(int)
             polygon_array = polygon_array.reshape((-1, 1, 2))
             cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-        
+
         for sidewalk in self.sidewalks_near_road_buffer.keys():
             # if "SDW_I_" in sidewalk: continue
             polygon_array = np.array(self.sidewalks_near_road_buffer[sidewalk]['polygon'])
@@ -643,10 +646,10 @@ class ORCATrajectoryNavigation(BaseNavigation):
             polygon_array = np.floor(polygon_array).astype(int)
             polygon_array = polygon_array.reshape((-1, 1, 2))
             cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-        walkable_regions_mask = cv2.flip(walkable_regions_mask, 0)   ### flip for orca   ###### 
+        walkable_regions_mask = cv2.flip(walkable_regions_mask, 0)  ### flip for orca   ######
 
         return walkable_regions_mask
-    
+
     def get_map_mask(self):
         pass
 
@@ -678,17 +681,17 @@ class ORCATrajectoryNavigation(BaseNavigation):
             ret.append(self.reference_trajectory.position(i * self.DISCRETE_LEN, 0))
         ret.append(self.reference_trajectory.end)
         return ret
-    
+
     def get_idm_route(self, traj_points, width=2):
         from metaurban.component.lane.point_lane import PointLane
         traj = PointLane(traj_points, width)
         return traj
-    
+
     def update_localization(self, ego_vehicle):
         """
         It is called every step
         """
-        
+
         if self.reference_trajectory is None:
             return
 

@@ -61,7 +61,7 @@ def test_move_and_copy_loads():
     assert m.copy_tuple((18, 19)) == 37  # 2 c_c copies
     # Direct constructions: 2 c_m moves, 2 c_mc moves, 1 c_c copy
     # Extra moves/copies when moving pairs/tuples: 3 c_m, 3 c_mc, 2 c_c
-    assert m.move_copy_nested((1, ((2, 3, (4,)), 5))) == 15
+    assert m.move_copy_nested((1, ((2, 3, (4, )), 5))) == 15
 
     assert c_m.copy_assignments + c_m.copy_constructions == 0
     assert c_m.move_assignments == 6

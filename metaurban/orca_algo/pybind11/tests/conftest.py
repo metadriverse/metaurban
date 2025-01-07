@@ -57,14 +57,11 @@ def _split_and_sort(s):
 
 def _make_explanation(a, b):
     """Explanation for a failed assert -- the a and b arguments are List[str]"""
-    return ["--- actual / +++ expected"] + [
-        line.strip("\n") for line in difflib.ndiff(a, b)
-    ]
+    return ["--- actual / +++ expected"] + [line.strip("\n") for line in difflib.ndiff(a, b)]
 
 
 class Output:
     """Basic output post-processing and comparison"""
-
     def __init__(self, string):
         self.string = string
         self.explanation = []
@@ -74,11 +71,7 @@ class Output:
 
     def __eq__(self, other):
         # Ignore constructor/destructor output which is prefixed with "###"
-        a = [
-            line
-            for line in self.string.strip().splitlines()
-            if not line.startswith("###")
-        ]
+        a = [line for line in self.string.strip().splitlines() if not line.startswith("###")]
         b = _strip_and_dedent(other).splitlines()
         if a == b:
             return True
@@ -88,7 +81,6 @@ class Output:
 
 class Unordered(Output):
     """Custom comparison for output without strict line ordering"""
-
     def __eq__(self, other):
         a = _split_and_sort(self.string)
         b = _split_and_sort(other)
@@ -209,9 +201,7 @@ def pytest_configure():
 
 def pytest_report_header(config):
     del config  # Unused.
-    assert (
-        pybind11_tests.compiler_info is not None
-    ), "Please update pybind11_tests.cpp if this assert fails."
+    assert (pybind11_tests.compiler_info is not None), "Please update pybind11_tests.cpp if this assert fails."
     return (
         "C++ Info:"
         f" {pybind11_tests.compiler_info}"

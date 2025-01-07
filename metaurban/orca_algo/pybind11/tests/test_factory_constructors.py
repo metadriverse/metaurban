@@ -10,10 +10,7 @@ from pybind11_tests.factory_constructors import tag
 def test_init_factory_basic():
     """Tests py::init_factory() wrapper around various ways of returning the object"""
 
-    cstats = [
-        ConstructorStats.get(c)
-        for c in [m.TestFactory1, m.TestFactory2, m.TestFactory3]
-    ]
+    cstats = [ConstructorStats.get(c) for c in [m.TestFactory1, m.TestFactory2, m.TestFactory3]]
     cstats[0].alive()  # force gc
     n_inst = ConstructorStats.detail_reg_inst()
 
@@ -45,9 +42,7 @@ def test_init_factory_basic():
     for null_ptr_kind in [tag.null_ptr, tag.null_unique_ptr, tag.null_shared_ptr]:
         with pytest.raises(TypeError) as excinfo:
             m.TestFactory3(null_ptr_kind)
-        assert (
-            str(excinfo.value) == "pybind11::init(): factory function returned nullptr"
-        )
+        assert (str(excinfo.value) == "pybind11::init(): factory function returned nullptr")
 
     assert [i.alive() for i in cstats] == [3, 3, 3]
     assert ConstructorStats.detail_reg_inst() == n_inst + 9
@@ -71,8 +66,7 @@ def test_init_factory_signature(msg):
     with pytest.raises(TypeError) as excinfo:
         m.TestFactory1("invalid", "constructor", "arguments")
     assert (
-        msg(excinfo.value)
-        == """
+        msg(excinfo.value) == """
         __init__(): incompatible constructor arguments. The following argument types are supported:
             1. m.factory_constructors.TestFactory1(arg0: m.factory_constructors.tag.unique_ptr_tag, arg1: int)
             2. m.factory_constructors.TestFactory1(arg0: str)
@@ -84,8 +78,7 @@ def test_init_factory_signature(msg):
     )
 
     assert (
-        msg(m.TestFactory1.__init__.__doc__)
-        == """
+        msg(m.TestFactory1.__init__.__doc__) == """
         __init__(*args, **kwargs)
         Overloaded function.
 
@@ -103,10 +96,7 @@ def test_init_factory_signature(msg):
 def test_init_factory_casting():
     """Tests py::init_factory() wrapper with various upcasting and downcasting returns"""
 
-    cstats = [
-        ConstructorStats.get(c)
-        for c in [m.TestFactory3, m.TestFactory4, m.TestFactory5]
-    ]
+    cstats = [ConstructorStats.get(c) for c in [m.TestFactory3, m.TestFactory4, m.TestFactory5]]
     cstats[0].alive()  # force gc
     n_inst = ConstructorStats.detail_reg_inst()
 
@@ -279,8 +269,7 @@ def test_init_factory_dual():
     with pytest.raises(TypeError) as excinfo:
         PythFactory7(tag.shared_ptr, tag.invalid_base, 14)
     assert (
-        str(excinfo.value)
-        == "pybind11::init(): construction failed: returned holder-wrapped instance is not an "
+        str(excinfo.value) == "pybind11::init(): construction failed: returned holder-wrapped instance is not an "
         "alias instance"
     )
 
@@ -358,8 +347,7 @@ def test_reallocation_a(capture, msg):
     with capture:
         create_and_destroy(1)
     assert (
-        msg(capture)
-        == """
+        msg(capture) == """
         noisy new
         noisy placement new
         NoisyAlloc(int 1)
@@ -465,7 +453,6 @@ def test_reallocation_g(capture, msg):
 
 def test_invalid_self():
     """Tests invocation of the pybind-registered base class with an invalid `self` argument."""
-
     class NotPybindDerived:
         pass
 
@@ -491,26 +478,16 @@ def test_invalid_self():
                 a = m.TestFactory2(tag.pointer, 1)
                 m.TestFactory6.__init__(a, tag.alias, 1)
             elif bad == 3:
-                m.TestFactory6.__init__(
-                    NotPybindDerived.__new__(NotPybindDerived), tag.base, 1
-                )
+                m.TestFactory6.__init__(NotPybindDerived.__new__(NotPybindDerived), tag.base, 1)
             elif bad == 4:
-                m.TestFactory6.__init__(
-                    NotPybindDerived.__new__(NotPybindDerived), tag.alias, 1
-                )
+                m.TestFactory6.__init__(NotPybindDerived.__new__(NotPybindDerived), tag.alias, 1)
 
     for arg in (1, 2):
         with pytest.raises(TypeError) as excinfo:
             BrokenTF1(arg)
-        assert (
-            str(excinfo.value)
-            == "__init__(self, ...) called with invalid or missing `self` argument"
-        )
+        assert (str(excinfo.value) == "__init__(self, ...) called with invalid or missing `self` argument")
 
     for arg in (0, 1, 2, 3, 4):
         with pytest.raises(TypeError) as excinfo:
             BrokenTF6(arg)
-        assert (
-            str(excinfo.value)
-            == "__init__(self, ...) called with invalid or missing `self` argument"
-        )
+        assert (str(excinfo.value) == "__init__(self, ...) called with invalid or missing `self` argument")

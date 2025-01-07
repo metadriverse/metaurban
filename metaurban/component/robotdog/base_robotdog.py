@@ -1,4 +1,3 @@
-
 from direct.actor.Actor import Actor
 from panda3d.bullet import BulletCylinderShape, BulletCapsuleShape
 
@@ -97,7 +96,6 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
     speed = 0
     steering = 0
 
-
     def __init__(
         self,
         vehicle_config: Union[dict, Config] = None,
@@ -126,7 +124,7 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
 
         # body = self._create_pedestrian_character()
         # self.add_body(body)
-        
+
         body = self._create_vehicle_chassis().getChassis()
         self.add_body(body)
 
@@ -169,7 +167,6 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
         # if self.engine.current_map is not None:
         if _calling_reset:
             self.reset(position=position, heading=heading, vehicle_config=vehicle_config)
-
 
     def _init_step_info(self):
         # done info will be initialized every frame
@@ -283,7 +280,7 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
 
         self.set_pitch(0)
         self.set_roll(0)
-        
+
         if position is not None:
             # Highest priority
             pass
@@ -320,7 +317,7 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
         except Exception:
             pass
             # print("error self.reset_navigation()")
-        
+
         # self.body.setLinearMovement(Vec3(0, 0, 0), True)
         # self.body.setAngularMovement(0)
 
@@ -356,7 +353,7 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
 
         # if self.config["spawn_velocity"] is not None:
         #     self.set_velocity(self.config["spawn_velocity"], in_local_frame=self.config["spawn_velocity_car_frame"])
-        
+
         self.body.clearForces()
         self.body.setLinearVelocity(Vec3(0, 0, 0))
         self.body.setAngularVelocity(Vec3(0, 0, 0))
@@ -402,7 +399,7 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
         if action is None:
             return
 
-        steering = action[0] * 90 # / np.pi * 180
+        steering = action[0] * 90  # / np.pi * 180
         speed = action[1] * 10
 
         self._body.setAngularMovement(steering)
@@ -420,11 +417,10 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
         # self.system.setSteeringValue(steering, 1)
         self._apply_throttle_brake(action[1])
 
-
     """---------------------------------------- vehicle info ----------------------------------------------"""
-    def get_forward_vector(self):
-        return get_engine().render.getRelativeVector(self.origin,Vec3(0,1,0))
 
+    def get_forward_vector(self):
+        return get_engine().render.getRelativeVector(self.origin, Vec3(0, 1, 0))
 
     def update_dist_to_left_right(self):
         self.dist_to_left_side, self.dist_to_right_side = self._dist_to_route_left_right()
@@ -438,7 +434,6 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
         lateral_to_left = lateral_to_reference + self.navigation.get_current_lane_width() / 2
         lateral_to_right = self.navigation.get_current_lateral_range(self.position, self.engine) - lateral_to_left
         return lateral_to_left, lateral_to_right
-
 
     @property
     def velocity(self) -> np.ndarray:
@@ -527,7 +522,6 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
     def MOTION_PATH(self):
         raise NotImplementedError()
 
-
     def _create_pedestrian_character(self):
         bullet_shape = BulletCylinderShape(self.RADIUS, self.HEIGHT)
 
@@ -542,7 +536,7 @@ class BaseRobotDog(BaseObject, BaseRobotDogState):
         physics_world.attachCharacter(character)
 
         return character
-    
+
     def _create_vehicle_chassis(self):
         # self.LENGTH = type(self).LENGTH
         # self.WIDTH = type(self).WIDTH
@@ -999,7 +993,7 @@ class EgoRobotDog(BaseObject, BaseRobotDogState):
     MAX_WIDTH = 2.5
     MAX_STEERING = 60
     SEMANTIC_LABEL = Semantics.CAR.label
-    
+
     TYPE = 'RobotDog'
 
     # LENGTH = None
@@ -1116,7 +1110,7 @@ class EgoRobotDog(BaseObject, BaseRobotDogState):
         # if self.engine.current_map is not None:
         if _calling_reset:
             self.reset(position=position, heading=heading, vehicle_config=vehicle_config)
-            
+
         # if save data
         self.save_data = True
         if self.save_data:
@@ -1237,7 +1231,7 @@ class EgoRobotDog(BaseObject, BaseRobotDogState):
 
         self.set_pitch(0)
         self.set_roll(0)
-        
+
         position = self.navigation.init_position
         from metaurban.examples.ppo_expert.custom_expert import get_dest_heading
         heading = get_dest_heading(self, position)
@@ -1605,7 +1599,7 @@ class EgoRobotDog(BaseObject, BaseRobotDogState):
             return
         from metaurban.component.navigation_module.sidewalk_trajectory_navigation import TrajectoryNavigation as STrajectoryNavigation
         navi = STrajectoryNavigation
-        
+
         self.navigation = navi(
             # self.engine,
             show_navi_mark=self.config["show_navi_mark"],

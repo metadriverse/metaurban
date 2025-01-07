@@ -113,7 +113,7 @@ class PGTrafficManager(BaseManager):
                     if len(self.block_triggered_vehicles) > 0:
                         block_vehicles = self.block_triggered_vehicles.pop()
                         self._traffic_vehicles += list(self.get_objects(block_vehicles.vehicles).values())
-                    
+
         for v in self._traffic_vehicles:
             p = self.engine.get_policy(v.name)
             v.before_step(p.act())
@@ -325,7 +325,13 @@ class PGTrafficManager(BaseManager):
 
     def random_vehicle_type(self):
         from metaurban.component.vehicle.vehicle_type import random_vehicle_type
-        vehicle_type = random_vehicle_type(self.np_random, [0.2, 0.3, 0.3, 0.2, 0.0,])
+        vehicle_type = random_vehicle_type(self.np_random, [
+            0.2,
+            0.3,
+            0.3,
+            0.2,
+            0.0,
+        ])
         return vehicle_type
 
     def destroy(self) -> None:
@@ -455,6 +461,8 @@ class TrafficMode:
 
     # Hybrid, some vehicles are triggered once on map and disappear when arriving at destination, others exist all time
     Hybrid = "hybrid"
+
+
 class NewAssetPGTrafficManager(PGTrafficManager):
     VEHICLE_GAP = 10  # m
 
@@ -518,7 +526,9 @@ class NewAssetPGTrafficManager(PGTrafficManager):
                 long = self.np_random.rand() * lane.length / 2
                 traffic_v_config = {"spawn_lane_index": lane_idx, "spawn_longitude": long}
                 if vehicle_type == CustomizedCar and issubclass(vehicle_type, BaseVehicle):
-                    new_v = self.spawn_object(vehicle_type, vehicle_config=traffic_v_config, test_asset_meta_info = asset_metainfo)
+                    new_v = self.spawn_object(
+                        vehicle_type, vehicle_config=traffic_v_config, test_asset_meta_info=asset_metainfo
+                    )
                 else:
                     new_v = self.spawn_object(vehicle_type, vehicle_config=traffic_v_config)
                 from metaurban.policy.idm_policy import IDMPolicy
@@ -548,7 +558,9 @@ class NewAssetPGTrafficManager(PGTrafficManager):
                 if use_original_vehicle:
                     random_v = self.spawn_object(vehicle_type, vehicle_config=traffic_v_config)
                 else:
-                    random_v = self.spawn_object(vehicle_type, vehicle_config=traffic_v_config, test_asset_meta_info=asset_info)
+                    random_v = self.spawn_object(
+                        vehicle_type, vehicle_config=traffic_v_config, test_asset_meta_info=asset_info
+                    )
                 from metaurban.policy.idm_policy import IDMPolicy
                 self.add_policy(random_v.id, IDMPolicy, random_v, self.generate_seed())
                 self._traffic_vehicles.append(random_v)

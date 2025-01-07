@@ -112,9 +112,7 @@ def test_vector_buffer_numpy():
     v = m.VectorStruct(
         np.zeros(
             3,
-            dtype=np.dtype(
-                [("w", "bool"), ("x", "I"), ("y", "float64"), ("z", "bool")], align=True
-            ),
+            dtype=np.dtype([("w", "bool"), ("x", "I"), ("y", "float64"), ("z", "bool")], align=True),
         )
     )
     assert len(v) == 3

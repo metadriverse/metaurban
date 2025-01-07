@@ -14,6 +14,7 @@ from metaurban.component.pg_space import ParameterSpace, Parameter, BlockParamet
 
 import matplotlib.pyplot as plt
 
+
 class InterSection(PGBlock):
     """
                                 up(Goal:1)
@@ -53,7 +54,6 @@ class InterSection(PGBlock):
         if self.radius is None:
             self.radius = self.get_config(copy=False)[Parameter.radius]
 
-
     def _try_plug_into_previous_block(self) -> bool:
         para = self.get_config()
         decrease_increase = -1 if para[Parameter.decrease_increase] == 0 else 1
@@ -76,11 +76,9 @@ class InterSection(PGBlock):
              self.road_node(2, 0), _attach_road.start_node]
         )
 
-
         # for i in range(3):
         #     self.draw_polygon(attach_lanes[i].polygon)
         #     input("Press Enter to continue...")
-
 
         self.right_lanes = []
         for i in range(4):
@@ -118,7 +116,6 @@ class InterSection(PGBlock):
                 self.add_sockets(socket)
                 attach_road = -exit_road
                 attach_lanes = attach_road.get_lanes(self.block_network)
-
 
         # self.draw_polygon(self.block_network.graph['>>>']['1X2_0_'][2].polygon)
         # input("Press Enter to continue...")
@@ -286,7 +283,6 @@ class InterSection(PGBlock):
         respawn_lanes = self.get_respawn_lanes()
         return respawn_lanes
 
-
     def draw_polygon(self, polygon):
         """
         Visualize the polygon with matplot lib
@@ -307,7 +303,9 @@ class InterSection(PGBlock):
 
         # Plot the rectangle
         plt.figure(figsize=(8, 8))
-        plt.plot(*zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)), marker='o', label='Rectangle Vertices')
+        plt.plot(
+            *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)), marker='o', label='Rectangle Vertices'
+        )
         plt.fill(
             *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)), alpha=0.3
         )  # Fill the rectangle with light opacity
@@ -325,9 +323,7 @@ class InterSection(PGBlock):
 
         plt.show()
 
-
         # input("Press Enter to continue...")
-
 
     def draw_polygons_in_network_block(self, network_block):
         """
@@ -352,11 +348,18 @@ class InterSection(PGBlock):
                     rectangle_points = np.array(polygon)
 
                     # Plot the rectangle
-                    plt.plot(*zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)), marker='o', label='['+x+']'+'['+y+']'+'['+str(i)+']', c=np.random.rand(1, 3))
+                    plt.plot(
+                        *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)),
+                        marker='o',
+                        label='[' + x + ']' + '[' + y + ']' + '[' + str(i) + ']',
+                        c=np.random.rand(1, 3)
+                    )
 
                     # Fill the rectangle with light opacity
                     plt.fill(
-                        *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)), alpha=0.3, c=np.random.rand(1, 3)
+                        *zip(*np.append(rectangle_points, [rectangle_points[0]], axis=0)),
+                        alpha=0.3,
+                        c=np.random.rand(1, 3)
                     )
 
         # Set equal scaling and labels
@@ -373,42 +376,59 @@ class InterSection(PGBlock):
 
     def _generate_crosswalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         crosswalk_width = lane.width * 4  #3 ## length
-        start_lat = +lane.width_at(0) - crosswalk_width / 2 -1.7 #0.5 #0.7
-        side_lat = start_lat + crosswalk_width  -1.7 #0.5 #0.7
+        start_lat = +lane.width_at(0) - crosswalk_width / 2 - 1.7  #0.5 #0.7
+        side_lat = start_lat + crosswalk_width - 1.7  #0.5 #0.7
 
         # print('lane inside intersection: ')
         # print(lane.index)  #('4X0_0_', '4X0_1_', 0)
 
-
         build_at_start = True
         build_at_end = True
         ### change_on_0516 ###
-        crs_part = -1 # init
+        crs_part = -1  # init
 
         if build_at_end:
-            longs = np.array([lane.length - PGDrivableAreaProperty.SIDEWALK_LENGTH, lane.length, lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH])
+            longs = np.array(
+                [
+                    lane.length - PGDrivableAreaProperty.SIDEWALK_LENGTH, lane.length,
+                    lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH
+                ]
+            )
             key = f"CRS_{self.ID}_" + str(lane.index)
             ## distribute crswalk part
-            if f'{self.name}0_0_' == lane.index[0] and f'{self.name}0_1_' == lane.index[1]: crs_part = 1
-            elif f'-{self.name}0_1_'== lane.index[0] and f'-{self.name}0_0_' == lane.index[1]: crs_part = 2
-            elif f'{self.name}1_0_' == lane.index[0] and f'{self.name}1_1_' == lane.index[1]: crs_part = 3
-            elif f'-{self.name}1_1_'== lane.index[0] and f'-{self.name}1_0_' == lane.index[1]: crs_part = 4
-            elif f'{self.name}2_0_'== lane.index[0] and f'{self.name}2_1_' == lane.index[1]: crs_part = 5
-            elif f'-{self.name}2_1_'== lane.index[0] and f'-{self.name}2_0_' == lane.index[1]: crs_part = 6
-            if crs_part in self.valid_crswalk:
-                self.build_crosswalk_block(key, lane, sidewalk_height, lateral_direction, longs, start_lat, side_lat)
-        
-        ### change_on_0516 ###
-        crs_part = -1 # re_init
-        if build_at_start:
-            longs = np.array([0 - PGDrivableAreaProperty.SIDEWALK_LENGTH, 0, 0 + PGDrivableAreaProperty.SIDEWALK_LENGTH])
-            key = f"CRS_{self.ID}_" + str(lane.index) + "_S"
-            if f'-{self.name}0_1_'== lane.index[0] and f'-{self.name}0_0_' == lane.index[1]:  crs_part = 1
-            elif f'{self.name}0_0_' == lane.index[0] and f'{self.name}0_1_' == lane.index[1]: crs_part = 2
-            elif f'-{self.name}1_1_'== lane.index[0] and f'-{self.name}1_0_' == lane.index[1]: crs_part = 3
-            elif f'{self.name}1_0_' == lane.index[0] and f'{self.name}1_1_' == lane.index[1]: crs_part = 4
-            elif f'-{self.name}2_1_'== lane.index[0] and f'-{self.name}2_0_' == lane.index[1]: crs_part = 5
-            elif f'{self.name}2_0_'== lane.index[0] and f'{self.name}2_1_' == lane.index[1]: crs_part = 6
+            if f'{self.name}0_0_' == lane.index[0] and f'{self.name}0_1_' == lane.index[1]:
+                crs_part = 1
+            elif f'-{self.name}0_1_' == lane.index[0] and f'-{self.name}0_0_' == lane.index[1]:
+                crs_part = 2
+            elif f'{self.name}1_0_' == lane.index[0] and f'{self.name}1_1_' == lane.index[1]:
+                crs_part = 3
+            elif f'-{self.name}1_1_' == lane.index[0] and f'-{self.name}1_0_' == lane.index[1]:
+                crs_part = 4
+            elif f'{self.name}2_0_' == lane.index[0] and f'{self.name}2_1_' == lane.index[1]:
+                crs_part = 5
+            elif f'-{self.name}2_1_' == lane.index[0] and f'-{self.name}2_0_' == lane.index[1]:
+                crs_part = 6
             if crs_part in self.valid_crswalk:
                 self.build_crosswalk_block(key, lane, sidewalk_height, lateral_direction, longs, start_lat, side_lat)
 
+        ### change_on_0516 ###
+        crs_part = -1  # re_init
+        if build_at_start:
+            longs = np.array(
+                [0 - PGDrivableAreaProperty.SIDEWALK_LENGTH, 0, 0 + PGDrivableAreaProperty.SIDEWALK_LENGTH]
+            )
+            key = f"CRS_{self.ID}_" + str(lane.index) + "_S"
+            if f'-{self.name}0_1_' == lane.index[0] and f'-{self.name}0_0_' == lane.index[1]:
+                crs_part = 1
+            elif f'{self.name}0_0_' == lane.index[0] and f'{self.name}0_1_' == lane.index[1]:
+                crs_part = 2
+            elif f'-{self.name}1_1_' == lane.index[0] and f'-{self.name}1_0_' == lane.index[1]:
+                crs_part = 3
+            elif f'{self.name}1_0_' == lane.index[0] and f'{self.name}1_1_' == lane.index[1]:
+                crs_part = 4
+            elif f'-{self.name}2_1_' == lane.index[0] and f'-{self.name}2_0_' == lane.index[1]:
+                crs_part = 5
+            elif f'{self.name}2_0_' == lane.index[0] and f'{self.name}2_1_' == lane.index[1]:
+                crs_part = 6
+            if crs_part in self.valid_crswalk:
+                self.build_crosswalk_block(key, lane, sidewalk_height, lateral_direction, longs, start_lat, side_lat)

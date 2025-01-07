@@ -36,7 +36,7 @@ METAURBAN_DEFAULT_CONFIG = dict(
     store_map=True,
     crswalk_density=0.1,  #####
     spawn_human_num=1,
-    show_mid_block_map=False, 
+    show_mid_block_map=False,
     # ===== Traffic =====
     traffic_density=0.1,
     need_inverse_traffic=False,
@@ -116,7 +116,7 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
         # scenario setting
         self.start_seed = self.start_index = self.config["start_seed"]
         self.env_num = self.num_scenarios
-        
+
         # record previous agent state
         self.previous_agent_actions = {}
 
@@ -209,8 +209,8 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
             self.logger.info(
                 "Episode ended! Scenario Index: {} Reason: max step ".format(self.current_seed),
                 extra={"log_once": True}
-            )   
-            
+            )
+
         return done, done_info
 
     def cost_function(self, vehicle_id: str):
@@ -243,7 +243,7 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
             lat = abs(vehicle.navigation.current_lateral)
             done = lat > self.config["max_lateral_dist"]
             return done
-        
+
         ret = not vehicle.on_lane
         if self.config["out_of_route_done"]:
             ret = ret or vehicle.out_of_route
@@ -253,14 +253,14 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
 
     def record_previous_agent_state(self, vehicle_id: str):
         self.previous_agent_actions[vehicle_id] = self.agents[vehicle_id].current_action
-    
+
     def reward_function(self, vehicle_id: str):
         """
         Override this func to get a new reward function
         :param vehicle_id: id of BaseVehicle
         :return: reward
         """
-        
+
         vehicle = self.agents[vehicle_id]
         step_info = dict()
 
@@ -273,7 +273,7 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
         # dense driving reward
         reward = 0
         reward += self.config["driving_reward"] * (long_now - long_last)
-        
+
         # print('Long:', long_last, long_now)
 
         # reward for lane keeping, without it vehicle can learn to overtake but fail to keep in lane
@@ -286,7 +286,7 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
         heading_diff = wrap_to_pi(abs(vehicle.heading_theta - ref_line_heading)) / np.pi
         heading_penalty = -heading_diff * self.config["heading_penalty"]
         reward += heading_penalty
-        
+
         # TODO: maybe add throttle smoothness
 
         # steering_range
@@ -295,9 +295,10 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
         overflowed_steering = min((allowed_steering - steering), 0)
         steering_range_penalty = overflowed_steering * self.config["steering_range_penalty"]
         reward += steering_range_penalty
-        
-        # steering smoothness 
-        if vehicle_id not in self.previous_agent_actions or "steering_penalty" not in self.config or self.config["steering_penalty"] == 0:
+
+        # steering smoothness
+        if vehicle_id not in self.previous_agent_actions or "steering_penalty" not in self.config or self.config[
+                "steering_penalty"] == 0:
             steering_reward = 0
         else:
             steering = vehicle.current_action[0]
@@ -305,7 +306,7 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
             steering_diff = abs(steering - prev_steering)
             steering_reward = -steering_diff * self.config["steering_penalty"]
         reward += steering_reward
-        
+
         # if 'speed_reward' in self.config:
         #     positive_road = 1 if not self._is_out_of_road(vehicle) else -1
         #     reward += self.config["speed_reward"] * (vehicle.speed_km_h / vehicle.max_speed_km_h) * positive_road
@@ -345,7 +346,7 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
         step_info["step_reward_heading"] = heading_penalty
         step_info["step_reward_action_smooth"] = steering_range_penalty
         step_info["steering_reward"] = steering_reward
-        
+
         self.record_previous_agent_state(vehicle_id)
         return float(reward), step_info
 
@@ -362,7 +363,7 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
         self.engine.register_manager("humanoid_manager", PGHumanoidManager())
         if abs(self.config["accident_prob"] - 0) > 1e-2:
             self.engine.register_manager("object_manager", TrafficObjectManager())
-            
+
     def _get_agent_manager(self):
         from metaurban.manager.agent_manager import DeliveryRobotAgentManager
         return DeliveryRobotAgentManager(init_observations=self._get_observations())

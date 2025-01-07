@@ -24,24 +24,27 @@ from functools import partial
 from imitation.policies.serialize import load_policy
 from stable_baselines3.ppo.ppo import PPO
 from stable_baselines3.common.monitor import Monitor
+
+
 def make_metadrive_env_fn(env_cfg):
-    env = SidewalkStaticMetaUrbanEnv(
-        dict(
-            log_level=50,
-            **env_cfg,
-        )
-    )
+    env = SidewalkStaticMetaUrbanEnv(dict(
+        log_level=50,
+        **env_cfg,
+    ))
     env = Monitor(env)
     return env
+
 
 import math
 import torch.nn as nn
 import torch
 
+
 def normal_log_density(x, mean, log_std, std):
     var = std.pow(2)
     log_density = -(x - mean).pow(2) / (2 * var) - 0.5 * math.log(2 * math.pi) - log_std
     return log_density.sum(1, keepdim=True)
+
 
 class Policy(nn.Module):
     def __init__(self, state_dim, action_dim, hidden_size=(128, 256, 128), activation='tanh', log_std=0):
@@ -108,6 +111,7 @@ class Policy(nn.Module):
             id += 1
         return cov_inv.detach(), mean, {'std_id': std_id, 'std_index': std_index}
 
+
 class Value(nn.Module):
     def __init__(self, state_dim, hidden_size=(128, 128), activation='tanh'):
         super().__init__()
@@ -135,6 +139,8 @@ class Value(nn.Module):
         value = self.value_head(x)
         prob = torch.sigmoid(value)
         return prob
+
+
 """
 Block Type	    ID
 Straight	    S  
@@ -157,10 +163,10 @@ if __name__ == "__main__":
         crswalk_density=1,
         object_density=0.4,
         use_render=True,
-        map = map_type,
+        map=map_type,
         manual_control=False,
         drivable_area_extension=55,
-        height_scale = 1,
+        height_scale=1,
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
@@ -192,16 +198,20 @@ if __name__ == "__main__":
         config.update(
             dict(
                 image_observation=True,
-                sensors=dict(rgb_camera=(RGBCamera, 1920, 1080), depth_camera=(DepthCamera, 640, 640), semantic_camera=(SemanticCamera, 640, 640),),
+                sensors=dict(
+                    rgb_camera=(RGBCamera, 1920, 1080),
+                    depth_camera=(DepthCamera, 640, 640),
+                    semantic_camera=(SemanticCamera, 640, 640),
+                ),
                 agent_observation=ThreeSourceMixObservation,
                 interface_panel=[]
             )
         )
-    
+
     env = SidewalkStaticMetaUrbanEnv(config)
     o, _ = env.reset(seed=0)
-    
-    algo_config=dict(
+
+    algo_config = dict(
         learning_rate=5e-5,
         n_steps=200,
         batch_size=256,
@@ -227,10 +237,10 @@ if __name__ == "__main__":
     try:
         print(HELP_MESSAGE)
         for i in range(1, 1000000000):
-                
-            o, r, tm, tc, info = env.step(action)   ### reset; get next -> empty -> have multiple end points
-            
-            action = expert.predict(torch.from_numpy(o).reshape(1, 271))[0] #.detach().numpy()
+
+            o, r, tm, tc, info = env.step(action)  ### reset; get next -> empty -> have multiple end points
+
+            action = expert.predict(torch.from_numpy(o).reshape(1, 271))[0]  #.detach().numpy()
             action = np.clip(action, a_min=-1, a_max=1.)
             action = action[0].tolist()
 

@@ -18,8 +18,7 @@ def test_error_already_set(msg):
     with pytest.raises(RuntimeError) as excinfo:
         m.throw_already_set(False)
     assert (
-        msg(excinfo.value)
-        == "Internal error: pybind11::error_already_set called while Python error indicator not set."
+        msg(excinfo.value) == "Internal error: pybind11::error_already_set called while Python error indicator not set."
     )
 
     with pytest.raises(ValueError) as excinfo:
@@ -144,10 +143,7 @@ def test_custom(msg):
     # Can we catch a MyExceptionUseDeprecatedOperatorCall?
     with pytest.raises(m.MyExceptionUseDeprecatedOperatorCall) as excinfo:
         m.throws1d()
-    assert (
-        msg(excinfo.value)
-        == "this error should go to py::exception<MyExceptionUseDeprecatedOperatorCall>"
-    )
+    assert (msg(excinfo.value) == "this error should go to py::exception<MyExceptionUseDeprecatedOperatorCall>")
 
     # Can we translate to standard Python exceptions?
     with pytest.raises(RuntimeError) as excinfo:
@@ -167,9 +163,7 @@ def test_custom(msg):
     # Can we fall-through to the default handler?
     with pytest.raises(RuntimeError) as excinfo:
         m.throws_logic_error()
-    assert (
-        msg(excinfo.value) == "this error should fall through to the standard handler"
-    )
+    assert (msg(excinfo.value) == "this error should fall through to the standard handler")
 
     # OverFlow error translation.
     with pytest.raises(OverflowError) as excinfo:
@@ -200,7 +194,6 @@ def test_custom(msg):
 
 def test_nested_throws(capture):
     """Tests nested (e.g. C++ -> Python -> C++) exception handling"""
-
     def throw_myex():
         raise m.MyException("nested error")
 
@@ -313,13 +306,11 @@ class FlakyException(Exception):
     ("exc_type", "exc_value", "expected_what"),
     [
         (ValueError, "plain_str", "ValueError: plain_str"),
-        (ValueError, ("tuple_elem",), "ValueError: tuple_elem"),
-        (FlakyException, ("happy",), "FlakyException: FlakyException.__str__"),
+        (ValueError, ("tuple_elem", ), "ValueError: tuple_elem"),
+        (FlakyException, ("happy", ), "FlakyException: FlakyException.__str__"),
     ],
 )
-def test_error_already_set_what_with_happy_exceptions(
-    exc_type, exc_value, expected_what
-):
+def test_error_already_set_what_with_happy_exceptions(exc_type, exc_value, expected_what):
     what, py_err_set_after_what = m.error_already_set_what(exc_type, exc_value)
     assert not py_err_set_after_what
     assert what == expected_what
@@ -327,7 +318,7 @@ def test_error_already_set_what_with_happy_exceptions(
 
 def _test_flaky_exception_failure_point_init_before_py_3_12():
     with pytest.raises(RuntimeError) as excinfo:
-        m.error_already_set_what(FlakyException, ("failure_point_init",))
+        m.error_already_set_what(FlakyException, ("failure_point_init", ))
     lines = str(excinfo.value).splitlines()
     # PyErr_NormalizeException replaces the original FlakyException with ValueError:
     assert lines[:3] == [
@@ -339,16 +330,12 @@ def _test_flaky_exception_failure_point_init_before_py_3_12():
     # Checking the first two lines of the traceback as formatted in error_string():
     assert "test_exceptions.py(" in lines[3]
     assert lines[3].endswith("): __init__")
-    assert lines[4].endswith(
-        "): _test_flaky_exception_failure_point_init_before_py_3_12"
-    )
+    assert lines[4].endswith("): _test_flaky_exception_failure_point_init_before_py_3_12")
 
 
 def _test_flaky_exception_failure_point_init_py_3_12():
     # Behavior change in Python 3.12: https://github.com/python/cpython/issues/102594
-    what, py_err_set_after_what = m.error_already_set_what(
-        FlakyException, ("failure_point_init",)
-    )
+    what, py_err_set_after_what = m.error_already_set_what(FlakyException, ("failure_point_init", ))
     assert not py_err_set_after_what
     lines = what.splitlines()
     assert lines[0].endswith("ValueError[WITH __notes__]: triggered_failure_point_init")
@@ -369,15 +356,12 @@ def test_flaky_exception_failure_point_init():
 
 
 def test_flaky_exception_failure_point_str():
-    what, py_err_set_after_what = m.error_already_set_what(
-        FlakyException, ("failure_point_str",)
-    )
+    what, py_err_set_after_what = m.error_already_set_what(FlakyException, ("failure_point_str", ))
     assert not py_err_set_after_what
     lines = what.splitlines()
     n = 3 if env.PYPY and len(lines) == 3 else 5
     assert (
-        lines[:n]
-        == [
+        lines[:n] == [
             "FlakyException: <MESSAGE UNAVAILABLE DUE TO ANOTHER EXCEPTION>",
             "",
             "MESSAGE UNAVAILABLE DUE TO EXCEPTION: ValueError: triggered_failure_point_str",
@@ -416,6 +400,4 @@ def test_fn_cast_int_exception():
     with pytest.raises(RuntimeError) as excinfo:
         m.test_fn_cast_int(lambda: None)
 
-    assert str(excinfo.value).startswith(
-        "Unable to cast Python instance of type <class 'NoneType'> to C++ type"
-    )
+    assert str(excinfo.value).startswith("Unable to cast Python instance of type <class 'NoneType'> to C++ type")

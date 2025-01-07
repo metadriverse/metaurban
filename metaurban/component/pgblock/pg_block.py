@@ -91,11 +91,11 @@ class PGBlock(BaseBlock):
         # print("---- crswalk_density: ----", self.crswalk_density)
 
         if self.ID == 'X' or self.ID == 'O' or self.ID == 'T':
-            self.valid_crswalk = random.sample([1,2,3,4,5,6], round(self.crswalk_density * 6))
+            self.valid_crswalk = random.sample([1, 2, 3, 4, 5, 6], round(self.crswalk_density * 6))
         # elif self.ID == 'T':
         #     self.valid_crswalk = random.sample([3,4,5,6], round(self.crswalk_density * 4))
         elif self.ID == 'C':
-            self.valid_crswalk = random.sample([1,2,3], round(self.crswalk_density * 3))
+            self.valid_crswalk = random.sample([1, 2, 3], round(self.crswalk_density * 3))
         # else: self.valid_crswalk = []
         # print('!!!!crswalk_density: ', self.ID, self.valid_crswalk)
 
@@ -137,12 +137,13 @@ class PGBlock(BaseBlock):
                 self.negative_lanes = self.pre_block_socket.get_negative_lanes(self._global_network)
                 self.negative_lane_num = len(self.negative_lanes)
                 self.negative_basic_lane = self.negative_lanes[-1]  # most right or outside lane is the basic lane
-                
+
         # random sample sidewalk type
         if 'predefined_config' in self.engine.global_config:
-            self.engine.global_config['sidewalk_type'] = self.engine.global_config['predefined_config']['Sidewalk'][0]['Type']
+            self.engine.global_config['sidewalk_type'] = self.engine.global_config['predefined_config']['Sidewalk'][0][
+                'Type']
         self.sidewalk_type = self.engine.global_config['sidewalk_type']
-        
+
         seed = self.engine.global_random_seed
         import os
         import torch
@@ -152,79 +153,190 @@ class PGBlock(BaseBlock):
         torch.manual_seed(seed)
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
-        
+
         if 'predefined_config' in self.engine.global_config:
             if self.sidewalk_type == 'Narrow Sidewalk':
                 self.near_road_width = None
-                self.near_road_buffer_width = self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][0])
-                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0])
+                self.near_road_buffer_width = self.engine.global_config['predefined_config']['Sidewalk'][1][
+                    'Buffer_Lane_Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][1]
+                        -
+                        self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][0]
+                    )
+                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0]
+                    )
                 self.far_from_buffer_width = None
                 self.far_from_width = None
-                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0])
+                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6][
+                    'Building_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0]
+                    )
                 self.near_road_buffer_width *= 2
                 self.main_width *= 2
                 self.valid_house_width *= 2
             elif self.sidewalk_type == 'Narrow Sidewalk with Trees':
-                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0])
+                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2][
+                    'Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0]
+                    )
                 self.near_road_buffer_width = None
-                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0])
+                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0]
+                    )
                 self.far_from_buffer_width = None
                 self.far_from_width = None
-                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0])
+                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6][
+                    'Building_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0]
+                    )
                 self.near_road_width *= 2
                 self.main_width *= 2
                 self.valid_house_width *= 2
             elif self.sidewalk_type == 'Ribbon Sidewalk':
-                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0])
+                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2][
+                    'Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0]
+                    )
                 self.near_road_buffer_width = None
-                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0])
+                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0]
+                    )
                 self.far_from_buffer_width = None
-                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0])
-                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0])
+                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0]
+                    )
+                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6][
+                    'Building_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0]
+                    )
                 self.near_road_width *= 2
                 self.main_width *= 2
                 self.far_from_width *= 2
                 self.valid_house_width *= 2
             elif self.sidewalk_type == 'Neighborhood 1':
-                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0])
-                self.near_road_buffer_width = self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][0])
-                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0])
+                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2][
+                    'Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0]
+                    )
+                self.near_road_buffer_width = self.engine.global_config['predefined_config']['Sidewalk'][1][
+                    'Buffer_Lane_Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][1]
+                        -
+                        self.engine.global_config['predefined_config']['Sidewalk'][1]['Buffer_Lane_Furnishing_Width'][0]
+                    )
+                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0]
+                    )
                 self.far_from_buffer_width = None
                 self.far_from_width = None
-                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0])
+                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6][
+                    'Building_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0]
+                    )
                 self.near_road_width *= 2
                 self.main_width *= 2
                 self.near_road_buffer_width *= 2
                 self.valid_house_width *= 2
             elif self.sidewalk_type == 'Neighborhood 2':
-                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0])
+                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2][
+                    'Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0]
+                    )
                 self.near_road_buffer_width = None
-                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0])
+                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0]
+                    )
                 self.far_from_buffer_width = None
-                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0])
-                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0])
+                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0]
+                    )
+                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6][
+                    'Building_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0]
+                    )
                 self.near_road_width *= 2
                 self.main_width *= 2
                 self.far_from_width *= 2
                 self.valid_house_width *= 2
             elif self.sidewalk_type == 'Medium Commercial':
-                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0])
+                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2][
+                    'Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0]
+                    )
                 self.near_road_buffer_width = None
-                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0])
+                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0]
+                    )
                 self.far_from_buffer_width = None
-                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0])
-                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0])
+                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0]
+                    )
+                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6][
+                    'Building_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0]
+                    )
                 self.near_road_width *= 2
                 self.main_width *= 2
                 self.far_from_width *= 2
                 self.valid_house_width *= 2
             elif self.sidewalk_type == 'Wide Commercial':
-                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0])
+                self.near_road_width = self.engine.global_config['predefined_config']['Sidewalk'][2][
+                    'Furnishing_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][2]['Furnishing_Width'][0]
+                    )
                 self.near_road_buffer_width = None
-                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0])
-                self.far_from_buffer_width = self.engine.global_config['predefined_config']['Sidewalk'][4]['Buffer_Frontage_Clear_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][4]['Buffer_Frontage_Clear_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][4]['Buffer_Frontage_Clear_Width'][0])
-                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0])
-                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0] + np.random.uniform(0, 1) *  (self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1]- self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0])
+                self.main_width = self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][3]['Clear_Width'][0]
+                    )
+                self.far_from_buffer_width = self.engine.global_config['predefined_config']['Sidewalk'][4][
+                    'Buffer_Frontage_Clear_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][4]['Buffer_Frontage_Clear_Width'][1]
+                        -
+                        self.engine.global_config['predefined_config']['Sidewalk'][4]['Buffer_Frontage_Clear_Width'][0]
+                    )
+                self.far_from_width = self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][
+                    0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][5]['Frontage_Width'][0]
+                    )
+                self.valid_house_width = self.engine.global_config['predefined_config']['Sidewalk'][6][
+                    'Building_Width'][0] + np.random.uniform(0, 1) * (
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][1] -
+                        self.engine.global_config['predefined_config']['Sidewalk'][6]['Building_Width'][0]
+                    )
                 self.near_road_width *= 2
                 self.main_width *= 2
                 self.far_from_buffer_width *= 2
@@ -235,52 +347,144 @@ class PGBlock(BaseBlock):
         else:
             if self.sidewalk_type == 'Narrow Sidewalk':
                 self.near_road_width = None
-                self.near_road_buffer_width = PGDrivableAreaProperty.NARROW_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NARROW_SIDEWALK_NEAR_ROAD_MAX_WIDTH - PGDrivableAreaProperty.NARROW_SIDEWALK_NEAR_ROAD_MIN_WIDTH)
-                self.main_width = PGDrivableAreaProperty.NARROW_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NARROW_SIDEWALK_MAIN_MAX_WIDTH - PGDrivableAreaProperty.NARROW_SIDEWALK_MAIN_MIN_WIDTH)
+                self.near_road_buffer_width = PGDrivableAreaProperty.NARROW_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NARROW_SIDEWALK_NEAR_ROAD_MAX_WIDTH -
+                    PGDrivableAreaProperty.NARROW_SIDEWALK_NEAR_ROAD_MIN_WIDTH
+                )
+                self.main_width = PGDrivableAreaProperty.NARROW_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) * (
+                    PGDrivableAreaProperty.NARROW_SIDEWALK_MAIN_MAX_WIDTH -
+                    PGDrivableAreaProperty.NARROW_SIDEWALK_MAIN_MIN_WIDTH
+                )
                 self.far_from_buffer_width = None
                 self.far_from_width = None
                 self.valid_house_width = PGDrivableAreaProperty.HOUSE_WIDTH
             elif self.sidewalk_type == 'Narrow Sidewalk with Trees':
-                self.near_road_width = PGDrivableAreaProperty.NARROWT_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NARROWT_SIDEWALK_NEAR_ROAD_MAX_WIDTH - PGDrivableAreaProperty.NARROWT_SIDEWALK_NEAR_ROAD_MIN_WIDTH)
+                self.near_road_width = PGDrivableAreaProperty.NARROWT_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NARROWT_SIDEWALK_NEAR_ROAD_MAX_WIDTH -
+                    PGDrivableAreaProperty.NARROWT_SIDEWALK_NEAR_ROAD_MIN_WIDTH
+                )
                 self.near_road_buffer_width = None
-                self.main_width = PGDrivableAreaProperty.NARROWT_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NARROWT_SIDEWALK_MAIN_MAX_WIDTH - PGDrivableAreaProperty.NARROWT_SIDEWALK_MAIN_MIN_WIDTH)
+                self.main_width = PGDrivableAreaProperty.NARROWT_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) * (
+                    PGDrivableAreaProperty.NARROWT_SIDEWALK_MAIN_MAX_WIDTH -
+                    PGDrivableAreaProperty.NARROWT_SIDEWALK_MAIN_MIN_WIDTH
+                )
                 self.far_from_buffer_width = None
                 self.far_from_width = None
                 self.valid_house_width = PGDrivableAreaProperty.HOUSE_WIDTH
             elif self.sidewalk_type == 'Ribbon Sidewalk':
-                self.near_road_width = PGDrivableAreaProperty.RIBBON_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.RIBBON_SIDEWALK_NEAR_ROAD_MAX_WIDTH - PGDrivableAreaProperty.RIBBON_SIDEWALK_NEAR_ROAD_MIN_WIDTH)
+                self.near_road_width = PGDrivableAreaProperty.RIBBON_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.RIBBON_SIDEWALK_NEAR_ROAD_MAX_WIDTH -
+                    PGDrivableAreaProperty.RIBBON_SIDEWALK_NEAR_ROAD_MIN_WIDTH
+                )
                 self.near_road_buffer_width = None
-                self.main_width = PGDrivableAreaProperty.RIBBON_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.RIBBON_SIDEWALK_MAIN_MAX_WIDTH - PGDrivableAreaProperty.RIBBON_SIDEWALK_MAIN_MIN_WIDTH)
+                self.main_width = PGDrivableAreaProperty.RIBBON_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) * (
+                    PGDrivableAreaProperty.RIBBON_SIDEWALK_MAIN_MAX_WIDTH -
+                    PGDrivableAreaProperty.RIBBON_SIDEWALK_MAIN_MIN_WIDTH
+                )
                 self.far_from_buffer_width = None
-                self.far_from_width = PGDrivableAreaProperty.RIBBON_SIDEWALK_FAR_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.RIBBON_SIDEWALK_FAR_MAX_WIDTH - PGDrivableAreaProperty.RIBBON_SIDEWALK_FAR_MIN_WIDTH)
+                self.far_from_width = PGDrivableAreaProperty.RIBBON_SIDEWALK_FAR_MIN_WIDTH + np.random.uniform(0, 1) * (
+                    PGDrivableAreaProperty.RIBBON_SIDEWALK_FAR_MAX_WIDTH -
+                    PGDrivableAreaProperty.RIBBON_SIDEWALK_FAR_MIN_WIDTH
+                )
                 self.valid_house_width = PGDrivableAreaProperty.HOUSE_WIDTH
             elif self.sidewalk_type == 'Neighborhood 1':
-                self.near_road_width = PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MAX_WIDTH - PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MIN_WIDTH)
-                self.near_road_buffer_width = PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_BUFFER_NEAR_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_BUFFER_NEAR_MAX_WIDTH - PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_BUFFER_NEAR_MIN_WIDTH)
-                self.main_width = PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_MAIN_MAX_WIDTH - PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_MAIN_MIN_WIDTH)
+                self.near_road_width = PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MAX_WIDTH -
+                    PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_NEAR_ROAD_MIN_WIDTH
+                )
+                self.near_road_buffer_width = PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_BUFFER_NEAR_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_BUFFER_NEAR_MAX_WIDTH -
+                    PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_BUFFER_NEAR_MIN_WIDTH
+                )
+                self.main_width = PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_MAIN_MAX_WIDTH -
+                    PGDrivableAreaProperty.NEIGHBORHOOD_SIDEWALK_MAIN_MIN_WIDTH
+                )
                 self.far_from_buffer_width = None
                 self.far_from_width = None
                 self.valid_house_width = PGDrivableAreaProperty.HOUSE_WIDTH
             elif self.sidewalk_type == 'Neighborhood 2':
-                self.near_road_width = PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MAX_WIDTH - PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MIN_WIDTH)
+                self.near_road_width = PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MAX_WIDTH -
+                    PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_NEAR_ROAD_MIN_WIDTH
+                )
                 self.near_road_buffer_width = None
-                self.main_width = PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_MAIN_MAX_WIDTH - PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_MAIN_MIN_WIDTH)
+                self.main_width = PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_MAIN_MAX_WIDTH -
+                    PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_MAIN_MIN_WIDTH
+                )
                 self.far_from_buffer_width = None
-                self.far_from_width = PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MAX_WIDTH - PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MIN_WIDTH)
+                self.far_from_width = PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MAX_WIDTH -
+                    PGDrivableAreaProperty.NEIGHBORHOOD2_SIDEWALK_BUFFER_FAR_MIN_WIDTH
+                )
                 self.valid_house_width = PGDrivableAreaProperty.HOUSE_WIDTH
             elif self.sidewalk_type == 'Medium Commercial':
-                self.near_road_width = PGDrivableAreaProperty.MediumCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.MediumCommercial_SIDEWALK_NEAR_ROAD_MAX_WIDTH - PGDrivableAreaProperty.MediumCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH)
+                self.near_road_width = PGDrivableAreaProperty.MediumCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.MediumCommercial_SIDEWALK_NEAR_ROAD_MAX_WIDTH -
+                    PGDrivableAreaProperty.MediumCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH
+                )
                 self.near_road_buffer_width = None
-                self.main_width = PGDrivableAreaProperty.MediumCommercial_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.MediumCommercial_SIDEWALK_MAIN_MAX_WIDTH - PGDrivableAreaProperty.MediumCommercial_SIDEWALK_MAIN_MIN_WIDTH)
+                self.main_width = PGDrivableAreaProperty.MediumCommercial_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.MediumCommercial_SIDEWALK_MAIN_MAX_WIDTH -
+                    PGDrivableAreaProperty.MediumCommercial_SIDEWALK_MAIN_MIN_WIDTH
+                )
                 self.far_from_buffer_width = None
-                self.far_from_width = PGDrivableAreaProperty.MediumCommercial_SIDEWALK_FAR_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.MediumCommercial_SIDEWALK_FAR_MAX_WIDTH - PGDrivableAreaProperty.MediumCommercial_SIDEWALK_FAR_MIN_WIDTH)
+                self.far_from_width = PGDrivableAreaProperty.MediumCommercial_SIDEWALK_FAR_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.MediumCommercial_SIDEWALK_FAR_MAX_WIDTH -
+                    PGDrivableAreaProperty.MediumCommercial_SIDEWALK_FAR_MIN_WIDTH
+                )
                 self.valid_house_width = PGDrivableAreaProperty.HOUSE_WIDTH
             elif self.sidewalk_type == 'Wide Commercial':
-                self.near_road_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.WideCommercial_SIDEWALK_NEAR_ROAD_MAX_WIDTH - PGDrivableAreaProperty.WideCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH)
+                self.near_road_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_NEAR_ROAD_MAX_WIDTH -
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_NEAR_ROAD_MIN_WIDTH
+                )
                 self.near_road_buffer_width = None
-                self.main_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_MAX_WIDTH - PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_MIN_WIDTH)
-                self.far_from_buffer_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_BUFFER_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_BUFFER_MAX_WIDTH - PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_BUFFER_MIN_WIDTH)
-                self.far_from_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_FAR_MIN_WIDTH + np.random.uniform(0, 1) *  (PGDrivableAreaProperty.WideCommercial_SIDEWALK_FAR_MAX_WIDTH - PGDrivableAreaProperty.WideCommercial_SIDEWALK_FAR_MIN_WIDTH)
+                self.main_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_MAX_WIDTH -
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_MIN_WIDTH
+                )
+                self.far_from_buffer_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_BUFFER_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_BUFFER_MAX_WIDTH -
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_MAIN_BUFFER_MIN_WIDTH
+                )
+                self.far_from_width = PGDrivableAreaProperty.WideCommercial_SIDEWALK_FAR_MIN_WIDTH + np.random.uniform(
+                    0, 1
+                ) * (
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_FAR_MAX_WIDTH -
+                    PGDrivableAreaProperty.WideCommercial_SIDEWALK_FAR_MIN_WIDTH
+                )
                 self.valid_house_width = PGDrivableAreaProperty.HOUSE_WIDTH
             else:
                 raise NotImplementedError
@@ -326,6 +530,7 @@ class PGBlock(BaseBlock):
             self.slo_fb = []
             self.slo_f = []
             self.slo_h = []
+
     def _sample_topology(self) -> bool:
         """
         Sample a new topology, clear the previous settings at first
@@ -446,7 +651,7 @@ class PGBlock(BaseBlock):
     def block_network_type(self):
         return NodeRoadNetwork
 
-    def create_in_world(self): # panda3d # called everytime when construct a new block
+    def create_in_world(self):  # panda3d # called everytime when construct a new block
         graph = self.block_network.graph
         for _from, to_dict in graph.items():
             for _to, lanes in to_dict.items():
@@ -466,7 +671,7 @@ class PGBlock(BaseBlock):
         self._construct_nearroadsidewalk_buffer()
         self._construct_farfromroadsidewalk_buffer()
         self._construct_valid_region()
-        
+
         self._construct_crosswalk()
         # print("Return. finished building one block.")
 
@@ -533,9 +738,13 @@ class PGBlock(BaseBlock):
         )
         start_lat = +lane.width_at(0) / 2
         if self.near_road_buffer_width is not None:
-            start_lat = start_lat + self.near_road_buffer_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_buffer_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.near_road_width is not None:
-            start_lat = start_lat + self.near_road_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         side_lat = start_lat + self.main_width
         assert lateral_direction == -1 or lateral_direction == 1
         start_lat *= lateral_direction
@@ -553,7 +762,7 @@ class PGBlock(BaseBlock):
                 longitude = min(lane.length + 0.1, longitude)
                 point = lane.position(longitude, lateral)
                 polygon.append([point[0], point[1]])
-        self.sidewalks[f"SDW_{self.ID}_"+str(lane.index)] = {
+        self.sidewalks[f"SDW_{self.ID}_" + str(lane.index)] = {
             "type": MetaUrbanType.BOUNDARY_SIDEWALK,
             "polygon": polygon,
             "height": sidewalk_height
@@ -585,15 +794,15 @@ class PGBlock(BaseBlock):
         # print(f'{key}={polygon}')
 
         self.crosswalks[key] = {
-        # self.sidewalks[str(lane.index)] = {
-            "type": MetaUrbanType.CROSSWALK, #BOUNDARY_SIDEWALK,
+            # self.sidewalks[str(lane.index)] = {
+            "type": MetaUrbanType.CROSSWALK,  #BOUNDARY_SIDEWALK,
             "polygon": polygon,
             "height": sidewalk_height
         }
-        
+
     def _generate_nearroad_sidewalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         assert self.near_road_width is not None
-        
+
         if str(lane.index) in self.sidewalks_near_road:
             logger.warning("Sidewalk id {} already exists!".format(str(lane.index)))
             return
@@ -601,9 +810,11 @@ class PGBlock(BaseBlock):
         longs = np.arange(
             0, lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH, PGDrivableAreaProperty.SIDEWALK_LENGTH
         )
-        start_lat = +lane.width_at(0) / 2 
+        start_lat = +lane.width_at(0) / 2
         if self.near_road_buffer_width is not None:
-            start_lat = start_lat + self.near_road_buffer_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_buffer_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         side_lat = start_lat + self.near_road_width
         assert lateral_direction == -1 or lateral_direction == 1
         start_lat *= lateral_direction
@@ -630,10 +841,10 @@ class PGBlock(BaseBlock):
                     point = lane.position(longitude, lateral)
                     polygon.append([point[0], point[1]])
             self.slo_n.append(polygon)
-        
+
     def _generate_farfrom_sidewalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         assert self.far_from_width is not None
-        
+
         if str(lane.index) in self.sidewalks_farfrom_road:
             logger.warning("Sidewalk id {} already exists!".format(str(lane.index)))
             return
@@ -643,13 +854,21 @@ class PGBlock(BaseBlock):
         )
         start_lat = +lane.width_at(0) / 2
         if self.near_road_buffer_width is not None:
-            start_lat = start_lat + self.near_road_buffer_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_buffer_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.near_road_width is not None:
-            start_lat = start_lat + self.near_road_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.main_width is not None:
-            start_lat = start_lat + self.main_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.main_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.far_from_buffer_width is not None:
-            start_lat = start_lat + self.far_from_buffer_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.far_from_buffer_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         side_lat = start_lat + self.far_from_width
         assert lateral_direction == -1 or lateral_direction == 1
         start_lat *= lateral_direction
@@ -676,9 +895,10 @@ class PGBlock(BaseBlock):
                     point = lane.position(longitude, lateral)
                     polygon.append([point[0], point[1]])
             self.slo_f.append(polygon)
+
     def _generate_nearroad_buffer_sidewalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         assert self.near_road_buffer_width is not None
-        
+
         if str(lane.index) in self.sidewalks_near_road_buffer:
             logger.warning("Sidewalk id {} already exists!".format(str(lane.index)))
             return
@@ -686,7 +906,7 @@ class PGBlock(BaseBlock):
         longs = np.arange(
             0, lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH, PGDrivableAreaProperty.SIDEWALK_LENGTH
         )
-        start_lat = +lane.width_at(0) / 2 
+        start_lat = +lane.width_at(0) / 2
         side_lat = start_lat + self.near_road_buffer_width
         assert lateral_direction == -1 or lateral_direction == 1
         start_lat *= lateral_direction
@@ -713,10 +933,10 @@ class PGBlock(BaseBlock):
                     point = lane.position(longitude, lateral)
                     polygon.append([point[0], point[1]])
             self.slo_nb.append(polygon)
-    
+
     def _generate_farfromroad_buffer_sidewalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         assert self.far_from_buffer_width is not None
-        
+
         if str(lane.index) in self.sidewalks_farfrom_road_buffer:
             logger.warning("Sidewalk id {} already exists!".format(str(lane.index)))
             return
@@ -724,13 +944,19 @@ class PGBlock(BaseBlock):
         longs = np.arange(
             0, lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH, PGDrivableAreaProperty.SIDEWALK_LENGTH
         )
-        start_lat = +lane.width_at(0) / 2 
+        start_lat = +lane.width_at(0) / 2
         if self.near_road_buffer_width is not None:
-            start_lat = start_lat + self.near_road_buffer_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_buffer_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.near_road_width is not None:
-            start_lat = start_lat + self.near_road_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.main_width is not None:
-            start_lat = start_lat + self.main_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.main_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         side_lat = start_lat + self.far_from_buffer_width
         assert lateral_direction == -1 or lateral_direction == 1
         start_lat *= lateral_direction
@@ -757,10 +983,10 @@ class PGBlock(BaseBlock):
                     point = lane.position(longitude, lateral)
                     polygon.append([point[0], point[1]])
             self.slo_fb.append(polygon)
-        
+
     def _generate_valid_region_sidewalk_from_line(self, lane, sidewalk_height=None, lateral_direction=1):
         assert self.valid_house_width is not None
-        
+
         if str(lane.index) in self.valid_region:
             logger.warning("Sidewalk id {} already exists!".format(str(lane.index)))
             return
@@ -768,17 +994,27 @@ class PGBlock(BaseBlock):
         longs = np.arange(
             0, lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH, PGDrivableAreaProperty.SIDEWALK_LENGTH
         )
-        start_lat = +lane.width_at(0) / 2 
+        start_lat = +lane.width_at(0) / 2
         if self.near_road_buffer_width is not None:
-            start_lat = start_lat + self.near_road_buffer_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_buffer_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.near_road_width is not None:
-            start_lat = start_lat + self.near_road_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.near_road_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.main_width is not None:
-            start_lat = start_lat + self.main_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.main_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.far_from_buffer_width is not None:
-            start_lat = start_lat + self.far_from_buffer_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.far_from_buffer_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         if self.far_from_width is not None:
-            start_lat = start_lat + self.far_from_width + 6. * ((self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0)
+            start_lat = start_lat + self.far_from_width + 6. * (
+                (self.engine.global_config['test_slope_system'] + self.engine.global_config['test_rough_system']) > 0
+            )
         side_lat = start_lat + self.valid_house_width
         assert lateral_direction == -1 or lateral_direction == 1
         start_lat *= lateral_direction
@@ -805,7 +1041,7 @@ class PGBlock(BaseBlock):
                     point = lane.position(longitude, lateral)
                     polygon.append([point[0], point[1]])
             self.slo_h.append(polygon)
-      
+
     def _construct_lane_line_in_block(self, lane, construct_left_right=(True, True)):
         """
         Construct lane line in the Panda3d world for getting contact information
@@ -826,9 +1062,10 @@ class PGBlock(BaseBlock):
                     pass
             elif line_type == PGLineType.SIDE:
                 self._construct_continuous_line(lane, lateral, line_color, line_type)
-                if self.engine.global_config['test_terrain_system'] or self.engine.global_config['test_slope_system'] or self.engine.global_config['test_rough_system']:
+                if self.engine.global_config['test_terrain_system'] or self.engine.global_config[
+                        'test_slope_system'] or self.engine.global_config['test_rough_system']:
                     self._generate_nearroad_buffer_sidewalk_from_line(lane, lateral_direction=idx)
-                    self._generate_nearroad_sidewalk_from_line(lane,lateral_direction=idx)
+                    self._generate_nearroad_sidewalk_from_line(lane, lateral_direction=idx)
                     self._generate_sidewalk_from_line(lane, lateral_direction=idx)
                     self._generate_farfromroad_buffer_sidewalk_from_line(lane, lateral_direction=idx)
                     self._generate_farfrom_sidewalk_from_line(lane, lateral_direction=idx)
@@ -869,54 +1106,121 @@ class PGBlock(BaseBlock):
                     self._generate_valid_region_sidewalk_from_line(lane)
                 else:
                     raise NotImplementedError
-                
+
             elif line_type == PGLineType.GUARDRAIL:
                 self._construct_continuous_line(lane, lateral, line_color, line_type)
-                if self.engine.global_config['test_terrain_system'] or self.engine.global_config['test_slope_system'] or self.engine.global_config['test_rough_system']:
-                    self._generate_nearroad_buffer_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_nearroad_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_farfromroad_buffer_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_farfrom_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                if self.engine.global_config['test_terrain_system'] or self.engine.global_config[
+                        'test_slope_system'] or self.engine.global_config['test_rough_system']:
+                    self._generate_nearroad_buffer_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_nearroad_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_farfromroad_buffer_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_farfrom_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
 
                 elif self.sidewalk_type == 'Narrow Sidewalk':
-                    self._generate_nearroad_buffer_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                    self._generate_nearroad_buffer_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
                 elif self.sidewalk_type == 'Narrow Sidewalk with Trees':
-                    self._generate_nearroad_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                    self._generate_nearroad_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
                 elif self.sidewalk_type == 'Ribbon Sidewalk':
-                    self._generate_nearroad_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_farfrom_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                    self._generate_nearroad_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_farfrom_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
                 elif self.sidewalk_type == 'Neighborhood 1':
-                    self._generate_nearroad_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_nearroad_buffer_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                    self._generate_nearroad_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_nearroad_buffer_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
                 elif self.sidewalk_type == 'Neighborhood 2':
-                    self._generate_nearroad_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_farfrom_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                    self._generate_nearroad_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_farfrom_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
                 elif self.sidewalk_type == 'Medium Commercial':
-                    self._generate_nearroad_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_farfrom_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                    self._generate_nearroad_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_farfrom_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
                 elif self.sidewalk_type == 'Wide Commercial':
-                    self._generate_nearroad_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_farfromroad_buffer_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_farfrom_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
-                    self._generate_valid_region_sidewalk_from_line(lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx)
+                    self._generate_nearroad_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_farfromroad_buffer_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_farfrom_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
+                    self._generate_valid_region_sidewalk_from_line(
+                        lane, sidewalk_height=PGDrivableAreaProperty.GUARDRAIL_HEIGHT, lateral_direction=idx
+                    )
                 else:
                     raise NotImplementedError
-                
+
             elif line_type == PGLineType.NONE:
                 continue
             else:
