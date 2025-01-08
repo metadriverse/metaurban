@@ -20,7 +20,6 @@ We recommend to use the command following to install::
     pip install -e .
 
     # install module ORCA for trajectory generation of pedestrians in urban environments
-    # it should be noticed that you should install cmake, make, gcc on your system before installing ORCA
     conda install pybind11 -c conda-forge
     cd metaurban/orca_algo && rm -rf build
     bash compile.sh && cd ../..
@@ -28,3 +27,17 @@ We recommend to use the command following to install::
     # install the requirements for reinforcement learning, imitation learning and visualization
     pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown
 
+.. note:: Using ``git clone https://github.com/metadriverse/metaurban.git --single-branch``
+  will only pull the main branch and bypass other branches, saving disk space.
+
+.. note:: ``cmake, make and gcc`` are required to compile the ORCA module, please install them first.
+
+Pull assets
+############################################
+After having the source code installed, 3D assets are still required to run MetaUrban.
+Generally, they will be pulled automatically when you run any MetaUrban program for the first time.
+But you can still pull the asset manually by::
+
+ python -m metaurban.pull_asset
+
+.. note:: All ``python -m`` scripts are supposed to be runnable in all places **except** in the working direction that has a sub-folder called :code:`./metadrive`.
