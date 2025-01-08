@@ -35,7 +35,13 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx_rtd_theme",
     "sphinx.builders.linkcheck",
-    "sphinx_copybutton"
+    "sphinx_copybutton",
+    
+    'sphinx.ext.duration',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.intersphinx',
 ]
 
 autosectionlabel_prefix_document = True
@@ -74,6 +80,9 @@ myst_enable_extensions = [
     "html_image",
 ]
 myst_url_schemes = ("http", "https", "mailto")
+
+# -- Options for EPUB output
+epub_show_urls = 'footnote'
 
 # This will add the colab execution link automatically!
 import os

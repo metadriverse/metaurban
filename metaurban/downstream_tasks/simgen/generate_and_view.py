@@ -172,9 +172,10 @@ if __name__ == "__main__":
     ]
 
     prefix_candidates = [
-        " in a lego style",
-        " in a ukiyo-e style",
-        " in a minecraft style",
+        # " in a lego style",
+        # " in a ukiyo-e style",
+        # " in a minecraft style",
+        " "
     ]
 
     # ===== Prepare input =====
