@@ -40,4 +40,19 @@ But you can still pull the asset manually by::
 
  python -m metaurban.pull_asset
 
-.. note:: All ``python -m`` scripts are supposed to be runnable in all places **except** in the working direction that has a sub-folder called :code:`./metadrive`.
+.. note:: All ``python -m`` scripts are supposed to be runnable in all places **except** in the working direction that has a sub-folder called :code:`./metaurban`.
+
+Verify installation
+#############################
+
+Install MetaUrban with headless rendering
+#############################
+
+.. note:: Run MetaUrban on a machine without monitor / X-server
+
+Install MetaDrive with advanced offscreen rendering
+#############################
+
+Known Issues
+######################
+

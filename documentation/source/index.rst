@@ -24,7 +24,9 @@ Please feel free to contact us if you have any suggestions or ideas!
    :hidden:
    :caption: Quick Start
 
+   before_reading.ipynb
    install.rst
+   get_start.rst
 
 .. toctree::
    :hidden:
