@@ -31,6 +31,6 @@ Please feel free to contact us if you have any suggestions or ideas!
 .. toctree::
    :hidden:
    :maxdepth: 2
-   :caption: RL Training with MetaDrive
+   :caption: RL Training with MetaUrban
    
    action_space.ipynb

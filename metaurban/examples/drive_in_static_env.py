@@ -67,7 +67,6 @@ if __name__ == "__main__":
         random_spawn_lane_index=False,
         num_scenarios=100,
         accident_prob=0,
-        window_size=(960, 960),
         relax_out_of_road_done=True,
         max_lateral_dist=5.0,
     )
