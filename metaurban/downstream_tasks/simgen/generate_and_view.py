@@ -40,10 +40,12 @@ def postprocess_semantic_image(image):
     # customized
     old_LANE_LINE = (255, 255, 255)
     old_CROSSWALK = (55, 176, 189)
+    old_SIDEWALK = (152, 251, 152)
 
     # These color might be prettier?
     new_LANE_LINE = (128, 64, 128)
     new_CROSSWALK = (128, 64, 128)
+    new_SIDEWALK = (152, 251, 152)
 
     # Change the color of the lane line and crosswalk
     assert image.dtype == np.uint8
@@ -56,7 +58,19 @@ def postprocess_semantic_image(image):
     is_crosswalk = (
         (image[..., 0] == old_CROSSWALK[0]) & (image[..., 1] == old_CROSSWALK[1]) & (image[..., 2] == old_CROSSWALK[2])
     )
+    is_crosswalk = (((image[..., 0] - old_CROSSWALK[0]) ** 2 < 10.0) & 
+                     ((image[..., 1] - old_CROSSWALK[1]) ** 2 < 10.0) & 
+                     ((image[..., 2] - old_CROSSWALK[2]) ** 2 < 10.0)
+    )
     image[is_crosswalk] = new_CROSSWALK
+    
+    is_sidewalk = (
+        (image[..., 0] == old_SIDEWALK[0]) & (image[..., 1] == old_SIDEWALK[1]) & (image[..., 2] == old_SIDEWALK[2])
+    )
+    image[is_sidewalk] = new_SIDEWALK
+    
+    print(is_lane_line.sum(), is_crosswalk.sum(), is_sidewalk.sum())
+    import sys; sys.exit()
 
     return image
 
@@ -130,6 +144,7 @@ if __name__ == "__main__":
         ),
         show_sidewalk=True,
         show_crosswalk=True,
+        traffic_density=0.2,
         # scenario setting
         random_spawn_lane_index=False,
         num_scenarios=1,
@@ -147,12 +162,19 @@ if __name__ == "__main__":
         ),
         agent_observation=ThreeSourceMixObservation,
         interface_panel=[],
+        
+        camera_dist = 0.8,  # 0.8, 1.71
+        camera_height = 1.5,  # 1.5
+        camera_pitch = None,
+        camera_fov = 66,  # 60, 66
     )
 
     env = SidewalkStaticMetaUrbanEnv(config)
     o, _ = env.reset(seed=0)
-    env.agents['default_agent'].set_position([-5, 0, env.agents['default_agent'].HEIGHT / 2])
-    env.agents['default_agent'].set_heading_theta(0)
+    for t in range(5):
+        env.step([0., 0.])
+    env.agents['default_agent'].set_position([160, 5, env.agents['default_agent'].HEIGHT / 2])
+    env.agents['default_agent'].set_heading_theta(45 / 180 * np.pi)
 
     # ===== SimGen Setup =====
     pipeline = SimGenPipeline()

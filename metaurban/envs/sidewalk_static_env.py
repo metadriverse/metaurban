@@ -38,7 +38,7 @@ metaurban_DEFAULT_CONFIG = dict(
     spawn_human_num=1,
     show_mid_block_map=False,
     # ===== Traffic =====
-    traffic_density=0.1,
+    traffic_density=0.0,
     need_inverse_traffic=False,
     traffic_mode=TrafficMode.Trigger,  # "Respawn", "Trigger"
     random_traffic=False,  # Traffic is randomized at default.
@@ -344,10 +344,13 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
         from metaurban.manager.pg_map_manager import PGMapManager
         from metaurban.manager.object_manager import TrafficObjectManager
         from metaurban.manager.sidewalk_manager import AssetManager
+        from metaurban.manager.traffic_manager import TrafficManager
         self.engine.register_manager("map_manager", PGMapManager())
         self.engine.register_manager("asset_manager", AssetManager())
         if abs(self.config["accident_prob"] - 0) > 1e-2:
             self.engine.register_manager("object_manager", TrafficObjectManager())
+        if self.config["traffic_density"] > 0:
+            self.engine.register_manager("traffic_manager", TrafficManager())
 
     def _get_agent_manager(self):
         from metaurban.manager.agent_manager import DeliveryRobotAgentManager
