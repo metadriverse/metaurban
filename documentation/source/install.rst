@@ -54,7 +54,21 @@ If the above observation is not enough for your RL algorithms and you wish to us
 
 Install MetaUrban with headless rendering
 #############################
+The latest MetaUrban is already built to support headless-rendering. But for a double check, run following command::
 
+    python -m metaurban.tests.test_env.verify_headless_env
+
+The script will generate two **same** images to `/path/to/metaurban repo/metaurban/examples`, one from agent observation, the other from panda3d internal rendering buffer.
+Please fetch and check those images from cluster to ensure MetaUrban can draw the scene and capture images correctly.
+By default, it only generates images from the main camera. Set ```--camera [rgb/depth]``` to check other cameras.
+Also, ```--cuda``` flag can be added to test image_on_cuda pipeline for your headless machine.
+If the captured main camera images are completed as following, then the installation on headless machine is successful.
+
+.. image:: figs/main_camera_from_observation.png
+  :width: 400
+  :align: center
+
+|
 
 Install MetaUrban with advanced offscreen rendering
 #############################
