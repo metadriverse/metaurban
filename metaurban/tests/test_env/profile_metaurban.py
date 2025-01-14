@@ -4,12 +4,13 @@ import time
 
 import numpy as np
 import logging
+import tqdm
 from metaurban import SidewalkStaticMetaUrbanEnv
 from metadrive.utils import setup_logger
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--num-steps", "-n", default=200, type=int, help="Total steps of profiling.")
+    parser.add_argument("--num-steps", "-n", default=1000, type=int, help="Total steps of profiling.")
     args = parser.parse_args()
 
     setup_logger(debug=False)
@@ -17,9 +18,9 @@ if __name__ == '__main__':
     obs, _ = env.reset()
     start = time.time()
     reset_used_time = 0
-    action = [0.0, 1.]
+    action = [0.0, 0.]
     total_steps = args.num_steps
-    for s in range(total_steps):
+    for s in tqdm.trange(total_steps):
         o, r, tm, tc, i = env.step(action)
         if tm or tc:
             start_reset = time.time()

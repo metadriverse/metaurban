@@ -100,6 +100,12 @@ metaurban_DEFAULT_CONFIG = dict(
     crash_building_done=False,
     relax_out_of_road_done=True,
 )
+metaurban_DEFAULT_CONFIG.update(
+    dict(
+        show_mid_block_map=False,
+        show_ego_navigation=False,
+    )
+)
 
 
 class SidewalkStaticMetaUrbanEnv(BaseEnv):

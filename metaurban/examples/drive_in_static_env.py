@@ -52,7 +52,7 @@ if __name__ == "__main__":
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
-        debug=True,
+        debug=False,
         horizon=300,
         on_continuous_line_done=False,
         out_of_route_done=True,
@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
     env = SidewalkStaticMetaUrbanEnv(config)
     o, _ = env.reset(seed=2)
-    env.engine.toggleDebug()
+    # env.engine.toggleDebug()
 
     try:
         print(HELP_MESSAGE)

@@ -47,7 +47,7 @@ Please feel free to contact us if you have any suggestions or ideas!
             <td>
                 <video style="display:block; width:100%; height:auto; "
                        autoplay="autoplay" muted loop="loop" controls playsinline>
-                    <source src="https://drive.usercontent.google.com/download?id=1_xYL7IXuHc0b8DvghVvzpKeBQTsTxeUe&export=download&authuser=0&confirm=t&uuid=38f2baab-0bfb-47c0-b30d-13856e5370f6&at=AIrpjvNjYx73kS3vOzL5vO7NMb2P%3A1736881189963"
+                    <source src="https://www.youtube.com/watch?list=TLGGudtrAllTcWYxNDAxMjAyNQ&time_continue=9&v=vHuAzNxmfKc&embeds_referring_euri=https%3A%2F%2Fmetadriverse.github.io%2F&source_ve_path=Mjg2NjY"
                             type="video/mp4"/>
                 </video>
             </td>
@@ -73,7 +73,6 @@ Relevant Projects
 And more can be found in `MetaDriverse <https://metadriverse.github.io/>`_ .
 
 Citation
-
 ########
 
 You can read `our white paper <https://arxiv.org/pdf/2407.08725.pdf>`_ describing the details of MetaUrban! If you use MetaUrban in your own work, please cite:
