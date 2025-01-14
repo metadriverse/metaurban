@@ -12,6 +12,11 @@ MetaUrban Documentation
 
 
 Welcome to the MetaUrban documentation!
+MetaUrban is a compositional simulation platform for AI-driven urban micromobility research with the following key features: 
+
+* Compositional: It supports generating infinite scenes with various road maps and traffic settings for the research of generalizable RL.
+* Lightweight: It is easy to install and run.
+* Realistic: Accurate physics simulation and multiple sensory input including Lidar, RGB images, top-down semantic map and first-person view images.
 
 This documentation brings you the information on installation, usages and more of MetaUrban!
 
@@ -34,3 +39,121 @@ Please feel free to contact us if you have any suggestions or ideas!
    :caption: RL Training with MetaUrban
    
    action_space.ipynb
+
+.. raw:: html
+
+    <table width="100%" style="margin: 0pt 0pt; text-align: center;">
+        <tr>
+            <td>
+                <video style="display:block; width:100%; height:auto; "
+                       autoplay="autoplay" muted loop="loop" controls playsinline>
+                    <source src="https://www.youtube.com/embed/vHuAzNxmfKc?autoplay=1&mute=1&loop=1&playlist=vHuAzNxmfKc&controls=1&rel=0&showinfo=0"
+                            type="video/mp4"/>
+                </video>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+
+Relevant Projects
+#################
+.. raw:: html
+
+    <b>
+        MetaDrive: an Open-source Driving Simulator for AI and Autonomy Research
+    </b> <br>
+    Quanyi Li*, Zhenghao Peng*, Lan Feng, Qihang Zhang, Zhenghai Xue, Bolei Zhou
+    <br>
+    <i>IEEE TPAMI 2022</i><br>
+    [<a href="https://arxiv.org/pdf/2109.12674.pdf" target="_blank">Paper</a>]
+    [<a href="https://github.com/metadriverse/metadrive" target="_blank">Code</a>]
+    [<a href="https://metadriverse.github.io/metadrive-simulator/" target="_blank">Webpage</a>]
+    <br><br>
+
+And more can be found in `MetaDriverse <https://metadriverse.github.io/>`_ .
+
+Citation
+########
+
+You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
+
+.. code-block:: latex
+
+    @article{li2021metadrive,
+      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
+      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
+      journal={arXiv preprint arXiv:2109.12674},
+      year={2021}
+    }Citation
+########
+
+You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
+
+.. code-block:: latex
+
+    @article{li2021metadrive,
+      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
+      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
+      journal={arXiv preprint arXiv:2109.12674},
+      year={2021}
+    }Citation
+########
+
+You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
+
+.. code-block:: latex
+
+    @article{li2021metadrive,
+      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
+      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
+      journal={arXiv preprint arXiv:2109.12674},
+      year={2021}
+    }Citation
+########
+
+You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
+
+.. code-block:: latex
+
+    @article{li2021metadrive,
+      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
+      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
+      journal={arXiv preprint arXiv:2109.12674},
+      year={2021}
+    }Citation
+########
+
+You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
+
+.. code-block:: latex
+
+    @article{li2021metadrive,
+      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
+      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
+      journal={arXiv preprint arXiv:2109.12674},
+      year={2021}
+    }Citation
+########
+
+You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
+
+.. code-block:: latex
+
+    @article{li2021metadrive,
+      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
+      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
+      journal={arXiv preprint arXiv:2109.12674},
+      year={2021}
+    }Citation
+########
+
+You can read `our white paper <https://arxiv.org/pdf/2407.08725.pdf>`_ describing the details of MetaUrban! If you use MetaUrban in your own work, please cite:
+
+.. code-block:: latex
+
+    @article{wu2024metaurban,
+             title={MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility},
+             author={Wu, Wayne and He, Honglin and He, Jack and Wang, Yiran and Duan, Chenda and Liu, Zhizheng and Li, Quanyi and Zhou, Bolei},
+             journal={arXiv preprint arXiv:2407.08725},
+             year={2024}
+   }
