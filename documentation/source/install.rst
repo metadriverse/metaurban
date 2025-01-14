@@ -58,7 +58,7 @@ The latest MetaUrban is already built to support headless-rendering. But for a d
 
     python -m metaurban.tests.test_env.verify_headless_env
 
-The script will generate two **same** images to `/path/to/metaurban repo/metaurban/examples`, one from agent observation, the other from panda3d internal rendering buffer.
+The script will generate two **same** images to `/path/to/metaurban repo/metaurban/examples`, one from agent observation, the other from Panda3D internal rendering buffer.
 Please fetch and check those images from cluster to ensure MetaUrban can draw the scene and capture images correctly.
 By default, it only generates images from the main camera. Set ```--camera [rgb/depth]``` to check other cameras.
 Also, ```--cuda``` flag can be added to test image_on_cuda pipeline for your headless machine.
@@ -73,7 +73,21 @@ If the captured main camera images look like the following one, then the install
 Known Issues
 ######################
 .. note:: Run MetaUrban on different platforms
-* The system is compatible with Linux, Windows (using WSL2), and macOS with Apple Silicon. For optimal performance, we recommend using Linux. Please note that results may vary across platforms, and the same code may produce outputs similar to the following example.
+* The system is compatible with Linux, Windows (using WSL2), and macOS with Apple Silicon. For optimal performance, we recommend using Linux. 
+  Please note that results may vary slightly across platforms.
 
 .. note:: Run MetaUrban on a machine without monitor / X-server
-  
+* The system is built based on Panda3D, and the engine may work not as expected on a machine without a monitor or X-server. 
+  If you encounter these issues, please add the code as below to warm up the environments::
+
+    from metaurban.envs.base_env import BASE_DEFAULT_CONFIG
+    from metaurban.engine.engine_utils import initialize_engine, close_engine
+    config_warmup = BASE_DEFAULT_CONFIG.copy()
+    config_warmup["debug"] = True
+    initialize_engine(config_warmup)
+    close_engine()
+
+  before simulation::
+    env = SidewalkStaticMetaUrbanEnv(config)
+    obs, _ = env.reset()
+
