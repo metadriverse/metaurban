@@ -14,7 +14,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     setup_logger(debug=False)
-    env = SidewalkStaticMetaUrbanEnv(dict(num_scenarios=1000, start_seed=1010, object_density=0.2))
+    env = SidewalkStaticMetaUrbanEnv(dict(num_scenarios=1000, start_seed=1010, object_density=0.05))
     obs, _ = env.reset()
     start = time.time()
     reset_used_time = 0
