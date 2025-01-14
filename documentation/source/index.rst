@@ -46,7 +46,7 @@ Please feel free to contact us if you have any suggestions or ideas!
         <tr>
             <td>
                 <iframe style="display:block; width:100%; height:auto;"
-                        src="https://www.youtube.com/watch?v=vHuAzNxmfKc&list=TLGGudtrAllTcWYxNDAxMjAyNQ&t=9s"
+                        src="https://youtube.com/watch?v=vHuAzNxmfKc"
                         frameborder="0" 
                         allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
                         allowfullscreen>

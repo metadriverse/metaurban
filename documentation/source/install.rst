@@ -49,17 +49,16 @@ To check whether MetaUrban is successfully installed, please run the following c
     python -m metaurban.tests.test_env.profile_metaurban
 
 This script can also verify the efficiency of MetaUrban through the printed messages.
-The default observation contains information on ego vehicle's states, Lidar-like cloud points showing neighboring vehicles, and information about navigation and tasks. Besides, you can also try the Pygame-based Top-down rendering (See `TopDownObservation <obs.html#topdownobservation>`_), which is also runnable in most headless machine without any special treatment.
+The default observation contains information on ego vehicle's states, Lidar-like cloud points showing neighboring vehicles, and information about navigation and tasks. 
 If the above observation is not enough for your RL algorithms and you wish to use the Panda3D camera to provide realistic RGB images as the observation, please continue reading this section.
 
 Install MetaUrban with headless rendering
 #############################
 
-.. note:: Run MetaUrban on a machine without monitor / X-server
 
 Install MetaUrban with advanced offscreen rendering
 #############################
 
 Known Issues
 ######################
-
+.. note:: Run MetaUrban on a machine without monitor / X-server
