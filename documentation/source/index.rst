@@ -45,11 +45,12 @@ Please feel free to contact us if you have any suggestions or ideas!
     <table width="100%" style="margin: 0pt 0pt; text-align: center;">
         <tr>
             <td>
-                <video style="display:block; width:100%; height:auto; "
-                       autoplay="autoplay" muted loop="loop" controls playsinline>
-                    <source src="https://www.youtube.com/watch?list=TLGGudtrAllTcWYxNDAxMjAyNQ&time_continue=9&v=vHuAzNxmfKc&embeds_referring_euri=https%3A%2F%2Fmetadriverse.github.io%2F&source_ve_path=Mjg2NjY"
-                            type="video/mp4"/>
-                </video>
+                <iframe style="display:block; width:100%; height:auto;"
+                        src="https://www.youtube.com/watch?v=vHuAzNxmfKc&list=TLGGudtrAllTcWYxNDAxMjAyNQ&t=9s"
+                        frameborder="0" 
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                </iframe>
             </td>
         </tr>
     </table>
