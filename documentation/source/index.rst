@@ -47,7 +47,7 @@ Please feel free to contact us if you have any suggestions or ideas!
             <td>
                 <video style="display:block; width:100%; height:auto; "
                        autoplay="autoplay" muted loop="loop" controls playsinline>
-                    <source src="https://www.youtube.com/embed/vHuAzNxmfKc?autoplay=1&mute=1&loop=1&playlist=vHuAzNxmfKc&controls=1&rel=0&showinfo=0"
+                    <source src="https://drive.usercontent.google.com/download?id=1_xYL7IXuHc0b8DvghVvzpKeBQTsTxeUe&export=download&authuser=0&confirm=t&uuid=38f2baab-0bfb-47c0-b30d-13856e5370f6&at=AIrpjvNjYx73kS3vOzL5vO7NMb2P%3A1736881189963"
                             type="video/mp4"/>
                 </video>
             </td>
@@ -73,78 +73,7 @@ Relevant Projects
 And more can be found in `MetaDriverse <https://metadriverse.github.io/>`_ .
 
 Citation
-########
 
-You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
-
-.. code-block:: latex
-
-    @article{li2021metadrive,
-      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
-      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
-      journal={arXiv preprint arXiv:2109.12674},
-      year={2021}
-    }Citation
-########
-
-You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
-
-.. code-block:: latex
-
-    @article{li2021metadrive,
-      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
-      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
-      journal={arXiv preprint arXiv:2109.12674},
-      year={2021}
-    }Citation
-########
-
-You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
-
-.. code-block:: latex
-
-    @article{li2021metadrive,
-      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
-      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
-      journal={arXiv preprint arXiv:2109.12674},
-      year={2021}
-    }Citation
-########
-
-You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
-
-.. code-block:: latex
-
-    @article{li2021metadrive,
-      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
-      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
-      journal={arXiv preprint arXiv:2109.12674},
-      year={2021}
-    }Citation
-########
-
-You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
-
-.. code-block:: latex
-
-    @article{li2021metadrive,
-      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
-      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
-      journal={arXiv preprint arXiv:2109.12674},
-      year={2021}
-    }Citation
-########
-
-You can read `our white paper <https://arxiv.org/pdf/2109.12674.pdf>`_ describing the details of MetaDrive! If you use MetaDrive in your own work, please cite:
-
-.. code-block:: latex
-
-    @article{li2021metadrive,
-      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
-      author={Li, Quanyi and Peng, Zhenghao and Xue, Zhenghai and Zhang, Qihang and Zhou, Bolei},
-      journal={arXiv preprint arXiv:2109.12674},
-      year={2021}
-    }Citation
 ########
 
 You can read `our white paper <https://arxiv.org/pdf/2407.08725.pdf>`_ describing the details of MetaUrban! If you use MetaUrban in your own work, please cite:
