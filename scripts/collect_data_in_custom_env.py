@@ -24,7 +24,7 @@ from metaurban.obs.image_obs import ImageObservation
 import torch
 
 import yaml
-with open('./env.yaml', 'r') as f:
+with open('./custom_metaurban_env.yaml', 'r') as f:
     predefined_config = yaml.safe_load(f)
 
 env_type = SidewalkStaticMetaUrbanEnv if predefined_config['Env'] == 'Static' else SidewalkDynamicMetaUrbanEnv
