@@ -34,13 +34,13 @@ def postprocess_semantic_image(image):
     """
     In order to align with the Segformer's output, we modify the output color of the semantic image from MetaDrive.
     """
-    # TODO(pzh): This function can't properly remap the color of the lane line and crosswalk because
-    #  there are some color drift (caused by resized?) in the original image. We need to fix this.
+    # unique_elements = np.unique(image.reshape(-1, 3), axis=0)
+    # print("Unique elements: ", unique_elements)
 
     # customized
     old_LANE_LINE = (255, 255, 255)
     old_CROSSWALK = (55, 176, 189)
-    old_SIDEWALK = (152, 251, 152)
+    old_SIDEWALK = (244, 35, 232)
 
     # These color might be prettier?
     new_LANE_LINE = (128, 64, 128)
@@ -58,19 +58,12 @@ def postprocess_semantic_image(image):
     is_crosswalk = (
         (image[..., 0] == old_CROSSWALK[0]) & (image[..., 1] == old_CROSSWALK[1]) & (image[..., 2] == old_CROSSWALK[2])
     )
-    is_crosswalk = (((image[..., 0] - old_CROSSWALK[0]) ** 2 < 10.0) & 
-                     ((image[..., 1] - old_CROSSWALK[1]) ** 2 < 10.0) & 
-                     ((image[..., 2] - old_CROSSWALK[2]) ** 2 < 10.0)
-    )
     image[is_crosswalk] = new_CROSSWALK
     
     is_sidewalk = (
         (image[..., 0] == old_SIDEWALK[0]) & (image[..., 1] == old_SIDEWALK[1]) & (image[..., 2] == old_SIDEWALK[2])
     )
     image[is_sidewalk] = new_SIDEWALK
-    
-    print(is_lane_line.sum(), is_crosswalk.sum(), is_sidewalk.sum())
-    import sys; sys.exit()
 
     return image
 
@@ -173,8 +166,11 @@ if __name__ == "__main__":
     o, _ = env.reset(seed=0)
     for t in range(5):
         env.step([0., 0.])
-    env.agents['default_agent'].set_position([160, 5, env.agents['default_agent'].HEIGHT / 2])
-    env.agents['default_agent'].set_heading_theta(45 / 180 * np.pi)
+    # env.agents['default_agent'].set_position([160, 5, env.agents['default_agent'].HEIGHT / 2])
+    # env.agents['default_agent'].set_heading_theta(45 / 180 * np.pi)
+    
+    env.agents['default_agent'].set_position([-5, 0, env.agents['default_agent'].HEIGHT / 2])
+    env.agents['default_agent'].set_heading_theta(0 / 180 * np.pi)
 
     # ===== SimGen Setup =====
     pipeline = SimGenPipeline()
@@ -232,8 +228,8 @@ if __name__ == "__main__":
         semantic = semantic.astype(np.uint8)
     else:
         semantic = (semantic * 255).astype(np.uint8)
-    semantic = postprocess_semantic_image(semantic)
-    semantic = semantic[..., ::-1]
+    semantic = postprocess_semantic_image(semantic[..., ::-1])
+    # semantic = semantic
 
     simgen_input = {
         'rgb': rgb,
