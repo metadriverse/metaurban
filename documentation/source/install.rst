@@ -62,7 +62,7 @@ The script will generate two **same** images to `/path/to/metaurban repo/metaurb
 Please fetch and check those images from cluster to ensure MetaUrban can draw the scene and capture images correctly.
 By default, it only generates images from the main camera. Set ```--camera [rgb/depth]``` to check other cameras.
 Also, ```--cuda``` flag can be added to test image_on_cuda pipeline for your headless machine.
-If the captured main camera images are completed as following, then the installation on headless machine is successful.
+If the captured main camera images look like the following one, then the installation on headless machine is successful.
 
 .. image:: figs/main_camera_from_observation.png
   :width: 400
@@ -70,9 +70,10 @@ If the captured main camera images are completed as following, then the installa
 
 |
 
-Install MetaUrban with advanced offscreen rendering
-#############################
-
 Known Issues
 ######################
+.. note:: Run MetaUrban on different platforms
+* The system is compatible with Linux, Windows (using WSL2), and macOS with Apple Silicon. For optimal performance, we recommend using Linux. Please note that results may vary across platforms, and the same code may produce outputs similar to the following example.
+
 .. note:: Run MetaUrban on a machine without monitor / X-server
+  
