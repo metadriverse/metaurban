@@ -13,6 +13,7 @@ from metaurban.constants import MetaUrbanType, Semantics
 from metaurban.engine.asset_loader import AssetLoader
 from metaurban.engine.engine_utils import get_engine, engine_initialized
 from metaurban.engine.physics_node import BaseRigidBodyNode
+from metaurban.constants import PGDrivableAreaProperty
 
 LaneIndex = Tuple[str, str, int]
 
@@ -40,7 +41,10 @@ class TestObject(TrafficObject):
             self._width = asset_metainfo["width"]
 
         if 'tree' in asset_metainfo['CLASS_NAME'].lower():
+            self.is_tree = True
             self.SEMANTIC_LABEL = Semantics.TREE.label
+        else:
+            self.is_tree = False
         if 'building' in asset_metainfo['CLASS_NAME'].lower():
             self.SEMANTIC_LABEL = Semantics.BUILDING.label
         if 'bonsai' in asset_metainfo['CLASS_NAME'].lower():
@@ -49,23 +53,30 @@ class TestObject(TrafficObject):
         # self._width = 2
         self._height = asset_metainfo["height"]
         self.filename = asset_metainfo["filename"]
-        self.hshift = asset_metainfo["hshift"]
+        self.hshift = asset_metainfo["hshift"] + PGDrivableAreaProperty.SIDEWALK_THICKNESS
         self.pos0 = asset_metainfo["pos0"]
         self.pos1 = asset_metainfo["pos1"]
-        self.pos2 = asset_metainfo["pos2"]
+        self.pos2 = asset_metainfo["pos2"] + PGDrivableAreaProperty.SIDEWALK_THICKNESS
         self.scale = asset_metainfo["scale"]
         if "is_building" not in asset_metainfo.keys():
             asset_metainfo["is_building"] = False
-        self.is_building = asset_metainfo["is_building"]
+        self.is_building = asset_metainfo["is_building"] or 'building' in asset_metainfo['CLASS_NAME'].lower()
         if not self.is_building:
             n = self._create_obj_chassis()
         else:
             n = self._create_building_chassis()
+            
+        # static object: set mass to 1e6
+        static_object = static or self.is_building or self.is_tree
+        if static_object:
+            self.MASS = 1e9
+        # else:
+        #     self.MASS = 1e2
         self.add_body(n)
 
         # self.body.addShape(BulletBoxShape((self.WIDTH / 2, self.LENGTH / 2, self.height / 2)))
 
-        # self.set_static(static)
+        self.set_static(static_object)
         if self.render:
             # model_file_path1 = AssetLoader.file_path("models", "test", "stop sign-8be31e33b3df4d6db7c75730ff11dfd8.glb")
             model_file_path2 = AssetLoader.file_path("models", "test", self.filename)
@@ -85,8 +96,10 @@ class TestObject(TrafficObject):
         body_node.setActive(False)
         body_node.setKinematic(False)
         body_node.setStatic(True)
-        # body_node.addShape(shape)
         body_node.setIntoCollideMask(CollisionGroup.InvisibleWall)
+
+        self.dynamic_nodes.append(body_node)
+        self._node_path_list.append(body_node)
         return body_node
 
     def _create_obj_chassis(self):

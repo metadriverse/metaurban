@@ -194,13 +194,20 @@ class EgoVehicle(EgoDeliveryRobot):
     # LENGTH = 4.25
     # WIDTH = 1.7
     # HEIGHT = 1.7
-    LATERAL_TIRE_TO_CENTER = 0.7
-    TIRE_TWO_SIDED = True
-    FRONT_WHEELBASE = 1.385  # 0.3#0.3#0.5#0.3#0.5#0.25#1.385
-    REAR_WHEELBASE = 1.11  #0.3#0.3#0.5#0.3#0.5#0.25#1.11
-    TIRE_RADIUS = 0.376  #0.2#0.1#0.2#0.05#0.15#0.1#0.376
-    TIRE_WIDTH = 0.25  #0.2#0.1#0.2#0.05#0.1#0.1#0.25
-    MASS = 500
+    # LATERAL_TIRE_TO_CENTER = 0.7
+    # TIRE_TWO_SIDED = True
+    # FRONT_WHEELBASE = 1.385  # 0.3#0.3#0.5#0.3#0.5#0.25#1.385
+    # REAR_WHEELBASE = 1.11  #0.3#0.3#0.5#0.3#0.5#0.25#1.11
+    # TIRE_RADIUS = 0.376  #0.2#0.1#0.2#0.05#0.15#0.1#0.376
+    # TIRE_WIDTH = 0.25  #0.2#0.1#0.2#0.05#0.1#0.1#0.25
+    # MASS = 500
+    TIRE_RADIUS = 0.3305  #0.313
+    CHASSIS_TO_WHEEL_AXIS = 0.2
+    TIRE_WIDTH = 0.255  #0.25
+    MASS = 1595  #1100
+    LATERAL_TIRE_TO_CENTER = 1  #0.815
+    FRONT_WHEELBASE = 1.36  #1.05234
+    REAR_WHEELBASE = 1.45  #1.4166
     LIGHT_POSITION = (-0.57, 1.86, 0.23)
     path = ['coco-gradient.glb', (1, 1, 1), (0, 0.075, 0.), (0, 0, 0)]
 

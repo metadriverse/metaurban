@@ -87,8 +87,8 @@ class ORCATrajectoryNavigation(BaseNavigation):
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
 
-        self.walkable_regions_mask = self._get_walkable_regions(self.map)
-        self.start_points, self.end_points = self.random_start_and_end_points(self.walkable_regions_mask[:, :, 0], 1)
+        self.start_end_sampling_mask, self.walkable_regions_mask = self._get_walkable_regions(self.map)
+        self.start_points, self.end_points = self.random_start_and_end_points(self.start_end_sampling_mask[:, :, 0], 1)
 
         # for compatibility
         self.next_ref_lanes = None
@@ -197,16 +197,16 @@ class ORCATrajectoryNavigation(BaseNavigation):
             torch.cuda.manual_seed(seed)
             torch.cuda.manual_seed_all(seed)
 
-            self.walkable_regions_mask = self._get_walkable_regions(self.map)
+            self.start_end_sampling_mask, self.walkable_regions_mask = self._get_walkable_regions(self.map)
             self.start_points, self.end_points = self.random_start_and_end_points(
-                self.walkable_regions_mask[:, :, 0], 1
+                self.start_end_sampling_mask[:, :, 0], 1
             )
             # self.walkable_regions_mask[:] = 255
             # print( self.start_points, self.end_points)
             # self.start_points = [(10, 0)]
             # self.end_points = [(20, 0)]
             time_length, points, speed, early_stop_points = get_planning(
-                [self.start_points], [self.walkable_regions_mask], [self.end_points], [len(self.start_points)], 1
+                [self.start_points], [self.start_end_sampling_mask], [self.end_points], [len(self.start_points)], 1
             )
 
             # case-1
@@ -557,98 +557,210 @@ class ORCATrajectoryNavigation(BaseNavigation):
         columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
 
         self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
-        if hasattr(self.engine, 'walkable_regions_mask'):
-            return self.engine.walkable_regions_mask
+        if 'walk_on_all_regions' not in self.engine.global_config:
+            logger.warning("Not set var:walk_on_all_regions, so that agents can walk on all regions")
+            self.engine.global_config['walk_on_all_regions'] = True
+        if self.engine.global_config['walk_on_all_regions']:
+            logger.info("Agents can walk on all regions")
+            if hasattr(self.engine, 'walkable_regions_mask'):
+                return self.engine.walkable_regions_mask.copy(), self.engine.walkable_regions_mask
 
-        self.crosswalks = current_map.crosswalks
-        self.sidewalks = current_map.sidewalks
-        self.sidewalks_near_road = current_map.sidewalks_near_road
-        self.sidewalks_farfrom_road = current_map.sidewalks_farfrom_road
-        self.sidewalks_near_road_buffer = current_map.sidewalks_near_road_buffer
-        self.sidewalks_farfrom_road_buffer = current_map.sidewalks_farfrom_road_buffer
+            self.crosswalks = current_map.crosswalks
+            self.sidewalks = current_map.sidewalks
+            self.sidewalks_near_road = current_map.sidewalks_near_road
+            self.sidewalks_farfrom_road = current_map.sidewalks_farfrom_road
+            self.sidewalks_near_road_buffer = current_map.sidewalks_near_road_buffer
+            self.sidewalks_farfrom_road_buffer = current_map.sidewalks_farfrom_road_buffer
 
-        polygons = []
-        for sidewalk in self.sidewalks.keys():
-            # if "SDW_I_" in sidewalk: continue
-            polygon = self.sidewalks[sidewalk]['polygon']
-            polygons += polygon
-        for crosswalk in self.crosswalks.keys():
-            # if "CRS_I_" in crosswalk: continue
-            polygon = self.crosswalks[crosswalk]['polygon']
-            polygons += polygon
+            polygons = []
+            for sidewalk in self.sidewalks.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon = self.sidewalks[sidewalk]['polygon']
+                polygons += polygon
+            for crosswalk in self.crosswalks.keys():
+                # if "CRS_I_" in crosswalk: continue
+                polygon = self.crosswalks[crosswalk]['polygon']
+                polygons += polygon
 
-        for sidewalk in self.sidewalks_near_road_buffer.keys():
-            polygon = self.sidewalks_near_road_buffer[sidewalk]['polygon']
-            polygons += polygon
-        for sidewalk in self.sidewalks_near_road.keys():
-            polygon = self.sidewalks_near_road[sidewalk]['polygon']
-            polygons += polygon
-        for sidewalk in self.sidewalks_farfrom_road.keys():
-            polygon = self.sidewalks_farfrom_road[sidewalk]['polygon']
-            polygons += polygon
-        for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
-            polygon = self.sidewalks_farfrom_road_buffer[sidewalk]['polygon']
-            polygons += polygon
+            for sidewalk in self.sidewalks_near_road_buffer.keys():
+                polygon = self.sidewalks_near_road_buffer[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.sidewalks_near_road.keys():
+                polygon = self.sidewalks_near_road[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.sidewalks_farfrom_road.keys():
+                polygon = self.sidewalks_farfrom_road[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
+                polygon = self.sidewalks_farfrom_road_buffer[sidewalk]['polygon']
+                polygons += polygon
 
-        polygon_array = np.array(polygons)
-        min_x = np.min(polygon_array[:, 0])
-        max_x = np.max(polygon_array[:, 0])
-        min_y = np.min(polygon_array[:, 1])
-        max_y = np.max(polygon_array[:, 1])
+            polygon_array = np.array(polygons)
+            min_x = np.min(polygon_array[:, 0])
+            max_x = np.max(polygon_array[:, 0])
+            min_y = np.min(polygon_array[:, 1])
+            max_y = np.max(polygon_array[:, 1])
 
-        rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
-        columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
+            rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
+            columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
 
-        self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
-        walkable_regions_mask = np.zeros((rows, columns, 3), np.uint8)
+            self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
+            walkable_regions_mask = np.zeros((rows, columns, 3), np.uint8)
 
-        for sidewalk in self.sidewalks.keys():
-            # if "SDW_I_" in sidewalk: continue
-            polygon_array = np.array(self.sidewalks[sidewalk]['polygon'])
-            polygon_array += self.mask_translate
-            polygon_array = np.floor(polygon_array).astype(int)
-            polygon_array = polygon_array.reshape((-1, 1, 2))
-            cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for sidewalk in self.sidewalks.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
 
-        for crosswalk in self.crosswalks.keys():
-            # if "CRS_I_" in crosswalk: continue
-            polygon_array = np.array(self.crosswalks[crosswalk]['polygon'])
-            polygon_array += self.mask_translate
-            polygon_array = np.floor(polygon_array).astype(int)
-            polygon_array = polygon_array.reshape((-1, 1, 2))
-            cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for crosswalk in self.crosswalks.keys():
+                # if "CRS_I_" in crosswalk: continue
+                polygon_array = np.array(self.crosswalks[crosswalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
 
-        for sidewalk in self.sidewalks_near_road_buffer.keys():
-            # if "SDW_I_" in sidewalk: continue
-            polygon_array = np.array(self.sidewalks_near_road_buffer[sidewalk]['polygon'])
-            polygon_array += self.mask_translate
-            polygon_array = np.floor(polygon_array).astype(int)
-            polygon_array = polygon_array.reshape((-1, 1, 2))
-            cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-        for sidewalk in self.sidewalks_near_road.keys():
-            # if "SDW_I_" in sidewalk: continue
-            polygon_array = np.array(self.sidewalks_near_road[sidewalk]['polygon'])
-            polygon_array += self.mask_translate
-            polygon_array = np.floor(polygon_array).astype(int)
-            polygon_array = polygon_array.reshape((-1, 1, 2))
-            cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-        for sidewalk in self.sidewalks_farfrom_road.keys():
-            # if "SDW_I_" in sidewalk: continue
-            polygon_array = np.array(self.sidewalks_farfrom_road[sidewalk]['polygon'])
-            polygon_array += self.mask_translate
-            polygon_array = np.floor(polygon_array).astype(int)
-            polygon_array = polygon_array.reshape((-1, 1, 2))
-            cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-        for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
-            # if "SDW_I_" in sidewalk: continue
-            polygon_array = np.array(self.sidewalks_farfrom_road_buffer[sidewalk]['polygon'])
-            polygon_array += self.mask_translate
-            polygon_array = np.floor(polygon_array).astype(int)
-            polygon_array = polygon_array.reshape((-1, 1, 2))
-            cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
-        walkable_regions_mask = cv2.flip(walkable_regions_mask, 0)  ### flip for orca   ######
+            for sidewalk in self.sidewalks_near_road_buffer.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_near_road_buffer[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for sidewalk in self.sidewalks_near_road.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_near_road[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for sidewalk in self.sidewalks_farfrom_road.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_farfrom_road[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_farfrom_road_buffer[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for sidewalk in self.valid_region.keys():
+                polygon_array = np.array(self.valid_region[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+                
+            walkable_regions_mask = cv2.flip(walkable_regions_mask, 0)  ### flip for orca   ######
+            start_end_regions_mask = walkable_regions_mask.copy()
+        else:
+            logger.info("Agents are expected to walk on main sidewalks and crosswalks, not all regions")
+            self.crosswalks = current_map.crosswalks
+            self.sidewalks = current_map.sidewalks
+            self.sidewalks_near_road = current_map.sidewalks_near_road
+            self.sidewalks_farfrom_road = current_map.sidewalks_farfrom_road
+            self.sidewalks_near_road_buffer = current_map.sidewalks_near_road_buffer
+            self.sidewalks_farfrom_road_buffer = current_map.sidewalks_farfrom_road_buffer
 
-        return walkable_regions_mask
+            polygons = []
+            for sidewalk in self.sidewalks.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon = self.sidewalks[sidewalk]['polygon']
+                polygons += polygon
+            for crosswalk in self.crosswalks.keys():
+                # if "CRS_I_" in crosswalk: continue
+                polygon = self.crosswalks[crosswalk]['polygon']
+                polygons += polygon
+
+            for sidewalk in self.sidewalks_near_road_buffer.keys():
+                polygon = self.sidewalks_near_road_buffer[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.sidewalks_near_road.keys():
+                polygon = self.sidewalks_near_road[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.sidewalks_farfrom_road.keys():
+                polygon = self.sidewalks_farfrom_road[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
+                polygon = self.sidewalks_farfrom_road_buffer[sidewalk]['polygon']
+                polygons += polygon
+
+            polygon_array = np.array(polygons)
+            min_x = np.min(polygon_array[:, 0])
+            max_x = np.max(polygon_array[:, 0])
+            min_y = np.min(polygon_array[:, 1])
+            max_y = np.max(polygon_array[:, 1])
+
+            rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
+            columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
+
+            self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
+            walkable_regions_mask = np.zeros((rows, columns, 3), np.uint8)
+            start_end_regions_mask = np.zeros((rows, columns, 3), np.uint8)
+
+            for sidewalk in self.sidewalks.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+                cv2.fillPoly(start_end_regions_mask, [polygon_array], [255, 255, 255])
+
+            for crosswalk in self.crosswalks.keys():
+                # if "CRS_I_" in crosswalk: continue
+                polygon_array = np.array(self.crosswalks[crosswalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+                cv2.fillPoly(start_end_regions_mask, [polygon_array], [255, 255, 255])
+
+            for sidewalk in self.sidewalks_near_road_buffer.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_near_road_buffer[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for sidewalk in self.sidewalks_near_road.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_near_road[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [255, 255, 255])
+            for sidewalk in self.sidewalks_farfrom_road.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_farfrom_road[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [0, 0, 0])
+            for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
+                # if "SDW_I_" in sidewalk: continue
+                polygon_array = np.array(self.sidewalks_farfrom_road_buffer[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [0, 0, 0])
+            for sidewalk in self.valid_region.keys():
+                polygon_array = np.array(self.valid_region[sidewalk]['polygon'])
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [0, 0, 0])    
+            
+            walkable_regions_mask = cv2.flip(walkable_regions_mask, 0)
+            start_end_regions_mask = cv2.flip(start_end_regions_mask, 0)
+        return start_end_regions_mask, walkable_regions_mask
 
     def get_map_mask(self):
         pass

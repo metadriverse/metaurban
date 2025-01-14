@@ -97,6 +97,7 @@ metaurban_DEFAULT_CONFIG = dict(
     crash_vehicle_done=False,
     crash_object_done=False,
     crash_human_done=False,
+    crash_building_done=False,
     relax_out_of_road_done=True,
 )
 
@@ -191,7 +192,7 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
                 "Episode ended! Scenario Index: {} Reason: crash object ".format(self.current_seed),
                 extra={"log_once": True}
             )
-        if done_info[TerminationState.CRASH_BUILDING]:
+        if done_info[TerminationState.CRASH_BUILDING] and self.config["crash_building_done"]:
             done = True
             self.logger.info(
                 "Episode ended! Scenario Index: {} Reason: crash building ".format(self.current_seed),

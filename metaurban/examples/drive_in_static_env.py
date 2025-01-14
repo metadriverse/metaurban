@@ -43,6 +43,7 @@ if __name__ == "__main__":
     config = dict(
         crswalk_density=1,
         object_density=args.density_obj,
+        walk_on_all_regions=False,
         use_render=True,
         map=map_type,
         manual_control=True,
@@ -51,7 +52,7 @@ if __name__ == "__main__":
         spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
-        debug=False,
+        debug=True,
         horizon=300,
         on_continuous_line_done=False,
         out_of_route_done=True,
@@ -60,6 +61,7 @@ if __name__ == "__main__":
             show_navi_mark=True,
             show_line_to_navi_mark=False,
             show_dest_mark=False,
+            enable_reverse=True,
         ),
         show_sidewalk=True,
         show_crosswalk=True,
@@ -69,6 +71,8 @@ if __name__ == "__main__":
         accident_prob=0,
         relax_out_of_road_done=True,
         max_lateral_dist=5.0,
+        
+        
     )
 
     if args.observation == "all":
@@ -86,7 +90,9 @@ if __name__ == "__main__":
         )
 
     env = SidewalkStaticMetaUrbanEnv(config)
-    o, _ = env.reset(seed=0)
+    o, _ = env.reset(seed=2)
+    env.engine.toggleDebug()
+
     try:
         print(HELP_MESSAGE)
         for i in range(1, 1000000000):
