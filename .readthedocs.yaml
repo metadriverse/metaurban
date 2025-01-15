@@ -10,11 +10,6 @@ build:
   tools:
     python: "mambaforge-22.9"
 
-apt_packages:
-  - gcc
-  - g++
-  - cmake
-  - make
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
@@ -43,4 +38,5 @@ python:
 
 # Commands to run during the build process
 commands:
+  - apt-get update && apt-get install -y gcc g++ cmake make
   - ./setup.sh
