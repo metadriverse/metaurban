@@ -9,6 +9,14 @@ build:
   os: ubuntu-22.04
   tools:
     python: "mambaforge-22.9"
+  apt_packages:
+    - cmake
+    - make
+    - g++
+    - gcc
+  jobs:
+    post_build:
+      - bash ./setup.sh
 
 
 # Build documentation in the "docs/" directory with Sphinx
@@ -35,8 +43,3 @@ python:
     - requirements: documentation/requirements.txt
     - method: pip
       path: .
-
-# Commands to run during the build process
-commands:
-  - apt-get update && apt-get install -y gcc g++ cmake make
-  - ./setup.sh
