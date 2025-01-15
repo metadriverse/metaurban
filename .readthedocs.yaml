@@ -41,6 +41,6 @@ python:
     - method: pip
       path: .
 
-build:
-  commands:
-    - ./setup.sh
+# Commands to run during the build process
+commands:
+  - ./setup.sh
