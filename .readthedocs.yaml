@@ -10,6 +10,12 @@ build:
   tools:
     python: "3.10"
 
+apt_packages:
+  - gcc
+  - g++
+  - cmake
+  - make
+  
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
   configuration: documentation/source/conf.py
@@ -29,7 +35,7 @@ sphinx:
 conda:
   dependencies:
     - conda-forge::pybind11
-    
+
 python:
     install:
     - requirements: documentation/requirements.txt
