@@ -1,0 +1,8 @@
+name: metaurban
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip>=20.1  # pip is needed as dependency
+  - pybind11
