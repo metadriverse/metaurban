@@ -26,6 +26,10 @@ sphinx:
 # Optional but recommended, declare the Python requirements required
 # to build your documentation
 # See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
+conda:
+  dependencies:
+    - conda-forge::pybind11
+    
 python:
     install:
     - requirements: documentation/requirements.txt
