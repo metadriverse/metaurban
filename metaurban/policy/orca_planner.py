@@ -3,9 +3,10 @@ import numpy as np
 from skimage import measure
 from metaurban.engine.logger import get_logger
 
-import sys
+import sys, os
 sys.path.insert(0, './metaurban/orca_algo/build')
-sys.path.append('/home/hollis/mnt/projects/MetaUrban-Private-for-Review/metaurban/orca_algo/build')
+script_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(f'{script_dir}/../../metaurban/orca_algo/build')
 
 import bind
 import metaurban.policy.orca_planner_utils as orca_planner_utils

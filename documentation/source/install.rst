@@ -87,7 +87,6 @@ Known Issues
     initialize_engine(config_warmup)
     close_engine()
 
-  before simulation::
     env = SidewalkStaticMetaUrbanEnv(config)
     obs, _ = env.reset()
 

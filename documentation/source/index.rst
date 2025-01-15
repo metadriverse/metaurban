@@ -37,8 +37,21 @@ Please feel free to contact us if you have any suggestions or ideas!
    :hidden:
    :maxdepth: 2
    :caption: RL Training with MetaUrban
-   
-   action_space.ipynb
+
+   rl_environments.ipynb
+   config_system.ipynb
+   observation.ipynb
+   action.ipynb
+   reward_cost_done.ipynb
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :caption: Concepts and Customization
+
+   new_env.ipynb
+   sensors.ipynb
+   top_down_render.ipynb
 
 .. raw:: html
 

@@ -26,7 +26,7 @@ import yaml
 import os
 from pathlib import Path
 from typing import Dict
-
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 class configReader:
     def __init__(self, config_path="path_config.yaml"):
@@ -42,8 +42,8 @@ class configReader:
         self.spawnPosDict = None
         self.spawnNumDict = None
         self.reverseType = None
-        self.path_config_path = "./path_config.yaml"
-        self.asset_config_path = "./asset_config.yaml"
+        self.path_config_path = f"{script_dir}/../../path_config.yaml"
+        self.asset_config_path = f"{script_dir}/../../asset_config.yaml"
         with open(self.path_config_path, "r") as file:
             self.path_config = yaml.safe_load(file)
         with open(self.asset_config_path, "r") as file2:
@@ -77,10 +77,10 @@ class configReader:
         path_dict = self.path_config['path']
         for key, path in path_dict.items():
             if key == "subfolders":
-                concat_path_dict = self.loadSubPath(parent_folder=path_dict["parentfolder"], child_folder_dict=path)
+                concat_path_dict = self.loadSubPath(parent_folder=f"{script_dir}/../../" + path_dict["parentfolder"], child_folder_dict=path)
                 result_folder_dict.update(concat_path_dict)
             else:
-                result_folder_dict[key] = path
+                result_folder_dict[key] = f"{script_dir}/../../" + path
         return result_folder_dict
 
     def loadTag(self):

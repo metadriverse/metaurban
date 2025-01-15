@@ -49,7 +49,6 @@ if __name__ == "__main__":
         manual_control=True,
         drivable_area_extension=55,
         height_scale=1,
-        spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
         debug=False,
