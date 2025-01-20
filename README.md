@@ -1,8 +1,82 @@
+***links here***
+
 # MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility
 
+**`MetaUrban`** is a cutting-edge simulation platform designed for Embodied AI research in urban spaces. It offers:
+
+- 🌆 **Infinite Urban Scene Generation**: Create diverse, interactive city environments.  
+- 🏗️ **10,000 High-Quality Urban Objects**: Includes realistic infrastructure and clutter.  
+- 🧍 **1,100 Human Models**: Each is rigged and equipped with 2,314 unique motions.
+- 🤖 **11 Urban Agents**: Including delivery robots, cyclists, skateboarders, and more.  
+- 🕹️ **Flexible User Interfaces**: Compatible with mouse, keyboard, joystick, and racing wheel.  
+- 🎥 **Configurable Sensors**: Supports RGB, depth, semantic map, and LiDAR.  
+- ⚙️ **Rigid-Body Physics**: Realistic mechanics for agents and environments.  
+- 🌍 **OpenAI Gym Interface**: Seamless integration for AI and reinforcement learning tasks.
+
+📖 Check out [**`MetaUrban` Documentation**](https://) to learn more!
+
+
+***[A video here]***
+
+
+## Latest Updates
+- [25/01/25] **v0.1.0**: The first official release of MetaUrban :wrench: [[release notes]](https://github.com/StanfordVL/OmniGibson/releases/tag/v0.1.0)
+
+
+## Table of Contents
+
+- [MetaUrban](#metaurban-an-embodied-ai-simulation-platform-for-urban-micromobility)
+  - [📎 Citation](#-citation)
+  - [🛠 Quick Start](#-quick-start)
+    - [Hardware Recommendations](#hardware-recommendations)
+    - [Installation](#installation)
+    - [Docker Setup](#docker-setup)
+  - [🏃‍♂️ Simulation Environment Roam](#️-simulation-environment-roam)
+    - [Point Navigation Environment](#point-navigation-environment)
+    - [Social Navigation Environment](#social-navigation-environment)
+  - [🤖 Run a Pre-Trained (PPO) Model](#-run-a-pre-trained-ppo-model)
+  - [🚀 Model Training and Evaluation](#-model-training-and-evaluation)
+    - [Reinforcement Learning](#reinforcement-learning)
+      - [Training](#training)
+      - [Evaluation](#evaluation)
+  - [📖 Questions and Support](#questions-and-support)
+  
+
+## 📎 Citation
+
+If you find MetaUrban helpful for your research, please cite the following BibTeX entry.
+
+```latex
+@article{wu2024metaurban,
+  title={MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility},
+  author={Wu, Wayne and He, Honglin and He, Jack and Wang, Yiran and Duan, Chenda and Liu, Zhizheng and Li, Quanyi and Zhou, Bolei},
+  journal={arXiv preprint arXiv:2407.08725},
+  year={2024}
+}
+```
+
 ## 🛠 Quick Start
-### Hardware Recommendation
-We have tested the project on Linux, Windows WSL2 and MacOS. We strongly recommend using Ubuntu with Nvidia GPUs (with at least **8GB RAM**, **3GB VRAM** and **10GB of storage space**) to run the simulator. The performance benchmarks are conducted on different machines with **Nvidia RTX-3090, RTX-4080, RTX-4090, RTX-A5000 and Tesla V100**. It's normal that running PointNavigation env by `metaurban/examples/drive_in_static_env.py` with **~60FPS** and **~2GB** GPU Memory. 
+
+### Hardware Recommendations
+
+To ensure the best experience with **MetaUrban**, please review the following hardware guidelines:
+
+- **Tested Platforms**:  
+  - **Linux**: Supported and Recommended (preferably Ubuntu).
+  - **Windows**: Works with **WSL2**.  
+  - **MacOS**: Supported.  
+
+- **Recommended Hardware**:  
+  - **GPU**: Nvidia GPU with at least **8GB RAM** and **3GB VRAM**.  
+  - **Storage**: Minimum of **10GB free space**.  
+
+- **Performance Benchmarks**:  
+  - Tested GPUs: **Nvidia RTX-3090, RTX-4080, RTX-4090, RTX-A5000, Tesla V100**.  
+  - Example benchmark:  
+    - Running `metaurban/examples/drive_in_static_env.py` achieves:  
+      - ~**60 FPS**  
+      - ~**2GB GPU memory usage**
+
 
 ### Installation
 
@@ -52,7 +126,7 @@ and organize the folder as:
 ```
 
 ### Docker Setup
-We provide docker file for MetaUrban. This works on machines with an NVIDIA GPU.To setup the MetaUrban using docker follow the below steps:
+We provide a docker file for MetaUrban. This works on machines with an NVIDIA GPU. To set up the MetaUrban using docker, follow the below steps:
 ```bash
 [sudo] docker -D build -t metaurban .
 [sudo] docker run -it metaurban
@@ -67,7 +141,7 @@ We provide examples to demonstrate features and basic usages of metaurban after 
 
 ### Point Navigation Environment
 
-In point navigation environment, there will be only static objects besides the ego agent in the scenario.
+In a point navigation environment, there will be only static objects besides the ego agent in the scenario.
 
 Run the following command to launch a simple scenario with manual control. Press `W,S,A,D` to control the delivery robot. 
 
@@ -77,10 +151,10 @@ python -m metaurban.examples.drive_in_static_env
 --density_obj 0.4
 ```
 
-Press key ```R``` for loading a new scenario. If there is no response when you press `W,S,A,D`, press `T` to enable manual control.
+Press the key ```R``` to load a new scenario. If there is no response when you press `W,S,A,D`, press `T` to enable manual control.
 
 ### Social Navigation Environment
-In social navigation environment, there will be vehicles, pedestrians and some other agents in the scenario.
+In a social navigation environment, there will be vehicles, pedestrians, and some other agents in the scenario.
 
 Run the following command to launch a simple scenario with manual control. Press `W,S,A,D` to control the delivery robot. 
 
@@ -98,7 +172,7 @@ python -m metaurban.examples.drive_with_pretrained_policy
 
 ## 🚀 Model Training and Evaluation
 
-We provide scripts for RL related research, based on **stable_baselines3**.
+We provide scripts for RL-related research based on **stable_baselines3**.
 
 ### Reinforcement Learning
 #### Training
@@ -119,20 +193,13 @@ We provide a script used to evaluate the quantitative performance of the RL agen
 ```bash
 python RL/PointNav/eval_ppo.py --policy ./pretrained_policy_576k.zip
 ```
-as an example of evaluting the provided policy.
+as an example of evaluating the provided policy.
 
-## 📎 Citation
 
-If you find MetaUrban helpful for your research, please cite the following BibTeX entry.
+## 📖 Questions and supports
 
-```latex
-@article{wu2024metaurban,
-  title={MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility},
-  author={Wu, Wayne and He, Honglin and He, Jack and Wang, Yiran and Duan, Chenda and Liu, Zhizheng and Li, Quanyi and Zhou, Bolei},
-  journal={arXiv preprint arXiv:2407.08725},
-  year={2024}
-}
-```
-
-## 📖 FAQs
 For frequently asked questions about installing, RL training and other modules, please refer to: [FAQs](documentation/FAQs.md)
+
+Can't find the answer to your question? Try asking the developers and community on our Discussions forum.
+
+***[open a discussion forum in GitHub]***
