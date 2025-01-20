@@ -34,7 +34,7 @@ Fork	        WIP
 """
 
 if __name__ == "__main__":
-    map_type = 'X'
+    map_type = 'CSCSCCCCCC'
     parser = argparse.ArgumentParser()
     parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
     parser.add_argument("--density_obj", type=float, default=0.4)

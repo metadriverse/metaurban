@@ -23,6 +23,7 @@ try:
 except ImportError:
     _cuda_enable = False
 from metaurban.component.sensors.base_sensor import BaseSensor
+from metaurban import constants
 
 
 class MainCamera(BaseSensor):
@@ -123,7 +124,7 @@ class MainCamera(BaseSensor):
         if "main_camera" in engine.global_config["sensors"]:
             self.engine.sensors["main_camera"] = self
         if self.enable_cuda:
-            assert _cuda_enable, "Can not enable cuda rendering pipeline"
+            assert _cuda_enable, "Can not enable cuda rendering pipeline, if you are on Windows, try 'pip install pypiwin32'"
 
             # returned tensor property
             self.cuda_dtype = np.uint8
@@ -276,7 +277,7 @@ class MainCamera(BaseSensor):
         """
         Calculate the heading of a position on lane
         :param lane: Abstract lane
-        :param pos: Tuple, metaurban coordinates
+        :param pos: Tuple, coordinates
         :return: heading theta
         """
         heading_theta = panda_heading(lane.heading_theta_at(lane.local_coordinates(pos)[0]))
@@ -447,9 +448,11 @@ class MainCamera(BaseSensor):
     def mouse_into_window(self):
         return True if not self._last_frame_has_mouse and self.has_mouse else False
 
-    def perceive(self, clip=True, new_parent_node: Union[NodePath, None] = None, position=None, hpr=None) -> np.ndarray:
+    def perceive(
+        self, to_float=True, new_parent_node: Union[NodePath, None] = None, position=None, hpr=None
+    ) -> np.ndarray:
         """
-        When clip is set to False, the image will be represented by unit8 with component value ranging from [0-255].
+        When to_float is set to False, the image will be represented by unit8 with component value ranging from [0-255].
         Otherwise, it will be float type with component value ranging from [0.-1.]. By default, the reset parameters are
         all None. In this case, the camera will render the result with poses and position set by track() function.
 
@@ -458,15 +461,30 @@ class MainCamera(BaseSensor):
         camera to capture a new image and return the camera to the owner. This usually happens when using one camera to
         render multiple times from different positions and poses.
 
-        new_parent_node should be a NodePath like object.origin and vehicle.origin or self.engine.origin, which
+        new_parent_node should be a NodePath like object.origin or vehicle.origin or self.engine.origin, which
         means the world origin. When new_parent_node is set, both position and hpr have to be set as well. The position
         and hpr are all 3-dim vector representing:
             1) the relative position to the reparent node
             2) the heading/pitch/roll of the sensor
+
+        Args:
+            to_float: When to_float is set to False, the image will be represented by unit8 with component value ranging
+                from [0-255]. Otherwise, it will be float type with component value ranging from [0.-1.].
+            new_parent_node: new_parent_node should be a NodePath like object.origin or vehicle.origin or
+                self.engine.origin, which means the world origin. When new_parent_node is set, both position and hpr
+                have to be set as well. The position and hpr are all 3-dim vector representing:
+            position: the relative position to the reparent node
+            hpr: the heading/pitch/roll of the sensor
+
+        Return:
+            Array representing the image.
         """
 
         if new_parent_node:
-            assert position and hpr, "When new_parent_node is set, both position and hpr should be set as well"
+            if position is None:
+                position = constants.DEFAULT_SENSOR_OFFSET
+            if hpr is None:
+                position = constants.DEFAULT_SENSOR_HPR
 
             # return camera to original state
             original_object = self.camera.getParent()
@@ -503,7 +521,7 @@ class MainCamera(BaseSensor):
             self.camera.setHpr(original_hpr)
             self.camera.setPos(original_position)
 
-        if not clip:
+        if not to_float:
             return img.astype(np.uint8, copy=False, order="C")
         else:
             return img / 255
@@ -605,13 +623,15 @@ class MainCamera(BaseSensor):
         self._cuda_buffer = check_cudart_err(cudart.cudaGraphicsUnmapResources(1, self.cuda_graphics_resource, stream))
         return self
 
-    def get_image(self):
-        # The Tracked obj arg is only for compatibility
-        img = PNMImage()
-        self.engine.win.getScreenshot(img)
-        return img
+    # def get_image(self):
+    #     # The Tracked obj arg is only for compatibility
+    #     img = PNMImage()
+    #     self.engine.win.getScreenshot(img)
+    #     return img
 
     def save_image(self, tracked_obj, file_name="main_camera.png", **kwargs):
         # The Tracked obj arg is only for compatibility
-        img = self.get_image()
+        # img = self.get_image()
+        img = PNMImage()
+        self.engine.win.getScreenshot(img)
         img.write(file_name)

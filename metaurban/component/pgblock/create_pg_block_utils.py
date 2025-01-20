@@ -8,12 +8,29 @@ from metaurban.component.lane.abs_lane import AbstractLane
 from metaurban.component.lane.pg_lane import PGLane
 from metaurban.component.lane.circular_lane import CircularLane
 from metaurban.component.lane.straight_lane import StraightLane
+from metaurban.component.lane.extension_lane import ExtendingLane, ExtensionDirection
 from metaurban.component.road_network import Road
 from metaurban.component.road_network.node_road_network import NodeRoadNetwork
 from metaurban.constants import PGLineType, PGLineColor, PGDrivableAreaProperty
 from metaurban.type import MetaUrbanType
 from metaurban.utils.math import get_vertical_vector
 from metaurban.utils.pg.utils import check_lane_on_road
+
+
+def create_extension(
+    start_position: np.ndarray,
+    end_position: np.ndarray,
+    direction: ExtensionDirection,
+    width: float = PGLane.DEFAULT_WIDTH,
+    forbidden: bool = False,
+    speed_limit: float = 20,
+    priority: int = 0
+):
+    extension = ExtendingLane(
+        direction, start_position, end_position, width, [PGLineType.NONE, PGLineType.CONTINUOUS], forbidden,
+        speed_limit, priority
+    )
+    return extension
 
 
 def create_bend_straight(

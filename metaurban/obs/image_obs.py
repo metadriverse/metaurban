@@ -5,7 +5,7 @@ import numpy as np
 from metaurban.component.vehicle.base_vehicle import BaseVehicle
 from metaurban.obs.observation_base import BaseObservation
 from metaurban.obs.state_obs import StateObservation
-
+from metaurban.component.sensors.point_cloud_lidar import PointCloudLidar
 _cuda_enable = True
 try:
     import cupy as cp
@@ -71,6 +71,8 @@ class ImageObservation(BaseObservation):
         channel = sensor_cls.num_channels if sensor_cls != "MainCamera" else 3
         shape = (self.config["sensors"][self.image_source][2],
                  self.config["sensors"][self.image_source][1]) + (channel, self.STACK_SIZE)
+        if sensor_cls is PointCloudLidar:
+            return gym.spaces.Box(-np.inf, np.inf, shape=shape, dtype=np.float32)
         if self.norm_pixel:
             return gym.spaces.Box(-0.0, 1.0, shape=shape, dtype=np.float32)
         else:

@@ -1,7 +1,9 @@
-import numpy as np
 from typing import Union
-from panda3d.core import NodePath
+
 import cv2
+import numpy as np
+from panda3d.core import NodePath
+
 from metaurban.component.sensors.base_sensor import BaseSensor
 from metaurban.utils.cuda import check_cudart_err
 
@@ -17,18 +19,19 @@ except ImportError:
 from panda3d.core import Vec3
 
 from metaurban.engine.core.image_buffer import ImageBuffer
+from metaurban import constants
 
 
 class BaseCamera(ImageBuffer, BaseSensor):
     """
     This class wrapping the ImageBuffer and BaseSensor to implement perceive() function to capture images in the virtual
-    world. It also extends a support for cuda, so the rendered images can be retained on GPU and converted to torch 
+    world. It also extends a support for cuda, so the rendered images can be retained on GPU and converted to torch
     tensor directly. The sensor is shared and thus can be set at any position in the world for any objects' use.
     To enable the image observation, set image_observation to True.
     """
     # shape(dim_1, dim_2)
-    BUFFER_W = 32  # dim 1
-    BUFFER_H = 32  # dim 2
+    BUFFER_W = 84  # dim 1
+    BUFFER_H = 84  # dim 2
     CAM_MASK = None
 
     num_channels = 3
@@ -50,7 +53,7 @@ class BaseCamera(ImageBuffer, BaseSensor):
             )
         self.cuda_graphics_resource = None
         if self.enable_cuda:
-            assert _cuda_enable, "Can not enable cuda rendering pipeline"
+            assert _cuda_enable, "Can not enable cuda rendering pipeline, if you are on Windows, try 'pip install pypiwin32'"
 
             # returned tensor property
             self.cuda_dtype = np.uint8
@@ -94,9 +97,9 @@ class BaseCamera(ImageBuffer, BaseSensor):
     def enable_cuda(self):
         return self is not None and self._enable_cuda
 
-    def save_image(self, base_object, name="debug.png"):
+    def get_image(self, base_object, mode="bgr"):
         """
-        Put camera to an object and save the image to the disk
+        Put camera to an object and get the image.
         """
         original_parent = self.cam.getParent()
         original_position = self.cam.getPos()
@@ -104,6 +107,18 @@ class BaseCamera(ImageBuffer, BaseSensor):
         self.cam.reparentTo(base_object.origin)
         img = self.get_rgb_array_cpu()
         self.track(original_parent, original_position, original_hpr)
+        if mode == "bgr":
+            return img
+        elif mode == "rgb":
+            return img[..., ::-1]
+        else:
+            raise ValueError("Unknown mode: {}".format(mode))
+
+    def save_image(self, base_object, name="debug.png"):
+        """
+        Put camera to an object and save the image to the disk
+        """
+        img = self.get_image(base_object, mode="bgr")
         cv2.imwrite(name, img)
 
     def track(self, new_parent_node: NodePath, position, hpr):
@@ -114,9 +129,11 @@ class BaseCamera(ImageBuffer, BaseSensor):
         self.cam.setPos(*position)
         self.cam.setHpr(*hpr)
 
-    def perceive(self, clip=True, new_parent_node: Union[NodePath, None] = None, position=None, hpr=None) -> np.ndarray:
+    def perceive(
+        self, to_float=True, new_parent_node: Union[NodePath, None] = None, position=None, hpr=None
+    ) -> np.ndarray:
         """
-        When clip is set to False, the image will be represented by unit8 with component value ranging from [0-255].
+        When to_float is set to False, the image will be represented by unit8 with component value ranging from [0-255].
         Otherwise, it will be float type with component value ranging from [0.-1.]. By default, the reset parameters are
         all None. In this case, the camera will render the result with poses and position set by track() function.
 
@@ -125,21 +142,36 @@ class BaseCamera(ImageBuffer, BaseSensor):
         camera to capture a new image and return the camera to the owner. This usually happens when using one camera to
         render multiple times from different positions and poses.
 
-        new_parent_node should be a NodePath like object.origin and vehicle.origin or self.engine.origin, which
-        means the world origin. When new_parent_node is set, both position and hpr have to be set as well. The position 
+        new_parent_node should be a NodePath like object.origin or vehicle.origin or self.engine.origin, which
+        means the world origin. When new_parent_node is set, both position and hpr have to be set as well. The position
         and hpr are all 3-dim vector representing:
             1) the relative position to the reparent node
             2) the heading/pitch/roll of the sensor
+
+        Args:
+            to_float: When to_float is set to False, the image will be represented by unit8 with component value ranging
+                from [0-255]. Otherwise, it will be float type with component value ranging from [0.-1.].
+            new_parent_node: new_parent_node should be a NodePath like object.origin or vehicle.origin or
+                self.engine.origin, which means the world origin. When new_parent_node is set, both position and hpr
+                have to be set as well. The position and hpr are all 3-dim vector representing:
+            position: the relative position to the reparent node
+            hpr: the heading/pitch/roll of the sensor
+
+        Return:
+            Array representing the image.
         """
+
+        different_pos_hpr = False
         if new_parent_node:
-            assert position and hpr, "When new_parent_node is set, both position and hpr should be set as well"
+            if position is None:
+                position = constants.DEFAULT_SENSOR_OFFSET
+            if hpr is None:
+                hpr = constants.DEFAULT_SENSOR_HPR
 
             # return camera to original state
             original_object = self.cam.getParent()
             original_hpr = self.cam.getHpr()
             original_position = self.cam.getPos()
-
-            change_poshpr = (original_hpr != Vec3(*hpr)) * (original_position != Vec3(*position))
 
             # reparent to new parent node
             self.cam.reparentTo(new_parent_node)
@@ -150,10 +182,15 @@ class BaseCamera(ImageBuffer, BaseSensor):
             assert len(hpr) == 3, "The hpr parameter of camera.perceive() should be  a 3-dim vector representing " \
                                   "the heading/pitch/roll."
             self.cam.setHpr(Vec3(*hpr))
+
+            different_pos_hpr = (original_hpr != Vec3(*hpr)) or (original_position != Vec3(*position))
+
             self.engine.taskMgr.step()
 
-            if change_poshpr:
-                self.engine.taskMgr.step()
+        if different_pos_hpr:
+            # Step the engine to call a new "self.engine.graphicsEngine.renderFrame()"
+            # (not sure why need to step twice...
+            self.engine.taskMgr.step()
 
         if self.enable_cuda:
             assert self.cuda_rendered_result is not None
@@ -166,8 +203,13 @@ class BaseCamera(ImageBuffer, BaseSensor):
             self.cam.reparentTo(original_object)
             self.cam.setHpr(original_hpr)
             self.cam.setPos(original_position)
+        return self._format(ret, to_float)
 
-        if not clip:
+    def _format(self, ret, to_float):
+        """
+        Format the image to the desired type, float32 or uint8
+        """
+        if not to_float:
             return ret.astype(np.uint8, copy=False, order="C")
         else:
             return ret / 255
