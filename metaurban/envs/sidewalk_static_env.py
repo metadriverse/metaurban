@@ -243,7 +243,6 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
             return False
 
     def _is_out_of_road(self, vehicle):
-        return False
         if self.config["relax_out_of_road_done"]:
             # We prefer using this out of road termination criterion.
             lat = abs(vehicle.navigation.current_lateral)

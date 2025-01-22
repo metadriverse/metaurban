@@ -104,17 +104,16 @@ class TestObject(TrafficObject):
 
     def _create_obj_chassis(self):
         chassis = BaseRigidBodyNode(self.name, MetaUrbanType.TRAFFIC_OBJECT)
-        self._node_path_list.append(chassis)
         chassis_shape = BulletBoxShape(Vec3(self.LENGTH / 2, self.WIDTH / 2, self.HEIGHT / 2))
         ts = TransformState.makePos(Vec3(0, 0, self.HEIGHT / 2))
         chassis.addShape(chassis_shape, ts)
         chassis.setDeactivationEnabled(False)
         chassis.notifyCollisions(True)  # advance collision check, do callback in pg_collision_callback
-
-        # physics_world = get_engine().physics_world
-        # vehicle_chassis = BulletVehicle(physics_world.dynamic_world, chassis)
-        # vehicle_chassis.setCoordinateSystem(ZUp)
+        chassis.setActive(True)
+        chassis.setKinematic(True)
+        
         self.dynamic_nodes.append(chassis)
+        self._node_path_list.append(chassis)
         return chassis
 
     def get_asset_metainfo(self):

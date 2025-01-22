@@ -244,13 +244,6 @@ class SidewalkDynamicMetaUrbanEnv(BaseEnv):
             done = lat > self.config["max_lateral_dist"]
             return done
 
-        ret = not vehicle.on_lane
-        if self.config["out_of_route_done"]:
-            ret = ret or vehicle.out_of_route
-        elif self.config["on_continuous_line_done"]:
-            ret = ret or vehicle.on_yellow_continuous_line or vehicle.on_white_continuous_line or vehicle.crash_sidewalk
-        return ret
-
     def record_previous_agent_state(self, vehicle_id: str):
         self.previous_agent_actions[vehicle_id] = self.agents[vehicle_id].current_action
 

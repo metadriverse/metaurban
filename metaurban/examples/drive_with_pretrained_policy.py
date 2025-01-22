@@ -163,6 +163,7 @@ if __name__ == "__main__":
         crswalk_density=1,
         object_density=0.4,
         use_render=True,
+        walk_on_all_regions=False,
         map=map_type,
         manual_control=False,
         drivable_area_extension=55,
@@ -188,7 +189,7 @@ if __name__ == "__main__":
         accident_prob=0,
         window_size=(960, 960),
         relax_out_of_road_done=True,
-        max_lateral_dist=5.0,
+        max_lateral_dist=15.0,
     )
     parser = argparse.ArgumentParser()
     parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])

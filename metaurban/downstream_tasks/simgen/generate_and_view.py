@@ -199,7 +199,7 @@ if __name__ == "__main__":
     # ===== Prepare input =====
     camera = env.engine.get_sensor("rgb_camera")
     rgb_front = camera.perceive(
-        clip=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, 2, 2], hpr=[0, 0, 0]
+        to_float=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, 2, 2], hpr=[0, 0, 0]
     )
     max_rgb_value = rgb_front.max()
     rgb = rgb_front[..., ::-1]
@@ -210,7 +210,7 @@ if __name__ == "__main__":
 
     camera = env.engine.get_sensor("depth_camera")
     depth_front = camera.perceive(
-        clip=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, 2, 2], hpr=[0, 0, 0]
+        to_float=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, 2, 2], hpr=[0, 0, 0]
     ).reshape(450, 800, -1)[..., -1]
     depth = depth_front
     depth_normalized = cv2.normalize(depth, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
@@ -220,7 +220,7 @@ if __name__ == "__main__":
 
     camera = env.engine.get_sensor("semantic_camera")
     semantic_front = camera.perceive(
-        clip=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, 2, 2], hpr=[0, 0, 0]
+        to_float=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, 2, 2], hpr=[0, 0, 0]
     )
     max_rgb_value = semantic_front.max()
     semantic = semantic_front

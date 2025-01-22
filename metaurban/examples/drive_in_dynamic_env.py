@@ -39,7 +39,7 @@ Fork	        WIP
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
-    parser.add_argument("--density_obj", type=float, default=0.4)
+    parser.add_argument("--density_obj", type=float, default=0.3)
     parser.add_argument("--density_ped", type=float, default=1.0)
     args = parser.parse_args()
 
@@ -48,19 +48,12 @@ if __name__ == "__main__":
     config = dict(
         crswalk_density=1,
         object_density=args.density_obj,
+        walk_on_all_regions=False,
         use_render=True,
-        map=map_type,  # 5
+        map=map_type,
         manual_control=True,
-        # traffic_mode = "respawn",
-        spawn_human_num=int(20 * den_scale),
-        spawn_wheelchairman_num=int(1 * den_scale),
-        spawn_edog_num=int(2 * den_scale),
-        spawn_erobot_num=int(1 * den_scale),
-        spawn_drobot_num=int(1 * den_scale),
-        max_actor_num=1,
         drivable_area_extension=55,
         height_scale=1,
-        spawn_deliveryrobot_num=2,
         show_mid_block_map=False,
         show_ego_navigation=False,
         debug=False,
@@ -72,17 +65,23 @@ if __name__ == "__main__":
             show_navi_mark=True,
             show_line_to_navi_mark=False,
             show_dest_mark=False,
+            enable_reverse=True,
         ),
         show_sidewalk=True,
         show_crosswalk=True,
         # scenario setting
         random_spawn_lane_index=False,
-        num_scenarios=1000,
-        traffic_density=0.6,
+        num_scenarios=100,
         accident_prob=0,
-        window_size=(960, 960),
         relax_out_of_road_done=True,
         max_lateral_dist=5.0,
+        
+        spawn_human_num=int(20 * den_scale),
+        spawn_wheelchairman_num=int(1 * den_scale),
+        spawn_edog_num=int(2 * den_scale),
+        spawn_erobot_num=int(1 * den_scale),
+        spawn_drobot_num=int(1 * den_scale),
+        max_actor_num=20,
     )
 
     if args.observation == "all":
@@ -100,7 +99,7 @@ if __name__ == "__main__":
         )
 
     env = SidewalkDynamicMetaUrbanEnv(config)
-    o, _ = env.reset(seed=930)
+    o, _ = env.reset(seed=0)
 
     try:
         print(HELP_MESSAGE)

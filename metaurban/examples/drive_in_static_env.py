@@ -34,10 +34,10 @@ Fork	        WIP
 """
 
 if __name__ == "__main__":
-    map_type = 'CSCSCCCCCC'
+    map_type = 'X'
     parser = argparse.ArgumentParser()
     parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
-    parser.add_argument("--density_obj", type=float, default=0.4)
+    parser.add_argument("--density_obj", type=float, default=0.3)
     args = parser.parse_args()
 
     config = dict(
@@ -89,7 +89,7 @@ if __name__ == "__main__":
         )
 
     env = SidewalkStaticMetaUrbanEnv(config)
-    o, _ = env.reset(seed=2)
+    o, _ = env.reset(seed=0)
     # env.engine.toggleDebug()
 
     try:

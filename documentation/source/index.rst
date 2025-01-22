@@ -1,4 +1,4 @@
-.. image:: figs/logo.png
+.. image:: figs/logo_white.png
    :width: 1800
    :align: center
 
@@ -47,44 +47,27 @@ Please feel free to contact us if you have any suggestions or ideas!
 .. toctree::
    :hidden:
    :maxdepth: 2
-   :caption: Concepts and Customization
+   :caption: Developer's Guide
 
    new_env.ipynb
+   system_design.ipynb
+   debug_mode.ipynb
    sensors.ipynb
    top_down_render.ipynb
+   points_and_lines.ipynb
+   log_msg.ipynb
+   ros.rst
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :caption: Applications
 
 .. raw:: html
 
-    <table width="100%" style="margin: 0pt 0pt; text-align: center;">
-        <tr>
-            <td>
-                <iframe style="display:block; width:100%; height:auto;"
-                        src="https://youtube.com/watch?v=vHuAzNxmfKc"
-                        frameborder="0" 
-                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-                        allowfullscreen>
-                </iframe>
-            </td>
-        </tr>
-    </table>
-    <br><br>
-
-Relevant Projects
-#################
-.. raw:: html
-
-    <b>
-        MetaDrive: an Open-source Driving Simulator for AI and Autonomy Research
-    </b> <br>
-    Quanyi Li*, Zhenghao Peng*, Lan Feng, Qihang Zhang, Zhenghai Xue, Bolei Zhou
-    <br>
-    <i>IEEE TPAMI 2022</i><br>
-    [<a href="https://arxiv.org/pdf/2109.12674.pdf" target="_blank">Paper</a>]
-    [<a href="https://github.com/metadriverse/metadrive" target="_blank">Code</a>]
-    [<a href="https://metadriverse.github.io/metadrive-simulator/" target="_blank">Webpage</a>]
-    <br><br>
-
-And more can be found in `MetaDriverse <https://metadriverse.github.io/>`_ .
+    <div style="margin: 0pt 0pt; text-align: center;">
+    <iframe width="800" height="480" src="https://www.youtube.com/embed/vHuAzNxmfKc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
 
 Citation
 ########

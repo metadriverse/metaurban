@@ -267,7 +267,8 @@ BASE_DEFAULT_CONFIG = dict(
 
     # ===== randomization =====
     num_scenarios=1,  # the number of scenarios in this environment
-    sequential_seeding=False
+    sequential_seeding=False,
+    static_traffic_object=True,
 )
 
 

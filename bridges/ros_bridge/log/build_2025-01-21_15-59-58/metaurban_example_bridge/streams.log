@@ -1,0 +1,36 @@
+[0.577s] Invoking command in '/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/src/metaurban_example_bridge': CONDA_PROMPT_MODIFIER=(metaurban) PYTHONPATH=/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/prefix_override:/home/hollis/anaconda3/envs/metaurban/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages:${PYTHONPATH} /home/hollis/anaconda3/envs/metaurban/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/metaurban_example_bridge build --build-base /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build install --record /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/install.log --single-version-externally-managed install_data
+[0.802s] running egg_info
+[0.811s] creating ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info
+[0.811s] writing ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/PKG-INFO
+[0.811s] writing dependency_links to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/dependency_links.txt
+[0.812s] writing entry points to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/entry_points.txt
+[0.812s] writing requirements to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/requires.txt
+[0.812s] writing top-level names to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/top_level.txt
+[0.812s] writing manifest file '../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/SOURCES.txt'
+[0.831s] reading manifest file '../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/SOURCES.txt'
+[0.832s] writing manifest file '../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/SOURCES.txt'
+[0.832s] running build
+[0.832s] running build_py
+[0.832s] creating /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.832s] copying metaurban_example_bridge/obj_bridge.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.832s] copying metaurban_example_bridge/lidar_bridge.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.832s] copying metaurban_example_bridge/__init__.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.832s] copying metaurban_example_bridge/camera_bridge.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.832s] running install
+[0.835s] running install_lib
+[0.845s] creating /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.845s] copying /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/obj_bridge.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.845s] copying /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/lidar_bridge.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.845s] copying /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/__init__.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.845s] copying /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/camera_bridge.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.845s] byte-compiling /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/obj_bridge.py to obj_bridge.cpython-310.pyc
+[0.846s] byte-compiling /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/lidar_bridge.py to lidar_bridge.cpython-310.pyc
+[0.846s] byte-compiling /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/__init__.py to __init__.cpython-310.pyc
+[0.846s] byte-compiling /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/camera_bridge.py to camera_bridge.cpython-310.pyc
+[0.847s] running install_data
+[0.847s] creating /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/share/ament_index/resource_index/packages
+[0.847s] copying resource/metaurban_example_bridge -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/share/ament_index/resource_index/packages
+[0.847s] creating /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/share/metaurban_example_bridge
+[0.847s] copying launch/metaurban_example_bridge.launch.py -> /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/share/metaurban_example_bridge
+[0.847s] error: can't copy 'package.xml': doesn't exist or not a regular file
+[0.875s] Invoked command in '/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/src/metaurban_example_bridge' returned '1': CONDA_PROMPT_MODIFIER=(metaurban) PYTHONPATH=/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/prefix_override:/home/hollis/anaconda3/envs/metaurban/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages:${PYTHONPATH} /home/hollis/anaconda3/envs/metaurban/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/metaurban_example_bridge build --build-base /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/build install --record /home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/build/metaurban_example_bridge/install.log --single-version-externally-managed install_data

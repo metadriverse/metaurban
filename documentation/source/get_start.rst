@@ -29,12 +29,27 @@ We provide the examples for those suites as follow:
 .. code-block::
 
     # Make sure current folder does not have a sub-folder named metaurban
-
     # ===== Environments with only Static Objects =====
     python -m metaurban.examples.drive_in_static_env
 
+You will see scenarios like these:
+
+.. image:: figs/static_env.png
+   :width: 800px
+   :align: center
+#############################
+
+.. code-block::
+
     # ===== Environments with Static Objects, Vehicles, Pedestrians and Robots =====
     python -m metaurban.examples.drive_in_dynamic_env
+
+You will see scenarios like these:
+
+.. image:: figs/dynamic_env.png
+   :width: 800px
+   :align: center
+#############################
 
 Using MetaUrban in Your Code
 #############################

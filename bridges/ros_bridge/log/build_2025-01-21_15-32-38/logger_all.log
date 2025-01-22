@@ -1,0 +1,19 @@
+[0.037s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.037s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='sequential', event_handlers=None, paths=['.'], verb_parser=CustomArgumentParser(prog='/usr/bin/colcon build', usage=None, description='Build a set of packages.', formatter_class=<class 'colcon_core.command.CustomFormatter'>, conflict_handler='error', add_help=True), verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f8091844e80>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f8091844e80>>)
+[0.037s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.037s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.037s] Level 1:colcon.colcon_core.package_discovery:PathPackageDiscovery.discover(['.'])
+[0.038s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore']
+[0.038s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.038s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python']
+[0.038s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.038s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.056s] INFO:colcon.colcon_core.executor:Executing jobs using 'sequential' executor
+[0.056s] DEBUG:colcon.colcon_core.executor.sequential:closing loop
+[0.056s] DEBUG:colcon.colcon_core.executor.sequential:loop closed
+[0.056s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[0.056s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[0.057s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.057s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/local_setup.sh'
+[0.058s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/_local_setup_util_sh.py'
+[0.058s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/hollis/mnt/projects/MetaUrban-dev/bridges/ros_bridge/install/setup.sh'

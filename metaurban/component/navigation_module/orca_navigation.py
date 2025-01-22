@@ -115,13 +115,14 @@ class ORCATrajectoryNavigation(BaseNavigation):
         self.last_current_long = deque([0.0, 0.0], maxlen=2)
         self.last_current_lat = deque([0.0, 0.0], maxlen=2)
         self.last_current_heading_theta_at_long = deque([0.0, 0.0], maxlen=2)
-
-    # TODO
-    # No other objects
-    # A*/other algos
-    # * sidewalk centric coordinates
-    # # 1. ego-orca
-    # # 2. multi-agent orca
+        
+        if 'walk_on_all_regions' not in self.engine.global_config:
+            logger.warning("Not set var:walk_on_all_regions, so that agents can walk on all regions")
+            self.engine.global_config['walk_on_all_regions'] = True
+        if self.engine.global_config['walk_on_all_regions']:
+            logger.info("Agents can walk on all regions")
+        else:
+            logger.info("Agents are expected to walk on main sidewalks and crosswalks, not all regions")
 
     def get_box_pts_from_center_heading(self, length, width, xc, yc, heading):
         import numpy as np
@@ -162,8 +163,6 @@ class ORCATrajectoryNavigation(BaseNavigation):
             assert self.engine.global_config['ref_traj_path'].split('_')[-1].split('.')[0].lower(
             ) == self.engine.global_config['map'].lower()
             self.position_list = [np.array(i).reshape(2, ) for i in position_list]
-            # mask_before = self.walkable_regions_mask
-            # cv2.imwrite('./tmp_before.png', self.walkable_regions_mask)
 
             self.init_position = self.position_list[0]
 
@@ -201,177 +200,10 @@ class ORCATrajectoryNavigation(BaseNavigation):
             self.start_points, self.end_points = self.random_start_and_end_points(
                 self.start_end_sampling_mask[:, :, 0], 1
             )
-            # self.walkable_regions_mask[:] = 255
-            # print( self.start_points, self.end_points)
-            # self.start_points = [(10, 0)]
-            # self.end_points = [(20, 0)]
+            
             time_length, points, speed, early_stop_points = get_planning(
                 [self.start_points], [self.start_end_sampling_mask], [self.end_points], [len(self.start_points)], 1
             )
-
-            # case-1
-            # start_point = self._to_block_coordinate(points[0][50][0])
-            # end_point = self._to_block_coordinate(points[0][60][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([-direction[1], direction[0]])
-
-            # # 生成四个垂直点
-            # distance = 1.5  # 每个点离线的距离
-            # points2 = [start_point + i * distance * perpendicular for i in [-1, 1]]
-
-            # start_point = self._to_block_coordinate(points[0][120][0])
-            # end_point = self._to_block_coordinate(points[0][125][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([-direction[1], direction[0]])
-            # points2 += [start_point + i * distance * perpendicular for i in [-1, 1]]
-
-            # # 打印结果
-            # from metaurban.component.agents.pedestrian.pedestrian_type import SimplePedestrian
-            # selected_humanoid_configs = []
-            # for i, point in enumerate(points2, start=1):
-            #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point)
-            #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
-            #     selected_humanoid_configs.append(random_humanoid_config)
-            # for kk, v_config in enumerate(selected_humanoid_configs):
-            #     humanoid_type = SimplePedestrian
-
-            #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
-            #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
-            #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
-
-            # case-2
-            # start_point = self._to_block_coordinate(points[0][50][0])
-            # end_point = self._to_block_coordinate(points[0][60][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([direction[0], direction[1]])
-
-            # # 生成四个垂直点
-            # distance = 1.5  # 每个点离线的距离
-            # points2 = [start_point + i * distance * perpendicular for i in [-1, 1]]
-
-            # start_point = self._to_block_coordinate(points[0][120][0])
-            # end_point = self._to_block_coordinate(points[0][125][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([direction[0], direction[1]])
-            # points2 += [start_point + i * distance * perpendicular for i in [-1, 1]]
-
-            # # 打印结果
-            # from metaurban.component.agents.pedestrian.pedestrian_type import SimplePedestrian
-            # selected_humanoid_configs = []
-            # for i, point in enumerate(points2, start=1):
-            #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point)
-            #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
-            #     selected_humanoid_configs.append(random_humanoid_config)
-            # for kk, v_config in enumerate(selected_humanoid_configs):
-            #     humanoid_type = SimplePedestrian
-
-            #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
-            #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
-            #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
-
-            # case-3
-            # start_point = self._to_block_coordinate(points[0][10][0])
-            # end_point = self._to_block_coordinate(points[0][20][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([-direction[1], direction[0]])
-
-            # # 生成四个垂直点
-            # distance = 1.5  # 每个点离线的距离
-            # points2 = [start_point + i * distance * perpendicular for i in [-1, -0.8]]
-
-            # start_point = self._to_block_coordinate(points[0][30][0])
-            # end_point = self._to_block_coordinate(points[0][40][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([-direction[1], direction[0]])
-            # points2 += [start_point + i * distance * perpendicular for i in [-1, -0.8]]
-
-            # # 打印结果
-            # from metaurban.component.agents.pedestrian.pedestrian_type import SimplePedestrian
-            # selected_humanoid_configs = []
-            # for i, point in enumerate(points2, start=1):
-            #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point)
-            #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
-            #     selected_humanoid_configs.append(random_humanoid_config)
-            # for kk, v_config in enumerate(selected_humanoid_configs):
-            #     humanoid_type = SimplePedestrian
-
-            #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
-            #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
-            #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
-
-            # case-4
-            # start_point = self._to_block_coordinate(points[0][50][0])
-            # end_point = self._to_block_coordinate(points[0][60][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([-direction[1], direction[0]])
-
-            # # 生成四个垂直点
-            # distance = 1.5  # 每个点离线的距离
-            # points2 = [start_point + i * distance * perpendicular for i in [-1, -0.8]]
-
-            # start_point = self._to_block_coordinate(points[0][70][0])
-            # end_point = self._to_block_coordinate(points[0][80][0])
-
-            # # 计算方向向量
-            # direction = end_point - start_point
-            # direction = direction / np.linalg.norm(direction)  # 归一化
-
-            # # 计算垂直向量
-            # perpendicular = np.array([-direction[1], direction[0]])
-            # points2 += [start_point + i * distance * perpendicular for i in [-1, -0.8]]
-
-            # # 打印结果
-            # from metaurban.component.agents.pedestrian.pedestrian_type import SimplePedestrian
-            # selected_humanoid_configs = []
-            # for i, point in enumerate(points2, start=1):
-            #     print(f"Point {i}: {point}")
-            #     spawn_point = point#self._to_block_coordinate(point)
-            #     random_humanoid_config = {"spawn_position_heading": [spawn_point, np.arctan2(perpendicular[1], perpendicular[0])]}
-            #     selected_humanoid_configs.append(random_humanoid_config)
-            # for kk, v_config in enumerate(selected_humanoid_configs):
-            #     humanoid_type = SimplePedestrian
-
-            #     v_config.update(self.engine.global_config["traffic_vehicle_config"])
-            #     random_v = self.engine.spawn_object(humanoid_type, vehicle_config=v_config)
-            #     self.engine.asset_manager.spawned_objects[random_v.id] = random_v
 
             positions = points[0]
             speeds = speed[0]
@@ -558,10 +390,10 @@ class ORCATrajectoryNavigation(BaseNavigation):
 
         self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
         if 'walk_on_all_regions' not in self.engine.global_config:
-            logger.warning("Not set var:walk_on_all_regions, so that agents can walk on all regions")
+            # logger.warning("Not set var:walk_on_all_regions, so that agents can walk on all regions")
             self.engine.global_config['walk_on_all_regions'] = True
         if self.engine.global_config['walk_on_all_regions']:
-            logger.info("Agents can walk on all regions")
+            # logger.info("Agents can walk on all regions")
             if hasattr(self.engine, 'walkable_regions_mask'):
                 return self.engine.walkable_regions_mask.copy(), self.engine.walkable_regions_mask
 
@@ -593,6 +425,9 @@ class ORCATrajectoryNavigation(BaseNavigation):
                 polygons += polygon
             for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
                 polygon = self.sidewalks_farfrom_road_buffer[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.valid_region.keys():
+                polygon = self.valid_region[sidewalk]['polygon']
                 polygons += polygon
 
             polygon_array = np.array(polygons)
@@ -661,7 +496,7 @@ class ORCATrajectoryNavigation(BaseNavigation):
             walkable_regions_mask = cv2.flip(walkable_regions_mask, 0)  ### flip for orca   ######
             start_end_regions_mask = walkable_regions_mask.copy()
         else:
-            logger.info("Agents are expected to walk on main sidewalks and crosswalks, not all regions")
+            # logger.info("Agents are expected to walk on main sidewalks and crosswalks, not all regions")
             self.crosswalks = current_map.crosswalks
             self.sidewalks = current_map.sidewalks
             self.sidewalks_near_road = current_map.sidewalks_near_road
@@ -690,6 +525,9 @@ class ORCATrajectoryNavigation(BaseNavigation):
                 polygons += polygon
             for sidewalk in self.sidewalks_farfrom_road_buffer.keys():
                 polygon = self.sidewalks_farfrom_road_buffer[sidewalk]['polygon']
+                polygons += polygon
+            for sidewalk in self.valid_region.keys():
+                polygon = self.valid_region[sidewalk]['polygon']
                 polygons += polygon
 
             polygon_array = np.array(polygons)
@@ -757,6 +595,12 @@ class ORCATrajectoryNavigation(BaseNavigation):
                 polygon_array = np.floor(polygon_array).astype(int)
                 polygon_array = polygon_array.reshape((-1, 1, 2))
                 cv2.fillPoly(walkable_regions_mask, [polygon_array], [0, 0, 0])    
+            for polygon in self.engine.asset_manager.all_object_polygons:
+                polygon_array = np.array(polygon)
+                polygon_array += self.mask_translate
+                polygon_array = np.floor(polygon_array).astype(int)
+                polygon_array = polygon_array.reshape((-1, 1, 2))
+                cv2.fillPoly(walkable_regions_mask, [polygon_array], [0, 0, 0])
             
             walkable_regions_mask = cv2.flip(walkable_regions_mask, 0)
             start_end_regions_mask = cv2.flip(start_end_regions_mask, 0)
