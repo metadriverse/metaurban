@@ -172,7 +172,7 @@ class EngineCore(ShowBase.ShowBase):
         #     # loadPrcFileData("", "load-display  pandagles2")
         #     # no further actions will be applied now!
         #     pass
-        self.global_config["show_logo"] = False
+        
         if self.global_config["debug"]:
             # debug setting
             EngineCore.DEBUG = True
@@ -237,6 +237,18 @@ class EngineCore(ShowBase.ShowBase):
                 and (self.mode in [RENDER_MODE_ONSCREEN, RENDER_MODE_OFFSCREEN]):
             initialize_asset_loader(self)
             gltf.patch_loader(self.loader)
+            
+            if not self.use_render_pipeline:
+                # Display logo
+                if self.mode == RENDER_MODE_ONSCREEN and (not self.global_config["debug"]):
+                    if self.global_config["show_logo"]:
+                        self._window_logo = attach_logo(self)
+                        # self._loading_logo = attach_cover_image(
+                        #     window_width=self.get_size()[0], window_height=self.get_size()[1]
+                        # )
+                        for i in range(5):
+                            self.graphicsEngine.renderFrame()
+                        #self.taskMgr.add(self.remove_logo, "remove _loading_logo in first frame")
 
         self.closed = False
 

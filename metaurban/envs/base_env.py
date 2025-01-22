@@ -242,7 +242,7 @@ BASE_DEFAULT_CONFIG = dict(
     # Please see Documentation: GUI for more details
     # Whether to show these elements in the 3D scene
     show_fps=True,
-    show_logo=False,
+    show_logo=True,
     show_mouse=True,
     show_skybox=True,
     show_terrain=True,

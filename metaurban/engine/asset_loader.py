@@ -132,7 +132,7 @@ def close_asset_loader():
 def randomize_cover():
     background_folder_name = "background"
     files = os.listdir(AssetLoader.asset_path.joinpath(background_folder_name))
-    files = [f for f in files if f.startswith("logo") and f.endswith("png")]
+    files = ["../../../documentation/source/figs/logo_white_loading.png"]
     from metaurban.utils import get_np_random
     selected = get_np_random().choice(files)
     selected_file = AssetLoader.file_path("{}/{}".format(background_folder_name, selected))
@@ -140,8 +140,7 @@ def randomize_cover():
 
 
 def get_logo_file():
-    file = AssetLoader.file_path("logo-tiny.png")
-    # assert os.path.exists(file)
+    file = AssetLoader.file_path("../../documentation/source/figs/logo_white.png")
     return file
 
 

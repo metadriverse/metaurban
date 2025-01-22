@@ -58,11 +58,6 @@ Please feel free to contact us if you have any suggestions or ideas!
    log_msg.ipynb
    ros.rst
 
-.. toctree::
-   :hidden:
-   :maxdepth: 2
-   :caption: Applications
-
 .. raw:: html
 
     <div style="margin: 0pt 0pt; text-align: center;">

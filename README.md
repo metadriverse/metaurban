@@ -1,22 +1,32 @@
-***links here***
+<br>
+
+![](documentation/source/figs/logo_white.png)
+
+<br>
 
 # MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility
+
+[![Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+
+[![Static Badge](https://img.shields.io/badge/Grounded_SAM-arXiv-blue)]()
+[![Documentation](https://readthedocs.org/projects/metaurban-simulator/badge/?version=latest)](https://metaurban-simulator.readthedocs.io)
+[![GitHub license](https://img.shields.io/github/license/metadriverse/metaurban)](https://github.com/metadriverse/metaurban/blob/main/LICENSE.txt)
+[![GitHub contributors](https://img.shields.io/github/contributors/metadriverse/metaurban)](https://github.com/metadriverse/metaurban/graphs/contributors)
+
 
 **`MetaUrban`** is a cutting-edge simulation platform designed for Embodied AI research in urban spaces. It offers:
 
 - 🌆 **Infinite Urban Scene Generation**: Create diverse, interactive city environments.  
-- 🏗️ **10,000 High-Quality Urban Objects**: Includes realistic infrastructure and clutter.  
-- 🧍 **1,100 Human Models**: Each is rigged and equipped with 2,314 unique motions.
+- 🏗️ **High-Quality Urban Objects**: Includes realistic infrastructure and clutter.  
+- 🧍 **Human Models**: Each is rigged and equipped with 2,314 unique motions.
 - 🤖 **11 Urban Agents**: Including delivery robots, cyclists, skateboarders, and more.  
 - 🕹️ **Flexible User Interfaces**: Compatible with mouse, keyboard, joystick, and racing wheel.  
 - 🎥 **Configurable Sensors**: Supports RGB, depth, semantic map, and LiDAR.  
 - ⚙️ **Rigid-Body Physics**: Realistic mechanics for agents and environments.  
 - 🌍 **OpenAI Gym Interface**: Seamless integration for AI and reinforcement learning tasks.
+- 🔗 **Framework Compatibility**: Seamlessly integrates with Ray, Stable Baselines, Imitation, Torch, and more.
 
 📖 Check out [**`MetaUrban` Documentation**](https://) to learn more!
-
-
-***[A video here]***
 
 
 ## Latest Updates
@@ -88,7 +98,7 @@ conda activate metaurban
 pip install -e .
 ```
 
-install ORCA algorithm for trajectory generation
+Install ORCA algorithm for trajectory generation
 
 ```bash
 conda install pybind11 -c conda-forge
@@ -96,25 +106,25 @@ cd metaurban/orca_algo && rm -rf build
 bash compile.sh && cd ../..
 ```
 
-it should be noticed that you should install ```cmake,make,gcc``` on your system before installing ORCA, more details can be found in [FAQs](documentation/FAQs.md).
+It should be noticed that you should install ```cmake,make,gcc``` on your system before installing ORCA, more details can be found in [FAQs](documentation/FAQs.md).
 
-install libs to use MetaUrban for RL training
+Install libs to use MetaUrban for RL training
 
 ```bash
 pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown
 ```
 
-assets will be downloaded automatically when first running the script 
+### Assets
+
+Assets will be downloaded automatically when first running the script 
 
 `python metaurban/examples/drive_in_static_env.py`
 
-if not, please download assets via the link:
+Or use the script
 
-"https://drive.google.com/file/d/1IL8FldCAn8GLa8QY1lryN33wrzbHHRVl/view?usp=sharing" for object assets
+`python metaurban/pull_asset.py`
 
-"https://drive.google.com/file/d/1XUGfG57Cof43dX2pkMYBhsFVirJ4DQ1o/view?usp=drive_link" for pedestrian assets
-
-and organize the folder as:
+If you cannot download assets by python scripts, please download assets via the link given in the sheet and organize the folder as:
 
 ```
 -metaurban
@@ -134,7 +144,7 @@ cd metaurban/orca_algo && rm -rf build
 bash compile.sh && cd ../.. 
 ```
 
-then you can run the simulator in docker.
+Then you can run the simulator in docker.
 
 ## 🏃‍♂️ Simulation Environment Roam
 We provide examples to demonstrate features and basic usages of metaurban after the local installation.
@@ -172,34 +182,47 @@ python -m metaurban.examples.drive_with_pretrained_policy
 
 ## 🚀 Model Training and Evaluation
 
-We provide scripts for RL-related research based on **stable_baselines3**.
-
 ### Reinforcement Learning
 #### Training
 ```bash
 python RL/PointNav/train_ppo.py
 ```
-for PPO training in PointNav Env. You can change the parameters in the file.
+For PPO training in PointNav Env. You can change the parameters in the file.
 
 ```bash
 python RL/SocialNav/train_ppo.py
 ```
-for PPO training in Social Env. You can change the parameters in the file.
+For PPO training in Social Env. You can change the parameters in the file.
 
-#### We only test RL training on Linux, there may be some issues on Windows and MacOS.
+#### We only test training on Linux, there may be some issues on Windows and MacOS.
 
-### Evaluation
+#### Evaluation
 We provide a script used to evaluate the quantitative performance of the RL agent
 ```bash
 python RL/PointNav/eval_ppo.py --policy ./pretrained_policy_576k.zip
 ```
-as an example of evaluating the provided policy.
+As an example of evaluating the provided policy.
 
+### Imitation Learning
+#### Data collection
+```bash
+python scripts/collect_data_in_custom_env.py
+```
+For expert data collection used in IL. You can change the parameters in the file `custom_metaurban_env.yaml` to modify the environment.
+
+#### Training
+```bash
+python IL/PointNav/train_BC.py
+```
+For behavior cloning, you should change the path of the `expert_data_path`.
+
+```bash
+python IL/PointNav/train_GAIL.py
+```
+For GAIL, you should change the path of the `expert_data_path`.
 
 ## 📖 Questions and supports
 
 For frequently asked questions about installing, RL training and other modules, please refer to: [FAQs](documentation/FAQs.md)
 
 Can't find the answer to your question? Try asking the developers and community on our Discussions forum.
-
-***[open a discussion forum in GitHub]***

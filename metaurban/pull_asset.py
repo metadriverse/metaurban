@@ -15,7 +15,7 @@ from metaurban.engine.logger import get_logger
 from metaurban.version import asset_version
 
 ROOT_DIR = Path(__file__).parent
-ASSET_URL = "https://drive.google.com/file/d/1IL8FldCAn8GLa8QY1lryN33wrzbHHRVl/view?usp=sharing"
+ASSET_URL = ""
 ASSET_PEDE_URL = 'https://drive.google.com/file/d/1XUGfG57Cof43dX2pkMYBhsFVirJ4DQ1o/view?usp=drive_link'
 
 
@@ -79,6 +79,10 @@ def pull_asset(update):
             import gdown
 
             # Download assets
+            logger.info("Thank you for using MetaUrban! Please take a moment to fill out and confirm the required agreements to access the full asset links. This process will only take about a minute.")
+            logger.info("Please fill out the form at: https://forms.gle/7Q6Q6Q7Q7Q7Q7Q7Q7")
+            msg = input('Link given in the form:')
+            ASSET_URL = msg
             logger.info("Pull assets of static objects from {} to {}".format(ASSET_URL, zip_path))
             gdown.download(ASSET_URL, str(zip_path), fuzzy=True)
             logger.info(
