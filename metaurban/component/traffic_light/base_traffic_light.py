@@ -1,10 +1,10 @@
 import numpy as np
 
 from metaurban.base_class.base_object import BaseObject
-from metaurban.constants import CamMask
-from metaurban.scenario.scenario_description import ScenarioDescription
+from metaurban.constants import CamMask, CollisionGroup
 from metaurban.constants import MetaUrbanType, Semantics
 from metaurban.engine.asset_loader import AssetLoader
+from metaurban.scenario.scenario_description import ScenarioDescription
 from metaurban.utils.pg.utils import generate_static_box_physics_body
 
 
@@ -50,7 +50,7 @@ class BaseTrafficLight(BaseObject):
             type_name=MetaUrbanType.TRAFFIC_LIGHT,
             ghost_node=True,
         )
-        self.add_body(air_wall, add_to_static_world=True)
+        self.add_body(air_wall, add_to_static_world=False)  # add to dynamic world so the lidar can detect it
 
         if position is None:
             # auto determining
@@ -79,15 +79,10 @@ class BaseTrafficLight(BaseObject):
         self.set_status(*args, **kwargs)
 
     def set_status(self, status):
-        status = MetaUrbanType.parse_light_status(status, simplifying=True)
-        if status == MetaUrbanType.LIGHT_GREEN:
-            self.set_green()
-        elif status == MetaUrbanType.LIGHT_RED:
-            self.set_red()
-        elif status == MetaUrbanType.LIGHT_YELLOW:
-            self.set_yellow()
-        elif status == MetaUrbanType.LIGHT_UNKNOWN:
-            self.set_unknown()
+        """
+        People should overwrite this method to parse traffic light status and to determine which traffic light to set
+        """
+        pass
 
     def _try_draw_line(self, color):
         if self._draw_line:
@@ -102,6 +97,7 @@ class BaseTrafficLight(BaseObject):
                 self.current_light = BaseTrafficLight.TRAFFIC_LIGHT_MODEL["green"].instanceTo(self.origin)
             self._try_draw_line([3 / 255, 255 / 255, 3 / 255])
         self.status = MetaUrbanType.LIGHT_GREEN
+        self._body.setIntoCollideMask(CollisionGroup.AllOff)  # can not be detected by anything
 
     def set_red(self):
         if self.render:
@@ -111,6 +107,7 @@ class BaseTrafficLight(BaseObject):
                 self.current_light = BaseTrafficLight.TRAFFIC_LIGHT_MODEL["red"].instanceTo(self.origin)
             self._try_draw_line([252 / 255, 0 / 255, 0 / 255])
         self.status = MetaUrbanType.LIGHT_RED
+        self._body.setIntoCollideMask(CollisionGroup.InvisibleWall)  # will be detected by lidar and object detector
 
     def set_yellow(self):
         if self.render:
@@ -120,6 +117,7 @@ class BaseTrafficLight(BaseObject):
                 self.current_light = BaseTrafficLight.TRAFFIC_LIGHT_MODEL["yellow"].instanceTo(self.origin)
             self._try_draw_line([252 / 255, 227 / 255, 3 / 255])
         self.status = MetaUrbanType.LIGHT_YELLOW
+        self._body.setIntoCollideMask(CollisionGroup.InvisibleWall)  # will be detected by lidar and object detector
 
     def set_unknown(self):
         if self.render:
@@ -128,6 +126,7 @@ class BaseTrafficLight(BaseObject):
             if self._show_model:
                 self.current_light = BaseTrafficLight.TRAFFIC_LIGHT_MODEL["unknown"].instanceTo(self.origin)
         self.status = MetaUrbanType.LIGHT_UNKNOWN
+        self._body.setIntoCollideMask(CollisionGroup.AllOff)  # can not be detected by anything
 
     def destroy(self):
         super(BaseTrafficLight, self).destroy()
