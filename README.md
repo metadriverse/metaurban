@@ -77,8 +77,8 @@ If you find MetaUrban helpful for your research, please cite the following BibTe
 @article{wu2024metaurban,
   title={MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility},
   author={Wu, Wayne and He, Honglin and He, Jack and Wang, Yiran and Duan, Chenda and Liu, Zhizheng and Li, Quanyi and Zhou, Bolei},
-  journal={arXiv preprint arXiv:2407.08725},
-  year={2024}
+  journal={ICLR},
+  year={2025}
 }
 ```
 
