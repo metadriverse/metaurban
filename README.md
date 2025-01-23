@@ -131,7 +131,13 @@ Install libs to use MetaUrban for RL training
 pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown
 ```
 
+### Run in 1 minute
+We provide a script to run our simulator, a tiny subset of assets will be downloaded automatically when first running the script
+
+`metaurban/examples/tiny_example.py`
+
 ### Assets
+**The assets are compressed and password-protected. You’ll be prompted to fill out a form the first time you run the script to pull all assets, and you’ll receive the password once the form is completed.**
 
 Assets will be downloaded automatically when first running the script 
 
@@ -139,9 +145,9 @@ Assets will be downloaded automatically when first running the script
 
 Or use the script
 
-`python metaurban/pull_asset.py`
+`python metaurban/pull_asset.py --update`
 
-If you cannot download assets by python scripts, please download assets via the link given in the sheet and organize the folder as:
+If you cannot download assets by python scripts, please download assets via the link in the python file and organize the folder as:
 
 ```
 -metaurban
@@ -243,3 +249,16 @@ For GAIL, you should change the path of the `expert_data_path`.
 For frequently asked questions about installing, RL training and other modules, please refer to: [FAQs](documentation/FAQs.md)
 
 Can't find the answer to your question? Try asking the developers and community on our Discussions forum.
+
+## 💘 Acknowledgement
+The simulator can not be built without the help from Panda3D community and the following open-sourced projects:
+- panda3d-simplepbr: https://github.com/Moguri/panda3d-simplepbr
+- panda3d-gltf: https://github.com/Moguri/panda3d-gltf
+- RenderPipeline (RP): https://github.com/tobspr/RenderPipeline
+- Water effect for RP: https://github.com/kergalym/RenderPipeline 
+- procedural_panda3d_model_primitives: https://github.com/Epihaius/procedural_panda3d_model_primitives
+- DiamondSquare for terrain generation: https://github.com/buckinha/DiamondSquare
+- KITSUNETSUKI-Asset-Tools: https://github.com/kitsune-ONE-team/KITSUNETSUKI-Asset-Tools
+- Objaverse: https://github.com/allenai/objaverse-xl
+- Synbody: https://github.com/SynBody/SynBody
+- BEDLAM: https://github.com/pixelite1201/BEDLAM
