@@ -51,7 +51,7 @@ class BaseEngine(EngineCore, Randomizable):
     def __init__(self, global_config):
         self.c_id = dict()
         self.id_c = dict()
-        self.try_pull_asset()
+        self.try_pull_asset(global_config)
         EngineCore.__init__(self, global_config)
         Randomizable.__init__(self, self.global_random_seed)
         self.episode_step = 0
@@ -761,19 +761,19 @@ class BaseEngine(EngineCore, Randomizable):
             cone = None
 
     @staticmethod
-    def try_pull_asset():
+    def try_pull_asset(global_config):
         from metaurban.engine.asset_loader import AssetLoader
         msg = "Assets folder doesn't exist. Begin to download assets..."
         if not os.path.exists(AssetLoader.asset_path):
             AssetLoader.logger.warning(msg)
-            pull_asset(update=False)
+            pull_asset(update=False, tiny=global_config.get("tiny", False))
         else:
             if AssetLoader.should_update_asset():
                 AssetLoader.logger.warning(
                     "Assets outdated! Current: {}, Expected: {}. "
                     "Updating the assets ...".format(asset_version(), VERSION)
                 )
-                pull_asset(update=True)
+                pull_asset(update=True, tiny=global_config.get("tiny", False))
             else:
                 AssetLoader.logger.info("Assets version: {}".format(VERSION))
 

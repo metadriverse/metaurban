@@ -13,6 +13,23 @@
 [![GitHub license](https://img.shields.io/github/license/metadriverse/metaurban)](https://github.com/metadriverse/metaurban/blob/main/LICENSE.txt)
 [![GitHub contributors](https://img.shields.io/github/contributors/metadriverse/metaurban)](https://github.com/metadriverse/metaurban/graphs/contributors)
 
+<div style="text-align: center; width:100%; margin: 0 auto; display: inline-block">
+<strong>
+[
+<a href="https://metadrive-simulator.readthedocs.io">Documentation</a>
+|
+<a href="https://github.com/metadriverse/metadrive?tab=readme-ov-file#-examples">Colab Examples</a>
+|
+<a href="https://metadriverse.github.io/metadrive-simulator/">Website</a>
+|
+<a href="https://arxiv.org/pdf/2109.12674.pdf">Paper</a>
+|
+<a href="https://metadriverse.github.io/">Relevant Projects</a>
+]
+</strong>
+</div>
+
+
 
 **`MetaUrban`** is a cutting-edge simulation platform designed for Embodied AI research in urban spaces. It offers:
 

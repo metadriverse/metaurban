@@ -1422,7 +1422,7 @@ class AssetManager(BaseManager):
                                     point = lane.position(longitude, lateral)
                                     polygon.append([point[0], point[1]])
                             self.all_object_polygons.append(polygon)
-
+            
             if block.ID == 'C':
 
                 self.block_type = 'C'
@@ -1802,7 +1802,7 @@ class AssetManager(BaseManager):
         if not hasattr(self, 'placed_types'):
             self.placed_types = {}
         self.placed_types[region] = []
-        while any_object_placed or iteration_time < 400:
+        while any_object_placed:# or iteration_time < 400:
             any_object_placed = False
             # Iterate over all detail types and try to place objects
             for detail_type, object_ids in detail_type_groups.items():

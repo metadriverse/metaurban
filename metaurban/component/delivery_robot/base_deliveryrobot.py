@@ -1535,7 +1535,10 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
                 # model default, face to y
                 HPR = (180, 0, 0)
                 car_model.setHpr(*HPR)
-                car_model.setPos(offset[0] - 3.3, offset[1], offset[-1])
+                if 'coco' in path:
+                    car_model.setPos(offset[0] - 3.3, offset[1], offset[-1])
+                elif 'free3DVersion' in path:
+                    car_model.setPos(offset[0], offset[1], offset[-1])
                 car_model.setZ(-self.TIRE_RADIUS - self.CHASSIS_TO_WHEEL_AXIS + offset[-1])
                 from panda3d.core import TextNode
                 from panda3d.core import TransparencyAttrib

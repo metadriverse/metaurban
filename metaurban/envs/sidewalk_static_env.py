@@ -359,8 +359,14 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
             self.engine.register_manager("traffic_manager", TrafficManager())
 
     def _get_agent_manager(self):
-        from metaurban.manager.agent_manager import DeliveryRobotAgentManager
-        return DeliveryRobotAgentManager(init_observations=self._get_observations())
+        if 'agent_type' not in self.config:
+            self.config['agent_type'] = 'coco'
+        if self.config['agent_type'] == 'coco':
+            from metaurban.manager.agent_manager import DeliveryRobotAgentManager
+            return DeliveryRobotAgentManager(init_observations=self._get_observations())
+        elif self.config['agent_type'] == 'wheelchair':
+            from metaurban.manager.agent_manager import WheelchairAgentManager
+            return WheelchairAgentManager(init_observations=self._get_observations())
 
 
 if __name__ == '__main__':

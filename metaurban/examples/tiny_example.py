@@ -73,6 +73,7 @@ if __name__ == "__main__":
         max_lateral_dist=5.0,
         
         agent_type='coco', #['coco', 'wheelchair']
+        tiny=True
     )
 
     if args.observation == "all":

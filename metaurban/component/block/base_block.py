@@ -79,7 +79,10 @@ class BaseBlock(BaseObject, PGDrivableAreaProperty, ABC):
 
         if 'sidewalk_type_texture' not in self.engine.global_config:
             self.engine.global_config['sidewalk_type_texture'] = npy.random.choice([i for i in range(5)])
-
+        if 'tiny' not in self.engine.global_config:
+            self.engine.global_config['tiny'] = False
+        if self.engine.global_config['tiny']:
+            self.engine.global_config['sidewalk_type_texture'] = 0
         if self.render:
             if self.engine.global_config['sidewalk_type_texture'] == 0:
                 # sidewalk

@@ -2,9 +2,11 @@ import argparse
 import logging
 import os
 import shutil
+import zipfile
 import time
 import urllib.request
 from pathlib import Path
+import subprocess
 
 import filelock
 import progressbar
@@ -15,7 +17,8 @@ from metaurban.engine.logger import get_logger
 from metaurban.version import asset_version
 
 ROOT_DIR = Path(__file__).parent
-ASSET_URL = ""
+ASSET_TINY_URL = "https://drive.google.com/file/d/10bAr4-WnMHCSNCuz7qG41MDt_GStxkI9/view?usp=drive_link"
+ASSET_URL = "https://drive.google.com/file/d/17pUIjPZrtac60YVHUL3YHMSaQ6J_Pmgc/view?usp=sharing"
 ASSET_PEDE_URL = 'https://drive.google.com/file/d/1XUGfG57Cof43dX2pkMYBhsFVirJ4DQ1o/view?usp=drive_link'
 
 
@@ -54,7 +57,7 @@ def wait_asset_lock():
     logger.info("Assets are now available.")
 
 
-def pull_asset(update):
+def pull_asset(update, tiny=False):
     logger = get_logger()
 
     assets_folder = ROOT_DIR / "assets"
@@ -77,54 +80,80 @@ def pull_asset(update):
     try:
         with lock:
             import gdown
-
-            # Download assets
-            logger.info("Thank you for using MetaUrban! Please take a moment to fill out and confirm the required agreements to access the full asset links. This process will only take about a minute.")
-            logger.info("Please fill out the form at: https://forms.gle/7Q6Q6Q7Q7Q7Q7Q7Q7")
-            msg = input('Link given in the form:')
-            ASSET_URL = msg
-            logger.info("Pull assets of static objects from {} to {}".format(ASSET_URL, zip_path))
-            gdown.download(ASSET_URL, str(zip_path), fuzzy=True)
-            logger.info(
-                "Pull assets of agents from {} to {}".format(
-                    ASSET_PEDE_URL,
-                    str(zip_path).replace('assets', 'assets_pedestrain')
-                )
-            )
-            gdown.download(ASSET_PEDE_URL, str(zip_path).replace('assets', 'assets_pedestrain'), fuzzy=True)
-            # extra_arg = [MyProgressBar()] if logger.level == logging.INFO else []
-            # urllib.request.urlretrieve(ASSET_URL, zip_path, *extra_arg)
-
-            # Prepare for extraction
-            if os.path.exists(assets_folder):
-                logger.info("Remove existing assets of objects. Files: {}".format(os.listdir(assets_folder)))
-                shutil.rmtree(assets_folder, ignore_errors=True)
-            if os.path.exists(temp_assets_folder):
-                shutil.rmtree(temp_assets_folder, ignore_errors=True)
-
-            # Extract to temporary directory
-            logger.info("Extracting assets of objects.")
-            shutil.unpack_archive(filename=str(zip_path), extract_dir=temp_assets_folder)
-            shutil.move(str(temp_assets_folder / 'assets'), str(ROOT_DIR))
-
-            # Prepare for extraction
-            if os.path.exists(str(assets_folder).replace('assets', 'assets_pedestrain')):
+            if not tiny:
+                # Download assets
+                logger.info("Thank you for using MetaUrban! Please take a moment to fill out and confirm the required agreements to access the full asset links. This process will only take about a minute.")
+                logger.info("Please fill out the form at: https://forms.office.com/r/tFBRFk7u4E")
+                password = input('Code given in the form:')
+                logger.info("Pull assets of static objects from {} to {}".format(ASSET_URL, zip_path))
+                gdown.download(ASSET_URL, str(zip_path), fuzzy=True)
                 logger.info(
-                    "Remove existing assets of agents. Files: {}".format(
-                        os.listdir(assets_folder).replace('assets', 'assets_pedestrain')
+                    "Pull assets of agents from {} to {}".format(
+                        ASSET_PEDE_URL,
+                        str(zip_path).replace('assets', 'assets_pedestrain')
                     )
                 )
-                shutil.rmtree(str(assets_folder).replace('assets', 'assets_pedestrain'), ignore_errors=True)
-            if os.path.exists(str(temp_assets_folder).replace('assets', 'assets_pedestrain')):
-                shutil.rmtree(str(temp_assets_folder).replace('assets', 'assets_pedestrain'), ignore_errors=True)
+                gdown.download(ASSET_PEDE_URL, str(zip_path).replace('assets', 'assets_pedestrain'), fuzzy=True)
+                # extra_arg = [MyProgressBar()] if logger.level == logging.INFO else []
+                # urllib.request.urlretrieve(ASSET_URL, zip_path, *extra_arg)
 
-            # Extract to temporary directory
-            logger.info("Extracting assets of agents.")
-            shutil.unpack_archive(
-                filename=str(zip_path).replace('assets.zip', 'assets_pedestrain.zip'),
-                extract_dir=str(temp_assets_folder).replace('assets', 'assets_pedestrain')
-            )
-            shutil.move(str(temp_assets_folder / 'assets').replace('assets', 'assets_pedestrain'), str(ROOT_DIR))
+                # Prepare for extraction
+                if os.path.exists(assets_folder):
+                    logger.info("Remove existing assets of objects. Files: {}".format(os.listdir(assets_folder)))
+                    shutil.rmtree(assets_folder, ignore_errors=True)
+                if os.path.exists(temp_assets_folder):
+                    shutil.rmtree(temp_assets_folder, ignore_errors=True)
+
+                # Extract to temporary directory
+                logger.info("Extracting assets of objects.")
+                # shutil.unpack_archive(filename=str(zip_path), extract_dir=temp_assets_folder)
+                command = f"unzip -P {password} {str(zip_path)} -d {temp_assets_folder}"
+                # Run the command
+                try:
+                    subprocess.run(command, shell=True, check=True)
+                    print("Files extracted successfully!")
+                except subprocess.CalledProcessError as e:
+                    print(f"Extraction failed: {e}")
+                shutil.move(str(temp_assets_folder / 'assets'), str(ROOT_DIR))
+
+                # Prepare for extraction
+                if os.path.exists(str(assets_folder).replace('assets', 'assets_pedestrain')):
+                    logger.info(
+                        "Remove existing assets of agents. Files: {}".format(
+                            os.listdir(str(assets_folder).replace('assets', 'assets_pedestrain'))
+                        )
+                    )
+                    shutil.rmtree(str(assets_folder).replace('assets', 'assets_pedestrain'), ignore_errors=True)
+                if os.path.exists(str(temp_assets_folder).replace('assets', 'assets_pedestrain')):
+                    shutil.rmtree(str(temp_assets_folder).replace('assets', 'assets_pedestrain'), ignore_errors=True)
+
+                # Extract to temporary directory
+                logger.info("Extracting assets of agents.")
+                shutil.unpack_archive(
+                    filename=str(zip_path).replace('assets.zip', 'assets_pedestrain.zip'),
+                    extract_dir=str(temp_assets_folder).replace('assets', 'assets_pedestrain')
+                )
+                shutil.move(str(temp_assets_folder / 'assets').replace('assets', 'assets_pedestrain'), str(ROOT_DIR))
+            else:
+                # Download assets
+                logger.info("Thank you for using MetaUrban! We would download tiny version assets for you.")
+                logger.info("If you want to use full set of assets, please fill out the form at: https://forms.office.com/r/tFBRFk7u4E")
+                logger.info("Pull assets of static objects from {} to {}".format(ASSET_TINY_URL, zip_path))
+                gdown.download(ASSET_TINY_URL, str(zip_path), fuzzy=True)
+                # extra_arg = [MyProgressBar()] if logger.level == logging.INFO else []
+                # urllib.request.urlretrieve(ASSET_URL, zip_path, *extra_arg)
+
+                # Prepare for extraction
+                if os.path.exists(assets_folder):
+                    logger.info("Remove existing assets of objects. Files: {}".format(os.listdir(assets_folder)))
+                    shutil.rmtree(assets_folder, ignore_errors=True)
+                if os.path.exists(temp_assets_folder):
+                    shutil.rmtree(temp_assets_folder, ignore_errors=True)
+
+                # Extract to temporary directory
+                logger.info("Extracting assets of objects.")
+                shutil.unpack_archive(filename=str(zip_path), extract_dir=temp_assets_folder)
+                shutil.move(str(temp_assets_folder / 'assets'), str(ROOT_DIR))
 
     except Timeout:  # Timeout will be raised if the lock can not be acquired in 1s.
         logger.info(
