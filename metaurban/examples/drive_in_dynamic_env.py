@@ -99,7 +99,7 @@ if __name__ == "__main__":
         )
 
     env = SidewalkDynamicMetaUrbanEnv(config)
-    o, _ = env.reset(seed=0)
+    o, _ = env.reset(seed=30)
 
     try:
         print(HELP_MESSAGE)
@@ -107,6 +107,6 @@ if __name__ == "__main__":
             o, r, tm, tc, info = env.step([0., 0.0])  ### reset; get next -> empty -> have multiple end points
 
             if (tm or tc):
-                env.reset(env.current_seed + 1)
+                env.reset(((env.current_seed + 1) % config['num_scenarios']) + env.engine.global_config['start_seed'])
     finally:
         env.close()

@@ -91,7 +91,7 @@ if __name__ == "__main__":
         )
 
     env = SidewalkStaticMetaUrbanEnv(config)
-    o, _ = env.reset(seed=0)
+    o, _ = env.reset(seed=30)
     # env.engine.toggleDebug()
     logger = get_logger()
     logger.info("Please make sure that you have pulled all assets for the simulator, or the results may not be as expected.")
@@ -103,6 +103,6 @@ if __name__ == "__main__":
             o, r, tm, tc, info = env.step([0., 0.0])  ### reset; get next -> empty -> have multiple end points
 
             if (tm or tc):
-                env.reset(env.current_seed + 1)
+                env.reset(((env.current_seed + 1) % config['num_scenarios']) + env.engine.global_config['start_seed'])
     finally:
         env.close()
