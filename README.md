@@ -109,7 +109,7 @@ To ensure the best experience with **MetaUrban**, please review the following ha
 ### Installation
 
 ```bash
-git clone -b dev https://github.com/metadriverse/metaurban
+git clone -b main https://github.com/metadriverse/metaurban
 cd metaurban
 conda create -n metaurban python=3.9
 conda activate metaurban
