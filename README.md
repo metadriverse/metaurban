@@ -28,13 +28,13 @@
 
 - 🌆 **Infinite Urban Scene Generation**: Create diverse, interactive city environments.  
 - 🏗️ **High-Quality Urban Objects**: Includes real-world infrastructure and clutter.   
-- 🧍 **Human Models**: Each is rigged and equipped with 2,314 unique motions.
+- 🧍 **Rigged Human Models**: SMPL-compatible models with diverse motions.
 - 🤖 **Urban Agents**: Including delivery robots, cyclists, skateboarders, and more.  
 - 🕹️ **Flexible User Interfaces**: Compatible with mouse, keyboard, joystick, and racing wheel.  
 - 🎥 **Configurable Sensors**: Supports RGB, depth, semantic map, and LiDAR.  
 - ⚙️ **Rigid-Body Physics**: Realistic mechanics for agents and environments.  
 - 🌍 **OpenAI Gym Interface**: Seamless integration for AI and reinforcement learning tasks.
-- 🔗 **Framework Compatibility**: Seamlessly integrates with Ray, Stable Baselines, Imitation, Torch, and more.
+- 🔗 **Framework Compatibility**: Seamlessly integrates with Ray, Stable Baselines, Torch, Imitation, etc.
 
 📖 Check out [**`MetaUrban` Documentation**](https://metaurban-simulator.readthedocs.io) to learn more!
 
@@ -267,5 +267,6 @@ The simulator can not be built without the help from Panda3D community and the f
 - DiamondSquare for terrain generation: https://github.com/buckinha/DiamondSquare
 - KITSUNETSUKI-Asset-Tools: https://github.com/kitsune-ONE-team/KITSUNETSUKI-Asset-Tools
 - Objaverse: https://github.com/allenai/objaverse-xl
+- OmniObject3D: https://github.com/omniobject3d/OmniObject3D
 - Synbody: https://github.com/SynBody/SynBody
 - BEDLAM: https://github.com/pixelite1201/BEDLAM
