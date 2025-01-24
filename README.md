@@ -132,12 +132,16 @@ Install libs to use MetaUrban for RL training
 pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown
 ```
 
+### Registration
+You can quickly experience the MetaUrban simulator ([run in 1 minute](#run-in-1-minute)), but to access the full dataset and use the complete version, please register through [registration link](https://forms.office.com/r/tFBRFk7u4E). This process will be triggered automatically when you attempt to pull the full set of assets.
+
 ### Run in 1 minute
 We provide a script to run our simulator, a tiny subset of assets will be downloaded automatically when first running the script
 
 ```bash
 python metaurban/examples/tiny_example.py
 ```
+
 
 ### Assets
 **The assets are compressed and password-protected. You’ll be prompted to fill out a form the first time you run the script to pull all assets, and you’ll receive the password once the form is completed.**
