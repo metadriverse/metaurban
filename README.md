@@ -40,7 +40,7 @@
 - 🌍 **OpenAI Gym Interface**: Seamless integration for AI and reinforcement learning tasks.
 - 🔗 **Framework Compatibility**: Seamlessly integrates with Ray, Stable Baselines, Imitation, Torch, and more.
 
-📖 Check out [**`MetaUrban` Documentation**](https://) to learn more!
+📖 Check out [**`MetaUrban` Documentation**](https://metaurban-simulator.readthedocs.io) to learn more!
 
 <video src="./documentation/source/figs/metaurban_teaser.mp4" controls
   autoplay
