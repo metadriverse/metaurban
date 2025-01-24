@@ -42,11 +42,11 @@
 
 📖 Check out [**`MetaUrban` Documentation**](https://metaurban-simulator.readthedocs.io) to learn more!
 
-<video src="./documentation/source/figs/metaurban_teaser.mp4" controls
-  autoplay
-  muted>
-  Your browser does not support the video tag.
-</video>
+<p align="center">
+  <img src="./documentation/source/figs/metaurban_teaser.gif" height="320">
+
+</p>
+
 
 ## Latest Updates
 - [24/01/25] **v0.1.0**: The first official release of MetaUrban :wrench: [[release notes]](https://github.com/metadriverse/metaurban/releases/tag/v0.1.0)
