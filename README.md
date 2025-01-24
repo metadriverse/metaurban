@@ -136,7 +136,7 @@ pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gd
 We provide a script to run our simulator, a tiny subset of assets will be downloaded automatically when first running the script
 
 ```bash
-metaurban/examples/tiny_example.py
+python metaurban/examples/tiny_example.py
 ```
 
 ### Assets
