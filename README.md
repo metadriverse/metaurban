@@ -135,18 +135,24 @@ pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gd
 ### Run in 1 minute
 We provide a script to run our simulator, a tiny subset of assets will be downloaded automatically when first running the script
 
-`metaurban/examples/tiny_example.py`
+```bash
+metaurban/examples/tiny_example.py
+```
 
 ### Assets
 **The assets are compressed and password-protected. You’ll be prompted to fill out a form the first time you run the script to pull all assets, and you’ll receive the password once the form is completed.**
 
 Assets will be downloaded automatically when first running the script 
 
-`python metaurban/examples/drive_in_static_env.py`
+```bash
+python metaurban/examples/drive_in_static_env.py
+```
 
 Or use the script
 
-`python metaurban/pull_asset.py --update`
+```bash
+python metaurban/pull_asset.py --update
+'''
 
 If you cannot download assets by python scripts, please download assets via the link in the python file and organize the folder as:
 
