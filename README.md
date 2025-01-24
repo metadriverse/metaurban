@@ -6,9 +6,7 @@
 
 # MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility
 
-[![Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
-
-[![Static Badge](https://img.shields.io/badge/Grounded_SAM-arXiv-blue)]()
+[![Static Badge](https://img.shields.io/badge/MetaUrban-arxiv-blue)](https://arxiv.org/pdf/2407.08725.pdf)
 [![Documentation](https://readthedocs.org/projects/metaurban-simulator/badge/?version=latest)](https://metaurban-simulator.readthedocs.io)
 [![GitHub license](https://img.shields.io/github/license/metadriverse/metaurban)](https://github.com/metadriverse/metaurban/blob/main/LICENSE.txt)
 [![GitHub contributors](https://img.shields.io/github/contributors/metadriverse/metaurban)](https://github.com/metadriverse/metaurban/graphs/contributors)
@@ -16,13 +14,13 @@
 <div style="text-align: center; width:100%; margin: 0 auto; display: inline-block">
 <strong>
 [
-<a href="https://metadrive-simulator.readthedocs.io">Documentation</a>
+<a href="https://metaurban-simulator.readthedocs.io">Documentation</a>
 |
-<a href="https://github.com/metadriverse/metadrive?tab=readme-ov-file#-examples">Colab Examples</a>
+<a href="https://colab.research.google.com/github/metadriverse/metaurban/blob/main/metaurban/examples/basic_colab_usage.ipynb">Colab Examples</a>
 |
-<a href="https://metadriverse.github.io/metadrive-simulator/">Website</a>
+<a href="https://metadriverse.github.io/metaurban/">Website</a>
 |
-<a href="https://arxiv.org/pdf/2109.12674.pdf">Paper</a>
+<a href="https://arxiv.org/pdf/2407.08725.pdf">Paper</a>
 |
 <a href="https://metadriverse.github.io/">Relevant Projects</a>
 ]
@@ -30,13 +28,12 @@
 </div>
 
 
-
 **`MetaUrban`** is a cutting-edge simulation platform designed for Embodied AI research in urban spaces. It offers:
 
 - 🌆 **Infinite Urban Scene Generation**: Create diverse, interactive city environments.  
-- 🏗️ **High-Quality Urban Objects**: Includes realistic infrastructure and clutter.  
+- 🏗️ **High-Quality Urban Objects**: Includes real-world infrastructure and clutter.   
 - 🧍 **Human Models**: Each is rigged and equipped with 2,314 unique motions.
-- 🤖 **11 Urban Agents**: Including delivery robots, cyclists, skateboarders, and more.  
+- 🤖 **Urban Agents**: Including delivery robots, cyclists, skateboarders, and more.  
 - 🕹️ **Flexible User Interfaces**: Compatible with mouse, keyboard, joystick, and racing wheel.  
 - 🎥 **Configurable Sensors**: Supports RGB, depth, semantic map, and LiDAR.  
 - ⚙️ **Rigid-Body Physics**: Realistic mechanics for agents and environments.  
@@ -47,7 +44,7 @@
 
 
 ## Latest Updates
-- [25/01/25] **v0.1.0**: The first official release of MetaUrban :wrench: [[release notes]](https://github.com/StanfordVL/OmniGibson/releases/tag/v0.1.0)
+- [24/01/25] **v0.1.0**: The first official release of MetaUrban :wrench: [[release notes]](https://github.com/metadriverse/metaurban/releases/tag/v0.1.0)
 
 
 ## Table of Contents
@@ -74,7 +71,7 @@
 If you find MetaUrban helpful for your research, please cite the following BibTeX entry.
 
 ```latex
-@article{wu2024metaurban,
+@article{wu2025metaurban,
   title={MetaUrban: An Embodied AI Simulation Platform for Urban Micromobility},
   author={Wu, Wayne and He, Honglin and He, Jack and Wang, Yiran and Duan, Chenda and Liu, Zhizheng and Li, Quanyi and Zhou, Bolei},
   journal={ICLR},

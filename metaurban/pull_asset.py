@@ -191,5 +191,6 @@ def pull_asset(update, tiny=False):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--update", action="store_true", help="Force overwrite the current assets")
+    parser.add_argument("--tiny", action="store_true", help="tiny version of assets")
     args = parser.parse_args()
-    pull_asset(args.update)
+    pull_asset(args.update, tiny=args.tiny)
