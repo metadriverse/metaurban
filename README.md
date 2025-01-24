@@ -152,7 +152,7 @@ Or use the script
 
 ```bash
 python metaurban/pull_asset.py --update
-'''
+```
 
 If you cannot download assets by python scripts, please download assets via the link in the python file and organize the folder as:
 
