@@ -53,10 +53,10 @@ class TestObject(TrafficObject):
         # self._width = 2
         self._height = asset_metainfo["height"]
         self.filename = asset_metainfo["filename"]
-        self.hshift = asset_metainfo["hshift"] + PGDrivableAreaProperty.SIDEWALK_THICKNESS
+        self.hshift = asset_metainfo["hshift"]
         self.pos0 = asset_metainfo["pos0"]
         self.pos1 = asset_metainfo["pos1"]
-        self.pos2 = asset_metainfo["pos2"] + PGDrivableAreaProperty.SIDEWALK_THICKNESS
+        self.pos2 = asset_metainfo["pos2"] + PGDrivableAreaProperty.SIDEWALK_THICKNESS / 2
         self.scale = asset_metainfo["scale"]
         if "is_building" not in asset_metainfo.keys():
             asset_metainfo["is_building"] = False
