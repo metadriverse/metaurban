@@ -126,25 +126,25 @@ bash compile.sh && cd ../..
 
 It should be noticed that you should install ```cmake,make,gcc``` on your system before installing ORCA, more details can be found in [FAQs](documentation/FAQs.md).
 
-Install libs to use MetaUrban for RL training
+Then install the following libs to use MetaUrban for RL training and testing.
 
 ```bash
 pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown
 ```
 
-### Registration
-You can quickly experience the MetaUrban simulator ([run in 1 minute](#run-in-1-minute)), but to access the full dataset and use the complete version, please register through [registration link](https://forms.office.com/r/tFBRFk7u4E). This process will be triggered automatically when you attempt to pull the full set of assets.
-
-### Run in 1 minute
-We provide a script to run our simulator, a tiny subset of assets will be downloaded automatically when first running the script
+### Quick Run
+We provide a script to quickly run our simulator with a tiny subset of 3D assets. The assets (~500mb) will be downloaded automatically the first time you run the script:
 
 ```bash
 python metaurban/examples/tiny_example.py
 ```
 
+### User Registration
+In order to access the entire dataset and use the complete version, please fill out a form to register through [registration link](https://forms.office.com/r/tFBRFk7u4E). This process will be triggered automatically when you attempt to pull the full set of assets.
+
 
 ### Assets
-**The assets are compressed and password-protected. You’ll be prompted to fill out a form the first time you run the script to pull all assets, and you’ll receive the password once the form is completed.**
+**The assets are compressed and password-protected. You’ll be prompted to fill out a registration form the first time you run the script to download all assets. You’ll receive the password once the form is completed.**
 
 Assets will be downloaded automatically when first running the script 
 
@@ -158,7 +158,7 @@ Or use the script
 python metaurban/pull_asset.py --update
 ```
 
-If you cannot download assets by python scripts, please download assets via the link in the python file and organize the folder as:
+If you cannot download assets by Python scripts, please download assets via the link in the Python file and organize the folder as:
 
 ```
 -metaurban
