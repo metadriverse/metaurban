@@ -24,24 +24,24 @@ class ImageStateObservation(BaseObservation):
     def __init__(self, config):
         super(ImageStateObservation, self).__init__(config)
         self.img_obs = ImageObservation(config)
-        #self.state_obs = StateObservation(config)
+        self.state_obs = StateObservation(config)
 
     @property
     def observation_space(self):
         return gym.spaces.Dict(
             {
                 self.IMAGE: self.img_obs.observation_space,
-                #self.STATE: self.state_obs.observation_space
+                self.STATE: self.state_obs.observation_space
             }
         )
 
     def observe(self, vehicle: BaseVehicle):
-        return {self.IMAGE: self.img_obs.observe()}  #, self.STATE: self.state_obs.observe(vehicle)}
+        return {self.IMAGE: self.img_obs.observe(), self.STATE: self.state_obs.observe(vehicle)}
 
     def destroy(self):
         super(ImageStateObservation, self).destroy()
         self.img_obs.destroy()
-        #self.state_obs.destroy()
+        self.state_obs.destroy()
 
 
 class ImageObservation(BaseObservation):
