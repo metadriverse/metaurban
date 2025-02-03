@@ -106,11 +106,24 @@ To ensure the best experience with **MetaUrban**, please review the following ha
       - ~**2GB GPU memory usage**
 
 
-### Installation
+### One-step Installation
 
 ```bash
 git clone -b main https://github.com/metadriverse/metaurban
 cd metaurban
+```
+
+You can try one-step installation by running
+```bash
+bash install.sh
+conda activate metaurban
+```
+
+### Step-by-step Installation
+If not installed successfully by running `install.sh`, try step-by-step installation.
+
+Create conda environment and install metaurban
+```bash
 conda create -n metaurban python=3.9
 conda activate metaurban
 pip install -e .
