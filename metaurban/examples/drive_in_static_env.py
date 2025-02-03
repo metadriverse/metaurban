@@ -73,6 +73,7 @@ if __name__ == "__main__":
         max_lateral_dist=5.0,
         
         agent_type='coco', #['coco', 'wheelchair']
+        window_size=(1200, 900),
     )
 
     if args.observation == "all":

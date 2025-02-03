@@ -71,7 +71,7 @@ if __name__ == "__main__":
         accident_prob=0,
         relax_out_of_road_done=True,
         max_lateral_dist=5.0,
-        
+        window_size=(1200, 900),
         agent_type='coco', #['coco', 'wheelchair']
         tiny=True
     )

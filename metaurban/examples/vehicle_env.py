@@ -154,6 +154,8 @@ if __name__ == "__main__":
         max_lateral_dist=5.0,
         speed_reward=0.1,
         on_broken_line_done=False,
+        
+        window_size=(1200, 900),
     )
 
     if args.observation == "all":

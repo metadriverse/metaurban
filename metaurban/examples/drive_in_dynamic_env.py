@@ -82,6 +82,8 @@ if __name__ == "__main__":
         spawn_erobot_num=int(1 * den_scale),
         spawn_drobot_num=int(1 * den_scale),
         max_actor_num=20,
+        
+        window_size=(1200, 900),
     )
 
     if args.observation == "all":

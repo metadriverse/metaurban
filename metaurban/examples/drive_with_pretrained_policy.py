@@ -165,7 +165,7 @@ if __name__ == "__main__":
         use_render=True,
         walk_on_all_regions=False,
         map=map_type,
-        manual_control=False,
+        manual_control=True,
         drivable_area_extension=55,
         height_scale=1,
         spawn_deliveryrobot_num=2,
@@ -187,7 +187,7 @@ if __name__ == "__main__":
         random_spawn_lane_index=False,
         num_scenarios=100,
         accident_prob=0,
-        window_size=(960, 960),
+        window_size=(1200, 900),
         relax_out_of_road_done=True,
         max_lateral_dist=15.0,
     )
@@ -210,7 +210,7 @@ if __name__ == "__main__":
         )
 
     env = SidewalkStaticMetaUrbanEnv(config)
-    o, _ = env.reset(seed=0)
+    o, _ = env.reset(seed=20)
 
     algo_config = dict(
         learning_rate=5e-5,

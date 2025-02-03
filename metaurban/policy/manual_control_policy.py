@@ -71,7 +71,7 @@ class ManualControlPolicy(EnvInputPolicy):
 
         try:
             if self.engine.current_track_agent.expert_takeover and self.enable_expert:
-                return expert(self.engine.current_track_agent)
+                return super(ManualControlPolicy, self).act(agent_id)
         except (ValueError, AssertionError, RuntimeError):
             # if observation doesn't match, fall back to manual control
             print("Current observation does not match the format that expert can accept.")
