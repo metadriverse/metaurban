@@ -71,11 +71,11 @@ class ManualControlPolicy(EnvInputPolicy):
 
         try:
             if self.engine.current_track_agent.expert_takeover and self.enable_expert:
-                return super(ManualControlPolicy, self).act(agent_id)
+                return expert(self.engine.current_track_agent)
         except (ValueError, AssertionError, RuntimeError):
             # if observation doesn't match, fall back to manual control
             print("Current observation does not match the format that expert can accept.")
-            self.toggle_takeover()
+            return super(ManualControlPolicy, self).act(agent_id)
 
         is_track_vehicle = self.engine.agent_manager.get_agent(agent_id) is self.engine.current_track_agent
         not_in_native_bev = (self.engine.main_camera is None) or (not self.engine.main_camera.is_bird_view_camera())
