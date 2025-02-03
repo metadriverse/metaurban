@@ -109,7 +109,7 @@ To ensure the best experience with **MetaUrban**, please review the following ha
 ### One-step Installation
 
 ```bash
-git clone -b main https://github.com/metadriverse/metaurban
+git clone -b main --depth 1 https://github.com/metadriverse/metaurban.git
 cd metaurban
 ```
 
