@@ -287,3 +287,4 @@ The simulator can not be built without the help from Panda3D community and the f
 - OmniObject3D: https://github.com/omniobject3d/OmniObject3D
 - Synbody: https://github.com/SynBody/SynBody
 - BEDLAM: https://github.com/pixelite1201/BEDLAM
+- ORCA: https://gamma.cs.unc.edu/ORCA/
