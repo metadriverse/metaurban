@@ -1072,6 +1072,7 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
 
         # powertrain config
         self.enable_reverse = self.config["enable_reverse"]
+        self.policy_reverse = self.config.get('policy_reverse', False)
         self.max_steering = self.config["max_steering"]
 
         # visualization
@@ -1388,25 +1389,61 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
                 else:
                     self.system.applyEngineForce(max_engine_force * throttle_brake, wheel_index)
             else:
-                if self.enable_reverse:
-                    self.system.applyEngineForce(max_engine_force * throttle_brake, wheel_index)
-                    self.system.setBrake(0, wheel_index)
-                else:
-                    # self.system.applyEngineForce(0.0, wheel_index)
-                    # self.system.setBrake(abs(throttle_brake) * max_brake_force, wheel_index)
-                    DEADZONE = 0.01
+                if self.engine.global_config['manual_control']:
+                    if self.engine.current_track_agent.expert_takeover:
+                        if self.policy_reverse:
+                            self.system.applyEngineForce(max_engine_force * throttle_brake, wheel_index)
+                            self.system.setBrake(0, wheel_index)
+                        else:
+                            DEADZONE = 0.01
 
-                    # Speed m/s in car's heading:
-                    heading = self.heading
-                    velocity = self.velocity
-                    speed_in_heading = velocity[0] * heading[0] + velocity[1] * heading[1]
+                            # Speed m/s in car's heading:
+                            heading = self.heading
+                            velocity = self.velocity
+                            speed_in_heading = velocity[0] * heading[0] + velocity[1] * heading[1]
 
-                    if speed_in_heading < DEADZONE:
-                        self.system.applyEngineForce(0.0, wheel_index)
-                        self.system.setBrake(2, wheel_index)
+                            if speed_in_heading < DEADZONE:
+                                self.system.applyEngineForce(0.0, wheel_index)
+                                self.system.setBrake(2, wheel_index)
+                            else:
+                                self.system.applyEngineForce(0.0, wheel_index)
+                                self.system.setBrake(abs(throttle_brake) * max_brake_force, wheel_index)
                     else:
-                        self.system.applyEngineForce(0.0, wheel_index)
-                        self.system.setBrake(abs(throttle_brake) * max_brake_force, wheel_index)
+                        if self.enable_reverse:
+                            self.system.applyEngineForce(max_engine_force * throttle_brake, wheel_index)
+                            self.system.setBrake(0, wheel_index)
+                        else:
+                            DEADZONE = 0.01
+
+                            # Speed m/s in car's heading:
+                            heading = self.heading
+                            velocity = self.velocity
+                            speed_in_heading = velocity[0] * heading[0] + velocity[1] * heading[1]
+
+                            if speed_in_heading < DEADZONE:
+                                self.system.applyEngineForce(0.0, wheel_index)
+                                self.system.setBrake(2, wheel_index)
+                            else:
+                                self.system.applyEngineForce(0.0, wheel_index)
+                                self.system.setBrake(abs(throttle_brake) * max_brake_force, wheel_index)
+                else:
+                    if self.enable_reverse:
+                        self.system.applyEngineForce(max_engine_force * throttle_brake, wheel_index)
+                        self.system.setBrake(0, wheel_index)
+                    else:
+                        DEADZONE = 0.01
+
+                        # Speed m/s in car's heading:
+                        heading = self.heading
+                        velocity = self.velocity
+                        speed_in_heading = velocity[0] * heading[0] + velocity[1] * heading[1]
+
+                        if speed_in_heading < DEADZONE:
+                            self.system.applyEngineForce(0.0, wheel_index)
+                            self.system.setBrake(2, wheel_index)
+                        else:
+                            self.system.applyEngineForce(0.0, wheel_index)
+                            self.system.setBrake(abs(throttle_brake) * max_brake_force, wheel_index)
 
     """---------------------------------------- vehicle info ----------------------------------------------"""
 

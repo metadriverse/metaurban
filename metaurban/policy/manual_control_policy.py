@@ -64,6 +64,8 @@ class ManualControlPolicy(EnvInputPolicy):
                 self.controller = KeyboardController(pygame_control=pygame_control)
         else:
             self.controller = None
+            
+        self.warning_for_expert = False
 
     def act(self, agent_id):
 
@@ -74,7 +76,10 @@ class ManualControlPolicy(EnvInputPolicy):
                 return expert(self.engine.current_track_agent)
         except (ValueError, AssertionError, RuntimeError):
             # if observation doesn't match, fall back to manual control
-            print("Current observation does not match the format that expert can accept.")
+            # print("Current observation does not match the format that expert can accept.")
+            if not self.warning_for_expert:
+                logger.info("Current observation would be replaced by external input.")
+                self.warning_for_expert = True
             return super(ManualControlPolicy, self).act(agent_id)
 
         is_track_vehicle = self.engine.agent_manager.get_agent(agent_id) is self.engine.current_track_agent

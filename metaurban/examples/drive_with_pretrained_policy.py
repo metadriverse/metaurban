@@ -180,6 +180,8 @@ if __name__ == "__main__":
             show_navi_mark=True,
             show_line_to_navi_mark=False,
             show_dest_mark=False,
+            enable_reverse=True,
+            policy_reverse=False,
         ),
         show_sidewalk=True,
         show_crosswalk=True,
