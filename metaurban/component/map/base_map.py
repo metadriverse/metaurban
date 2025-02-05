@@ -73,8 +73,8 @@ class BaseMap(BaseRunnable, ABC):
         self.detach_from_world()
 
         # save a backup
-        self._semantic_map = None
-        self._height_map = None
+        # self._semantic_map = None
+        # self._height_map = None
 
     def _generate(self):
         """Key function! Please overwrite it! This func aims at fill the self.road_network adn self.blocks"""
@@ -105,12 +105,12 @@ class BaseMap(BaseRunnable, ABC):
 
     def destroy(self):
         self.detach_from_world()
-        if self._semantic_map is not None:
-            del self._semantic_map
-            self._semantic_map = None
-        if self._height_map is not None:
-            del self._height_map
-            self._height_map = None
+        # if self._semantic_map is not None:
+        #     del self._semantic_map
+        #     self._semantic_map = None
+        # if self._height_map is not None:
+        #     del self._height_map
+        #     self._height_map = None
 
         for block in self.blocks:
             block.destroy()
@@ -204,7 +204,7 @@ class BaseMap(BaseRunnable, ABC):
         :return: semantic map
         """
         center_p = center_point
-        if self._semantic_map is None:
+        if True:
             all_lanes = self.get_map_features(interval=line_sample_interval)
             polygons = []
             polylines = []
@@ -277,8 +277,8 @@ class BaseMap(BaseRunnable, ABC):
                     angle = int(angle / 2) + color_setting.get_color(MetaUrbanType.CROSSWALK)
                     cv2.fillPoly(mask, np.array([points]).astype(np.int32), color=angle)
 
-            self._semantic_map = mask
-        return self._semantic_map
+            # self._semantic_map = mask
+        return mask
 
     # @time_me
     def get_height_map(
@@ -299,7 +299,7 @@ class BaseMap(BaseRunnable, ABC):
         :return: heightfield image in uint 16 nparray
         """
         center_p = center_point
-        if self._height_map is None:
+        if True:
             extension = max(1, extension)
             all_lanes = self.get_map_features()
             polygons = []
@@ -331,8 +331,8 @@ class BaseMap(BaseRunnable, ABC):
                 # Apply dilation
                 mask = cv2.dilate(mask, kernel, iterations=1)
                 mask = np.expand_dims(mask, axis=-1)
-            self._height_map = mask
-        return self._height_map
+            # self._height_map = mask
+        return mask
 
     def show_bounding_box(self):
         """
