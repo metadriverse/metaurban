@@ -275,7 +275,7 @@ class VehicleParameterSpace:
         wheel_friction=ConstantSpace(0.9),
         max_engine_force=BoxSpace(750, 850),#(300, 450),
         max_brake_force=BoxSpace(35, 80),
-        max_steering=ConstantSpace(40),
+        max_steering=ConstantSpace(60),
         max_speed_km_h=ConstantSpace(20),
         
         # wheel_friction=ConstantSpace(0.9),

@@ -66,8 +66,19 @@ class ManualControlPolicy(EnvInputPolicy):
             self.controller = None
             
         self.warning_for_expert = False
+        self.init_controller = False
+        
+    def reset(self):
+        super(ManualControlPolicy, self).reset()
+        self.warning_for_expert = False
+        self.init_controller = False
 
     def act(self, agent_id):
+        if not self.init_controller:
+            if self.enable_expert:
+                self.engine.current_track_agent.expert_takeover = True
+                logger.info("Expert takeover is enabled, default controller is expert.")
+            self.init_controller = True
 
         self.controller.process_others(takeover_callback=self.toggle_takeover)
 
