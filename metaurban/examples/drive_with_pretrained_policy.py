@@ -5,9 +5,10 @@ Remember to press H to see help message!
 Note: This script require rendering, please following the installation instruction to setup a proper
 environment that allows popping up an window.
 """
-from metaurban import SidewalkStaticMetaUrbanEnv
+from metaurban import SidewalkDynamicMetaUrbanEnv
 from metaurban.constants import HELP_MESSAGE
 import cv2
+import os
 import numpy as np
 from metaurban.component.sensors.rgb_camera import RGBCamera
 from metaurban.component.sensors.depth_camera import DepthCamera
@@ -27,7 +28,7 @@ from stable_baselines3.common.monitor import Monitor
 
 
 def make_metadrive_env_fn(env_cfg):
-    env = SidewalkStaticMetaUrbanEnv(dict(
+    env = SidewalkDynamicMetaUrbanEnv(dict(
         log_level=50,
         **env_cfg,
     ))
@@ -159,9 +160,10 @@ Fork	        WIP
 
 if __name__ == "__main__":
     map_type = 'X'
+    den_scale = 1
     config = dict(
         crswalk_density=1,
-        object_density=0.4,
+        object_density=0.7,
         use_render=True,
         walk_on_all_regions=False,
         map=map_type,
@@ -192,26 +194,37 @@ if __name__ == "__main__":
         window_size=(1200, 900),
         relax_out_of_road_done=True,
         max_lateral_dist=15.0,
+        
+        agent_type='wheelchair', #['coco', 'wheelchair']
+        
+        spawn_human_num=int(20 * den_scale),
+        spawn_wheelchairman_num=int(1 * den_scale),
+        spawn_edog_num=int(2 * den_scale),
+        spawn_erobot_num=int(1 * den_scale),
+        spawn_drobot_num=int(1 * den_scale),
+        max_actor_num=20,
     )
     parser = argparse.ArgumentParser()
     parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
+    parser.add_argument("--out_dir", type=str, default="saved_imgs")
+    parser.add_argument("--save_img", action="store_true")
     args = parser.parse_args()
 
-    if args.observation == "all":
+    if args.observation == "all" or args.save_img:
         config.update(
             dict(
-                image_observation=True,
                 sensors=dict(
-                    rgb_camera=(RGBCamera, 1920, 1080),
-                    depth_camera=(DepthCamera, 640, 640),
-                    semantic_camera=(SemanticCamera, 640, 640),
+                    rgb_camera=(RGBCamera, 1024, 576),
+                    depth_camera=(DepthCamera, 1024, 576),
+                    semantic_camera=(SemanticCamera, 1024, 576),
                 ),
-                agent_observation=ThreeSourceMixObservation,
-                interface_panel=[]
+                norm_pixel=False,
             )
         )
+    if args.save_img:
+        os.makedirs(args.out_dir, exist_ok=True)
 
-    env = SidewalkStaticMetaUrbanEnv(config)
+    env = SidewalkDynamicMetaUrbanEnv(config)
     o, _ = env.reset(seed=20)
 
     algo_config = dict(
@@ -237,6 +250,8 @@ if __name__ == "__main__":
     _, params, _ = load_from_zip_file(load_path_or_dict, device='cpu', load_data=False)
     expert.set_parameters(params, exact_match=True, device='cpu')
     action = [0., 0.]
+    scenario_t = 0
+    start_t = 20
     try:
         print(HELP_MESSAGE)
         for i in range(1, 1000000000):
@@ -246,9 +261,52 @@ if __name__ == "__main__":
             action = expert.predict(torch.from_numpy(o).reshape(1, 271))[0]  #.detach().numpy()
             action = np.clip(action, a_min=-1, a_max=1.)
             action = action[0].tolist()
+            
+            if args.save_img and scenario_t >= start_t:
+                # ===== Prepare input =====
+                camera = env.engine.get_sensor("rgb_camera")
+                rgb_front = camera.perceive(
+                    to_float=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, -7, 1.0], hpr=[0, 0, 0]
+                )
+                max_rgb_value = rgb_front.max()
+                rgb = rgb_front[..., ::-1]
+                if max_rgb_value > 1:
+                    rgb = rgb.astype(np.uint8)
+                else:
+                    rgb = (rgb * 255).astype(np.uint8)
 
+                camera = env.engine.get_sensor("depth_camera")
+                depth_front = camera.perceive(
+                    to_float=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, -7, 1.0], hpr=[0, 0, 0]
+                ).reshape(576, 1024, -1)[..., -1]
+                depth = depth_front
+                depth_normalized = cv2.normalize(depth, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+                depth_colored = cv2.applyColorMap(depth_normalized, cv2.COLORMAP_JET)
+                depth_img = cv2.bitwise_not(depth_front)
+                depth_img = depth_img[..., None]
+
+                camera = env.engine.get_sensor("semantic_camera")
+                semantic_front = camera.perceive(
+                    to_float=config['norm_pixel'], new_parent_node=env.agent.origin, position=[0, -7, 1.0], hpr=[0, 0, 0]
+                )
+                max_rgb_value = semantic_front.max()
+                semantic = semantic_front
+                if max_rgb_value > 1:
+                    semantic = semantic.astype(np.uint8)
+                else:
+                    semantic = (semantic * 255).astype(np.uint8)
+                semantic = semantic[..., ::-1]
+                
+                cv2.imwrite(os.path.join(args.out_dir, f"seed_{env.current_seed:06d}_time_{scenario_t-start_t:06d}_rgb.png"), rgb[..., ::-1])
+                cv2.imwrite(os.path.join(args.out_dir, f"seed_{env.current_seed:06d}_time_{scenario_t-start_t:06d}_semantic.png"), semantic[..., ::-1])
+                cv2.imwrite(os.path.join(args.out_dir, f"seed_{env.current_seed:06d}_time_{scenario_t-start_t:06d}_depth_colored.png"), depth_colored[..., ::-1])
+                cv2.imwrite(os.path.join(args.out_dir, f"seed_{env.current_seed:06d}_time_{scenario_t-start_t:06d}_depth_raw.png"), depth_img[..., ::-1])
+            
+            scenario_t += 1
+             
             if (tm or tc):
-                env.reset(env.current_seed + 1)
+                env.reset(env.current_seed + 10)
                 action = [0., 0.]
+                scenario_t = 0
     finally:
         env.close()
