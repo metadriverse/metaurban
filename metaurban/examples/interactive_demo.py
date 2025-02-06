@@ -7,6 +7,40 @@ environment that allows popping up an window.
 """
 from metaurban import SidewalkStaticMetaUrbanEnv
 from metaurban.constants import HELP_MESSAGE
+from collections import deque
+from metaurban.constants import CamMask
+import cv2, math
+import numpy as np
+from panda3d.core import NodePath, Material
+from metaurban.engine.logger import get_logger
+from metaurban.component.navigation_module.base_navigation import BaseNavigation
+from metaurban.engine.asset_loader import AssetLoader
+from metaurban.utils.coordinates_shift import panda_vector
+from metaurban.utils.math import norm, clip
+from metaurban.utils.math import panda_vector
+from metaurban.utils.math import wrap_to_pi
+from metaurban.policy.orca_planner import OrcaPlanner
+import metaurban.policy.orca_planner_utils as orca_planner_utils
+import torch
+import numpy as np
+import os.path as osp
+from metaurban.engine.engine_utils import get_global_config
+from metaurban.obs.state_obs import LidarStateObservation
+from metaurban.engine.logger import get_logger
+from stable_baselines3 import PPO
+from metaurban.policy.get_planning import get_planning
+from metaurban.utils.math import panda_vector
+from metaurban.engine.logger import get_logger
+logger = get_logger()
+from direct.interval.FunctionInterval import Func
+from direct.gui.OnscreenText import OnscreenText
+from direct.interval.LerpInterval import LerpPosInterval, LerpScaleInterval, LerpColorScaleInterval
+from panda3d.core import TextNode
+
+from panda3d.core import Vec3
+from direct.gui.OnscreenText import OnscreenText
+from direct.interval.IntervalGlobal import Sequence, Parallel, LerpPosInterval, LerpScaleInterval, LerpColorScaleInterval
+from panda3d.core import Vec3, TextNode
 import cv2
 import os
 import numpy as np
@@ -203,11 +237,13 @@ if __name__ == "__main__":
         spawn_erobot_num=int(1 * den_scale),
         spawn_drobot_num=int(1 * den_scale),
         max_actor_num=20,
+        show_3d_step_info=True,
     )
     parser = argparse.ArgumentParser()
     parser.add_argument("--observation", type=str, default="lidar", choices=["lidar", 'all'])
     parser.add_argument("--out_dir", type=str, default="saved_imgs")
     parser.add_argument("--save_img", action="store_true")
+    parser.add_argument("--robot", type=str, default="coco", choices=["coco", "wheelchair"])
     args = parser.parse_args()
 
     if args.observation == "all" or args.save_img:
@@ -219,6 +255,7 @@ if __name__ == "__main__":
                     semantic_camera=(SemanticCamera, 1024, 576),
                 ),
                 norm_pixel=False,
+                agent_type=args.robot,
             )
         )
     if args.save_img:
@@ -261,6 +298,21 @@ if __name__ == "__main__":
             action = expert.predict(torch.from_numpy(o).reshape(1, 271))[0]  #.detach().numpy()
             action = np.clip(action, a_min=-1, a_max=1.)
             action = action[0].tolist()
+            
+            # text_node = TextNode("popup_text")
+            # text_node.setText("Cost: + 1")
+            # text_node.setAlign(TextNode.ACenter)  
+            # text_node.setTextColor(1, 1, 0, 1)
+            # text_node.setTextScale(1.0) 
+
+            # text_np = env.agents['default_agent'].origin.attachNewNode(text_node)  
+            # text_np.setScale(0.5)  
+            # text_np.setBillboardPointEye()  
+
+            # text_np.setPos(env.agents['default_agent'].car_model.getPos(env.agents['default_agent'].origin) + (*env.agents['default_agent'].position, 2.0)) 
+
+            # taskMgr.doMethodLater(1.0, lambda task: text_np.removeNode(), "remove_3d_text")
+
             
             if args.save_img and scenario_t >= start_t:
                 # ===== Prepare input =====

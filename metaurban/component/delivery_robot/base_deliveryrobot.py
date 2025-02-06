@@ -582,6 +582,7 @@ class BaseDeliveryRobot(BaseObject, BaseDeliveryRobotState):
             else:
                 car_model = BaseDeliveryRobot.model_collection[path]
             car_model.instanceTo(self.origin)
+            self.car_model = car_model
             if self.config["random_color"]:
                 material = Material()
                 material.setBaseColor(
@@ -1610,6 +1611,7 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
             # text_np.setTransparency(TransparencyAttrib.MAlpha)
 
             car_model.instanceTo(self.origin)
+            self.car_model = car_model
             # text_np.setTransparency(TransparencyAttrib.MAlpha)
             # self.text_node = TextNode('target_text')
             # self.text_node.setText("Target")

@@ -23,6 +23,15 @@ from metaurban.policy.get_planning import get_planning
 from metaurban.utils.math import panda_vector
 from metaurban.engine.logger import get_logger
 logger = get_logger()
+from direct.interval.FunctionInterval import Func
+from direct.gui.OnscreenText import OnscreenText
+from direct.interval.LerpInterval import LerpPosInterval, LerpScaleInterval, LerpColorScaleInterval
+from panda3d.core import TextNode
+
+from panda3d.core import Vec3
+from direct.gui.OnscreenText import OnscreenText
+from direct.interval.IntervalGlobal import Sequence, Parallel, LerpPosInterval, LerpScaleInterval, LerpColorScaleInterval
+from panda3d.core import Vec3, TextNode
 
 
 def get_dest_heading(obj, dest_pos):
@@ -666,6 +675,19 @@ class ORCATrajectoryNavigation(BaseNavigation):
         assert diff >= 0, "Number of Navigation points error!"
         if diff > 0:
             ckpts += [self.checkpoints[-1] for _ in range(diff)]
+        if not hasattr(self, 'last_ckpts'):
+            self.last_ckpts = ckpts
+        else:
+            get_point = (ckpts[0] == self.last_ckpts[1])[0] and (ckpts[0] == self.last_ckpts[1])[1]
+            self.last_ckpts = ckpts
+            if get_point and self.engine.global_config.get('show_3d_step_info', False):
+                for k, ckpt in enumerate(ckpts[:1]):
+                    start = k * self.CHECK_POINT_INFO_DIM
+                    end = (k + 1) * self.CHECK_POINT_INFO_DIM
+                    self._navi_info[start:end], lanes_heading = self._get_info_for_checkpoint(ckpt, ego_vehicle)
+                    if self._show_navi_info and self._ckpt_vis_models is not None:
+                        pos_of_goal = ckpt
+                        self.show_3d_text(self._ckpt_vis_models[k])
 
         # target_road_1 is the road segment the vehicle is driving on.
         self._navi_info.fill(0.0)
@@ -685,6 +707,25 @@ class ORCATrajectoryNavigation(BaseNavigation):
 
         # Use RC as the only criterion to determine arrival in Scenario env.
         self._route_completion = long / self.reference_trajectory.length
+
+
+    from panda3d.core import TextNode
+
+    def show_3d_text(self, model):
+        text_node = TextNode("popup_text")
+        text_node.setText("Reward: + 1")
+        text_node.setAlign(TextNode.ACenter)  
+        text_node.setTextColor(1, 1, 0, 1)
+        text_node.setTextScale(1.0) 
+
+        text_np = self.origin.attachNewNode(text_node)  
+        text_np.setScale(0.5)  
+        text_np.setBillboardPointEye()  
+
+        text_np.setPos(model.getPos(self.origin) + (0, 0, 1.0)) 
+
+        taskMgr.doMethodLater(1.0, lambda task: text_np.removeNode(), "remove_3d_text")
+
 
     @classmethod
     def _get_info_for_checkpoint(cls, checkpoint, ego_vehicle):

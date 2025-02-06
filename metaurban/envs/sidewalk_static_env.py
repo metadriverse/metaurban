@@ -367,7 +367,7 @@ class SidewalkStaticMetaUrbanEnv(BaseEnv):
         elif self.config['agent_type'] == 'wheelchair':
             from metaurban.manager.agent_manager import WheelchairAgentManager
             return WheelchairAgentManager(init_observations=self._get_observations())
-
+        
 
 if __name__ == '__main__':
 
