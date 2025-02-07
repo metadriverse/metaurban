@@ -255,9 +255,11 @@ if __name__ == "__main__":
                     semantic_camera=(SemanticCamera, 1024, 576),
                 ),
                 norm_pixel=False,
-                agent_type=args.robot,
             )
         )
+    config.update(
+        agent_type=args.robot,
+    )
     if args.save_img:
         os.makedirs(args.out_dir, exist_ok=True)
 
@@ -295,25 +297,13 @@ if __name__ == "__main__":
 
             o, r, tm, tc, info = env.step(action)  ### reset; get next -> empty -> have multiple end points
 
+            if info['crash']:
+                env.agent.show_debug_text(text='Cost: +1')
+
             action = expert.predict(torch.from_numpy(o).reshape(1, 271))[0]  #.detach().numpy()
             action = np.clip(action, a_min=-1, a_max=1.)
             action = action[0].tolist()
-            
-            # text_node = TextNode("popup_text")
-            # text_node.setText("Cost: + 1")
-            # text_node.setAlign(TextNode.ACenter)  
-            # text_node.setTextColor(1, 1, 0, 1)
-            # text_node.setTextScale(1.0) 
 
-            # text_np = env.agents['default_agent'].origin.attachNewNode(text_node)  
-            # text_np.setScale(0.5)  
-            # text_np.setBillboardPointEye()  
-
-            # text_np.setPos(env.agents['default_agent'].car_model.getPos(env.agents['default_agent'].origin) + (*env.agents['default_agent'].position, 2.0)) 
-
-            # taskMgr.doMethodLater(1.0, lambda task: text_np.removeNode(), "remove_3d_text")
-
-            
             if args.save_img and scenario_t >= start_t:
                 # ===== Prepare input =====
                 camera = env.engine.get_sensor("rgb_camera")

@@ -2537,7 +2537,7 @@ class BasePedestrian(BaseObject, BasePedestrianState):
             self.actor.setPos(0, 0, 0)
 
             self._instance = self.actor.instanceTo(self.origin)
-            self.show_coordinates()
+            # self.show_coordinates()
 
     def add_navigation(self):
         if self.navigation is not None or self.config["navigation_module"] is None or self.engine.current_map is None:

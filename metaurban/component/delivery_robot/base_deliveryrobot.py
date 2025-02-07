@@ -1148,6 +1148,7 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         #     self._set_incremental_action(action)
         # else:
         self._set_action(action)
+        
         return step_info
 
     def after_step(self):
@@ -1561,6 +1562,8 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         return vehicle_chassis
 
     def _add_visualization(self):
+        self.debug_text_np = None
+        # self.show_debug_text()
         if self.render:
             [path, scale, offset, HPR] = self.path
             if path not in EgoDeliveryRobot.model_collection:
@@ -2078,6 +2081,46 @@ class EgoDeliveryRobot(BaseObject, BaseDeliveryRobotState):
         y.reparentTo(self.coordinates_debug_np)
         z.reparentTo(self.coordinates_debug_np)
         self.coordinates_debug_np.reparentTo(self.origin)
+        
+    def show_debug_text(self, text="Debug Info", color=(1, 0, 0, 1)):  # Default to red for better visibility
+        from panda3d.core import TextNode, NodePath
+
+        """Display coordinate axes and debug text above the object."""
+        
+        height = self.HEIGHT  # Raise height slightly above the object
+
+        # Create coordinate axes
+        self.coordinates_debug_np = NodePath("debug coordinate")
+        self.coordinates_debug_np.hide(CamMask.AllOn)
+        self.coordinates_debug_np.show(CamMask.MainCam)
+
+        self.coordinates_debug_np.reparentTo(self.origin)
+
+        # ======= ✅ Add Debug Text Here =======
+        debug_text_np = NodePath("debug_text")
+        debug_text_np.hide(CamMask.AllOn)
+        debug_text_np.show(CamMask.MainCam)
+        debug_text_np.clearShader()
+        debug_text_np.setShaderAuto()
+
+        # Create TextNode
+        text_node = TextNode("debug_text_node")
+        text_node.setText(text)  # Set text content
+        text_node.setAlign(TextNode.ACenter)  # Center align
+        text_node.setTextColor(*color)  # Yellow text for visibility
+        text_node.setTextScale(1.5)  # Scale text for better visibility
+
+        # Attach the TextNode to the NodePath
+        text_np = debug_text_np.attachNewNode(text_node)
+        text_np.setBillboardPointEye()  # Ensure text faces the camera
+        text_np.setScale(0.5)  # Increase text size
+        text_np.setPos(0, 1, height + 0.5)  # Adjust height slightly higher
+
+        # Attach to the coordinate display
+        debug_text_np.reparentTo(self.coordinates_debug_np)
+        
+        taskMgr.doMethodLater(1.0, lambda task: text_np.removeNode(), "remove_3d_text")
+
 
     @property
     def lidar(self):
