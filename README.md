@@ -133,7 +133,7 @@ cd metaurban/orca_algo && rm -rf build
 bash compile.sh && cd ../..
 ```
 
-It should be noticed that you should install ```cmake,make,gcc``` on your system before installing ORCA, more details can be found in [FAQs](documentation/FAQs.md).
+It should be noted that you should install ```cmake,make,gcc``` on your system before installing ORCA, more details can be found in [FAQs](documentation/FAQs.md).
 
 Then install the following libs to use MetaUrban for RL training and testing.
 
@@ -264,7 +264,7 @@ python IL/PointNav/train_GAIL.py
 ```
 For GAIL, you should change the path of the `expert_data_path`.
 
-## 📖 Questions and supports
+## 📖 Questions and Support
 
 For frequently asked questions about installing, RL training and other modules, please refer to: [FAQs](documentation/FAQs.md)
 
