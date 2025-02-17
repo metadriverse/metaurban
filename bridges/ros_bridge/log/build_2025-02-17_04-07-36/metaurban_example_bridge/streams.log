@@ -1,0 +1,44 @@
+[0.556s] Invoking command in '/home/hollis/mnt/projects/metaurban/bridges/ros_bridge/src/metaurban_example_bridge': CONDA_PROMPT_MODIFIER=(metaurban) PYTHONPATH=/home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/prefix_override:/home/hollis/anaconda3/envs/metaurban/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages:${PYTHONPATH} /home/hollis/anaconda3/envs/metaurban/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/metaurban_example_bridge build --build-base /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build install --record /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/install.log --single-version-externally-managed install_data
+[0.764s] running egg_info
+[0.772s] creating ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info
+[0.772s] writing ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/PKG-INFO
+[0.772s] writing dependency_links to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/dependency_links.txt
+[0.773s] writing entry points to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/entry_points.txt
+[0.773s] writing requirements to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/requires.txt
+[0.773s] writing top-level names to ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/top_level.txt
+[0.773s] writing manifest file '../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/SOURCES.txt'
+[0.789s] reading manifest file '../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/SOURCES.txt'
+[0.790s] writing manifest file '../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info/SOURCES.txt'
+[0.790s] running build
+[0.790s] running build_py
+[0.790s] creating /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.790s] copying metaurban_example_bridge/obj_bridge.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.799s] copying metaurban_example_bridge/lidar_bridge.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.799s] copying metaurban_example_bridge/__init__.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.799s] copying metaurban_example_bridge/camera_bridge.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge
+[0.800s] running install
+[0.803s] running install_lib
+[0.811s] creating /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.811s] copying /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/obj_bridge.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.811s] copying /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/lidar_bridge.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.811s] copying /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/__init__.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.811s] copying /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build/lib/metaurban_example_bridge/camera_bridge.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge
+[0.811s] byte-compiling /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/obj_bridge.py to obj_bridge.cpython-310.pyc
+[0.812s] byte-compiling /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/lidar_bridge.py to lidar_bridge.cpython-310.pyc
+[0.813s] byte-compiling /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/__init__.py to __init__.cpython-310.pyc
+[0.813s] byte-compiling /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge/camera_bridge.py to camera_bridge.cpython-310.pyc
+[0.813s] running install_data
+[0.814s] creating /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/share/ament_index/resource_index/packages
+[0.814s] copying resource/metaurban_example_bridge -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/share/ament_index/resource_index/packages
+[0.814s] copying launch/metaurban_example_bridge.launch.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/share/metaurban_example_bridge
+[0.814s] copying launch/metaurban_image_bridge.launch.py -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/share/metaurban_example_bridge
+[0.814s] copying package.xml -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/share/metaurban_example_bridge
+[0.814s] copying rviz/default.rviz -> /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/share/metaurban_example_bridge
+[0.814s] running install_egg_info
+[0.823s] Copying ../../build/metaurban_example_bridge/metaurban_example_bridge.egg-info to /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages/metaurban_example_bridge-0.0.0-py3.10.egg-info
+[0.824s] running install_scripts
+[0.878s] Installing camera_bridge script to /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/metaurban_example_bridge
+[0.878s] Installing lidar_bridge script to /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/metaurban_example_bridge
+[0.878s] Installing obj_bridge script to /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/metaurban_example_bridge
+[0.878s] writing list of installed files to '/home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/install.log'
+[0.904s] Invoked command in '/home/hollis/mnt/projects/metaurban/bridges/ros_bridge/src/metaurban_example_bridge' returned '0': CONDA_PROMPT_MODIFIER=(metaurban) PYTHONPATH=/home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/prefix_override:/home/hollis/anaconda3/envs/metaurban/lib/python3.10/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/hollis/mnt/projects/metaurban/bridges/ros_bridge/install/metaurban_example_bridge/lib/python3.10/site-packages:${PYTHONPATH} /home/hollis/anaconda3/envs/metaurban/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/metaurban_example_bridge build --build-base /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/build install --record /home/hollis/mnt/projects/metaurban/bridges/ros_bridge/build/metaurban_example_bridge/install.log --single-version-externally-managed install_data
