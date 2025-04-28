@@ -35,4 +35,5 @@ RUN echo "source activate metaurban" >> ~/.bashrc
 
 # install dep lib
 RUN /opt/conda/envs/metaurban/bin/pip install -e .
+RUN conda install -y pybind11 -c conda-forge
 RUN /opt/conda/envs/metaurban/bin/pip install scikit-image stable_baselines3 pyyaml
