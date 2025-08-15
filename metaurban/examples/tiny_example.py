@@ -48,6 +48,7 @@ if __name__ == "__main__":
         use_render=True,
         map=map_type,
         manual_control=True,
+        default_expert=False,
         drivable_area_extension=55,
         height_scale=1,
         show_mid_block_map=False,
@@ -92,6 +93,7 @@ if __name__ == "__main__":
 
     env = SidewalkStaticMetaUrbanEnv(config)
     o, _ = env.reset(seed=30)
+    
     # env.engine.toggleDebug()
     logger = get_logger()
     logger.info("Please make sure that you have pulled all assets for the simulator, or the results may not be as expected.")

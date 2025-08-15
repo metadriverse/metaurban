@@ -48,6 +48,7 @@ if __name__ == "__main__":
         use_render=True,
         map=map_type,
         manual_control=True,
+        default_expert=False,
         drivable_area_extension=55,
         height_scale=1,
         show_mid_block_map=False,
