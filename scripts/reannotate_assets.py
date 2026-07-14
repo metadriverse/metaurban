@@ -21,62 +21,17 @@ import json
 import math
 import os
 import shutil
-import struct
 import sys
 
 import yaml
 
+from metaurban.asset_metainfo import _get_base, _write_minimal_glb, canonicalize
+
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-_BASE = None
-
-
-def _get_base(window_type="none"):
-    """Headless Panda3D ShowBase with the same GLB plugin the sim uses."""
-    global _BASE
-    if _BASE is None:
-        from panda3d.core import loadPrcFileData
-        loadPrcFileData("", f"window-type {window_type}\naudio-library-name null\nnotify-level fatal")
-        from direct.showbase.ShowBase import ShowBase
-        import gltf
-        _BASE = ShowBase()
-        gltf.patch_loader(_BASE.loader)
-    return _BASE
 
 
 def _make_loader():
     return _get_base().loader
-
-
-def canonicalize(model, hshift=0.0, scale=1.0):
-    """Compute canonical-frame corrections for a loaded model.
-
-    Returns (pos0, pos1, pos2, length, width, height) such that applying
-    setH(hshift); setPos(pos0, pos1, pos2); setScale(scale) — the exact
-    transform TestObject applies — grounds the asset at z=0 with its
-    bounding box centered on X/Y.
-    """
-    from panda3d.core import NodePath
-    if scale <= 0:
-        raise ValueError(f"invalid scale {scale}")
-    root = NodePath("canonical")
-    model.reparentTo(root)
-    model.setH(hshift)
-    model.setScale(scale)
-    bounds = model.getTightBounds(root)
-    model.detachNode()
-    if bounds is None:
-        raise ValueError("model has no geometry")
-    lo, hi = bounds
-    return (
-        -(lo.x + hi.x) / 2.0,
-        -(lo.y + hi.y) / 2.0,
-        -lo.z,
-        hi.x - lo.x,
-        hi.y - lo.y,
-        hi.z - lo.z,
-    )
 
 
 def load_annotation_index(annotation_dir):
@@ -189,38 +144,6 @@ def reannotate(models_dir, annotation_dir, out_dir, dry_run=False):
 
 
 # --- self test ---------------------------------------------------------------
-
-
-def _write_minimal_glb(path):
-    """A hand-built GLB: one triangle spanning x:[0,1] y:[0,2] z:[0,3] (Y-up)."""
-    positions = [(0.0, 0.0, 0.0), (1.0, 0.0, 0.0), (1.0, 2.0, 3.0)]
-    pos_bin = b"".join(struct.pack("<fff", *p) for p in positions)
-    idx_bin = struct.pack("<HHH", 0, 1, 2) + b"\x00\x00"  # pad to 4 bytes
-    blob = pos_bin + idx_bin
-    gltf_json = {
-        "asset": {"version": "2.0"},
-        "scene": 0,
-        "scenes": [{"nodes": [0]}],
-        "nodes": [{"mesh": 0}],
-        "meshes": [{"primitives": [{"attributes": {"POSITION": 0}, "indices": 1}]}],
-        "buffers": [{"byteLength": len(blob)}],
-        "bufferViews": [
-            {"buffer": 0, "byteOffset": 0, "byteLength": len(pos_bin), "target": 34962},
-            {"buffer": 0, "byteOffset": len(pos_bin), "byteLength": 6, "target": 34963},
-        ],
-        "accessors": [
-            {"bufferView": 0, "componentType": 5126, "count": 3, "type": "VEC3",
-             "min": [0.0, 0.0, 0.0], "max": [1.0, 2.0, 3.0]},
-            {"bufferView": 1, "componentType": 5123, "count": 3, "type": "SCALAR"},
-        ],
-    }
-    json_bin = json.dumps(gltf_json).encode()
-    json_bin += b" " * (-len(json_bin) % 4)
-    total = 12 + 8 + len(json_bin) + 8 + len(blob)
-    with open(path, "wb") as f:
-        f.write(struct.pack("<III", 0x46546C67, 2, total))
-        f.write(struct.pack("<II", len(json_bin), 0x4E4F534A) + json_bin)
-        f.write(struct.pack("<II", len(blob), 0x004E4942) + blob)
 
 
 def self_test():

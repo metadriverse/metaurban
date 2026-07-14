@@ -389,17 +389,22 @@ class AssetManager(BaseManager):
         # The dictionary to store the metainfo for each object type
         # The key is the detail type, the value is a list of metainfo dictionaries
         # For example, key is bicycle, value is a list of metainfo dictionaries for all bicycle objects
+        # Metainfo is derived from the GLBs themselves (cached) plus curated
+        # semantics, instead of the per-asset adj_parameter_folder JSONs.
+        from metaurban.asset_metainfo import load_asset_metainfo
+        self.config.getReverseType()
         self.type_metainfo_dict = defaultdict(list)
-        for root, dirs, files in os.walk(self.path_config["adj_parameter_folder"]):
-            for file in files:
-                # We only load the metainfo for static objects, skip cars
-                if not file.lower().startswith("car"):
-                    with open(os.path.join(root, file), 'r') as f:
-                        loaded_metainfo = json.load(f)
-                        self.type_metainfo_dict[loaded_metainfo['general']['detail_type']].append(loaded_metainfo)
-        number = 0
-        for k, v in self.type_metainfo_dict.items():
-            number += len(v)
+        skipped_types = set()
+        for metainfo in load_asset_metainfo(self.path_config["metaurbanasset"]):
+            detail_type = metainfo['general']['detail_type']
+            # Types absent from asset_config.yaml have no spawn policy and would
+            # crash get_attr; skip them so new GLBs can be dropped in freely.
+            if detail_type not in self.config.reverseType:
+                skipped_types.add(detail_type)
+                continue
+            self.type_metainfo_dict[detail_type].append(metainfo)
+        if skipped_types:
+            print(f"[asset_metainfo] no spawn config for types {sorted(skipped_types)}, not spawning them")
 
     def get_attr(self):
         """
