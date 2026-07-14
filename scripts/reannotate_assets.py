@@ -147,6 +147,12 @@ def reannotate(models_dir, annotation_dir, out_dir, dry_run=False):
             meta.update(pos0=pos0, pos1=pos1, pos2=pos2, height=height)
             if "general" in meta:
                 meta["general"].update(length=length, width=width)
+                if "height" in meta["general"]:
+                    meta["general"]["height"] = height
+                if "bounding_box" in meta["general"]:
+                    x, y = length / 2, width / 2
+                    meta["general"]["bounding_box"] = [[x, y], [x, -y], [-x, -y], [-x, y]]
+                    meta["general"]["center"] = [0.0, 0.0]
             else:
                 meta.update(length=length, width=width)
 

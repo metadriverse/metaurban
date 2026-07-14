@@ -46,6 +46,14 @@ def _get_render_base():
         )
     base.disableMouse()
     base.setBackgroundColor(0.94, 0.94, 0.97, 1)
+    try:
+        # PBR pipeline so textured GLB materials render shaded (the sim's vendored
+        # simplepbr needs engine PSSM shader inputs, so use the standalone package);
+        # skipped on the software fallback, which cannot run shaders
+        import simplepbr
+        simplepbr.init(msaa_samples=4)
+    except Exception as e:
+        print(f"[warn] simplepbr unavailable ({e}); rendering with the fixed-function pipeline")
     return base
 
 
@@ -72,7 +80,10 @@ def _lines(parent, segs, color, thickness=1.5):
     for a, b in segs:
         ls.moveTo(*a)
         ls.drawTo(*b)
-    parent.attachNewNode(ls.create())
+    np = parent.attachNewNode(ls.create())
+    # keep overlay lines out of the PBR pipeline so they render their flat colors
+    np.setShaderOff(1)
+    np.setLightOff(1)
 
 
 def _draw_chassis_box(parent, l, w, h):
@@ -138,8 +149,10 @@ def _shoot(base, out_png, cam_dist, cam_focus_z):
     from panda3d.core import Filename
     base.camera.setPos(cam_dist * 0.75, -cam_dist * 0.75, cam_dist * 0.55 + cam_focus_z)
     base.camera.lookAt(0, 0, cam_focus_z)
-    base.graphicsEngine.renderFrame()
-    base.graphicsEngine.renderFrame()
+    # step the task manager (not bare renderFrame) so simplepbr's per-frame
+    # shader-input updates run
+    base.taskMgr.step()
+    base.taskMgr.step()
     base.win.saveScreenshot(Filename.fromOsSpecific(out_png))
 
 
