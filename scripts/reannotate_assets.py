@@ -20,6 +20,7 @@ import argparse
 import json
 import math
 import os
+import shutil
 import struct
 import sys
 
@@ -28,21 +29,24 @@ import yaml
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-_LOADER = None
+_BASE = None
+
+
+def _get_base(window_type="none"):
+    """Headless Panda3D ShowBase with the same GLB plugin the sim uses."""
+    global _BASE
+    if _BASE is None:
+        from panda3d.core import loadPrcFileData
+        loadPrcFileData("", f"window-type {window_type}\naudio-library-name null\nnotify-level fatal")
+        from direct.showbase.ShowBase import ShowBase
+        import gltf
+        _BASE = ShowBase()
+        gltf.patch_loader(_BASE.loader)
+    return _BASE
 
 
 def _make_loader():
-    """Headless Panda3D loader with the same GLB plugin the sim uses."""
-    global _LOADER
-    if _LOADER is None:
-        from panda3d.core import loadPrcFileData
-        loadPrcFileData("", "window-type none\naudio-library-name null\nnotify-level fatal")
-        from direct.showbase.ShowBase import ShowBase
-        import gltf
-        base = ShowBase()
-        gltf.patch_loader(base.loader)
-        _LOADER = base.loader
-    return _LOADER
+    return _get_base().loader
 
 
 def canonicalize(model, hshift=0.0, scale=1.0):
@@ -54,6 +58,8 @@ def canonicalize(model, hshift=0.0, scale=1.0):
     bounding box centered on X/Y.
     """
     from panda3d.core import NodePath
+    if scale <= 0:
+        raise ValueError(f"invalid scale {scale}")
     root = NodePath("canonical")
     model.reparentTo(root)
     model.setH(hshift)
@@ -97,6 +103,11 @@ def load_annotation_index(annotation_dir):
 def reannotate(models_dir, annotation_dir, out_dir, dry_run=False):
     loader = _make_loader()
     index = load_annotation_index(annotation_dir)
+    ann_real, out_real = os.path.realpath(annotation_dir), os.path.realpath(out_dir)
+    in_place = out_real == ann_real
+    if not in_place and os.path.commonpath([out_real, ann_real]) == ann_real:
+        raise SystemExit(f"--out must not be nested inside the annotations dir ({annotation_dir}): "
+                         "the sim's annotation loader walks it recursively and would load both copies")
     os.makedirs(out_dir, exist_ok=True)
 
     glbs = sorted(
@@ -107,49 +118,67 @@ def reannotate(models_dir, annotation_dir, out_dir, dry_run=False):
         return 0
 
     done = 0
+    rewritten_sources = set()
     for fname in glbs:
-        model = loader.loadModel(os.path.join(models_dir, fname), noCache=True)
-        if model is None:
-            print(f"[skip] failed to load {fname}")
-            continue
-
-        json_path, meta = index.get(fname, (None, None))
-        if meta is None:
-            # Fresh annotation; filenames look like "<type>-<uid>.glb".
-            detail_type = os.path.splitext(fname)[0].rsplit("-", 1)[0]
-            meta = {
-                "CLASS_NAME": detail_type,
-                "filename": fname,
-                "hshift": 0.0,
-                "scale": 1.0,
-                "general": {"detail_type": detail_type, "length": 0, "width": 0},
-            }
-            json_path = os.path.join(out_dir, os.path.splitext(fname)[0] + ".json")
-        elif out_dir != annotation_dir:
-            json_path = os.path.join(out_dir, os.path.basename(json_path))
-
         try:
+            model = loader.loadModel(os.path.join(models_dir, fname), noCache=True)
+
+            src_path, meta = index.get(fname, (None, None))
+            json_path = src_path
+            if meta is None:
+                # Fresh annotation; filenames look like "<type>-<uid>.glb".
+                detail_type = os.path.splitext(fname)[0].rsplit("-", 1)[0]
+                meta = {
+                    "CLASS_NAME": detail_type,
+                    "filename": fname,
+                    "hshift": 0.0,
+                    "scale": 1.0,
+                    "general": {"detail_type": detail_type, "length": 0, "width": 0},
+                }
+                json_path = os.path.join(out_dir, os.path.splitext(fname)[0] + ".json")
+            elif not in_place:
+                # keep subdir layout so same-basename JSONs can't clobber
+                json_path = os.path.join(out_dir, os.path.relpath(json_path, annotation_dir))
+
             pos0, pos1, pos2, length, width, height = canonicalize(
                 model, meta.get("hshift", 0.0), meta.get("scale", 1.0)
             )
-        except ValueError:
-            print(f"[skip] no geometry in {fname}")
-            continue
 
-        meta.update(pos0=pos0, pos1=pos1, pos2=pos2, height=height)
-        if "general" in meta:
-            meta["general"].update(length=length, width=width)
-        else:
-            meta.update(length=length, width=width)
+            meta.update(pos0=pos0, pos1=pos1, pos2=pos2, height=height)
+            if "general" in meta:
+                meta["general"].update(length=length, width=width)
+            else:
+                meta.update(length=length, width=width)
 
-        if dry_run:
-            print(f"[dry-run] {fname}: pos=({pos0:.4f}, {pos1:.4f}, {pos2:.4f}) "
-                  f"lwh=({length:.4f}, {width:.4f}, {height:.4f}) -> {json_path}")
-        else:
-            with open(json_path, "w") as fh:
-                json.dump(meta, fh, indent=2)
-            print(f"[ok] {fname} -> {json_path}")
-        done += 1
+            if dry_run:
+                print(f"[dry-run] {fname}: pos=({pos0:.4f}, {pos1:.4f}, {pos2:.4f}) "
+                      f"lwh=({length:.4f}, {width:.4f}, {height:.4f}) -> {json_path}")
+            else:
+                os.makedirs(os.path.dirname(json_path), exist_ok=True)
+                with open(json_path, "w") as fh:
+                    json.dump(meta, fh, indent=2)
+                print(f"[ok] {fname} -> {json_path}")
+            if src_path is not None:
+                rewritten_sources.add(os.path.realpath(src_path))
+            done += 1
+        except Exception as e:
+            print(f"[skip] {fname}: {e}")
+
+    if not in_place and not dry_run:
+        # Copy everything not rewritten (car assets, orphan annotations) through
+        # unchanged so --out is a complete replacement for the annotations dir.
+        copied = 0
+        for root, _, files in os.walk(annotation_dir):
+            for f in files:
+                src = os.path.join(root, f)
+                if os.path.realpath(src) in rewritten_sources:
+                    continue
+                dst = os.path.join(out_dir, os.path.relpath(src, annotation_dir))
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                shutil.copy2(src, dst)
+                copied += 1
+        if copied:
+            print(f"copied {copied} annotation files without a reannotated GLB through unchanged")
     return done
 
 
