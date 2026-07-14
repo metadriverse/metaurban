@@ -141,6 +141,19 @@ Then install the following libs to use MetaUrban for RL training and testing.
 pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown
 ```
 
+### Installation with uv
+
+Alternatively, use [uv](https://docs.astral.sh/uv/) instead of conda:
+
+```bash
+uv venv --python 3.10
+source .venv/bin/activate
+uv pip install -e .
+uv pip install stable_baselines3 imitation tensorboard wandb scikit-image pyyaml gdown "pybind11[global]"
+cd metaurban/orca_algo && rm -rf build
+bash compile.sh && cd ../..
+```
+
 ### Quick Run
 We provide a script to quickly run our simulator with a tiny subset of 3D assets. The assets (~500mb) will be downloaded automatically the first time you run the script:
 
