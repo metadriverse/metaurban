@@ -11,16 +11,8 @@ Class Methods:
 - __init__: Initializes the configReader instance, loading path and asset configuration from YAML files.
 - loadSubPath: Constructs full file paths from parent and child folder paths.
 - loadPath: Loads various file paths from the path configuration.
-- loadTag: Retrieves tag configuration.
-- loadType: Retrieves type configuration.
-- loadTypeInfo: Loads detailed information for each type from the asset configuration.
-- loadColorList: Retrieves a list of colors from the asset configuration.
-- loadCarType: Retrieves the types of vehicles from the type configuration.
 - getReverseType: Creates a reverse mapping from detailed to general types.
-- getSpawnNum: Retrieves spawn number for a given detailed type.
-- getSpawnPos: Retrieves spawn position for a given detailed type.
-- getSpawnHeading: Retrieves spawn heading for a given detailed type.
-- updateTypeInfo: Updates type information in the asset configuration.
+- getSpawnNum / getSpawnInterval / getrandom_gap: Per-detail-type spawn policy.
 """
 import yaml
 import os
@@ -39,8 +31,6 @@ class configReader:
         Returns:
         - None
         """
-        self.spawnPosDict = None
-        self.spawnNumDict = None
         self.reverseType = None
         self.path_config_path = f"{script_dir}/../../path_config.yaml"
         self.asset_config_path = f"{script_dir}/../../asset_config.yaml"
@@ -83,53 +73,6 @@ class configReader:
                 result_folder_dict[key] = f"{script_dir}/../../" + path
         return result_folder_dict
 
-    def loadTag(self):
-        """
-        Retrieves and returns the tag configuration.
-
-        Returns:
-        - Dict: Dictionary containing tag configurations.
-        """
-        return self.asset_config["tag"]
-
-    def loadType(self):
-        """
-        Retrieves and returns the type configuration.
-
-        Returns:
-        - Dict: Dictionary containing type configurations.
-        """
-        return self.asset_config["type"]
-
-    def loadTypeInfo(self):
-        """
-        Loads and returns detailed information about each type from the asset configuration.
-
-        Returns:
-        - Dict: Dictionary containing detailed information for each type.
-        """
-        with open(self.asset_config_path, "r") as file:
-            self.asset_config = yaml.safe_load(file)
-        return self.asset_config["typeinfo"]
-
-    def loadColorList(self):
-        """
-        Retrieves and returns a list of colors from the asset configuration.
-
-        Returns:
-        - list[str]: List of color names.
-        """
-        return self.asset_config["others"]["color"]
-
-    def loadCarType(self):
-        """
-        Retrieves and returns the keys (types) of vehicles from the type configuration.
-
-        Returns:
-        - list[str]: List of vehicle types.
-        """
-        return self.asset_config["type"]["vehicle"].keys()
-
     def getReverseType(self):
         """
         Creates and stores a reverse mapping from detailed types to general types in the asset configuration.
@@ -164,14 +107,6 @@ class configReader:
         except:
             return 0
 
-    def getSpawnLatInterval(self, detail_type):
-        if self.reverseType is None:
-            self.getReverseType()
-        try:
-            return self.asset_config['type'][self.reverseType[detail_type]][detail_type]["spawn_lat_gap"]
-        except:
-            return 0
-
     def getrandom_gap(self, detail_type):
         if self.reverseType is None:
             self.getReverseType()
@@ -179,56 +114,3 @@ class configReader:
             return self.asset_config['type'][self.reverseType[detail_type]][detail_type]["random_gap"]
         except:
             return False
-
-    def get_rank(self, detail_type):
-        if self.reverseType is None:
-            self.getReverseType()
-        try:
-            return self.asset_config['type'][self.reverseType[detail_type]][detail_type]["rank_of_the_type"]
-        except:
-            return 123456
-
-    def getSpawnPos(self, detail_type):
-        """
-        Retrieves the spawn position for a given detailed type from the asset configuration.
-
-        Parameters:
-        - detail_type (str): The detailed type to retrieve the spawn position for.
-
-        Returns:
-        - list[float]: The spawn position for the specified type.
-        """
-        if self.reverseType is None:
-            self.getReverseType()
-        return self.asset_config['type'][self.reverseType[detail_type]][detail_type]["spawnpos"]
-
-    def getSpawnHeading(self, detail_type):
-        """
-        Retrieves the spawn heading for a given detailed type from the asset configuration.
-
-        Parameters:
-        - detail_type (str): The detailed type to retrieve the spawn heading for.
-
-        Returns:
-        - float or bool: The spawn heading for the specified type, or False if not defined.
-        """
-        if self.reverseType is None:
-            self.getReverseType()
-        if "spawnheading" in self.asset_config['type'][self.reverseType[detail_type]][detail_type].keys():
-            return self.asset_config['type'][self.reverseType[detail_type]][detail_type]["spawnheading"]
-        return False
-
-    def updateTypeInfo(self, new_info_dict):
-        """
-        Updates the type information in the asset configuration with new information.
-
-        Parameters:
-        - new_info_dict (Dict): Dictionary containing new type information to update.
-
-        Returns:
-        - None
-        """
-        for key, val in new_info_dict.items():
-            self.asset_config["typeinfo"][key] = val
-            with open(self.asset_config_path, "w") as file:
-                yaml.safe_dump(self.asset_config, file)

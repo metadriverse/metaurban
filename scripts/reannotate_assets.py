@@ -20,39 +20,16 @@ import argparse
 import json
 import math
 import os
-import shutil
-import sys
 
 import yaml
 
-from metaurban.asset_metainfo import _get_base, _write_minimal_glb, canonicalize
+from metaurban.asset_metainfo import _get_base, _write_minimal_glb, canonicalize, load_annotation_index
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def _make_loader():
     return _get_base().loader
-
-
-def load_annotation_index(annotation_dir):
-    """Map GLB filename -> (json path, annotation dict)."""
-    index = {}
-    if not os.path.isdir(annotation_dir):
-        return index
-    for root, _, files in os.walk(annotation_dir):
-        for f in files:
-            if not f.endswith(".json"):
-                continue
-            path = os.path.join(root, f)
-            with open(path, "r") as fh:
-                try:
-                    meta = json.load(fh)
-                except ValueError:
-                    print(f"[skip] unreadable annotation: {path}")
-                    continue
-            if "filename" in meta:
-                index[meta["filename"]] = (path, meta)
-    return index
 
 
 def reannotate(models_dir, annotation_dir, out_dir, dry_run=False):
@@ -73,7 +50,6 @@ def reannotate(models_dir, annotation_dir, out_dir, dry_run=False):
         return 0
 
     done = 0
-    rewritten_sources = set()
     for fname in glbs:
         try:
             model = loader.loadModel(os.path.join(models_dir, fname), noCache=True)
@@ -119,27 +95,9 @@ def reannotate(models_dir, annotation_dir, out_dir, dry_run=False):
                 with open(json_path, "w") as fh:
                     json.dump(meta, fh, indent=2)
                 print(f"[ok] {fname} -> {json_path}")
-            if src_path is not None:
-                rewritten_sources.add(os.path.realpath(src_path))
             done += 1
         except Exception as e:
             print(f"[skip] {fname}: {e}")
-
-    if not in_place and not dry_run:
-        # Copy everything not rewritten (car assets, orphan annotations) through
-        # unchanged so --out is a complete replacement for the annotations dir.
-        copied = 0
-        for root, _, files in os.walk(annotation_dir):
-            for f in files:
-                src = os.path.join(root, f)
-                if os.path.realpath(src) in rewritten_sources:
-                    continue
-                dst = os.path.join(out_dir, os.path.relpath(src, annotation_dir))
-                os.makedirs(os.path.dirname(dst), exist_ok=True)
-                shutil.copy2(src, dst)
-                copied += 1
-        if copied:
-            print(f"copied {copied} annotation files without a reannotated GLB through unchanged")
     return done
 
 
@@ -197,4 +155,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

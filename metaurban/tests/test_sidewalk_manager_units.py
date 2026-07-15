@@ -2,7 +2,7 @@
 import math
 
 from metaurban.manager.sidewalk_manager import (
-    _REGION_ORDER, _SIDEWALK_BANDS, AssetManager, GridCell, ObjectPlacer
+    _REGION_ORDER, _SIDEWALK_BANDS, AssetManager, ObjectPlacer
 )
 
 
@@ -12,7 +12,7 @@ class _Lane:
 
 
 def _grid(n_long, n_lat):
-    return [[GridCell((i, j)) for j in range(n_lat)] for i in range(n_long)]
+    return [[False] * n_lat for _ in range(n_long)]
 
 
 def _obj(length=1.0, width=1.0, mode='normal', gap=3):

@@ -59,27 +59,8 @@ _REGION_ORDER = {
 }
 
 
-class GridCell:
-    """A single 1 m occupancy-grid cell."""
-    def __init__(self, position, occupied=False):
-        self.position = position
-        self.occupied = occupied
-        self.object = None
-
-    def is_occupied(self):
-        return self.occupied
-
-    def occupy(self, obj):
-        self.occupied = True
-        self.object = obj
-
-    def release(self):
-        self.occupied = False
-        self.object = None
-
-
 class ObjectPlacer:
-    """Places objects on an occupancy grid without overlap.
+    """Places objects on a boolean occupancy grid (rows of 1 m cells) without overlap.
 
     ``buffer`` (cells of clearance added to each object's span) is set by the
     manager per region before placement.
@@ -90,30 +71,19 @@ class ObjectPlacer:
         # (CLASS_NAME, position) -> (position, metainfo) in placement order
         self.placed_objects = {}
 
-    def place_object(self, obj, last_long=None):
-        """Try to place ``obj``; with ``last_long`` enforce a longitudinal gap.
+    def place_object(self, obj, last_long):
+        """Try to place ``obj`` at least ``spawn_long_gap`` rows past ``last_long``.
 
-        Returns True/False, or (placed, last_longitudinal_row) when
-        ``last_long`` is given.
+        Returns (placed, last_longitudinal_row).
         """
-        if last_long is not None:
-            assert 'spawn_long_gap' in obj
-            position = self.find_placement_position(obj, last_long)
-            if position is None:
-                return False, last_long
-            self._commit(position, obj)
-            return True, position[0]
-        position = self.find_placement_position(obj)
+        position = self.find_placement_position(obj, last_long)
         if position is None:
-            return False
-        self._commit(position, obj)
-        return True
-
-    def _commit(self, position, obj):
+            return False, last_long
         self.mark_occupied_cells(position, obj)
         self.placed_objects[(obj['CLASS_NAME'], position)] = (position, obj)
+        return True, position[0]
 
-    def find_placement_position(self, obj, last_long=None):
+    def find_placement_position(self, obj, last_long):
         """First grid position where ``obj`` fits, or None.
 
         The scan pattern depends on ``obj['obj_generation_mode']``:
@@ -123,7 +93,7 @@ class ObjectPlacer:
         """
         mode = obj.get('obj_generation_mode')
         n_long, n_lat = len(self.grid), len(self.grid[0]) if self.grid else 0
-        start_long = 0 if last_long is None else last_long + obj['spawn_long_gap']
+        start_long = last_long + obj['spawn_long_gap']
 
         if mode == 'parallel_only':
             for i in range(start_long, n_long):
@@ -132,31 +102,25 @@ class ObjectPlacer:
             return None
 
         if mode == 'random_start':
-            if last_long is not None:
-                if start_long >= n_long - 5:
-                    return None
-                start_long = np.random.randint(start_long, min(n_long - 5, start_long + 1), 1)[0]
-                start_lat = np.random.randint(0, max(n_lat - 10, 1), 1)[0]
-                for i in range(start_long, n_long):
-                    for j in range(start_lat, n_lat):
-                        if self.can_place(i + 1, j + 1, obj):
-                            return (i + 1, j + 1)
+            if start_long >= n_long - 5:
                 return None
-            start_long = np.random.randint(0, max(n_long - 10, 1), 1)[0]
+            # this draw always yields start_long; kept to preserve the RNG stream
+            start_long = np.random.randint(start_long, start_long + 1, 1)[0]
             start_lat = np.random.randint(0, max(n_lat - 10, 1), 1)[0]
-            # historical quirk: first candidate is returned without a can_place check
-            if start_long < n_long and start_lat < n_lat:
-                return (start_long + 1, start_lat + 1)
+            for i in range(start_long, n_long):
+                for j in range(start_lat, n_lat):
+                    if self.can_place(i + 1, j + 1, obj):
+                        return (i + 1, j + 1)
             return None
 
-        if mode == 'inverse' and last_long is not None:
+        if mode == 'inverse':
             for i in range(n_long - 1, start_long, -1):
                 for j in range(n_lat - 1, 0, -1):
                     if self.can_place(i + 1, j + 1, obj):
                         return (i + 1, j + 1)
             return None
 
-        # 'normal', 'inverse' without a gap constraint, or no mode
+        # 'normal' or no mode
         for i in range(start_long, n_long):
             for j in range(len(self.grid[i])):
                 if self.can_place(i + 1, j + 1, obj):
@@ -174,8 +138,8 @@ class ObjectPlacer:
         span_length, span_width = self._span(obj)
         if start_i + span_length > len(self.grid) or start_j + span_width > len(self.grid[0]):
             return False
-        return all(
-            not self.grid[i][j].is_occupied() for i in range(start_i, start_i + span_length)
+        return not any(
+            self.grid[i][j] for i in range(start_i, start_i + span_length)
             for j in range(start_j, start_j + span_width)
         )
 
@@ -184,10 +148,7 @@ class ObjectPlacer:
         span_length, span_width = self._span(obj)
         for i in range(start_i, start_i + span_length):
             for j in range(start_j, start_j + span_width):
-                self.grid[i][j].occupy(obj)
-
-    def is_placement_possible(self):
-        return any(not cell.is_occupied() for row in self.grid for cell in row)
+                self.grid[i][j] = True
 
 
 class AssetManager(BaseManager):
@@ -201,7 +162,7 @@ class AssetManager(BaseManager):
     PRIORITY = 9
 
     # {detail_type: (regions, generation mode)}; insertion order is the
-    # placement priority. 'Wall' keeps its historical no-op region ''.
+    # placement priority.
     REGULAR_OBJECTS = {
         'Tree': (('nearroad_buffer_sidewalk', 'nearroad_sidewalk'), 'parallel_only'),
         'Lamp_post': (('nearroad_buffer_sidewalk', 'nearroad_sidewalk'), 'parallel_only'),
@@ -210,7 +171,6 @@ class AssetManager(BaseManager):
         'Telephone_booth': (('main_sidewalk', ), 'parallel_only'),
         'FireHydrant': (('nearroad_buffer_sidewalk', 'nearroad_sidewalk'), 'parallel_only'),
         'Building': (('valid_region', ), 'normal'),
-        'Wall': (('', ), 'parallel_only'),
         'Chair': (('farfromroad_sidewalk', 'farfromroad_buffer_sidewalk'), 'parallel_only'),
         'Vegetation': (('farfromroad_sidewalk', 'farfromroad_buffer_sidewalk'), 'normal'),
         'Advertising_board': (('farfromroad_sidewalk', 'farfromroad_buffer_sidewalk'), 'parallel_only'),
@@ -240,7 +200,6 @@ class AssetManager(BaseManager):
 
     def __init__(self):
         super(AssetManager, self).__init__()
-        self.debug = True
         self.density = self.engine.global_config['object_density']
 
         self.config = configReader()
@@ -248,7 +207,6 @@ class AssetManager(BaseManager):
         self.init_static_adj_list()  # Load the metainfo for all static objects
         self.get_attr()  # Get the spawn policy for each object type
 
-        self.placed_types = {}
         self.all_object_polygons = []
 
     def init_static_adj_list(self):
@@ -297,13 +255,6 @@ class AssetManager(BaseManager):
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
 
-    def before_reset(self):
-        """
-        Update episode level config to this manager and clean element or detach element
-        """
-        self.clear_objects([object_id for object_id in self.spawned_objects.keys()])
-        self.spawned_objects = {}
-
     def reset(self):
         """
         Reset the manager and spawn objects on the sidewalk.
@@ -313,7 +264,6 @@ class AssetManager(BaseManager):
         self._seed_everything(self.engine.global_seed)
 
         self.generated_lane = []
-        self.count = 0
         self.all_object_polygons = []
         engine = get_engine()
         assert len(self.spawned_objects.keys()) == 0
@@ -348,7 +298,6 @@ class AssetManager(BaseManager):
                 for lane in self._curve_lanes(block):
                     self._populate_lane(block, lane, delta_scale=2. if isinstance(lane, CircularLane) else None)
 
-        self.engine.objects_counts = self.count
         self._get_walkable_regions(self.current_map)
 
     # --- lane collection per block type ---------------------------------
@@ -365,7 +314,11 @@ class AssetManager(BaseManager):
     def _adjacent(lane_a, lane_b):
         return lane_a.is_previous_lane_of(lane_b) or lane_b.is_previous_lane_of(lane_a)
 
-    def _roundabout_lanes(self, block):
+    def _adjacent_lanes(self, block, circular_pairs_only):
+        """Two scans of the block graph: circular lanes touching a basic lane,
+        then lanes touching any lane collected so far. With
+        ``circular_pairs_only`` the second scan skips pairs involving a
+        straight lane. Returns (basic lanes, collected lanes, with repeats)."""
         basics = [block.positive_basic_lane, block.negative_basic_lane]
         graph = block.block_network.graph
         valid_lane = []
@@ -381,8 +334,13 @@ class AssetManager(BaseManager):
                 for lane in lanes:
                     for lane_ in basics + valid_lane:
                         if self._adjacent(lane_, lane):
-                            if not isinstance(lane, StraightLane) and not isinstance(lane_, StraightLane):
+                            if not circular_pairs_only or (not isinstance(lane, StraightLane)
+                                                           and not isinstance(lane_, StraightLane)):
                                 valid_lane.append(lane)
+        return basics, valid_lane
+
+    def _roundabout_lanes(self, block):
+        basics, valid_lane = self._adjacent_lanes(block, circular_pairs_only=True)
         valid_lane = [
             lane for lane in set(valid_lane) if lane not in basics and 'ROAD_EDGE_BOUNDARY' in lane.line_types
         ]
@@ -396,24 +354,8 @@ class AssetManager(BaseManager):
         return basics + pos_lanes + neg_lanes + valid_lane, neg_lanes
 
     def _curve_lanes(self, block):
-        basics = [block.positive_basic_lane, block.negative_basic_lane]
-        graph = block.block_network.graph
-        valid_lane = []
-        for to_dict in graph.values():
-            for lanes in to_dict.values():
-                for lane in lanes:
-                    if isinstance(lane, CircularLane):
-                        for basic in basics:
-                            if self._adjacent(basic, lane):
-                                valid_lane.append(lane)
-        for to_dict in graph.values():
-            for lanes in to_dict.values():
-                for lane in lanes:
-                    for lane_ in basics + valid_lane:
-                        if self._adjacent(lane_, lane):
-                            valid_lane.append(lane)
-        valid_lane = [lane for lane in set(valid_lane) if lane not in basics]
-        return basics + valid_lane
+        basics, valid_lane = self._adjacent_lanes(block, circular_pairs_only=False)
+        return basics + [lane for lane in set(valid_lane) if lane not in basics]
 
     # --- per-lane population ---------------------------------------------
 
@@ -441,8 +383,7 @@ class AssetManager(BaseManager):
             # keep the first meters after the intersection entrance clear
             for _, grid in name_grid_list:
                 for row in grid[:10]:
-                    for cell in row:
-                        cell.occupied = True
+                    row[:] = [True] * len(row)
         placers = {region: ObjectPlacer(grid) for region, grid in name_grid_list}
 
         self._place_catalog(self.REGULAR_OBJECTS, name_grid_list, placers, delta_scale)
@@ -455,8 +396,6 @@ class AssetManager(BaseManager):
 
     def _place_catalog(self, catalog, name_grid_list, placers, delta_scale=None):
         for detail_type, (regions, mode) in catalog.items():
-            if detail_type.lower() == 'wall' and self.sidewalk_type != 'Wide Commercial':
-                continue
             for region, _ in name_grid_list:
                 if region in regions:
                     self.retrieve_target_object_for_region(region, placers[region], detail_type, mode, delta_scale)
@@ -473,27 +412,23 @@ class AssetManager(BaseManager):
             for obj in objects:
                 obj['general']['width'] = 2.
                 obj['general']['length'] = 2.
-                obj['general']['bounding_box'] = [[1.0, 1.0], [1.0, -1.0], [-1.0, -1.0], [-1.0, 1.0]]
-        object_ids = [(obj_detail_type, idx) for idx in range(len(objects))]
 
         self.buffer = 0 if 'near' in region else 2
         if obj_detail_type.lower() == 'building':
             self.buffer = 10
-        self.placed_types[region] = []
-        if not object_ids:
+        if not objects:
             return
 
         placed, last_long = 0, 0
         while placed < self.num_dict[obj_detail_type]:
-            obj = objects[random.sample(object_ids, 1)[0][1]]
+            obj = objects[random.sample(range(len(objects)), 1)[0]]
             interval_long = self.interval_long[obj_detail_type]
             if self.random_gap[obj_detail_type]:
                 offset = np.random.randint(0, 5, 1)[0]
             else:
                 offset = 0
             if placed < 1:
-                # push the first instance away from the lane start
-                offset = 10 if region == 'valid_region' else 10 + len(self.placed_types[region]) * 8
+                offset = 10  # push the first instance away from the lane start
             obj['spawn_long_gap'] = interval_long
             if delta_scale is not None and region == 'valid_region':
                 obj['spawn_long_gap'] = int(interval_long * delta_scale)
@@ -503,12 +438,9 @@ class AssetManager(BaseManager):
             object_placer.buffer = self.buffer
             obj['obj_generation_mode'] = obj_generation_mode
 
-            generated, last_long_new = object_placer.place_object(obj, last_long + offset)
-            if obj_detail_type not in self.placed_types[region]:
-                self.placed_types[region].append(obj_detail_type)
+            generated, last_long = object_placer.place_object(obj, last_long + offset)
             if not generated:
                 break
-            last_long = last_long_new
             placed += 1
 
     # --- world spawning ----------------------------------------------------
@@ -519,6 +451,9 @@ class AssetManager(BaseManager):
             lat_range = self.calculate_lateral_range(region, lane, width_list, self.sidewalk_type)
             # valid-region objects anchor at their footprint center, sidewalk ones at the edge
             coeff = 1 if 'region' in region else 0
+            # self.buffer is always 2 here — the padding/intersection pass ran last
+            # and set it — NOT each object's own placement buffer; anchors and
+            # polygons intentionally keep that historical quirk.
             for grid_position, obj in placers[region].placed_objects.values():
                 span_length = math.ceil(obj['general']['length']) + self.buffer
                 span_width = math.ceil(obj['general']['width']) + self.buffer
@@ -526,32 +461,28 @@ class AssetManager(BaseManager):
                 if walkable_map is not None and not self._overlaps_walkable(polygon, walkable_map):
                     continue
                 lane_position = self.convert_grid_to_lane_position(
-                    [
-                        grid_position[0],
-                        grid_position[1] + (math.ceil(obj['general']['width']) + self.buffer) // 2 * coeff
-                    ], lane, lat_range
+                    [grid_position[0], grid_position[1] + span_width // 2 * coeff], lane, lat_range
                 )
-                self.count += 1
                 self.spawn_object(
                     TestObject,
                     force_spawn=True,
                     lane=lane,
                     position=lane_position,
                     static=self.engine.global_config["static_traffic_object"],
-                    heading_theta=lane.heading_theta_at(lane_position[0]) + obj['general'].get('heading', 0),
+                    heading_theta=lane.heading_theta_at(lane_position[0]),
                     asset_metainfo=obj
                 )
                 self.all_object_polygons.append(polygon)
 
     def _object_polygon(self, grid_position, span_length, span_width, obj, lane, lat_range):
         """World-frame footprint polygon of an object placed at ``grid_position``."""
-        start_lat = self.convert_grid_to_longitudelateral(grid_position, lane, lat_range)[1]
+        start_lat = self.convert_grid_to_longitudelateral(grid_position, lat_range)[1]
         side_lat = self.convert_grid_to_longitudelateral(
-            (grid_position[0] + span_length, grid_position[1] + span_width), lane, lat_range
+            (grid_position[0] + span_length, grid_position[1] + span_width), lat_range
         )[1]
         mid_j = grid_position[1] + math.ceil(obj['general']['width']) // 2
         longs = [
-            self.convert_grid_to_longitudelateral((grid_position[0] + i, mid_j), lane, lat_range)[0]
+            self.convert_grid_to_longitudelateral((grid_position[0] + i, mid_j), lat_range)[0]
             for i in range(span_length)
         ]
         polygon = []
@@ -571,24 +502,21 @@ class AssetManager(BaseManager):
     # --- grid geometry -----------------------------------------------------
 
     def create_grid(self, lane, lateral_range):
-        """1 m occupancy grid covering ``lane`` over ``lateral_range``."""
+        """1 m boolean occupancy grid covering ``lane`` over ``lateral_range``."""
         from metaurban.constants import PGDrivableAreaProperty
         if self.block_type == 'X':
             num_cells_long = int(lane.length / CELL_SIZE)
         else:
             num_cells_long = int((lane.length + PGDrivableAreaProperty.SIDEWALK_LENGTH) / CELL_SIZE)
         num_cells_lat = int((lateral_range[1] - lateral_range[0]) / CELL_SIZE)
-        return [
-            [GridCell(position=(i * CELL_SIZE, j * CELL_SIZE + lateral_range[0])) for j in range(num_cells_lat)]
-            for i in range(num_cells_long)
-        ]
+        return [[False] * num_cells_lat for _ in range(num_cells_long)]
 
-    def convert_grid_to_longitudelateral(self, grid_position, lane, lateral_range):
+    def convert_grid_to_longitudelateral(self, grid_position, lateral_range):
         grid_i, grid_j = grid_position
         return (grid_i * CELL_SIZE, lateral_range[0] + grid_j * CELL_SIZE)
 
     def convert_grid_to_lane_position(self, grid_position, lane, lateral_range):
-        return lane.position(*self.convert_grid_to_longitudelateral(grid_position, lane, lateral_range))
+        return lane.position(*self.convert_grid_to_longitudelateral(grid_position, lateral_range))
 
     def calculate_lateral_range(self, region, lane, width_list, sidewalk_type):
         """Lateral (start, end) of ``region``: cumulative band widths from the road edge."""
@@ -621,20 +549,13 @@ class AssetManager(BaseManager):
     def _build_walkable_mask(self, current_map, with_valid_region_and_objects):
         """Rasterize the walkable regions to a mask; optionally also include the
         valid (house) region and carve out the spawned objects' footprints."""
-        self.crosswalks = current_map.crosswalks
-        self.sidewalks = current_map.sidewalks
-        self.sidewalks_near_road = current_map.sidewalks_near_road
-        self.sidewalks_farfrom_road = current_map.sidewalks_farfrom_road
-        self.sidewalks_near_road_buffer = current_map.sidewalks_near_road_buffer
-        self.sidewalks_farfrom_road_buffer = current_map.sidewalks_farfrom_road_buffer
-        self.valid_region = current_map.valid_region
-
         groups = [
-            self.sidewalks, self.crosswalks, self.sidewalks_near_road_buffer, self.sidewalks_near_road,
-            self.sidewalks_farfrom_road, self.sidewalks_farfrom_road_buffer
+            current_map.sidewalks, current_map.crosswalks, current_map.sidewalks_near_road_buffer,
+            current_map.sidewalks_near_road, current_map.sidewalks_farfrom_road,
+            current_map.sidewalks_farfrom_road_buffer
         ]
         if with_valid_region_and_objects:
-            groups.append(self.valid_region)
+            groups.append(current_map.valid_region)
 
         points = []
         for group in groups:
@@ -647,10 +568,10 @@ class AssetManager(BaseManager):
         points = np.array(points)
         min_x, max_x = points[:, 0].min(), points[:, 0].max()
         min_y, max_y = points[:, 1].min(), points[:, 1].max()
-        self.mask_delta = 2
-        rows = math.ceil(max_y - min_y) + 2 * self.mask_delta
-        columns = math.ceil(max_x - min_x) + 2 * self.mask_delta
-        self.mask_translate = np.array([-min_x + self.mask_delta, -min_y + self.mask_delta])
+        mask_delta = 2
+        rows = math.ceil(max_y - min_y) + 2 * mask_delta
+        columns = math.ceil(max_x - min_x) + 2 * mask_delta
+        self.mask_translate = np.array([-min_x + mask_delta, -min_y + mask_delta])
 
         mask = np.zeros((rows, columns, 3), np.uint8)
         for group in groups:

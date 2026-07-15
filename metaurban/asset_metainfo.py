@@ -20,7 +20,6 @@ import argparse
 import json
 import os
 import struct
-import sys
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEMANTICS_FILE = os.path.join(REPO_ROOT, "asset_semantics.json")
@@ -54,14 +53,12 @@ def _ensure_gltf(loader):
     return loader
 
 
-def _resolve_loader(loader=None):
+def _resolve_loader():
     """The running engine's loader when one exists, else a headless one.
 
     The engine subclasses ShowBase, so spawning our own base while it is
     alive would raise "Attempt to spawn multiple ShowBase instances!".
     """
-    if loader is not None:
-        return _ensure_gltf(loader)
     import builtins
     running = getattr(builtins, "base", None)  # EngineCore or any ShowBase
     if running is not None:
@@ -111,7 +108,7 @@ def load_semantics():
         ) from None
 
 
-def load_asset_metainfo(models_dir, loader=None, semantics=None):
+def load_asset_metainfo(models_dir, semantics=None):
     """Metainfo dicts (legacy adj_parameter_folder schema) for annotated GLBs in models_dir.
 
     Geometry comes from a per-directory cache keyed by (mtime, size, hshift,
@@ -155,7 +152,7 @@ def load_asset_metainfo(models_dir, loader=None, semantics=None):
     stale = [e for e in entries if cache.get(e[0], {}).get("key") != e[4]]
     if stale:
         print(f"[asset_metainfo] deriving geometry for {len(stale)} new/changed GLBs in {models_dir} ...")
-        ldr = _resolve_loader(loader)
+        ldr = _resolve_loader()
         for fname, hshift, scale, _, key in stale:
             try:
                 model = ldr.loadModel(os.path.join(models_dir, fname), noCache=True)
@@ -197,27 +194,43 @@ def load_asset_metainfo(models_dir, loader=None, semantics=None):
     return metainfos
 
 
+def load_annotation_index(annotation_dir):
+    """Map GLB filename -> (json path, annotation dict) for legacy adj JSONs."""
+    index = {}
+    if not os.path.isdir(annotation_dir):
+        return index
+    for root, _, files in os.walk(annotation_dir):
+        for f in files:
+            if not f.endswith(".json"):
+                continue
+            path = os.path.join(root, f)
+            with open(path, "r") as fh:
+                try:
+                    meta = json.load(fh)
+                except (ValueError, UnicodeDecodeError):
+                    print(f"[skip] unreadable annotation: {path}")
+                    continue
+            if "filename" in meta:
+                index[meta["filename"]] = (path, meta)
+    return index
+
+
 def seed_semantics(adj_dir):
     """Extract the curated fields from legacy adj_parameter_folder JSONs."""
-    semantics = load_semantics()
+    try:
+        semantics = load_semantics()
+    except FileNotFoundError:  # --seed-from is exactly the bootstrap path
+        semantics = {}
     n = 0
-    for root, _, files in os.walk(adj_dir):
-        for f in files:
-            if f.lower().startswith("car"):
-                continue
-            try:
-                with open(os.path.join(root, f)) as fh:
-                    meta = json.load(fh)
-            except (ValueError, UnicodeDecodeError):
-                continue
-            if "filename" not in meta or "general" not in meta:
-                continue
-            semantics[meta["filename"]] = {
-                "detail_type": meta["general"]["detail_type"],
-                "hshift": meta.get("hshift", 0.0),
-                "scale": meta.get("scale", 1.0),
-            }
-            n += 1
+    for fname, (path, meta) in load_annotation_index(adj_dir).items():
+        if os.path.basename(path).lower().startswith("car") or "general" not in meta:
+            continue
+        semantics[fname] = {
+            "detail_type": meta["general"]["detail_type"],
+            "hshift": meta.get("hshift", 0.0),
+            "scale": meta.get("scale", 1.0),
+        }
+        n += 1
     with open(SEMANTICS_FILE, "w") as f:
         json.dump(semantics, f, indent=1, sort_keys=True)
     print(f"seeded {n} entries -> {SEMANTICS_FILE}")
@@ -249,6 +262,11 @@ def _write_minimal_glb(path):
             {"bufferView": 1, "componentType": 5123, "count": 3, "type": "SCALAR"},
         ],
     }
+    _write_glb(path, gltf_json, blob)
+
+
+def _write_glb(path, gltf_json, blob):
+    """Write a binary glTF container with one JSON and one BIN chunk."""
     json_bin = json.dumps(gltf_json).encode()
     json_bin += b" " * (-len(json_bin) % 4)
     total = 12 + 8 + len(json_bin) + 8 + len(blob)
@@ -278,12 +296,15 @@ def self_test():
     print("self-test passed")
 
 
-def main():
+def default_models_dir():
     import yaml
     with open(os.path.join(REPO_ROOT, "path_config.yaml")) as f:
-        default_models = os.path.join(REPO_ROOT, yaml.safe_load(f)["path"]["metaurbanasset"])
+        return os.path.join(REPO_ROOT, yaml.safe_load(f)["path"]["metaurbanasset"])
+
+
+def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--models", default=default_models)
+    p.add_argument("--models", default=default_models_dir())
     p.add_argument("--seed-from", help="legacy adj_parameter_folder to extract semantics from")
     p.add_argument("--force", action="store_true", help="discard the cache and re-derive everything")
     p.add_argument("--self-test", action="store_true")
@@ -303,4 +324,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

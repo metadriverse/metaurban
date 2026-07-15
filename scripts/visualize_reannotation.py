@@ -26,7 +26,9 @@ import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from reannotate_assets import REPO_ROOT, _get_base, load_annotation_index, reannotate
+from reannotate_assets import reannotate
+
+from metaurban.asset_metainfo import _get_base, _write_glb, default_models_dir, load_annotation_index
 
 IMG_W, IMG_H = 640, 480
 FIELDS = ("pos0", "pos1", "pos2", "length", "width", "height", "hshift", "scale")
@@ -326,13 +328,7 @@ def _write_box_glb(path, size, offset, color):
             {"bufferView": 2, "componentType": 5123, "count": len(indices), "type": "SCALAR"},
         ],
     }
-    json_bin = json.dumps(gltf_json).encode()
-    json_bin += b" " * (-len(json_bin) % 4)
-    total = 12 + 8 + len(json_bin) + 8 + len(blob)
-    with open(path, "wb") as f:
-        f.write(struct.pack("<III", 0x46546C67, 2, total))
-        f.write(struct.pack("<II", len(json_bin), 0x4E4F534A) + json_bin)
-        f.write(struct.pack("<II", len(blob), 0x004E4942) + blob)
+    _write_glb(path, gltf_json, blob)
 
 
 DEMO_ASSETS = [
@@ -386,7 +382,7 @@ def demo(out_dir):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--models", default=os.path.join(REPO_ROOT, "metaurban/assets/models/test"))
+    p.add_argument("--models", default=default_models_dir())
     p.add_argument("--before", help="dir of original annotation JSONs")
     p.add_argument("--after", help="dir of reannotated JSONs")
     p.add_argument("--out", default="reannotation_report")
