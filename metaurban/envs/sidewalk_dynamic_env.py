@@ -97,6 +97,9 @@ METAURBAN_DEFAULT_CONFIG = dict(
     crash_object_done=False,
     crash_human_done=False,
     relax_out_of_road_done=True,
+
+    # read by orca_navigation; absent here it crashes the env unless passed explicitly
+    show_ego_navigation=False,
 )
 
 

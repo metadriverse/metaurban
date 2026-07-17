@@ -131,6 +131,9 @@ class PGBackgroundSidewalkAssetsManager(BaseManager):
 
         # update vehicle list
         self.block_triggered_humanoids = []
+        self._traffic_humanoids = []
+        if self.spawn_num + self.d_robot_num == 0:
+            return
 
         # get walkable region
         self.walkable_regions_mask = self._get_walkable_regions(current_map)

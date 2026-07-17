@@ -604,7 +604,7 @@ import random, os
 
 class PedestrianAssetPaths:
     global PEDESTRIAN_ROOT, RP_PEDESTRIAN_MOTIONS, SYNBODY_PEDESTRIAN_MOTIONS
-    PEDESTRIAN_ROOT = os.path.abspath("./metaurban/assets_pedestrain/") + "/"
+    PEDESTRIAN_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets_pedestrain") + "/"
 
     @staticmethod
     def get_random_texture():
